@@ -1,0 +1,307 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sender Listener Over WebSockets</title>
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.responsive.css" rel="stylesheet">
+<style type="text/css">
+
+
+#messages {
+	overflow: auto;
+	height: 50%;
+	word-wrap: break-word;
+}
+
+#numberMessages {
+	float: left;
+}
+
+#debug {
+	overflow: auto;
+	height: 40%;
+	word-wrap: break-word;
+}
+
+svg {
+	width: 100%;
+}
+
+
+path {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+
+.axis path,.axis line {
+	fill: none;
+	stroke: grey;
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+</style>
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+				<div id="connect">
+					<div class="page-header">
+						<h2>Server Login</h2>
+					</div>
+					<form class="form-horizontal" id='connect_form'>
+						<fieldset>
+							<div class="control-group">
+								<label>WebSocket URL</label>
+								<div class="controls">
+									<input name=url id='connect_url'
+										value='ws://url:61614' type="text">
+								</div>
+							</div>
+							<div class="control-group">
+								<label>User</label>
+								<div class="controls">
+									<input id='connect_login' placeholder="User Login"
+										value="system" type="text">
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Password</label>
+								<div class="controls">
+									<input id='connect_passcode' placeholder="User Password"
+										value="manager" type="password">
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Destination</label>
+								<div class="controls">
+									<input id='destination' placeholder="Destination"
+										value="/topic/tenant.streamId.raw" type="text">
+								</div>
+							</div>
+							<div class="form-actions">
+								<button id='connect_submit' type="submit"
+									class="btn btn-large btn-primary">Connect</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div id="connected" style="display: none">
+					<div class="page-header">
+					</div>
+					<pre id="messages"></pre>
+					<form class="well form-search" id='send_form'>
+						<div id=numberMessages></div>
+						<button class="btn" type="button" id='disconnect'
+							style="float: right">Disconnect</button>
+					</form>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="page-header">
+					<h2>Debug Log</h2>
+				</div>
+				<pre id="debug"></pre>
+			</div>
+			<div class="span12" id="graph" style="display: none">
+				<div class="page-header">
+					<h2>Graphs</h2>
+				</div>
+				<pre id="graph">
+					<div id="graphic">
+					</div>			
+				</pre>
+			</div>
+			
+
+		</div>
+	</div>
+
+	<script src="js/d3.v3.min.js"></script>
+	<script src="js/stomp.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		countMessages = 0;
+
+		$(document)
+				.ready(
+						function() {
+							if (window.WebSocket) {
+								var client, destination;
+								$('#connect_form')
+										.submit(
+												function() {
+													var url = $("#connect_url").val();
+													var login = $("#connect_login").val();
+													var passcode = $("#connect_passcode").val();
+													destination = $("#destination").val();
+
+													client = Stomp.client(url);
+
+													// this allows to display debug logs directly on the web page
+													client.debug = function(str) {
+														$("#debug").append(
+																str + "\n");
+													};
+
+													// the client is notified when it is connected to the server.
+													client.connect(login,passcode,
+														function(frame) {
+															client.debug("connected to Stomp");
+															$('#connect').fadeOut({duration : 'fast'});
+															$('#connected').fadeIn();
+															$('#graph').fadeIn();
+															client.subscribe(destination,
+																function(message) {
+																	countMessages++;
+																	jsonMessage = JSON.parse(message.body);
+																	$("#messages").append(JSON.stringify(jsonMessage,null,'\t')+ "\n");
+																	$("#messages").scrollTop(countMessages);
+																	$("#numberMessages").html("Messaggi:"+ countMessages);
+																    draw(jsonMessage);
+																}
+															);
+														});
+													return false;
+												});
+
+								$('#disconnect').click(function() {
+									client.disconnect(function() {
+										$('#connected').fadeOut({
+											duration : 'fast'
+										});
+										$('#graph').fadeOut({
+											duration : 'fast'
+										});
+										$('#connect').fadeIn();
+										$("#messages").html("");
+										countMessages = 0;
+									});
+									return false;
+								});
+
+							} else {
+								$("#connect")
+										.html(
+												"\
+          <h1>Get a new Web Browser!</h1>\
+          <p>\
+          Your browser does not support WebSockets. This example will not work properly.<br>\
+          Please use a Web Browser with WebSockets support (WebKit or Google Chrome).\
+          </p>\
+      ");
+							}
+						});
+
+	var	count = 0, sum_delta_sender2esb = 0;
+
+		var draw = function(odata) {
+			++count;
+			sum_delta_sender2esb += odata.event.payloadData.tstamp_esb_in - odata.event.payloadData.tstamp_sender;
+			 
+		}
+
+	var n = 243,
+	    duration = 750,
+	    now = new Date(Date.now() - duration),
+	    data = d3.range(n).map(function() { return 0; });
+
+	var margin = {top: 6, right: 0, bottom: 20, left: 40},
+	    width = 960 - margin.right,
+	    height = 120 - margin.top - margin.bottom;
+
+	var x = d3.time.scale()
+	    .domain([now - (n - 2) * duration, now - duration])
+	    .range([0, width]);
+
+	var y = d3.scale.linear()
+	    .range([height, 0]);
+
+	var line = d3.svg.line()
+	    .interpolate("basis")
+	    .x(function(d, i) { return x(now - (n - 1 - i) * duration); })
+	    .y(function(d, i) { return y(d); });
+
+	var svg = d3.select("#graphic").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	    .style("margin-left", -margin.left + "px")
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	svg.append("defs").append("clipPath")
+	    .attr("id", "clip")
+	  .append("rect")
+	    .attr("width", width)
+	    .attr("height", height);
+
+	var axis = svg.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(0," + height + ")")
+	    .call(x.axis = d3.svg.axis().scale(x).orient("bottom"));
+
+	svg.append("g")
+    .attr("class", "y axis")
+    .call(d3.svg.axis().scale(y).ticks(5).orient("left"));
+	
+	var path = svg.append("g")
+	    .attr("clip-path", "url(#clip)")
+	  .append("path")
+	    .data([data])
+	    .attr("class", "line");
+
+	tick();
+
+//	d3.select(window)
+//	    .on("scroll", function() { ++count; });
+
+	function tick() {
+
+	  // update the domains
+	  now = new Date();
+	  x.domain([now - (n - 2) * duration, now - duration]);
+
+
+	  // push the accumulated count onto the back, and reset the count
+	  if (count>0)
+		data.push(Math.ceil(sum_delta_sender2esb/count));
+	  else
+		data.push(0);
+	 
+	 y.domain([0, d3.max(data)]);
+	  
+	  count = 0;
+	  sum_delta_sender2esb = 0;
+	  // redraw the line
+	  svg.select(".line")
+	      .attr("d", line)
+	      .attr("transform", null);
+
+	  // slide the x-axis left
+	  axis.transition()
+	      .duration(duration)
+	      .ease("linear")
+	      .call(x.axis);
+
+	  // slide the line left
+	  path.transition()
+	      .duration(duration)
+	      .ease("linear")
+	      .attr("transform", "translate(" + x(now - (n - 1) * duration) + ")")
+	      .each("end", tick);
+
+	  // pop the old data point off the front
+	  data.shift();
+
+	}
+
+</script>
+</body>
+</html>

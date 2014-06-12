@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="tenant1_http" context="/wso001/services/ten1">
+    <resource methods="POST" uri-template="/{streamId}">
+        <inSequence>
+            <log level="full">
+                <property name="streamId_src" expression="get-property('uri.var.streamId')"/>
+                <property name="sequence" value="IN"/>
+            </log>
+            <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
+            <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+            <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" type="STRING"/>
+            <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$user$&amp;transport.jms.Password=$pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
+            <header name="To" scope="default" expression="fn:concat('jms:/input.ten1.',fn:get-property('uri.var.streamId'),fn:get-property('endpointToSend'))"/>
+            <log level="full"/>
+            <send/>
+        </inSequence>
+        <outSequence>
+            <log level="full">
+                <property name="streamId" expression="get-property('uri.var.streamId')"/>
+                <property name="sequence" value="OUT"/>
+            </log>
+        </outSequence>
+        <faultSequence>
+            <log level="full">
+                <property name="streamId" expression="get-property('uri.var.streamId')"/>
+                <property name="sequence" value="FAULT"/>
+                <property name="message" expression="get-property('ERROR_MESSAGE')"/>
+            </log>
+            <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+</api>

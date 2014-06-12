@@ -1,4 +1,4 @@
 yucca
 =====
 
-yucca smart data platform
+yucca realtime subsystem
