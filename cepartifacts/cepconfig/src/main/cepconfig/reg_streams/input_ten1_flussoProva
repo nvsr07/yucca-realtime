@@ -1,0 +1,26 @@
+{
+  "name": "input_ten1_flussoProva",
+  "version": "1.0.0",
+  "nickName": "input_ten1_flusso",
+  "description": "Stream input ten1 flussoProva",
+  "metaData": [
+    {
+      "name": "Sensor",
+      "type": "STRING"
+    }
+  ],
+  "payloadData": [
+    {
+      "name": "time",
+      "type": "STRING"
+    },
+    {
+      "name": "temp",
+      "type": "STRING"
+    },
+    {
+      "name": "wind",
+      "type": "STRING"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eventBuilder name="input_ten1_flussoProva_EventBuilder" statistics="disable"
+    trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
+    <from eventAdaptorName="JMSMBInternalInputEventAdaptor" eventAdaptorType="jms">
+        <property name="transport.jms.Destination">input.ten1.flussoProva</property>
+    </from>
+    <mapping customMapping="enable" type="json">
+        <property>
+            <from jsonPath="Sensor"/>
+            <to name="meta_Sensor" type="string"/>
+        </property>
+        <property>
+            <from jsonPath="Values[0].time"/>
+            <to name="time" type="string"/>
+        </property>
+        <property>
+            <from jsonPath="Values[0].components.temp"/>
+            <to name="temp" type="string"/>
+        </property>
+        <property>
+            <from jsonPath="Values[0].components.wind"/>
+            <to name="wind" type="string"/>
+        </property>
+    </mapping>
+    <to streamName="input_ten1_flussoProva" version="1.0.0"/>
+</eventBuilder>
+                                        
