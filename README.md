@@ -1,4 +1,4 @@
-yucca
+yucca realtime
 =====
 
 yucca realtime subsystem
