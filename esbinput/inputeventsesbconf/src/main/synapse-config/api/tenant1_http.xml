@@ -6,12 +6,13 @@
                 <property name="streamId_src" expression="get-property('uri.var.streamId')"/>
                 <property name="sequence" value="IN"/>
             </log>
-            <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
-            <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-            <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.internal.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.internal.user$&amp;transport.jms.Password=$mb.internal.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
-            <header name="To" scope="default" expression="fn:concat('jms:/input.ten1.',fn:get-property('uri.var.streamId'),fn:get-property('endpointToSend'))"/>
-            <log level="full"/>
-            <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
+            <call-template target="SendToMessageBrokerSequence" description="">
+                <with-param name="mb_url" value="$mb.internal.jms.url$"/>
+                <with-param name="mb_user" value="$mb.internal.user$"/>
+                <with-param name="mb_pwd" value="$mb.internal.pwd$"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('input.ten1.',fn:get-property('uri.var.streamId'))}}"/>
+                <with-param name="mb_destination_type" value="queue"/>
+            </call-template>
             <send/>
         </inSequence>
         <outSequence>
@@ -24,12 +25,13 @@
             <clone continueParent="true">
                 <target>
                     <sequence>
-                        <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
-                        <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-                        <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.external.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.external.jms.user$&amp;transport.jms.Password=$mb.external.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
-                        <header name="To" scope="default" expression="fn:concat('jms:/input.ten1.errors',fn:get-property('endpointToSend'))"/>
-                        <log level="full"/>
-                        <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
+                        <call-template target="SendToMessageBrokerSequence" description="">
+                            <with-param name="mb_url" value="$mb.external.jms.url$"/>
+                            <with-param name="mb_user" value="$mb.external.user$"/>
+                            <with-param name="mb_pwd" value="$mb.external.pwd$"/>
+                            <with-param name="mb_destination_name" value="{{fn:concat('ten1.','errors')}}"/>
+                            <with-param name="mb_destination_type" value="topic"/>
+                        </call-template>
                         <send/>
                     </sequence>
                 </target>
