@@ -41,7 +41,7 @@
                 </outputConnector>
                 <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
               </children>
-              <children xsi:type="esb:PropertyMediator" propertyName="endpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$user$&amp;transport.jms.Password=$pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true">
+              <children xsi:type="esb:PropertyMediator" propertyName="endpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.internal.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.internal.user$&amp;transport.jms.Password=$mb.internal.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true">
                 <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
                 <outputConnector>
                   <outgoingLink target="//@server/@children.0/@resources.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.4/@inputConnector"/>
@@ -108,7 +108,7 @@
                 <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
               </children>
               <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
-                <inputConnector/>
+                <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
                 <outputConnector>
                   <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.1/@inputConnector"/>
                 </outputConnector>
@@ -121,6 +121,71 @@
                 <properties propertyName="message" propertyValueType="EXPRESSION">
                   <propertyExpression propertyValue="get-property('ERROR_MESSAGE')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
                 </properties>
+              </children>
+              <children xsi:type="esb:CloneMediator" continueParent="true">
+                <targets/>
+                <targetsOutputConnector>
+                  <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.0/@inputConnector"/>
+                </targetsOutputConnector>
+                <inputConnector/>
+                <outputConnector>
+                  <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.2/@inputConnector"/>
+                </outputConnector>
+                <cloneContainer>
+                  <cloneTargetContainer>
+                    <mediatorFlow>
+                      <children xsi:type="esb:PropertyMediator" propertyName="REST_URL_POSTFIX" propertyScope="axis2" valueLiteral="remove">
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@targetsOutputConnector.0/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.1/@inputConnector"/>
+                        </outputConnector>
+                        <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </children>
+                      <children xsi:type="esb:PropertyMediator" propertyName="OUT_ONLY" valueLiteral="true">
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.2/@inputConnector"/>
+                        </outputConnector>
+                        <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </children>
+                      <children xsi:type="esb:PropertyMediator" propertyName="endpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.external.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.external.jms.user$&amp;transport.jms.Password=$mb.external.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true">
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.3/@inputConnector"/>
+                        </outputConnector>
+                        <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </children>
+                      <children xsi:type="esb:HeaderMediator" valueType="EXPRESSION">
+                        <headerName prettyName="Header Name" propertyName="name" propertyValue="To" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                        <valueExpression propertyValue="fn:concat('jms:/input.ten1.errors',fn:get-property('endpointToSend'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.4/@inputConnector"/>
+                        </outputConnector>
+                      </children>
+                      <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.5/@inputConnector"/>
+                        </outputConnector>
+                      </children>
+                      <children xsi:type="esb:PropertyMediator" propertyName="ClientApiNonBlocking" propertyAction="remove" propertyScope="axis2">
+                        <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+                        <outputConnector>
+                          <outgoingLink target="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.6/@InputConnector"/>
+                        </outputConnector>
+                      </children>
+                      <children xsi:type="esb:SendMediator" Reverse="true">
+                        <InputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@faultContainer/@mediatorFlow/@children.3/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.5/@outputConnector/@outgoingLink"/>
+                        <OutputConnector/>
+                        <StaticReceivingSequence prettyName="Static" keyName="receive" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                        <DynamicReceivingSequence prettyName="Dynamic" propertyName="receive" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                        <endpointOutputConnector/>
+                        <mediatorFlow/>
+                      </children>
+                    </mediatorFlow>
+                  </cloneTargetContainer>
+                </cloneContainer>
               </children>
             </mediatorFlow>
           </faultContainer>

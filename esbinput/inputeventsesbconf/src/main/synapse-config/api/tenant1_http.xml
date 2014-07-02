@@ -8,7 +8,7 @@
             </log>
             <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
             <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-            <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$user$&amp;transport.jms.Password=$pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
+            <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.internal.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.internal.user$&amp;transport.jms.Password=$mb.internal.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
             <header name="To" scope="default" expression="fn:concat('jms:/input.ten1.',fn:get-property('uri.var.streamId'),fn:get-property('endpointToSend'))"/>
             <log level="full"/>
             <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
@@ -21,6 +21,19 @@
             </log>
         </outSequence>
         <faultSequence>
+            <clone continueParent="true">
+                <target>
+                    <sequence>
+                        <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
+                        <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+                        <property name="endpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=$mb.external.jms.url$&amp;transport.jms.DestinationType=queue&amp;transport.jms.UserName=$mb.external.jms.user$&amp;transport.jms.Password=$mb.external.jms.pwd$&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true" scope="default" type="STRING"/>
+                        <header name="To" scope="default" expression="fn:concat('jms:/input.ten1.errors',fn:get-property('endpointToSend'))"/>
+                        <log level="full"/>
+                        <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
+                        <send/>
+                    </sequence>
+                </target>
+            </clone>
             <log level="full">
                 <property name="streamId" expression="get-property('uri.var.streamId')"/>
                 <property name="sequence" value="FAULT"/>
