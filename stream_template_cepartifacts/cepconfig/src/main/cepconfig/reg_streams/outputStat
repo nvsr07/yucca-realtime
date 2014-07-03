@@ -1,0 +1,13 @@
+{
+  "name": "outputStat",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "numEventsLast30Sec",
+      "type": "LONG"
+    }
+  ]
+}
+ 
