@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns="http://ws.apache.org/ns/synapse" name="SendToMessageBrokerSequence">
+    <parameter name="mb_url"/>
+    <parameter name="mb_user"/>
+    <parameter name="mb_pwd"/>
+    <parameter name="mb_destination_name"/>
+    <parameter name="mb_destination_type"/>
+    <sequence>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mbUrlValue" expression="fn:concat('java.naming.provider.url=',@dollar@func:mb_url)" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mbUserValue" expression="fn:concat('transport.jms.UserName=',@dollar@func:mb_user)" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mbPwdValue" expression="fn:concat('transport.jms.Password=',@dollar@func:mb_pwd)" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mbDestinationNameValue" expression="@dollar@func:mb_destination_name" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mbDestinationNameType" expression="fn:concat('transport.jms.DestinationType=',@dollar@func:mb_destination_type)" scope="default" type="STRING"/>
+        <property name="REST_URL_POSTFIX" value="remove" scope="axis2" type="STRING"/>
+        <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="PREendpointToSend" expression="fn:concat('jms:/',fn:get-property('mbDestinationNameValue'))" scope="default" type="STRING"/>
+        <property name="MIDendpointToSend" value="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true&amp;" scope="default" type="STRING"/>
+        <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="POSTendpointToSend" expression="fn:concat(fn:get-property('mbUrlValue'),'&amp;',fn:get-property('mbUserValue'),'&amp;',fn:get-property('mbPwdValue'),'&amp;',fn:get-property('mbDestinationNameType'))" scope="default" type="STRING"/>
+        <header xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="To" scope="default" expression="fn:concat(fn:get-property('PREendpointToSend'),fn:get-property('MIDendpointToSend'),fn:get-property('POSTendpointToSend'))"/>
+        <log level="full"/>
+        <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
+    </sequence>
+</template>

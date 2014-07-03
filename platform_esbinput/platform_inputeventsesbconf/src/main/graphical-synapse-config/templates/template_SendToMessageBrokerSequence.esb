@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
+  <server type="TEMPLATE">
+    <children xsi:type="esb:Template" name="SendToMessageBrokerSequence">
+      <child xsi:type="esb:Sequences" name="SendToMessageBrokerSequence">
+        <outputConnector>
+          <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.0/@inputConnector"/>
+        </outputConnector>
+        <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.12/@outputConnector/@outgoingLink"/>
+        <mediatorFlow>
+          <children xsi:type="esb:PropertyMediator" propertyName="mbUrlValue" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.1/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat('java.naming.provider.url=',$func:mb_url)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="mbUserValue" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.2/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat('transport.jms.UserName=',$func:mb_user)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="mbPwdValue" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.3/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat('transport.jms.Password=',$func:mb_pwd)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="mbDestinationNameValue" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.4/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="$func:mb_destination_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="mbDestinationNameType" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.5/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat('transport.jms.DestinationType=',$func:mb_destination_type)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="REST_URL_POSTFIX" propertyScope="axis2" valueLiteral="remove">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.6/@inputConnector"/>
+            </outputConnector>
+            <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="OUT_ONLY" valueLiteral="true">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.5/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.7/@inputConnector"/>
+            </outputConnector>
+            <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="PREendpointToSend" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.6/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.8/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat('jms:/',fn:get-property('mbDestinationNameValue'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="MIDendpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true&amp;">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.7/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.9/@inputConnector"/>
+            </outputConnector>
+            <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="POSTendpointToSend" valueType="EXPRESSION">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.8/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.10/@inputConnector"/>
+            </outputConnector>
+            <valueExpression propertyValue="fn:concat(fn:get-property('mbUrlValue'),'&amp;',fn:get-property('mbUserValue'),'&amp;',fn:get-property('mbPwdValue'),'&amp;',fn:get-property('mbDestinationNameType'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+          </children>
+          <children xsi:type="esb:HeaderMediator" valueType="EXPRESSION">
+            <headerName prettyName="Header Name" propertyName="name" propertyValue="To" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+            <valueExpression propertyValue="fn:concat(fn:get-property('PREendpointToSend'),fn:get-property('MIDendpointToSend'),fn:get-property('POSTendpointToSend'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.9/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.11/@inputConnector"/>
+            </outputConnector>
+          </children>
+          <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.10/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.12/@inputConnector"/>
+            </outputConnector>
+          </children>
+          <children xsi:type="esb:PropertyMediator" propertyName="ClientApiNonBlocking" propertyAction="remove" propertyScope="axis2">
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.11/@outputConnector/@outgoingLink"/>
+            <outputConnector>
+              <outgoingLink target="//@server/@children.0/@child/@inputConnector"/>
+            </outputConnector>
+          </children>
+        </mediatorFlow>
+        <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+      </child>
+      <parameters name="mb_url"/>
+      <parameters name="mb_user"/>
+      <parameters name="mb_pwd"/>
+      <parameters name="mb_destination_name"/>
+      <parameters name="mb_destination_type"/>
+    </children>
+  </server>
+</esb:EsbDiagram>
