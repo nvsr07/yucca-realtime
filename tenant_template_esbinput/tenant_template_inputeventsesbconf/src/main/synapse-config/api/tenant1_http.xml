@@ -10,7 +10,7 @@
                 <with-param name="mb_url" value="mb.internal.jms.url"/>
                 <with-param name="mb_user" value="mb.internal.user"/>
                 <with-param name="mb_pwd" value="mb.internal.pwd"/>
-                <with-param name="mb_destination_name" value="@obrace@fn:concat('input.ten1.',fn:get-property('uri.var.streamId'))@cbrace@"/>
+                <with-param name="mb_destination_name" value="{fn:concat('input.ten1.',fn:get-property('uri.var.streamId'))}"/>
                 <with-param name="mb_destination_type" value="queue"/>
             </call-template>
             <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" type="STRING"/>
@@ -23,27 +23,15 @@
             </log>
         </outSequence>
         <faultSequence>
-            <clone continueParent="true">
-                <target>
-                    <sequence>
-                        <call-template target="SendToMessageBrokerSequence" description="">
-                            <with-param name="mb_url" value="mb.external.jms.url"/>
-                            <with-param name="mb_user" value="mb.external.user"/>
-                            <with-param name="mb_pwd" value="mb.external.pwd"/>
-                            <with-param name="mb_destination_name" value="@obrace@@obrace@fn:concat('ten1.','errors')@cbrace@@cbrace@"/>
-                            <with-param name="mb_destination_type" value="topic"/>
-                        </call-template>
-                        <send/>
-                    </sequence>
-                </target>
-            </clone>
-            <log level="full">
-                <property name="streamId" expression="get-property('uri.var.streamId')"/>
-                <property name="sequence" value="FAULT"/>
-                <property name="message" expression="get-property('ERROR_MESSAGE')"/>
-            </log>
-            <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
-            <respond/>
+            <call-template target="SendToMessageBrokerAndRespondErrorSequence" description="">
+                <with-param name="mb_url" value="mb.external.jms.url"/>
+                <with-param name="mb_user" value="mb.external.user"/>
+                <with-param name="mb_pwd" value="mb.external.pwd"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('ten1.','errors')}}"/>
+                <with-param name="mb_destination_type" value="topic"/>
+                <with-param name="error_name" value="Stream unknown"/>
+                <with-param name="error_code" value="E011"/>
+            </call-template>
         </faultSequence>
     </resource>
 </api>

@@ -2,4 +2,10 @@
     <artifact name="SendToMessageBrokerSequence" groupId="org.csi.yucca.realtime.template" version="1.0.0" type="synapse/template" serverRole="EnterpriseServiceBus">
         <file>src\main\synapse-config\templates\SendToMessageBrokerSequence.xml</file>
     </artifact>
+    <artifact name="main" groupId="org.csi.yucca.realtime.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/main.xml</file>
+    </artifact>
+    <artifact name="SendToMessageBrokerAndRespondErrorSequence" groupId="org.csi.yucca.realtime.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/SendToMessageBrokerAndRespondErrorSequence.xml</file>
+    </artifact>
 </artifacts>

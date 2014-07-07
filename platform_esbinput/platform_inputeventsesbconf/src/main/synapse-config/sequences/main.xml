@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="main">
+    <in>
+        <log level="full">
+            <property name="sequence" value="MAIN"/>
+        </log>
+        <call-template target="SendToMessageBrokerAndRespondErrorSequence" description="">
+            <with-param name="mb_url" value="mb.external.jms.url"/>
+            <with-param name="mb_user" value="mb.external.user"/>
+            <with-param name="mb_pwd" value="mb.external.pwd"/>
+            <with-param name="mb_destination_name" value="platform.errors"/>
+            <with-param name="mb_destination_type" value="topic"/>
+            <with-param name="error_name" value="Tenant unknown"/>
+            <with-param name="error_code" value="E001"/>
+        </call-template>
+    </in>
+    <out>
+        <send/>
+    </out>
+</sequence>
