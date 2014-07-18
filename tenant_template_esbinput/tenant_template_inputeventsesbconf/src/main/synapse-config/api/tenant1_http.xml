@@ -34,4 +34,10 @@
             </call-template>
         </faultSequence>
     </resource>
+    <handlers>
+        <handler class="org.csi.yucca.realtime.authhandler.AuthenticationHandler">
+            <property name="username" value="user"/>
+            <property name="password" value="mypass"/>
+        </handler>
+    </handlers>
 </api>

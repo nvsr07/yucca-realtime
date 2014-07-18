@@ -23,6 +23,7 @@
     </plugins>
   </build>
   <modules>
+    <module>platform_authhandler</module>
     <module>platform_inputeventsesbconf</module>
     <module>platform_inputeventscap</module>
   </modules>
