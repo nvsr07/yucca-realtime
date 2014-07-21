@@ -8,7 +8,7 @@
         </outputConnector>
         <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
         <mediatorFlow>
-          <children xsi:type="esb:CloneMediator">
+          <children xsi:type="esb:CloneMediator" sequentialMediation="true">
             <targets/>
             <targets/>
             <targetsOutputConnector>
@@ -26,19 +26,19 @@
                 <mediatorFlow>
                   <children xsi:type="esb:CallTemplateMediator" description="" availableTemplates="Select From Templates" targetTemplate="SendToMessageBrokerSequence">
                     <templateParameters parameterName="mb_url" templateParameterType="Expression" parameterValue="">
-                      <parameterExpression propertyValue="$func:mb_url" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      <parameterExpression propertyValue="$func:mb_url" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078" supportsDynamicXPaths="true"/>
                     </templateParameters>
                     <templateParameters parameterName="mb_user" templateParameterType="Expression" parameterValue="">
-                      <parameterExpression propertyValue="$func:mb_user" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      <parameterExpression propertyValue="$func:mb_user" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078" supportsDynamicXPaths="true"/>
                     </templateParameters>
                     <templateParameters parameterName="mb_pwd" templateParameterType="Expression" parameterValue="">
-                      <parameterExpression propertyValue="$func:mb_pwd" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      <parameterExpression propertyValue="$func:mb_pwd" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078" supportsDynamicXPaths="true"/>
                     </templateParameters>
                     <templateParameters parameterName="mb_destination_name" templateParameterType="Expression" parameterValue="">
-                      <parameterExpression propertyValue="$func:mb_destination_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      <parameterExpression propertyValue="$func:mb_destination_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078" supportsDynamicXPaths="true"/>
                     </templateParameters>
                     <templateParameters parameterName="mb_destination_type" templateParameterType="Expression" parameterValue="">
-                      <parameterExpression propertyValue="$func:mb_destination_type" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      <parameterExpression propertyValue="$func:mb_destination_type" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078" supportsDynamicXPaths="true"/>
                     </templateParameters>
                     <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.0/@targetsOutputConnector.0/@outgoingLink"/>
                     <outputConnector>
@@ -48,8 +48,8 @@
                   <children xsi:type="esb:SendMediator">
                     <InputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
                     <OutputConnector/>
-                    <StaticReceivingSequence prettyName="Static" keyName="receive" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
-                    <DynamicReceivingSequence prettyName="Dynamic" propertyName="receive" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <StaticReceivingSequence prettyName="Static" keyName="receive" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
+                    <DynamicReceivingSequence prettyName="Dynamic" propertyName="receive" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                     <endpointOutputConnector/>
                     <mediatorFlow/>
                   </children>
@@ -62,18 +62,18 @@
                     <outputConnector>
                       <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.1/@inputConnector"/>
                     </outputConnector>
-                    <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                   </children>
                   <children xsi:type="esb:PayloadFactoryMediator" format="{&#xA;  &quot;error_name&quot;: &quot;$1&quot;,&#xA;  &quot;error_code&quot;: &quot;$2&quot;,&#xA;  &quot;output&quot;: &quot;$3&quot;&#xA;}" mediaType="json">
-                    <formatKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <formatKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                     <args argumentType="Expression">
-                      <argumentExpression propertyValue="$func:error_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <argumentExpression propertyValue="$func:error_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                     </args>
                     <args argumentType="Expression">
-                      <argumentExpression propertyValue="$func:error_code" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <argumentExpression propertyValue="$func:error_code" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                     </args>
                     <args argumentType="Expression">
-                      <argumentExpression propertyValue="$func:mb_destination_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <argumentExpression propertyValue="$func:mb_destination_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
                     </args>
                     <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.0/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
                     <outputConnector>
@@ -89,7 +89,7 @@
             </cloneContainer>
           </children>
         </mediatorFlow>
-        <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+        <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000007708000000010000000078"/>
       </child>
       <parameters name="mb_url"/>
       <parameters name="mb_user"/>

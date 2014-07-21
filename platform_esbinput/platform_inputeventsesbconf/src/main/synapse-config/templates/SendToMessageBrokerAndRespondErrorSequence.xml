@@ -8,7 +8,7 @@
     <parameter name="error_name"/>
     <parameter name="error_code"/>
     <sequence>
-        <clone>
+        <clone sequential="true">
             <target>
                 <sequence>
                     <call-template target="SendToMessageBrokerSequence" description="">
