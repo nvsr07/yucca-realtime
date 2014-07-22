@@ -10,15 +10,15 @@
             <to name="meta_Sensor" type="string"/>
         </property>
         <property>
-            <from jsonPath="Values[0].time"/>
+            <from jsonPath="Values.time"/>
             <to name="time" type="string"/>
         </property>
         <property>
-            <from jsonPath="Values[0].components.temp"/>
+            <from jsonPath="Values.components.temp"/>
             <to name="temp" type="string"/>
         </property>
         <property>
-            <from jsonPath="Values[0].components.wind"/>
+            <from jsonPath="Values.components.wind"/>
             <to name="wind" type="string"/>
         </property>
     </mapping>
