@@ -475,7 +475,7 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ [&#xd;
-&quot;Stream&quot;: &quot;flussoProvaUnknown&quot;,&#xd;
+&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
 &quot;Values&quot;: [ &#xd;
 { &#xd;
@@ -547,7 +547,7 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{ [&#xd;
+                  <stringProp name="Argument.value">{&#xd;
 &quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
 &quot;Values&quot;: [ &#xd;
@@ -614,35 +614,174 @@
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP json multiple events" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;Values&quot;: [ &#xd;
+{ &#xd;
+&quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
+&quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; }&#xd;
+},&#xd;
+{ &#xd;
+&quot;time&quot;: &quot;2014-05-13T17:08:59+0200&quot;, &#xd;
+&quot;components&quot;: { &quot;temp&quot;: &quot;19.4&quot;, &quot;wind&quot;:&quot;59&quot; }&#xd;
+}&#xd;
+]&#xd;
+}&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.port">80</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/api/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49588">202</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="WebSocket Output" enabled="true"/>
         <hashTree>
           <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler" enabled="true">
             <stringProp name="serverAddress">localhost</stringProp>
-            <stringProp name="serverPort">8181</stringProp>
+            <stringProp name="serverPort">61614</stringProp>
             <stringProp name="implementation">RFC6455 (v13)</stringProp>
             <stringProp name="protocol">ws</stringProp>
-            <stringProp name="contextPath">/</stringProp>
+            <stringProp name="contextPath">/ws2</stringProp>
             <stringProp name="contentEncoding">UTF-8</stringProp>
-            <stringProp name="requestPayload">CONNECT
-accept-version:1.1,1.0
-heart-beat:10000,10000
-login:admin
-passcode:password
-
-</stringProp>
-            <stringProp name="connectionTimeout">2000</stringProp>
+            <stringProp name="requestPayload">CONNECT</stringProp>
+            <stringProp name="connectionTimeout">20000</stringProp>
             <stringProp name="responseTimeout">20000</stringProp>
             <boolProp name="ignoreSslErrors">false</boolProp>
             <boolProp name="streamingConnection">true</boolProp>
-            <stringProp name="connectionId">1</stringProp>
-            <stringProp name="responsePattern">DISCONNECTED</stringProp>
+            <stringProp name="connectionId">mywe</stringProp>
+            <stringProp name="responsePattern">CONNECTED</stringProp>
             <stringProp name="closeConncectionPattern"></stringProp>
             <stringProp name="proxyAddress"></stringProp>
             <stringProp name="proxyPassword"></stringProp>
             <stringProp name="proxyPort"></stringProp>
             <stringProp name="proxyUsername"></stringProp>
-            <stringProp name="messageBacklog">3</stringProp>
+            <stringProp name="messageBacklog">1</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="accept-version" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">1.1,1.0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">accept-version</stringProp>
+                </elementProp>
+                <elementProp name="heart-beat" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">0,0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">heart-beat</stringProp>
+                </elementProp>
+                <elementProp name="login" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">guest</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">login</stringProp>
+                </elementProp>
+                <elementProp name="passcode" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">guest</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">passcode</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree/>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler" enabled="true">
+            <stringProp name="serverAddress">localhost</stringProp>
+            <stringProp name="serverPort">61614</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">ws</stringProp>
+            <stringProp name="contextPath">/ws2</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload">SUBSCRIBE</stringProp>
+            <stringProp name="connectionTimeout">20000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId">mywe</stringProp>
+            <stringProp name="responsePattern"></stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">0</stringProp>
+            <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="id" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">sub-1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">id</stringProp>
+                </elementProp>
+                <elementProp name="destination" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">/topic/ten1.flussoProva.raw</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">destination</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
+          <hashTree/>
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Sampler" enabled="true">
+            <stringProp name="serverAddress">localhost</stringProp>
+            <stringProp name="serverPort">61614</stringProp>
+            <stringProp name="implementation">RFC6455 (v13)</stringProp>
+            <stringProp name="protocol">ws</stringProp>
+            <stringProp name="contextPath">/ws2</stringProp>
+            <stringProp name="contentEncoding">UTF-8</stringProp>
+            <stringProp name="requestPayload"></stringProp>
+            <stringProp name="connectionTimeout">20000</stringProp>
+            <stringProp name="responseTimeout">20000</stringProp>
+            <boolProp name="ignoreSslErrors">false</boolProp>
+            <boolProp name="streamingConnection">true</boolProp>
+            <stringProp name="connectionId">mywe</stringProp>
+            <stringProp name="responsePattern">MESSAGE</stringProp>
+            <stringProp name="closeConncectionPattern"></stringProp>
+            <stringProp name="proxyAddress"></stringProp>
+            <stringProp name="proxyPassword"></stringProp>
+            <stringProp name="proxyPort"></stringProp>
+            <stringProp name="proxyUsername"></stringProp>
+            <stringProp name="messageBacklog">4</stringProp>
             <elementProp name="queryStringParameters" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
