@@ -1,4 +1,4 @@
-yucca realtime
-=====
+## General Architecture
 
-yucca realtime subsystem
+Yucca realtime system.
+
