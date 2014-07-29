@@ -16,6 +16,6 @@
 </inline>
   </mapping>
   <to eventAdaptorName="JMSMBExternalOutputEventAdaptor.xml" eventAdaptorType="jms">
-    <property name="transport.jms.Destination">ten1.flussoProva.raw</property>
+    <property name="transport.jms.Destination">output.ten1.flussoProva</property>
   </to>
 </eventFormatter>
