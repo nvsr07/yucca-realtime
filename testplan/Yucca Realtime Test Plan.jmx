@@ -6,28 +6,7 @@
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments">
-          <elementProp name="ESBIN_SERVER" elementType="Argument">
-            <stringProp name="Argument.name">ESBIN_SERVER</stringProp>
-            <stringProp name="Argument.value">localhost</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="WS PATH" elementType="Argument">
-            <stringProp name="Argument.name">WS PATH</stringProp>
-            <stringProp name="Argument.value">/</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="WS_PORT" elementType="Argument">
-            <stringProp name="Argument.name">WS_PORT</stringProp>
-            <stringProp name="Argument.value">61614</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="MQTT_PORT" elementType="Argument">
-            <stringProp name="Argument.name">MQTT_PORT</stringProp>
-            <stringProp name="Argument.value">1883</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-        </collectionProp>
+        <collectionProp name="Arguments.arguments"/>
       </elementProp>
       <stringProp name="TestPlan.user_define_classpath"></stringProp>
     </TestPlan>
@@ -134,7 +113,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -176,7 +155,12 @@
             </BeanShellPostProcessor>
             <hashTree/>
             <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header working" enabled="true">
-              <collectionProp name="HeaderManager.headers"/>
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
             </HeaderManager>
             <hashTree/>
           </hashTree>
@@ -201,7 +185,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -288,7 +272,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -364,7 +348,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">${ESBIN_SERVER}</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -437,7 +421,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
@@ -510,7 +494,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
@@ -583,7 +567,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
@@ -660,7 +644,7 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
             <stringProp name="HTTPSampler.port">80</stringProp>
             <stringProp name="HTTPSampler.connect_timeout"></stringProp>
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
@@ -705,11 +689,11 @@
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One simple message" enabled="true"/>
           <hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Connection - mywe" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">CONNECT</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -759,11 +743,11 @@
             </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
             <hashTree/>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket SUBSCRIBE raw  mywe" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">SUBSCRIBE</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -819,7 +803,7 @@
                   </elementProp>
                 </collectionProp>
               </elementProp>
-              <stringProp name="HTTPSampler.domain">${ESBIN_SERVER}</stringProp>
+              <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
               <stringProp name="HTTPSampler.port">80</stringProp>
               <stringProp name="HTTPSampler.connect_timeout"></stringProp>
               <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
@@ -846,11 +830,11 @@
               <hashTree/>
             </hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Verify mywe" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload"></stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -871,11 +855,11 @@
             </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
             <hashTree/>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Disconnect mywe" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">DISCONNECT</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -899,11 +883,11 @@
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One multiple (two) complex message" enabled="true"/>
           <hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Connection - mywe2" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">CONNECT</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -953,11 +937,11 @@
             </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
             <hashTree/>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket SUBSCRIBE raw  mywe2" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">SUBSCRIBE</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -1017,7 +1001,7 @@
                   </elementProp>
                 </collectionProp>
               </elementProp>
-              <stringProp name="HTTPSampler.domain">tst-sdnet-esbin1.sdp.csi.it</stringProp>
+              <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
               <stringProp name="HTTPSampler.port">80</stringProp>
               <stringProp name="HTTPSampler.connect_timeout"></stringProp>
               <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
@@ -1044,11 +1028,11 @@
               <hashTree/>
             </hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket VErify mywe2" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload"></stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -1069,11 +1053,11 @@
             </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
             <hashTree/>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Disconnect mywe2" enabled="true">
-              <stringProp name="serverAddress">${ESBIN_SERVER}</stringProp>
+              <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
               <stringProp name="protocol">ws</stringProp>
-              <stringProp name="contextPath">${WS_PATH}</stringProp>
+              <stringProp name="contextPath">${__P(websocket_path)}</stringProp>
               <stringProp name="contentEncoding">UTF-8</stringProp>
               <stringProp name="requestPayload">DISCONNECT</stringProp>
               <stringProp name="connectionTimeout">20000</stringProp>
@@ -1098,7 +1082,7 @@
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="true"/>
         <hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="true">
-            <stringProp name="mqtt.provider_url">tcp://${ESBIN_SERVER}:${MQTT_PORT}</stringProp>
+            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">output/ten1/flussoProva/raw</stringProp>
             <stringProp name="mqtt.security_principle">system</stringProp>
             <stringProp name="mqtt.security_credentials">manager</stringProp>
@@ -1156,7 +1140,7 @@ else
             <hashTree/>
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User pwd errors)" enabled="true">
-            <stringProp name="mqtt.provider_url">tcp://${ESBIN_SERVER}:${MQTT_PORT}</stringProp>
+            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">output/ten1/flussoProva/raw</stringProp>
             <stringProp name="mqtt.security_principle">guest</stringProp>
             <stringProp name="mqtt.security_credentials">sss</stringProp>
@@ -1214,7 +1198,7 @@ else
             <hashTree/>
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User not allowed)" enabled="true">
-            <stringProp name="mqtt.provider_url">tcp://${ESBIN_SERVER}:${MQTT_PORT}</stringProp>
+            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">output/ten12/flussoProva/raw</stringProp>
             <stringProp name="mqtt.security_principle">guest</stringProp>
             <stringProp name="mqtt.security_credentials">guest</stringProp>
@@ -1272,7 +1256,7 @@ else
             <hashTree/>
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="true">
-            <stringProp name="mqtt.provider_url">tcp://${ESBIN_SERVER}:${MQTT_PORT}</stringProp>
+            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">input/ten1/flussoProva/raw</stringProp>
             <stringProp name="mqtt.security_principle">guest</stringProp>
             <stringProp name="mqtt.security_credentials">password</stringProp>

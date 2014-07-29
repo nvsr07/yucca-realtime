@@ -6841,3 +6841,24 @@ java.lang.Thread.run(Unknown Source)
 1406224934925,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,true,560,0
 1406224934939,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,true,560,0
 1406224934965,1,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406553422439,318,HTTP Auth Fail (No auth),500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,518,317
+1406553422824,31,HTTP Auth Fail (User pwd errors),202,Accepted,Thread Group HTTP Events 1-1,text,false,232,31
+1406553422866,32,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,32
+1406553879760,209,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,715,209
+1406553880025,5,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,584,5
+1406553880042,28,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,28
+1406619227225,0,HTTP Auth Fail (No auth),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619227270,0,HTTP Auth Fail (User pwd errors),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619227276,0,HTTP Auth Good ,Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619287958,0,HTTP Auth Fail (No auth),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619288004,0,HTTP Auth Fail (User pwd errors),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619288013,0,HTTP Auth Good ,Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619393818,768,HTTP Auth Fail (No auth),Non HTTP response code: org.apache.http.client.ClientProtocolException,Non HTTP response message: null,Thread Group HTTP Events 1-1,text,false,2115,0
+1406619394660,0,HTTP Auth Fail (User pwd errors),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619394672,0,HTTP Auth Good ,Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619455201,232,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,231
+1406619455493,0,HTTP Auth Fail (User pwd errors),Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619455504,1,HTTP Auth Good ,Non HTTP response code: java.net.URISyntaxException,Non HTTP response message: Illegal character in authority at index 7: http://${esbin_server}/api/ten1/flussoProva,Thread Group HTTP Events 1-1,text,false,973,0
+1406619645156,206,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,206
+1406619645403,4,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,4
+1406619645414,31,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,31
