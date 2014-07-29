@@ -6862,3 +6862,901 @@ java.lang.Thread.run(Unknown Source)
 1406619645156,206,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,206
 1406619645403,4,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,4
 1406619645414,31,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,31
+1406636624986,331,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,331
+1406636625380,8,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,8
+1406636625397,30,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,30
+1406636625430,27,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,564,27
+1406636625465,56,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,560,56
+1406636625528,1007,HTTP json validation failed,Non HTTP response code: java.net.SocketTimeoutException,Non HTTP response message: Read timed out,Thread Group HTTP Events 1-1,text,false,2366,0
+1406636626545,31,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,31
+1406636626584,39,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,39
+1406636626625,757,WebSocket Connection - mywe,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406636627384,4,WebSocket SUBSCRIBE raw  mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406636627396,36,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,36
+1406636627434,3,WebSocket Verify mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,530,0
+1406636627442,6,WebSocket Disconnect mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,530,0
+1406636627450,46,WebSocket Connection - mywe2,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406636627498,2,WebSocket SUBSCRIBE raw  mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406636627505,90,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,90
+1406636627597,2,WebSocket VErify mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 3
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,931,0
+1406636627604,2,WebSocket Disconnect mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 3
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,931,0
+1406637123864,167,HTTP Auth Fail (No auth),500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,525,166
+1406637124082,24,HTTP Auth Fail (User pwd errors),500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,460,24
+1406637124112,25,HTTP Auth Good ,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,25
+1406637124141,24,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,564,24
+1406637124176,25,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,25
+1406637124209,1006,HTTP json validation failed,Non HTTP response code: java.net.SocketTimeoutException,Non HTTP response message: Read timed out,Thread Group HTTP Events 1-1,text,false,2366,0
+1406637125241,42,HTTP json coherence failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,42
+1406637125294,26,HTTP json multiple events,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,26
+1406637125323,20471,WebSocket Connection - mywe,," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error:  - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637145802,7,WebSocket SUBSCRIBE raw  mywe,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637145816,32,HTTP json simple  event,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,32
+1406637145851,20002,WebSocket Verify mywe,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637165857,4,WebSocket Disconnect mywe,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637165866,20039,WebSocket Connection - mywe2,," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error:  - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637185908,12,WebSocket SUBSCRIBE raw  mywe2,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637185923,36,HTTP json simple  event,500,Internal Server Error,Thread Group HTTP Events 1-1,text,false,564,36
+1406637185962,20006,WebSocket VErify mywe2,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637205975,5,WebSocket Disconnect mywe2,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637725760,23,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,23
+1406637725787,4,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,4
+1406637725796,23,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,23
+1406637725822,33,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,564,33
+1406637725861,65,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,560,65
+1406637725931,1004,HTTP json validation failed,Non HTTP response code: java.net.SocketTimeoutException,Non HTTP response message: Read timed out,Thread Group HTTP Events 1-1,text,false,2366,0
+1406637726942,28,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,28
+1406637726975,57,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,57
+1406637727034,20047,WebSocket Connection - mywe,," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error:  - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637747084,3,WebSocket SUBSCRIBE raw  mywe,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637747091,37,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,37
+1406637747131,20002,WebSocket Verify mywe,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637767135,8,WebSocket Disconnect mywe,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637767145,20041,WebSocket Connection - mywe2,," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error:  - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637787187,2,WebSocket SUBSCRIBE raw  mywe2,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637787195,52,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,52
+1406637787249,20002,WebSocket VErify mywe2,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,0,0
+1406637807254,8,WebSocket Disconnect mywe2,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1406638057123,12,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,12
+1406638057139,4,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,4
+1406638057147,55,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,55
+1406638057204,25,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,564,25
+1406638057234,56,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,560,56
+1406638057297,1007,HTTP json validation failed,Non HTTP response code: java.net.SocketTimeoutException,Non HTTP response message: Read timed out,Thread Group HTTP Events 1-1,text,false,2366,0
+1406638058314,31,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,31
+1406638058350,43,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,43
+1406638058396,92,WebSocket Connection - mywe,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638058490,4,WebSocket SUBSCRIBE raw  mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638058497,22,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,22
+1406638058521,20005,WebSocket Verify mywe,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,3277,0
+1406638078537,3,WebSocket Disconnect mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,3277,0
+1406638078543,53,WebSocket Connection - mywe2,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638078599,2,WebSocket SUBSCRIBE raw  mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638078604,48,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,48
+1406638078655,20003,WebSocket VErify mywe2,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,3277,0
+1406638098671,6,WebSocket Disconnect mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,3277,0
+1406638714069,17,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,697,17
+1406638714092,4,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,583,4
+1406638714101,64,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,64
+1406638714168,22,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,564,22
+1406638714198,48,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,560,48
+1406638714252,1005,HTTP json validation failed,Non HTTP response code: java.net.SocketTimeoutException,Non HTTP response message: Read timed out,Thread Group HTTP Events 1-1,text,false,2366,0
+1406638715265,32,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,32
+1406638715304,42,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,42
+1406638715348,75,WebSocket Connection - mywe,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638715426,2,WebSocket SUBSCRIBE raw  mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638715437,35,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,35
+1406638715476,2,WebSocket Verify mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,531,0
+1406638715488,2,WebSocket Disconnect mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,531,0
+1406638715502,53,WebSocket Connection - mywe2,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (115 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638715557,2,WebSocket SUBSCRIBE raw  mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,129,0
+1406638715566,44,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,44
+1406638715612,2,WebSocket VErify mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 3
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,933,0
+1406638715623,8,WebSocket Disconnect mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 3
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,933,0
