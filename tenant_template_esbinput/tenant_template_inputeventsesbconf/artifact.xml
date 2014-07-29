@@ -2,4 +2,7 @@
     <artifact name="tenant1_http" groupId="org.csi.yucca.realtime.inputeventsesbconf.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/tenant1_http.xml</file>
     </artifact>
-    </artifacts>
+    <artifact name="tenant1_mqtt" groupId="org.csi.yucca.realtime.inputeventsesbconf.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/tenant1_mqtt.xml</file>
+    </artifact>
+</artifacts>

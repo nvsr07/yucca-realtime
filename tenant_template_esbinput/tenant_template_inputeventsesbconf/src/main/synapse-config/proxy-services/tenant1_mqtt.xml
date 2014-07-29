@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="tenant1_mqtt" transports="jms" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <property name="streamId" expression="json-eval($.Stream)" scope="default" type="STRING"/>
+            <log level="full">
+                <property name="streamId_src" expression="get-property('streamId')"/>
+                <property name="sequence" value="IN"/>
+            </log>
+            <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/Values" sequential="true">
+                <target>
+                    <sequence>
+                        <log level="full">
+                            <property name="streamId_src" expression="get-property('streamId')"/>
+                            <property name="sequence" value="IN"/>
+                        </log>
+                        <call-template target="SendToMessageBrokerSequence" description="">
+                            <with-param name="mb_url" value="mb.internal.jms.url"/>
+                            <with-param name="mb_user" value="mb.internal.user"/>
+                            <with-param name="mb_pwd" value="mb.internal.pwd"/>
+                            <with-param name="mb_destination_name" value="{fn:concat('input.ten1.',fn:get-property('streamId'))}"/>
+                            <with-param name="mb_destination_type" value="queue"/>
+                        </call-template>
+                        <send/>
+                    </sequence>
+                </target>
+            </iterate>
+        </inSequence>
+        <outSequence>
+            <log level="full">
+                <property name="streamId" expression="get-property('streamId')"/>
+                <property name="sequence" value="OUT"/>
+            </log>
+        </outSequence>
+        <faultSequence>
+            <call-template target="SendToMessageBrokerSequence" description="">
+                <with-param name="mb_url" value="mb.external.jms.url"/>
+                <with-param name="mb_user" value="mb.external.user"/>
+                <with-param name="mb_pwd" value="mb.external.pwd"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('output.ten1.','errors')}}"/>
+                <with-param name="mb_destination_type" value="topic"/>
+            </call-template>
+        </faultSequence>
+    </target>
+    <parameter name="transport.jms.ContentType">
+        <rules>
+            <jmsProperty>contentType</jmsProperty>
+            <default>application/json</default>
+        </rules>
+    </parameter>
+    <parameter name="transport.jms.DestinationType">topic</parameter>
+    <parameter name="transport.jms.Destination">input.ten1</parameter>
+</proxy>
