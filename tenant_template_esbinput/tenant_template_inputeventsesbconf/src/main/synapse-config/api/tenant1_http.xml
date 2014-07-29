@@ -37,7 +37,7 @@
                 <with-param name="mb_url" value="mb.external.jms.url"/>
                 <with-param name="mb_user" value="mb.external.user"/>
                 <with-param name="mb_pwd" value="mb.external.pwd"/>
-                <with-param name="mb_destination_name" value="{{fn:concat('ten1.','errors')}}"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('output.ten1.','errors')}}"/>
                 <with-param name="mb_destination_type" value="topic"/>
                 <with-param name="error_name" value="Stream unknown"/>
                 <with-param name="error_code" value="E011"/>
