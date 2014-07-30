@@ -1117,7 +1117,7 @@
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1175,7 +1175,7 @@ else
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1233,7 +1233,7 @@ else
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1286,6 +1286,50 @@ else
             <boolProp name="mqtt.use_timestamp">false</boolProp>
             <boolProp name="mqtt.use_number_sequence">false</boolProp>
             <stringProp name="mqtt.clientid">11</stringProp>
+            <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
+            <stringProp name="mqtt.charset">UTF-8</stringProp>
+            <stringProp name="mqtt.size_array"></stringProp>
+            <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
+            <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
+            <stringProp name="mqtt.suffix.length"></stringProp>
+          </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
+          <hashTree/>
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good Smartlab" enabled="true">
+            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
+            <stringProp name="mqtt.topic">input/smartlab</stringProp>
+            <stringProp name="mqtt.security_principle">ten1</stringProp>
+            <stringProp name="mqtt.security_credentials">guest</stringProp>
+            <stringProp name="mqtt.text_message">{
+&quot;Stream&quot;: &quot;temperature&quot;,
+&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+&quot;Values&quot;: [ 
+{ 
+&quot;time&quot;: &quot;2014-05-13T17:08:58Z&quot;, 
+&quot;components&quot;: { &quot;c0&quot;: &quot;17.4&quot; }
+},
+{ 
+&quot;time&quot;: &quot;2014-05-13T17:09:58Z&quot;, 
+&quot;components&quot;: { &quot;c0&quot;: &quot;122&quot; }
+}
+]
+}
+</stringProp>
+            <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>
+            <stringProp name="mqtt.iterations">1</stringProp>
+            <boolProp name="mqtt.authenticate">false</boolProp>
+            <stringProp name="mqtt.quality">mqtt_at_most_once</stringProp>
+            <boolProp name="mqtt.retain">false</boolProp>
+            <stringProp name="mqtt.type_fixed_value">mqtt_int_value</stringProp>
+            <stringProp name="mqtt.fixed_value"></stringProp>
+            <stringProp name="mqtt.type_random_value">mqtt_pseudo_random</stringProp>
+            <stringProp name="mqtt.max_random_value"></stringProp>
+            <stringProp name="mqtt.min_random_value"></stringProp>
+            <stringProp name="mqtt.type_generated_value">mqtt_int_value</stringProp>
+            <stringProp name="mqtt.seed"></stringProp>
+            <boolProp name="mqtt.use_timestamp">false</boolProp>
+            <boolProp name="mqtt.use_number_sequence">false</boolProp>
+            <stringProp name="mqtt.clientid">33</stringProp>
             <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
             <stringProp name="mqtt.charset">UTF-8</stringProp>
             <stringProp name="mqtt.size_array"></stringProp>
