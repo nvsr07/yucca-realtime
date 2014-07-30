@@ -90,7 +90,7 @@
           <stringProp name="filename">D:\Users\1759\Documents\GitHub\yucca-realtime\testplan\log.csv</stringProp>
         </ResultCollector>
         <hashTree/>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (No auth)" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -312,7 +312,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Validation test" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Validation test" enabled="false"/>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header working" enabled="true">
             <collectionProp name="HeaderManager.headers">
@@ -671,7 +671,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http end to end test on websocket" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http end to end test on websocket" enabled="false"/>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header working" enabled="true">
             <collectionProp name="HeaderManager.headers">
@@ -1079,11 +1079,11 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="true"/>
         <hashTree>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="true">
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">output/ten1/flussoProva/raw</stringProp>
+            <stringProp name="mqtt.topic">input/ten1/flussoProva</stringProp>
             <stringProp name="mqtt.security_principle">system</stringProp>
             <stringProp name="mqtt.security_credentials">manager</stringProp>
             <stringProp name="mqtt.text_message">{ 
@@ -1117,7 +1117,7 @@
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1139,11 +1139,11 @@ else
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User pwd errors)" enabled="true">
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User pwd errors)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">output/ten1/flussoProva/raw</stringProp>
-            <stringProp name="mqtt.security_principle">guest</stringProp>
-            <stringProp name="mqtt.security_credentials">sss</stringProp>
+            <stringProp name="mqtt.topic">input/ten1/flussoProva</stringProp>
+            <stringProp name="mqtt.security_principle">ten1</stringProp>
+            <stringProp name="mqtt.security_credentials">dddddd</stringProp>
             <stringProp name="mqtt.text_message">{ 
 &quot;Stream&quot;: &quot;flussoProva&quot;,
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
@@ -1175,7 +1175,7 @@ else
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1197,7 +1197,7 @@ else
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User not allowed)" enabled="true">
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User not allowed)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">output/ten12/flussoProva/raw</stringProp>
             <stringProp name="mqtt.security_principle">guest</stringProp>
@@ -1233,7 +1233,7 @@ else
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
@@ -1257,9 +1257,9 @@ else
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="true">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/ten1/flussoProva/raw</stringProp>
-            <stringProp name="mqtt.security_principle">guest</stringProp>
-            <stringProp name="mqtt.security_credentials">password</stringProp>
+            <stringProp name="mqtt.topic">input/ten1</stringProp>
+            <stringProp name="mqtt.security_principle">ten1</stringProp>
+            <stringProp name="mqtt.security_credentials">guest</stringProp>
             <stringProp name="mqtt.text_message">{ 
 &quot;Stream&quot;: &quot;flussoProva&quot;,
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
@@ -1285,13 +1285,13 @@ else
             <stringProp name="mqtt.seed"></stringProp>
             <boolProp name="mqtt.use_timestamp">false</boolProp>
             <boolProp name="mqtt.use_number_sequence">false</boolProp>
-            <stringProp name="mqtt.clientid">142</stringProp>
+            <stringProp name="mqtt.clientid">11</stringProp>
             <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
             <stringProp name="mqtt.charset">UTF-8</stringProp>
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
+            <boolProp name="mqtt.random_suffix_client_id">false</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree/>
