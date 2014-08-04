@@ -7760,3 +7760,142 @@ java.lang.Thread.run(Unknown Source)
 
 [Problems]
 ",Thread Group HTTP Events 1-1,,true,933,0
+1406708209217,4,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406708237144,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,false,560,0
+1406708303759,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,false,560,0
+1406708325364,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,false,560,0
+1406708378723,1,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406708434927,0,null,FAILED,Exception: java.lang.Exception: Error:Could not connect: CONNECTION_REFUSED_SERVER_UNAVAILABLE,Thread Group HTTP Events 1-1,text,false,560,0
+1406708448663,0,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406708482349,0,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406732862692,4,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406732862717,3,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406894907776,14,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406894907823,1,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1406894963058,1,null,OK,Sent 1 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1407149268216,1904,WebSocket Connection - 1,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (114 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1407149270156,7,WebSocket SUBSCRIBE raw  1,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1407149270619,345,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,345
+1407149270984,20004,WebSocket Verify 1,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,128,0
+1407149290989,4,WebSocket Disconnect 1,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1407149290997,59,WebSocket Connection - mywe,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (114 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1407149291061,5,WebSocket SUBSCRIBE raw  mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1407149291071,34,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,34
+1407149291109,3,WebSocket Verify mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,529,0
+1407149291118,3,WebSocket Disconnect mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,529,0
