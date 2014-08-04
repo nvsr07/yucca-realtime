@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.csi.yucca.realtime</groupId>
-  <artifactId>tenant_template_inputeventscap</artifactId>
+  <artifactId>__tenant___inputeventscap</artifactId>
   <version>1.0.0</version>
   <packaging>carbon/application</packaging>
   <name>tenant_template_inputeventscap</name>
@@ -96,13 +96,13 @@
   <dependencies>
     <dependency>
       <groupId>org.csi.yucca.realtime.inputeventsesbconf.proxy-service</groupId>
-      <artifactId>tenant1_mqtt</artifactId>
+      <artifactId>__tenant___mqtt</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
     <dependency>
       <groupId>org.csi.yucca.realtime.inputeventsesbconf.api</groupId>
-      <artifactId>tenant1_http</artifactId>
+      <artifactId>__tenant___http</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
