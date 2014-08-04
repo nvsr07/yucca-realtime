@@ -3,7 +3,6 @@
     <target>
         <inSequence>
             <property name="streamId" expression="json-eval($.Stream)" scope="default" type="STRING"/>
-            <property name="sensorId" expression="json-eval($.Sensor)" scope="default" type="STRING"/>
             <log level="full">
                 <property name="streamId_src" expression="get-property('streamId')"/>
                 <property name="sequence" value="IN"/>
@@ -19,7 +18,7 @@
                             <with-param name="mb_url" value="mb.internal.jms.url"/>
                             <with-param name="mb_user" value="mb.internal.user"/>
                             <with-param name="mb_pwd" value="mb.internal.pwd"/>
-                            <with-param name="mb_destination_name" value="{fn:concat('input.smartlab.',fn:get-property('sensorId'),'_',fn:get-property('streamId'))}"/>
+                            <with-param name="mb_destination_name" value="{fn:concat('input.ten1.',fn:get-property('streamId'))}"/>
                             <with-param name="mb_destination_type" value="queue"/>
                         </call-template>
                         <send/>
@@ -49,6 +48,6 @@
             <default>application/json</default>
         </rules>
     </parameter>
-    <parameter name="transport.jms.DestinationType">topic</parameter>
-    <parameter name="transport.jms.Destination">input.ten1</parameter>
+    <parameter name="transport.jms.DestinationType">queue</parameter>
+    <parameter name="transport.jms.Destination">VirtualQueueConsumer.esbin1.input.ten1</parameter>
 </proxy>
