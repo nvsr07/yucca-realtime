@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="tenant1_mqtt" transports="jms" startOnLoad="true" trace="disable">
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="__tenant___mqtt" transports="jms" startOnLoad="true" trace="disable">
     <target>
         <inSequence>
             <property name="streamId" expression="json-eval($.Stream)" scope="default" type="STRING"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api xmlns="http://ws.apache.org/ns/synapse" name="tenant1_http" context="/wso001/services/ten1">
+<api xmlns="http://ws.apache.org/ns/synapse" name="__tenant___http" context="/wso001/services/ten1">
     <resource methods="POST" uri-template="/{streamId}">
         <inSequence>
             <log level="full">

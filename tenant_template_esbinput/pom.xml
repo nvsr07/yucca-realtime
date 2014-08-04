@@ -24,6 +24,6 @@
   </build>
   <modules>
     <module>tenant_template_inputeventsesbconf</module>
-    <module>tenant_template_inputeventscap</module>
+    <module>__tenant___inputeventscap</module>
   </modules>
 </project>

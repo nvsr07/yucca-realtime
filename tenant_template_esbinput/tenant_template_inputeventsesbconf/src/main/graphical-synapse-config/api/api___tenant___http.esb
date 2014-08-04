@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
   <server type="API">
-    <children xsi:type="esb:SynapseAPI" apiName="tenant1_http" context="/wso001/services/ten1">
+    <children xsi:type="esb:SynapseAPI" apiName="__tenant___http" context="/wso001/services/ten1">
       <resources urlStyle="URI_TEMPLATE" uriTemplate="/{streamId}" allowPost="true">
         <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
         <outputConnector>
