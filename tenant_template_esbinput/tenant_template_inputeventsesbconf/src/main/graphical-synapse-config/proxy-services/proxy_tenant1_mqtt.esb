@@ -13,7 +13,7 @@
       <inSequenceInputConnectors incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@mediatorFlow/@children.2/@OutputConnector/@outgoingLink"/>
       <serviceParameters name="transport.jms.ContentType" value="&lt;rules xmlns=&quot;http://ws.apache.org/ns/synapse&quot;>&#xA;            &lt;jmsProperty>contentType&lt;/jmsProperty>&#xA;            &lt;default>application/json&lt;/default>&#xA;        &lt;/rules>"/>
       <serviceParameters name="transport.jms.DestinationType" value="queue"/>
-      <serviceParameters name="transport.jms.Destination" value="VirtualQueueConsumer.esbin1.input.ten1"/>
+      <serviceParameters name="transport.jms.Destination" value="VirtualQueueConsumer.esbin.input.ten1"/>
       <container>
         <sequenceAndEndpointContainer>
           <mediatorFlow>

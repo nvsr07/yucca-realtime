@@ -49,5 +49,5 @@
         </rules>
     </parameter>
     <parameter name="transport.jms.DestinationType">queue</parameter>
-    <parameter name="transport.jms.Destination">VirtualQueueConsumer.esbin1.input.ten1</parameter>
+    <parameter name="transport.jms.Destination">VirtualQueueConsumer.esbin.input.ten1</parameter>
 </proxy>
