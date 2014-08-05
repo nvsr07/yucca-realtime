@@ -27,7 +27,7 @@
               <tasks>
                 <echo>Copying template files to project folder</echo>
                 <copy todir="../app_${tenant.name}" verbose="true" overwrite="true">
-                  <fileset dir="${basedir}" /7
+                  <fileset dir="${basedir}" />
                 </copy>
                 <move todir="../app_${tenant.name}">
                   <fileset dir="../app_${tenant.name}">                    
