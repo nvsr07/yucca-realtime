@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<eventFormatter name="stat_ten1_flussoProva_OutputEventFormatter"
-  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
-  <from streamName="outputStat" version="1.0.0"/>
-  <mapping customMapping="disable" type="json"/>
-  <to eventAdaptorName="JMSMBExternalOutputEventAdaptor.xml" eventAdaptorType="jms">
-    <property name="transport.jms.Destination">output.ten1.flussoProva.stat</property>
-  </to>
-</eventFormatter>

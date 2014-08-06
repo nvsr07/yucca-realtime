@@ -1,0 +1,20 @@
+expert: true
+data: {
+    tenant: {
+    	code: "smartlab"
+   	}
+   	sensor: {
+   		code: "550e8400-e29b-41d4-a716-446655440000"
+   		code_:"550e8400_e29b_41d4_a716_446655440000"
+   	}
+	stream: {
+		code: "temperature"
+		published: "true"
+	}    
+	components: [
+		{
+			code: "c0"
+			type: "string"
+		}
+	]
+}
