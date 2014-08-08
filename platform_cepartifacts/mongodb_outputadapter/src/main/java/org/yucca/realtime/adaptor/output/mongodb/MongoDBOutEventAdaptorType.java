@@ -26,8 +26,10 @@ import org.yucca.realtime.adaptor.output.mongodb.internal.util.MongoDBOutEventAd
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
+import com.mongodb.util.JSON;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -164,7 +166,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     	
     	DB database  = createDB(mongoClient, mongodbDatabase, mongodbUsername, mongodbPassword);
     	DBCollection coll = createCollection(database, mongodbCollection);
-    	
+    	coll.insert(((DBObject)JSON.parse(o.toString())));
     	
     }
 

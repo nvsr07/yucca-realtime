@@ -10,6 +10,7 @@ data: {
 	stream: {
 		code: "temperature"
 		published: "true"
+		persisted: "true"
 	}    
 	components: [
 		{
