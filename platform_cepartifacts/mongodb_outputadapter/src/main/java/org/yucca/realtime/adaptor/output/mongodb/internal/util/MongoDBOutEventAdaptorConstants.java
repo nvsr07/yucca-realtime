@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.yucca.realtime.cep.internal.util;
+package org.yucca.realtime.adaptor.output.mongodb.internal.util;
 
 
 public final class MongoDBOutEventAdaptorConstants {
@@ -22,8 +22,10 @@ public final class MongoDBOutEventAdaptorConstants {
     private MongoDBOutEventAdaptorConstants() {
     }
 
-    public static final String EVENT_ADAPTOR_TYPE_TESTOUT = "MongoDB";
-    public static final String EVENT_ADAPTOR_CONF_FIELD1 = "property1";
-    public static final String EVENT_ADAPTOR_CONF_FIELD1_HINT = "property1Hint";
+    public static final String EVENT_ADAPTOR_TYPE_MONGODB = "MongoDB";
+    public static final String EVENT_ADAPTOR_CONF_FIELD_DBURL = "db.url";
+    public static final String EVENT_ADAPTOR_CONF_FIELD_USERNAME = "db.username";
+    public static final String EVENT_ADAPTOR_CONF_FIELD_PASSWORD = "db.password";
+    public static final String EVENT_MESSAGE_CONF_FIELD_COLLECTION = "collection";
 
 }

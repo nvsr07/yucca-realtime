@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package org.yucca.realtime.cep.internal.ds;
+package org.yucca.realtime.adaptor.output.mongodb.internal.ds;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.event.output.adaptor.core.OutputEventAdaptorFactory;
-import org.yucca.realtime.cep.MongoDBOutEventAdaptorFactory;
+import org.yucca.realtime.adaptor.output.mongodb.MongoDBOutEventAdaptorFactory;
 
 
 /**
- * @scr.component name="output.testOutEventAdaptorService.component" immediate="true"
+ * @scr.component name="output.mongodbOutEventAdaptorService.component" immediate="true"
  */
 
 
@@ -42,9 +42,9 @@ public class MongoDBOutEventAdaptorServiceDS {
         try {
             OutputEventAdaptorFactory testOutEventAdaptorFactory = new MongoDBOutEventAdaptorFactory();
             context.getBundleContext().registerService(OutputEventAdaptorFactory.class.getName(), testOutEventAdaptorFactory, null);
-            log.info("Successfully deployed the MongoDB output event adaptor service");
+            log.info("Successfully deployed the Mongo output event adaptor service");
         } catch (RuntimeException e) {
-            log.error("Can not create the MongoDB output event adaptor service ", e);
+            log.error("Can not create the Mongo output event adaptor service ", e);
         }
     }
 

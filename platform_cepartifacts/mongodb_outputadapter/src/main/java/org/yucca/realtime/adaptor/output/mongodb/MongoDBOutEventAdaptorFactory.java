@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.yucca.realtime.cep;
+package org.yucca.realtime.adaptor.output.mongodb;
 
 
 import org.wso2.carbon.event.output.adaptor.core.AbstractOutputEventAdaptor;
