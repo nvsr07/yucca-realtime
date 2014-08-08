@@ -44,7 +44,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 	private static final Log log = LogFactory.getLog(MongoDBOutEventAdaptorType.class);
     private ResourceBundle resourceBundle;
 
-    private Map<ServerAddress, MongoClient> mongoClients = null;
+    private Map<ServerAddress, MongoClient> mongoClients = new HashMap<ServerAddress, MongoClient>();
     
     @Override
     protected String getName() {
@@ -186,16 +186,16 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 		/**** Get database ****/
 		// if database doesn't exists, MongoDB will create it for you
 		DB db = mongo.getDB(DBname);		
-		if(username!=null && password!=null){
-			if(db.authenticate(username, password.toCharArray()))
-				return db;	
-			else{
-				System.out.println("Cant create DB, authorization needed!");
-				return null;
-			}
-		}else{
+//		if(username!=null && password!=null){
+//			if(db.authenticate(username, password.toCharArray()))
+//				return db;	
+//			else{
+//				System.out.println("Cant create DB, authorization needed!");
+//				return null;
+//			}
+//		}else{
 			return db;
-		}
+//		}
 
 	}
 

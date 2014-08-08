@@ -3,5 +3,6 @@
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
 	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/1759/.m2/repository/org/mongodb/mongo-java-driver/2.12.3/mongo-java-driver-2.12.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
