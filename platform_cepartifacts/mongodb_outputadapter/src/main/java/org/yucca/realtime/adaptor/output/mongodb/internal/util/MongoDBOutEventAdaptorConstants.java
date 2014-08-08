@@ -22,10 +22,15 @@ public final class MongoDBOutEventAdaptorConstants {
     private MongoDBOutEventAdaptorConstants() {
     }
 
-    public static final String EVENT_ADAPTOR_TYPE_MONGODB = "MongoDB";
+    public static final String EVENT_ADAPTOR_TYPE_MONGODB = "mongoDB";
     public static final String EVENT_ADAPTOR_CONF_FIELD_DBURL = "db.url";
-    public static final String EVENT_ADAPTOR_CONF_FIELD_USERNAME = "db.username";
-    public static final String EVENT_ADAPTOR_CONF_FIELD_PASSWORD = "db.password";
-    public static final String EVENT_MESSAGE_CONF_FIELD_COLLECTION = "collection";
+    public static final String EVENT_ADAPTOR_CONF_FIELD_DBPORT = "db.port";
 
+    public static final String EVENT_MESSAGE_CONF_FIELD_COLLECTION = "collection";
+    public static final String EVENT_MESSAGE_CONF_FIELD_DATABASE = "database";
+    public static final String EVENT_MESSAGE_CONF_FIELD_USERNAME = "username";
+    public static final String EVENT_MESSAGE_CONF_FIELD_PASSWORD = "password";
+
+    
+    
 }
