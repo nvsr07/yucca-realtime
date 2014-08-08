@@ -22,7 +22,8 @@ select count(time) as numEventsLast30Sec
 output last every 2 sec 
 insert into tempOutputStat for all-events; 
 
-from tempOutputStat#window.length(1) 
+from tempOutputStat#window.length(1) as st unidirectional join input#window.length(1) as i
+select numEventsLast30Sec,"" as lastMessage,i.time as lastUpdate
 output snapshot every 2 sec 
 insert into outputStat for all-events 
 ]]>

@@ -7,6 +7,14 @@
     {
       "name": "numEventsLast30Sec",
       "type": "LONG"
+    },
+    {
+      "name": "lastMessage",
+      "type": "string"
+    },
+    {
+      "name": "lastUpdate",
+      "type": "string"
     }
   ]
 }
