@@ -30,7 +30,9 @@
 				<delete dir="app_${tenant.name}" verbose="true"/>
                 <echo>Copying template files to project folder</echo>
                 <copy todir="app_${tenant.name}" verbose="true" overwrite="true">
-                  <fileset dir="${basedir}" />
+                  <fileset dir="${basedir}">
+					<exclude name="**/app_*/"/>
+				  </fileset>
                 </copy>          
               </tasks>
             </configuration>
