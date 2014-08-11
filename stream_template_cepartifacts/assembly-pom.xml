@@ -26,6 +26,8 @@
             </goals>
             <configuration>
               <tasks>
+				<echo>Removing old directory</echo>
+				<delete dir="app_${tenant.name}" verbose="true"/>
                 <echo>Copying template files to project folder</echo>
                 <copy todir="app_${tenant.name}" verbose="true" overwrite="true">
                   <fileset dir="${basedir}" />
