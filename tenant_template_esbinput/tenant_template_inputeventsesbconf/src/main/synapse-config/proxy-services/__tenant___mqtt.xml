@@ -18,7 +18,7 @@
                             <with-param name="mb_url" value="mb.internal.jms.url"/>
                             <with-param name="mb_user" value="mb.internal.user"/>
                             <with-param name="mb_pwd" value="mb.internal.pwd"/>
-                            <with-param name="mb_destination_name" value="{fn:concat('input.ten1.',fn:get-property('streamId'))}"/>
+                            <with-param name="mb_destination_name" value="{fn:concat('input.__tenant__.',fn:get-property('streamId'))}"/>
                             <with-param name="mb_destination_type" value="queue"/>
                         </call-template>
                         <send/>
@@ -37,7 +37,7 @@
                 <with-param name="mb_url" value="mb.external.jms.url"/>
                 <with-param name="mb_user" value="mb.external.user"/>
                 <with-param name="mb_pwd" value="mb.external.pwd"/>
-                <with-param name="mb_destination_name" value="{{fn:concat('output.ten1.','errors')}}"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('output.__tenant__.','errors')}}"/>
                 <with-param name="mb_destination_type" value="topic"/>
             </call-template>
         </faultSequence>
@@ -49,5 +49,5 @@
         </rules>
     </parameter>
     <parameter name="transport.jms.DestinationType">queue</parameter>
-    <parameter name="transport.jms.Destination">VirtualQueueConsumer.esbin.input.ten1</parameter>
+    <parameter name="transport.jms.Destination">VirtualQueueConsumer.esbin.input.__tenant__</parameter>
 </proxy>
