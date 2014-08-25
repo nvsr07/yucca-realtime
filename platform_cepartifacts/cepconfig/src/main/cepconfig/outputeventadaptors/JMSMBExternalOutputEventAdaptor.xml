@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <outputEventAdaptor name="JMSMBExternalOutputEventAdaptor.xml"
   statistics="disable" trace="disable" type="jms" xmlns="http://wso2.org/carbon/eventadaptormanager">
-  <property name="java.naming.provider.url">tcp://tst-sdnet-esbin1.sdp.csi.it:61616</property>
-  <property name="transport.jms.UserName">system</property>
+  <property name="java.naming.provider.url">exter.mb.jms.url</property>
+  <property name="transport.jms.UserName">exter.mb.user</property>
   <property name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</property>
   <property name="transport.jms.ConnectionFactoryJNDIName">TopicConnectionFactory</property>
-  <property name="transport.jms.Password">manager$2014</property>
+  <property name="transport.jms.Password">exter.mb.pwd</property>
   <property name="transport.jms.DestinationType">topic</property>
 </outputEventAdaptor>

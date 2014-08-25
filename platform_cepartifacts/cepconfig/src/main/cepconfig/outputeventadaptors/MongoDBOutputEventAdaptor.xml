@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <outputEventAdaptor name="MongoDBOutputEventAdaptor" statistics="disable" trace="disable"
   type="mongoDB" xmlns="http://wso2.org/carbon/eventadaptormanager">
-  <property name="db.url">tst-sdnet-bgslave1.sdp.csi.it</property>
-  <property name="db.port">27017</property>
+  <property name="db.url">mongo.url</property>
+  <property name="db.port">mongo.port</property>
 </outputEventAdaptor>

@@ -5,79 +5,27 @@
   <groupId>org.yucca.realtime</groupId>
   <artifactId>cepconfig</artifactId>
   <version>1.0.0</version>
-  <packaging>carbon/application</packaging>
-  <name>cepconfig</name>
+  <name>platform_cepconfig</name>
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <version>2.9</version>
-        <configuration>
-          <buildcommands />
-          <projectnatures>
-            <projectnature>org.wso2.developerstudio.eclipse.distribution.project.nature</projectnature>
-          </projectnatures>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.wso2.maven</groupId>
-        <artifactId>maven-car-plugin</artifactId>
-        <version>2.0.6</version>
-        <extensions>true</extensions>
+        <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
-            <id>car</id>
+            <id>create-distribution</id>
             <phase>package</phase>
             <goals>
-              <goal>car</goal>
+              <goal>single</goal>
             </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>assembly/platform_cepartifacts.xml</descriptor>
+              </descriptors>
+            </configuration>
           </execution>
         </executions>
-        <configuration />
       </plugin>
-      <plugin>
-           <groupId>com.google.code.maven-replacer-plugin</groupId>
-           <artifactId>replacer</artifactId>
-           <version>1.5.3</version>
-           <executions>
-               <execution>
-                   <phase>prepare-package</phase>
-                   <goals>
-                       <goal>replace</goal>
-                   </goals>                   
-               </execution>
-           </executions>
-           <configuration>
-               <includes>
-                    <include>${project.build.directory}/**/*.xml</include>
-                </includes>
-               <excludes>
-                    <exclude>${project.build.directory}/**/pom.xml</exclude>
-                </excludes>
-				<tokenValueMap>${basedir}/cepconfig/src/main/resources/template_environment.properties</tokenValueMap>
-				<regex>false</regex>
-           </configuration>
-       </plugin>      
-      <plugin>
-        <groupId>org.wso2.maven</groupId>
-        <artifactId>maven-car-deploy-plugin</artifactId>
-        <version>1.0.5</version>
-        <extensions>true</extensions>
-        <configuration>
-          <carbonServers>
-            <CarbonServer>
-              <trustStorePath>${basedir}/src/main/resources/security/wso2carbon.jks</trustStorePath>
-              <trustStorePassword>wso2carbon</trustStorePassword>
-              <trustStoreType>JKS</trustStoreType>
-              <serverUrl>https://localhost:9443</serverUrl>
-              <userName>admin</userName>
-              <password>admin</password>
-              <operation>deploy</operation>
-            </CarbonServer>
-          </carbonServers>
-        </configuration>
-      </plugin>
-    </plugins>
+    </plugins>    
   </build>
   <repositories>
     <repository>
