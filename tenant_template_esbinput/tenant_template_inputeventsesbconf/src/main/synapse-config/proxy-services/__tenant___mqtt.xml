@@ -19,7 +19,7 @@
                             <with-param name="mb_user" value="mb.internal.user"/>
                             <with-param name="mb_pwd" value="mb.internal.pwd"/>
                             <with-param name="mb_destination_name" value="{fn:concat('input.__tenant__.',fn:get-property('streamId'))}"/>
-                            <with-param name="mb_destination_type" value="queue"/>
+                            <with-param name="mb_destination_type" value="topic"/>
                         </call-template>
                         <send/>
                     </sequence>

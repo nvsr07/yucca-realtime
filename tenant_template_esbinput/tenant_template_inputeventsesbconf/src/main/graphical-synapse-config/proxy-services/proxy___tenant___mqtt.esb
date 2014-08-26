@@ -13,7 +13,7 @@
       <inSequenceInputConnectors incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@mediatorFlow/@children.2/@OutputConnector/@outgoingLink"/>
       <serviceParameters name="transport.jms.ContentType" value="&lt;rules xmlns=&quot;http://ws.apache.org/ns/synapse&quot;>&#xA;            &lt;jmsProperty>contentType&lt;/jmsProperty>&#xA;            &lt;default>application/json&lt;/default>&#xA;        &lt;/rules>"/>
       <serviceParameters name="transport.jms.DestinationType" value="queue"/>
-      <serviceParameters name="transport.jms.Destination" value="VirtualQueueConsumer.esbin.input.ten1"/>
+      <serviceParameters name="transport.jms.Destination" value="VirtualQueueConsumer.esbin.input.__tenant__"/>
       <container>
         <sequenceAndEndpointContainer>
           <mediatorFlow>
@@ -72,9 +72,9 @@
                     <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
                   </templateParameters>
                   <templateParameters parameterName="mb_destination_name" templateParameterType="Expression" parameterValue="">
-                    <parameterExpression propertyValue="fn:concat('input.ten1.',fn:get-property('streamId'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000001740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78" supportsDynamicXPaths="true"/>
+                    <parameterExpression propertyValue="fn:concat('input.__tenant__.',fn:get-property('streamId'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000001740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78" supportsDynamicXPaths="true"/>
                   </templateParameters>
-                  <templateParameters parameterName="mb_destination_type" parameterValue="queue">
+                  <templateParameters parameterName="mb_destination_type" parameterValue="topic">
                     <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
                   </templateParameters>
                   <inputConnector incomingLinks="//@server/@children.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
@@ -122,7 +122,7 @@
                 <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
               </templateParameters>
               <templateParameters parameterName="mb_destination_name" templateParameterType="Expression" parameterValue="">
-                <parameterExpression propertyValue="fn:concat('output.ten1.','errors')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true" dynamic="true"/>
+                <parameterExpression propertyValue="fn:concat('output.__tenant__.','errors')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true" dynamic="true"/>
               </templateParameters>
               <templateParameters parameterName="mb_destination_type" parameterValue="topic">
                 <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
