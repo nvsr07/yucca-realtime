@@ -1,5 +1,8 @@
 expert: true
 data: {
+    mb: {
+    	num: "mb1"
+    }
     tenant: {
     	code: "smartlab"
    	}

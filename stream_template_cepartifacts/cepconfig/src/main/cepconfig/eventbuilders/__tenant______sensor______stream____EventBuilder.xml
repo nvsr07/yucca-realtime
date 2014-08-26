@@ -4,7 +4,7 @@
 <eventBuilder name="${tenant.code}__${sensor.code_}__${stream.code}__EventBuilder"
     statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
     <from eventAdaptorName="JMSMBInternalInputEventAdaptor" eventAdaptorType="jms">
-        <property name="transport.jms.Destination">input.${tenant.code}.${sensor.code}_${stream.code}</property>
+        <property name="transport.jms.Destination">VirtualQueueConsumer.${mb.num}.input.${tenant.code}.${sensor.code}_${stream.code}</property>
     </from>
     <mapping customMapping="enable" type="json">
         <property>
