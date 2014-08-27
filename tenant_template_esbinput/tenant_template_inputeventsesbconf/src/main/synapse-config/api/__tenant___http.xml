@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api xmlns="http://ws.apache.org/ns/synapse" name="__tenant___http" context="/wso001/services/ten1">
+<api xmlns="http://ws.apache.org/ns/synapse" name="__tenant___http" context="/services/__tenant__">
     <resource methods="POST" uri-template="/{streamId}">
         <inSequence>
             <log level="full">
@@ -18,7 +18,7 @@
                             <with-param name="mb_url" value="mb.internal.jms.url"/>
                             <with-param name="mb_user" value="mb.internal.user"/>
                             <with-param name="mb_pwd" value="mb.internal.pwd"/>
-                            <with-param name="mb_destination_name" value="{fn:concat('input.ten1.',fn:get-property('uri.var.streamId'))}"/>
+                            <with-param name="mb_destination_name" value="{fn:concat('input.__tenant__.',fn:get-property('uri.var.streamId'))}"/>
                             <with-param name="mb_destination_type" value="topic"/>
                         </call-template>
                         <send/>
@@ -37,7 +37,7 @@
                 <with-param name="mb_url" value="mb.external.jms.url"/>
                 <with-param name="mb_user" value="mb.external.user"/>
                 <with-param name="mb_pwd" value="mb.external.pwd"/>
-                <with-param name="mb_destination_name" value="{{fn:concat('output.ten1.','errors')}}"/>
+                <with-param name="mb_destination_name" value="{{fn:concat('output.__tenant__.','errors')}}"/>
                 <with-param name="mb_destination_type" value="topic"/>
                 <with-param name="error_name" value="Stream unknown"/>
                 <with-param name="error_code" value="E011"/>
