@@ -8,15 +8,24 @@
     <parameter name="error_name"/>
     <parameter name="error_code"/>
     <sequence>
+        <payloadFactory media-type="json">
+            <format>{  "error_name": "$1",  "error_code": "$2",  "output": "$3", "message" : $4}</format>
+            <args>
+                <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$func:error_name"/>
+                <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$func:error_code"/>
+                <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$func:mb_destination_name"/>
+                <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$body/jsonObject"/>
+            </args>
+        </payloadFactory>
         <clone sequential="true">
             <target>
                 <sequence>
-                    <call-template target="SendToMessageBrokerSequence" description="">
-                        <with-param name="mb_url" value="{$func:mb_url}"/>
-                        <with-param name="mb_user" value="{$func:mb_user}"/>
-                        <with-param name="mb_pwd" value="{$func:mb_pwd}"/>
-                        <with-param name="mb_destination_name" value="{$func:mb_destination_name}"/>
-                        <with-param name="mb_destination_type" value="{$func:mb_destination_type}"/>
+                    <call-template target="SendToMessageBrokerSequence">
+                        <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_url" value="{$func:mb_url}"/>
+                        <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_user" value="{$func:mb_user}"/>
+                        <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_pwd" value="{$func:mb_pwd}"/>
+                        <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_destination_name" value="{$func:mb_destination_name}"/>
+                        <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_destination_type" value="{$func:mb_destination_type}"/>
                     </call-template>
                     <send/>
                 </sequence>
@@ -24,18 +33,6 @@
             <target>
                 <sequence>
                     <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
-                    <payloadFactory media-type="json">
-                        <format>{
-  "error_name": "$1",
-  "error_code": "$2",
-  "output": "$3"
-}</format>
-                        <args>
-                            <arg evaluator="xml" expression="$func:error_name"/>
-                            <arg evaluator="xml" expression="$func:error_code"/>
-                            <arg evaluator="xml" expression="$func:mb_destination_name"/>
-                        </args>
-                    </payloadFactory>
                     <respond/>
                 </sequence>
             </target>
