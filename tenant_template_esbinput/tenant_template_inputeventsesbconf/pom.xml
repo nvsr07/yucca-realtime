@@ -64,7 +64,7 @@
           <excludes>
             <exclude>${project.build.directory}/**/pom.xml</exclude>
           </excludes>
-          <tokenValueMap>${basedir}/src/main/resources/prod-sdnet-esbin.properties</tokenValueMap>
+          <tokenValueMap>${basedir}/src/main/resources/tst-sdnet-esbin.properties</tokenValueMap>
           <regex>false</regex>
           <escape>true</escape>
         </configuration>

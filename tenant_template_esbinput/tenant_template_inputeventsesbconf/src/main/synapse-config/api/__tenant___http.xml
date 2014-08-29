@@ -6,6 +6,9 @@
                 <property name="streamId_src" expression="get-property('uri.var.streamId')"/>
                 <property name="sequence" value="IN"/>
             </log>
+            <call-template target="ValidateMessage" description="">
+                <with-param name="schemaToValidate" value="{fn:concat('gov:xsd/',fn:get-property('uri.var.streamId'),'Types.xsd')}"/>
+            </call-template>
             <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" type="STRING"/>
             <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/Values" sequential="true">
                 <target>
