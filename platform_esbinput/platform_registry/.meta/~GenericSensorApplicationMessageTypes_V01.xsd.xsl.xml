@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><resource name="GenericSensorApplicationMessageTypes_V01.xsd.xsl" isCollection="false" path="/_system/governance/xsd//platform_registry/GenericSensorApplicationMessageTypes_V01.xsd.xsl" registryUrl="https://localhost:9443/registry" md5="27dfa8d646421ef6760133675c1caac5">
+    <mediaType>application/xsl+xml</mediaType>
+    <version>1844</version>
+    <creator>admin</creator>
+    <createdTime>1409305763547</createdTime>
+    <lastUpdater>admin</lastUpdater>
+    <lastModified>1409305763547</lastModified>
+    <registryState>1</registryState>
+    <description/>
+</resource>

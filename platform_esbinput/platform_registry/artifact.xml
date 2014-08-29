@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="GenericSensorApplicationMessageTypes_V01" groupId="org.yucca.realtime.platform_registry.resource" version="1.0.0" type="registry/resource" serverRole="GovernanceRegistry">
+        <item>
+            <file>GenericSensorApplicationMessageTypes_V01.xsd</file>
+            <path>/_system/governance/xsd</path>
+            <mediaType>application/xsl+xml</mediaType>
+        </item>
+    </artifact>
+</artifacts>

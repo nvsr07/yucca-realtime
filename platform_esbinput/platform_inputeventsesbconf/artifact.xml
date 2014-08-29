@@ -8,4 +8,7 @@
     <artifact name="SendToMessageBrokerAndRespondErrorSequence" groupId="org.csi.yucca.realtime.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/templates/SendToMessageBrokerAndRespondErrorSequence.xml</file>
     </artifact>
+    <artifact name="ValidateMessage" groupId="org.csi.yucca.realtime.template" version="1.0.0" type="synapse/sequenceTemplate" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/templates/ValidateMessage.xml</file>
+    </artifact>
 </artifacts>

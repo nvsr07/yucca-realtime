@@ -5,3 +5,5 @@ encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/template
 encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/templates/template_SendToMessageBrokerAndRespondErrorSequence.esb_diagram=UTF-8
 encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/templates/template_SendToMessageBrokerSequence.esb=UTF-8
 encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/templates/template_SendToMessageBrokerSequence.esb_diagram=UTF-8
+encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/templates/template_ValidateMessage.esb=UTF-8
+encoding//platform_inputeventsesbconf/src/main/graphical-synapse-config/templates/template_ValidateMessage.esb_diagram=UTF-8

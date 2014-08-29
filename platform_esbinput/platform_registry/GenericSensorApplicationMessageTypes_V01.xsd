@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cn="http://stream.smartdatanet.it/CommonTypes" targetNamespace="http://stream.smartdatanet.it/CommonTypes">
+
+    <xs:complexType name="SensorOrApplication">
+      <xs:sequence>
+        <xs:element name="Stream"/>
+        <xs:choice>
+           <xs:element name="Sensor"/>
+           <xs:element name="Application"/>
+        </xs:choice>
+        <xs:element name="Values" type="cn:Value"  minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+
+
+     <xs:complexType name="Value">
+       <xs:all>
+             <xs:element name="time" />
+             <xs:element name="components" />
+       </xs:all>
+    </xs:complexType>
+</xs:schema>
+				 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jMlU8C9jEeSFdeB9iwwRNA" type="Esb" name="template_ValidateMessage.esb_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_jnIi8C9jEeSFdeB9iwwRNA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_jnJKAC9jEeSFdeB9iwwRNA" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_0fGjoC95EeSFdeB9iwwRNA" type="3664" fontName="Segoe UI">
+        <children xmi:type="notation:DecorationNode" xmi:id="_0fHKsC95EeSFdeB9iwwRNA" type="7043">
+          <children xmi:type="notation:Node" xmi:id="_0fm58C95EeSFdeB9iwwRNA" type="3665">
+            <children xmi:type="notation:Node" xmi:id="_0fqkUC95EeSFdeB9iwwRNA" type="3615">
+              <children xmi:type="notation:DecorationNode" xmi:id="_0frLYC95EeSFdeB9iwwRNA" type="7035">
+                <styles xmi:type="notation:TitleStyle" xmi:id="_0frLYS95EeSFdeB9iwwRNA" showTitle="true"/>
+              </children>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_0fqkUS95EeSFdeB9iwwRNA"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_0fqkUi95EeSFdeB9iwwRNA" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_0fqkUy95EeSFdeB9iwwRNA"/>
+              <element xmi:type="esb:MediatorFlow" href="template_ValidateMessage.esb#//@server/@children.0/@child/@mediatorFlow"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0fqkVC95EeSFdeB9iwwRNA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0frycC95EeSFdeB9iwwRNA" type="3616">
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_0frycS95EeSFdeB9iwwRNA"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_0fryci95EeSFdeB9iwwRNA" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_0frycy95EeSFdeB9iwwRNA"/>
+              <element xmi:type="esb:SequencesInputConnector" href="template_ValidateMessage.esb#//@server/@children.0/@child/@inputConnector"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0frydC95EeSFdeB9iwwRNA" x="-11" y="-9"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_0ftAkC95EeSFdeB9iwwRNA" type="3617">
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_0ftAkS95EeSFdeB9iwwRNA"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_0ftAki95EeSFdeB9iwwRNA" fontName="Segoe UI"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_0ftAky95EeSFdeB9iwwRNA"/>
+              <element xmi:type="esb:SequencesOutputConnector" href="template_ValidateMessage.esb#//@server/@children.0/@child/@outputConnector"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0ftAlC95EeSFdeB9iwwRNA" x="-11" y="-9"/>
+            </children>
+            <styles xmi:type="notation:DescriptionStyle" xmi:id="_0fm58S95EeSFdeB9iwwRNA"/>
+            <styles xmi:type="notation:FontStyle" xmi:id="_0fm58i95EeSFdeB9iwwRNA" fontName="Segoe UI"/>
+            <styles xmi:type="notation:LineStyle" xmi:id="_0fm58y95EeSFdeB9iwwRNA"/>
+            <element xmi:type="esb:Sequences" href="template_ValidateMessage.esb#//@server/@children.0/@child"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0fm59C95EeSFdeB9iwwRNA" width="195" height="125"/>
+          </children>
+        </children>
+        <element xmi:type="esb:Template" href="template_ValidateMessage.esb#//@server/@children.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0fGjoS95EeSFdeB9iwwRNA" width="30000" height="30000"/>
+      </children>
+    </children>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_jnIi8S9jEeSFdeB9iwwRNA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_jnIi8i9jEeSFdeB9iwwRNA" fontName="Segoe UI"/>
+    <styles xmi:type="notation:LineStyle" xmi:id="_jnIi8y9jEeSFdeB9iwwRNA"/>
+    <element xmi:type="esb:EsbServer" href="template_ValidateMessage.esb#//@server"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jnIi9C9jEeSFdeB9iwwRNA"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_jMlU8S9jEeSFdeB9iwwRNA"/>
+  <element xmi:type="esb:EsbDiagram" href="template_ValidateMessage.esb#/"/>
+</notation:Diagram>

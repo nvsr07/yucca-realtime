@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns="http://ws.apache.org/ns/synapse" name="ValidateMessage">
+    <parameter name="schemaToValidate"/>
+    <sequence>
+        <property name="errorOnValidate" value="false" scope="default" type="BOOLEAN"/>
+        <validate>
+            <schema key="{$func:schemaToValidate}"/>
+            <resource location="GenericSensorApplicationMessageTypes_V01.xsd" key="gov:xsd/GenericSensorApplicationMessageTypes_V01.xsd"/>
+            <on-fail>
+                <property name="errorOnValidate" value="true" scope="default" type="BOOLEAN"/>
+            </on-fail>
+        </validate>
+    </sequence>
+</template>
