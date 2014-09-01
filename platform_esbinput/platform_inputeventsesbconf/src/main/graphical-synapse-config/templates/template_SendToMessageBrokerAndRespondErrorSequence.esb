@@ -76,16 +76,35 @@
               </cloneTargetContainer>
               <cloneTargetContainer>
                 <mediatorFlow>
-                  <children xsi:type="esb:PropertyMediator" propertyName="HTTP_SC" propertyScope="axis2" valueLiteral="500">
+                  <children xsi:type="esb:FilterMediator" regex="^(http|https)">
                     <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@targetsOutputConnector.1/@outgoingLink"/>
-                    <outputConnector>
-                      <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.1/@inputConnector"/>
-                    </outputConnector>
-                    <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
-                  </children>
-                  <children xsi:type="esb:RespondMediator">
-                    <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
                     <outputConnector/>
+                    <passOutputConnector>
+                      <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@filterContainer/@passContainer/@mediatorFlow/@children.0/@inputConnector"/>
+                    </passOutputConnector>
+                    <failOutputConnector/>
+                    <xpath prettyName="Filter Source XPath" propertyName="filterSourceXpath" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <source propertyValue="get-property('TRANSPORT_IN_NAME')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <filterContainer>
+                      <passContainer>
+                        <mediatorFlow>
+                          <children xsi:type="esb:PropertyMediator" propertyName="HTTP_SC" propertyScope="axis2" valueLiteral="500">
+                            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@passOutputConnector/@outgoingLink"/>
+                            <outputConnector>
+                              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@filterContainer/@passContainer/@mediatorFlow/@children.1/@inputConnector"/>
+                            </outputConnector>
+                            <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                          </children>
+                          <children xsi:type="esb:RespondMediator">
+                            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@filterContainer/@passContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                            <outputConnector/>
+                          </children>
+                        </mediatorFlow>
+                      </passContainer>
+                      <failContainer>
+                        <mediatorFlow/>
+                      </failContainer>
+                    </filterContainer>
                   </children>
                 </mediatorFlow>
               </cloneTargetContainer>
