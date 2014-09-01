@@ -191,7 +191,7 @@
                   </failContainer>
                 </filterContainer>
               </children>
-              <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
+              <children xsi:type="esb:LogMediator" logSeparator=", ">
                 <inputConnector incomingLinks="//@server/@children.0/@resources.0/@outSequenceOutputConnector/@outgoingLink"/>
                 <outputConnector>
                   <outgoingLink target="//@server/@children.0/@resources.0/@inputConnector"/>

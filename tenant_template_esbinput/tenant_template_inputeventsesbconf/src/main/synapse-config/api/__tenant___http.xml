@@ -59,7 +59,7 @@
             </filter>
         </inSequence>
         <outSequence>
-            <log level="full">
+            <log>
                 <property name="streamId" expression="get-property('uri.var.streamId')"/>
                 <property name="sequence" value="OUT"/>
             </log>
