@@ -11,8 +11,6 @@
         <xs:element name="Values" type="cn:Value"  minOccurs="1" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
-
-
      <xs:complexType name="Value">
        <xs:all>
              <xs:element name="time" />
