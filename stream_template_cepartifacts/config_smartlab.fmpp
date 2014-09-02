@@ -1,8 +1,12 @@
-expert: true
 data: {
-    mb: {
-    	num: "mb1"
-    }
+    mbs: [
+	    {
+	    	num: "mb1"
+	    }
+	    {
+	    	num: "mb2"
+	    }
+    ]
     tenant: {
     	code: "smartlab"
    	}
@@ -12,12 +16,14 @@ data: {
    	}
 	stream: {
 		code: "temperature"
-		published: "true"
-		persisted: "true"
 	}    
 	components: [
 		{
-			code: "c0"
+			code: "temp"
+			type: "string"
+		}
+		{
+			code: "wind"
 			type: "string"
 		}
 	]
