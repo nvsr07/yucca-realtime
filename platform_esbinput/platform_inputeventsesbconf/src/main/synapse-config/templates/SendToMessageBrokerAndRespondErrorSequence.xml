@@ -32,8 +32,13 @@
             </target>
             <target>
                 <sequence>
-                    <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
-                    <respond/>
+                    <filter source="get-property('TRANSPORT_IN_NAME')" regex="^(http|https)">
+                        <then>
+                            <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
+                            <respond/>
+                        </then>
+                        <else/>
+                    </filter>
                 </sequence>
             </target>
         </clone>
