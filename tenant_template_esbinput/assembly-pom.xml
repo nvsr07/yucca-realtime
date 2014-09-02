@@ -94,12 +94,14 @@
               <goal>exec</goal>
             </goals>
             <configuration>
+              <target.env>${target.env}</target.env>
               <executable>mvn</executable>
               <workingDirectory>../app_${tenant.name}</workingDirectory>
               <arguments>
                 <argument>clean</argument>
                 <argument>install</argument>
                 <argument>-Dmaven.test.skip=false</argument>
+                <argument>-Dtarget.env=${target.env}</argument>
               </arguments>
             </configuration>
           </execution>
