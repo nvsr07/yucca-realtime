@@ -6,8 +6,12 @@
   <from streamName="output__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
 <mapping customMapping="enable" type="json">
     <inline>{ 
- "Stream": "${stream.code}",
+ "Stream": "${stream.code}", 
+ <#if source.type = "App">
+ "Application": "{{meta_source}}",
+		<#else>
  "Sensor": "{{meta_source}}",
+		</#if>
  "Values": [ 
  { 
  "time": "{{time}}", 
