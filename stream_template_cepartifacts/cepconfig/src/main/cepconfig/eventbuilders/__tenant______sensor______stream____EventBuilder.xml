@@ -1,28 +1,42 @@
+
 <@pp.dropOutputFile />
 <#list mbs as mb>
-<@pp.changeOutputFile name=mb.num+"__"+tenant.code+"__"+sensor.code_+"_"+stream.code+"__EventBuilder.xml" />
+<@pp.changeOutputFile
+name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
+/>
 <?xml version="1.0" encoding="UTF-8"?>
-<eventBuilder name="${tenant.code}__${sensor.code_}__${stream.code}__EventBuilder"
-    statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
-    <from eventAdaptorName="JMSMBInternalInputEventAdaptor" eventAdaptorType="jms">
-        <property name="transport.jms.Destination">VirtualQueueConsumer.${mb.num}.input.${tenant.code}.${sensor.code}_${stream.code}</property>
-    </from>
-    <mapping customMapping="enable" type="json">
-        <property>
-            <from jsonPath="Sensor"/>
-            <to name="meta_Sensor" type="string"/>
-        </property>
-        <property>
-            <from jsonPath="Values.time"/>
-            <to name="time" type="string"/>
-        </property>
-<#list components as component>        
-        <property>
-            <from jsonPath="Values.components.${component.code}"/>
-            <to name="${component.code}" type="${component.type}"/>
-        </property>
-</#list>     
-    </mapping>
-    <to streamName="input__${tenant.code}__${sensor.code_}__${stream.code}" version="1.0.0"/>
+<eventBuilder
+	name="${tenant.code}__${source.code_}__${stream.code}__EventBuilder"
+	statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
+	<from eventAdaptorName="JMSMBInternalInputEventAdaptor"
+		eventAdaptorType="jms">
+		<property name="transport.jms.Destination">VirtualQueueConsumer.${mb.num}.input.${tenant.code}.${source.code}_${stream.code}
+		</property>
+	</from>
+	<mapping customMapping="enable" type="json">
+		<#if source.type = "App">
+		<property>
+			<from jsonPath="Application" />
+			<to name="meta_source" type="string" />
+		</property>
+		<#else>
+		<property>
+			<from jsonPath="Sensor" />
+			<to name="meta_source" type="string" />
+		</property>
+		</#if>
+		<property>
+			<from jsonPath="Values.time" />
+			<to name="time" type="string" />
+		</property>
+		<#list components as component>
+		<property>
+			<from jsonPath="Values.components.${component.code}" />
+			<to name="${component.code}" type="${component.type}" />
+		</property>
+		</#list>
+	</mapping>
+	<to streamName="input__${tenant.code}__${source.code_}__${stream.code}"
+		version="1.0.0" />
 </eventBuilder>
 </#list>  
