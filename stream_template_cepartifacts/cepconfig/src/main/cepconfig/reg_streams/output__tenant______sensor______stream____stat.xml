@@ -1,10 +1,10 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="output__"+tenant.code+"__"+sensor.code_+"_"+stream.code+"__stat.xml" />
+<@pp.changeOutputFile name="output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__stat.xml" />
 {
-  "name": "output__${tenant.code}__${sensor.code_}__${stream.code}__stat",
+  "name": "output__${tenant.code}__${source.code_}__${stream.code}__stat",
   "version": "1.0.0",
-  "nickName": "output__${tenant.code}__${sensor.code_}__${stream.code}__stat",
-  "description": "Stream output__${tenant.code}__${sensor.code_}__${stream.code}__stat",
+  "nickName": "output__${tenant.code}__${source.code_}__${stream.code}__stat",
+  "description": "Stream output__${tenant.code}__${source.code_}__${stream.code}__stat",
   "payloadData": [
     {
       "name": "numEventsLast30Sec",

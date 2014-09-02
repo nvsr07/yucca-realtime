@@ -1,14 +1,14 @@
 <@pp.dropOutputFile />
 <#if stream.persisted?? && stream.persisted = "true">
-<@pp.changeOutputFile name="output__"+tenant.code+"__"+sensor.code_+"_"+stream.code+"__MongoEventFormatter.xml" />
+<@pp.changeOutputFile name="output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__MongoEventFormatter.xml" />
 <?xml version="1.0" encoding="UTF-8"?>
-<eventFormatter name="output__${tenant.code}__${sensor.code_}__${stream.code}__MongoEventFormatter"
+<eventFormatter name="output__${tenant.code}__${source.code_}__${stream.code}__MongoEventFormatter"
   statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
-  <from streamName="output__${tenant.code}__${sensor.code_}__${stream.code}" version="1.0.0"/>
+  <from streamName="output__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
 <mapping customMapping="enable" type="json">
     <inline>
 {
- "id_sensore": "{{meta_Sensor}}",
+ "id_sensore": "{{meta_source}}",
  "id_flusso": "${stream.code}",
   "domain": "temperatura",
 "Values": [

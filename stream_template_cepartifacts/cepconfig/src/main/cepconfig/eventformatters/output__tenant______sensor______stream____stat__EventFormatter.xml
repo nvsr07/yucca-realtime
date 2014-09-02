@@ -1,13 +1,13 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="output__"+tenant.code+"__"+sensor.code_+"_"+stream.code+"__stat__EventFormatter.xml" />
+<@pp.changeOutputFile name="output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__stat__EventFormatter.xml" />
 <?xml version="1.0" encoding="UTF-8"?>
-<eventFormatter name="output__${tenant.code}__${sensor.code_}__${stream.code}__stat__EventFormatter"
+<eventFormatter name="output__${tenant.code}__${source.code_}__${stream.code}__stat__EventFormatter"
   statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
-  <from streamName="output__${tenant.code}__${sensor.code_}__${stream.code}__stat" version="1.0.0"/>
+  <from streamName="output__${tenant.code}__${source.code_}__${stream.code}__stat" version="1.0.0"/>
 <mapping customMapping="disable" type="json">
   </mapping>
   <to eventAdaptorName="JMSMBExternalOutputEventAdaptor.xml" eventAdaptorType="jms">
-    <property name="transport.jms.Destination">output.${tenant.code}.${sensor.code}_${stream.code}.stat</property>
+    <property name="transport.jms.Destination">output.${tenant.code}.${source.code}_${stream.code}.stat</property>
   </to>
 </eventFormatter>
 

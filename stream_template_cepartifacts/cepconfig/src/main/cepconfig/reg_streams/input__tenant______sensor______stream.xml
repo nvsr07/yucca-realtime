@@ -1,13 +1,13 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="input__"+tenant.code+"__"+sensor.code_+"_"+stream.code+".xml" />
+<@pp.changeOutputFile name="input__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
 {
-  "name": "input__${tenant.code}__${sensor.code_}__${stream.code}",
+  "name": "input__${tenant.code}__${source.code_}__${stream.code}",
   "version": "1.0.0",
-  "nickName": "input__${tenant.code}__${sensor.code_}__${stream.code}",
-  "description": "Stream input__${tenant.code}__${sensor.code_}__${stream.code}",
+  "nickName": "input__${tenant.code}__${source.code_}__${stream.code}",
+  "description": "Stream input__${tenant.code}__${source.code_}__${stream.code}",
   "metaData": [
     {
-      "name": "Sensor",
+      "name": "source",
       "type": "STRING"
     }
   ],
