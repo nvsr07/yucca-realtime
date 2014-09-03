@@ -65,6 +65,7 @@
           </includes>
           <excludes>
           </excludes>
+           <regex>false</regex>
 		  <replacements>
               <replacement>
                       <token>__tenant__</token>
