@@ -1,0 +1,500 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://internal.admin.manager.stream.event.carbon.wso2.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ax2122="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd" targetNamespace="http://internal.admin.manager.stream.event.carbon.wso2.org">
+    <wsdl:documentation>EventStreamAdminService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd">
+            <xs:complexType name="EventStreamDefinitionDto">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="correlationData" nillable="true" type="ax2122:EventStreamAttributeDto"></xs:element>
+                    <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"></xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="metaData" nillable="true" type="ax2122:EventStreamAttributeDto"></xs:element>
+                    <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="nickName" nillable="true" type="xs:string"></xs:element>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="payloadData" nillable="true" type="ax2122:EventStreamAttributeDto"></xs:element>
+                    <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EventStreamAttributeDto">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="attributeName" nillable="true" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="attributeType" nillable="true" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="EventStreamInfoDto">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="streamDefinition" nillable="true" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="streamDescription" nillable="true" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="streamName" nillable="true" type="xs:string"></xs:element>
+                    <xs:element minOccurs="0" name="streamVersion" nillable="true" type="xs:string"></xs:element>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax2123="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://internal.admin.manager.stream.event.carbon.wso2.org">
+            <xs:import namespace="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd"></xs:import>
+            <xs:element name="removeEventStreamInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="eventStreamName" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamVersion" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamNames">
+                <xs:complexType>
+                    <xs:sequence></xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamNamesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDetailsForStreamId">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="streamId" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDetailsForStreamIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDefinitionDto">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="streamId" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDefinitionDtoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax2123:EventStreamDefinitionDto"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDefinitionAsString">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="streamId" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getStreamDefinitionAsStringResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllEventStreamInfoDto">
+                <xs:complexType>
+                    <xs:sequence></xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAllEventStreamInfoDtoResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax2123:EventStreamInfoDto"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generateSampleEvent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="streamId" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventType" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="generateSampleEventResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="editEventStreamInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="oldStreamId" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamName" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamVersion" nillable="true" type="xs:string"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="metaEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="correlationEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="payloadEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamDescription" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamNickName" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="addEventStreamInfo">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="eventStreamName" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamVersion" nillable="true" type="xs:string"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="metaEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="correlationEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="payloadEventStreamAttributeDtos" nillable="true" type="ax2123:EventStreamAttributeDto"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamDescription" nillable="true" type="xs:string"></xs:element>
+                        <xs:element minOccurs="0" name="eventStreamNickName" nillable="true" type="xs:string"></xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getStreamDefinitionAsStringRequest">
+        <wsdl:part name="parameters" element="ns:getStreamDefinitionAsString"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getStreamDefinitionAsStringResponse">
+        <wsdl:part name="parameters" element="ns:getStreamDefinitionAsStringResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="editEventStreamInfoRequest">
+        <wsdl:part name="parameters" element="ns:editEventStreamInfo"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="editEventStreamInfoResponse"></wsdl:message>
+    <wsdl:message name="addEventStreamInfoRequest">
+        <wsdl:part name="parameters" element="ns:addEventStreamInfo"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addEventStreamInfoResponse"></wsdl:message>
+    <wsdl:message name="getStreamDefinitionDtoRequest">
+        <wsdl:part name="parameters" element="ns:getStreamDefinitionDto"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getStreamDefinitionDtoResponse">
+        <wsdl:part name="parameters" element="ns:getStreamDefinitionDtoResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAllEventStreamInfoDtoRequest">
+        <wsdl:part name="parameters" element="ns:getAllEventStreamInfoDto"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAllEventStreamInfoDtoResponse">
+        <wsdl:part name="parameters" element="ns:getAllEventStreamInfoDtoResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getStreamDetailsForStreamIdRequest">
+        <wsdl:part name="parameters" element="ns:getStreamDetailsForStreamId"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getStreamDetailsForStreamIdResponse">
+        <wsdl:part name="parameters" element="ns:getStreamDetailsForStreamIdResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="removeEventStreamInfoRequest">
+        <wsdl:part name="parameters" element="ns:removeEventStreamInfo"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="removeEventStreamInfoResponse"></wsdl:message>
+    <wsdl:message name="getStreamNamesRequest">
+        <wsdl:part name="parameters" element="ns:getStreamNames"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getStreamNamesResponse">
+        <wsdl:part name="parameters" element="ns:getStreamNamesResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="generateSampleEventRequest">
+        <wsdl:part name="parameters" element="ns:generateSampleEvent"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="generateSampleEventResponse">
+        <wsdl:part name="parameters" element="ns:generateSampleEventResponse"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="EventStreamAdminServicePortType">
+        <wsdl:operation name="getStreamDefinitionAsString">
+            <wsdl:input message="ns:getStreamDefinitionAsStringRequest" wsaw:Action="urn:getStreamDefinitionAsString"></wsdl:input>
+            <wsdl:output message="ns:getStreamDefinitionAsStringResponse" wsaw:Action="urn:getStreamDefinitionAsStringResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="editEventStreamInfo">
+            <wsdl:input message="ns:editEventStreamInfoRequest" wsaw:Action="urn:editEventStreamInfo"></wsdl:input>
+            <wsdl:output message="ns:editEventStreamInfoResponse" wsaw:Action="urn:editEventStreamInfoResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addEventStreamInfo">
+            <wsdl:input message="ns:addEventStreamInfoRequest" wsaw:Action="urn:addEventStreamInfo"></wsdl:input>
+            <wsdl:output message="ns:addEventStreamInfoResponse" wsaw:Action="urn:addEventStreamInfoResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDefinitionDto">
+            <wsdl:input message="ns:getStreamDefinitionDtoRequest" wsaw:Action="urn:getStreamDefinitionDto"></wsdl:input>
+            <wsdl:output message="ns:getStreamDefinitionDtoResponse" wsaw:Action="urn:getStreamDefinitionDtoResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllEventStreamInfoDto">
+            <wsdl:input message="ns:getAllEventStreamInfoDtoRequest" wsaw:Action="urn:getAllEventStreamInfoDto"></wsdl:input>
+            <wsdl:output message="ns:getAllEventStreamInfoDtoResponse" wsaw:Action="urn:getAllEventStreamInfoDtoResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDetailsForStreamId">
+            <wsdl:input message="ns:getStreamDetailsForStreamIdRequest" wsaw:Action="urn:getStreamDetailsForStreamId"></wsdl:input>
+            <wsdl:output message="ns:getStreamDetailsForStreamIdResponse" wsaw:Action="urn:getStreamDetailsForStreamIdResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeEventStreamInfo">
+            <wsdl:input message="ns:removeEventStreamInfoRequest" wsaw:Action="urn:removeEventStreamInfo"></wsdl:input>
+            <wsdl:output message="ns:removeEventStreamInfoResponse" wsaw:Action="urn:removeEventStreamInfoResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamNames">
+            <wsdl:input message="ns:getStreamNamesRequest" wsaw:Action="urn:getStreamNames"></wsdl:input>
+            <wsdl:output message="ns:getStreamNamesResponse" wsaw:Action="urn:getStreamNamesResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="generateSampleEvent">
+            <wsdl:input message="ns:generateSampleEventRequest" wsaw:Action="urn:generateSampleEvent"></wsdl:input>
+            <wsdl:output message="ns:generateSampleEventResponse" wsaw:Action="urn:generateSampleEventResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="EventStreamAdminServiceSoap11Binding" type="ns:EventStreamAdminServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap:binding>
+        <wsdl:operation name="getStreamDefinitionAsString">
+            <soap:operation soapAction="urn:getStreamDefinitionAsString" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addEventStreamInfo">
+            <soap:operation soapAction="urn:addEventStreamInfo" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="editEventStreamInfo">
+            <soap:operation soapAction="urn:editEventStreamInfo" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDefinitionDto">
+            <soap:operation soapAction="urn:getStreamDefinitionDto" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllEventStreamInfoDto">
+            <soap:operation soapAction="urn:getAllEventStreamInfoDto" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeEventStreamInfo">
+            <soap:operation soapAction="urn:removeEventStreamInfo" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDetailsForStreamId">
+            <soap:operation soapAction="urn:getStreamDetailsForStreamId" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamNames">
+            <soap:operation soapAction="urn:getStreamNames" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="generateSampleEvent">
+            <soap:operation soapAction="urn:generateSampleEvent" style="document"></soap:operation>
+            <wsdl:input>
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="EventStreamAdminServiceSoap12Binding" type="ns:EventStreamAdminServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"></soap12:binding>
+        <wsdl:operation name="getStreamDefinitionAsString">
+            <soap12:operation soapAction="urn:getStreamDefinitionAsString" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addEventStreamInfo">
+            <soap12:operation soapAction="urn:addEventStreamInfo" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="editEventStreamInfo">
+            <soap12:operation soapAction="urn:editEventStreamInfo" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDefinitionDto">
+            <soap12:operation soapAction="urn:getStreamDefinitionDto" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllEventStreamInfoDto">
+            <soap12:operation soapAction="urn:getAllEventStreamInfoDto" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeEventStreamInfo">
+            <soap12:operation soapAction="urn:removeEventStreamInfo" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDetailsForStreamId">
+            <soap12:operation soapAction="urn:getStreamDetailsForStreamId" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamNames">
+            <soap12:operation soapAction="urn:getStreamNames" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="generateSampleEvent">
+            <soap12:operation soapAction="urn:generateSampleEvent" style="document"></soap12:operation>
+            <wsdl:input>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"></soap12:body>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="EventStreamAdminServiceHttpBinding" type="ns:EventStreamAdminServicePortType">
+        <http:binding verb="POST"></http:binding>
+        <wsdl:operation name="getStreamDefinitionAsString">
+            <http:operation location="getStreamDefinitionAsString"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addEventStreamInfo">
+            <http:operation location="addEventStreamInfo"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="editEventStreamInfo">
+            <http:operation location="editEventStreamInfo"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDefinitionDto">
+            <http:operation location="getStreamDefinitionDto"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllEventStreamInfoDto">
+            <http:operation location="getAllEventStreamInfoDto"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="removeEventStreamInfo">
+            <http:operation location="removeEventStreamInfo"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamDetailsForStreamId">
+            <http:operation location="getStreamDetailsForStreamId"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getStreamNames">
+            <http:operation location="getStreamNames"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="generateSampleEvent">
+            <http:operation location="generateSampleEvent"></http:operation>
+            <wsdl:input>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="parameters"></mime:content>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="EventStreamAdminService">
+        <wsdl:port name="EventStreamAdminServiceHttpsSoap11Endpoint" binding="ns:EventStreamAdminServiceSoap11Binding">
+            <soap:address location="https://10.118.8.51:9443/services/EventStreamAdminService.EventStreamAdminServiceHttpsSoap11Endpoint/"></soap:address>
+        </wsdl:port>
+        <wsdl:port name="EventStreamAdminServiceHttpsSoap12Endpoint" binding="ns:EventStreamAdminServiceSoap12Binding">
+            <soap12:address location="https://10.118.8.51:9443/services/EventStreamAdminService.EventStreamAdminServiceHttpsSoap12Endpoint/"></soap12:address>
+        </wsdl:port>
+        <wsdl:port name="EventStreamAdminServiceHttpsEndpoint" binding="ns:EventStreamAdminServiceHttpBinding">
+            <http:address location="https://10.118.8.51:9443/services/EventStreamAdminService.EventStreamAdminServiceHttpsEndpoint/"></http:address>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

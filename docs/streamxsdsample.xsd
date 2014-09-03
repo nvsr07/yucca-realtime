@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cn="http://stream.smartdatanet.it/CommonTypes">
-<xs:import schemaLocation="GenericSensorApplicationMessageTypes_V01.xsd" 
-               namespace="http://stream.smartdatanet.it/CommonTypes"/>
-  <xs:element name="jsonObject" type="cn:SensorOrApplication">
-  </xs:element>
-</xs:schema>
