@@ -8,8 +8,15 @@
     <parameter name="error_name"/>
     <parameter name="error_code"/>
     <sequence>
-        <payloadFactory media-type="json">
-            <format>{  "error_name": "$1",  "error_code": "$2",  "output": "$3", "message" : $4}</format>
+        <payloadFactory media-type="xml" description="MessageError">
+            <format>
+                <jsonObject xmlns="">
+                    <error_name>$1</error_name>
+                    <error_code>$2</error_code>
+                    <output>$3</output>
+                    <message>$4</message>
+                </jsonObject>
+            </format>
             <args>
                 <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$func:error_name"/>
                 <arg xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" evaluator="xml" expression="$func:error_code"/>
@@ -20,7 +27,7 @@
         <clone sequential="true">
             <target>
                 <sequence>
-                    <call-template target="SendToMessageBrokerSequence">
+                    <call-template target="SendToMessageBrokerSequence" description="SendErrorToOuput">
                         <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_url" value="{$func:mb_url}"/>
                         <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_user" value="{$func:mb_user}"/>
                         <with-param xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="mb_pwd" value="{$func:mb_pwd}"/>
@@ -34,7 +41,7 @@
                 <sequence>
                     <filter source="get-property('TRANSPORT_IN_NAME')" regex="^(http|https)">
                         <then>
-                            <property name="HTTP_SC" value="500" scope="axis2" type="STRING"/>
+                            <property name="HTTP_SC" value="500" scope="axis2" type="STRING" description="500HTTP"/>
                             <respond/>
                         </then>
                         <else/>

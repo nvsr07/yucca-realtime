@@ -8,7 +8,7 @@
         </outputConnector>
         <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
         <mediatorFlow>
-          <children xsi:type="esb:PayloadFactoryMediator" format="{  &quot;error_name&quot;: &quot;$1&quot;,  &quot;error_code&quot;: &quot;$2&quot;,  &quot;output&quot;: &quot;$3&quot;, &quot;message&quot; : $4}" mediaType="json">
+          <children xsi:type="esb:PayloadFactoryMediator" description="MessageError" format="  &lt;jsonObject>&#xD;&#xA;                  &lt;error_name>$1&lt;/error_name>&#xD;&#xA;                  &lt;error_code>$2&lt;/error_code>&#xD;&#xA;            &lt;output>$3&lt;/output>&#xD;&#xA;                  &lt;message>$4&lt;/message>&#xD;&#xA;               &lt;/jsonObject>">
             <formatKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
             <args argumentType="Expression">
               <argumentExpression propertyValue="$func:error_name" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
@@ -43,7 +43,7 @@
             <cloneContainer>
               <cloneTargetContainer>
                 <mediatorFlow>
-                  <children xsi:type="esb:CallTemplateMediator" availableTemplates="Select From Templates" targetTemplate="SendToMessageBrokerSequence">
+                  <children xsi:type="esb:CallTemplateMediator" description="SendErrorToOuput" availableTemplates="Select From Templates" targetTemplate="SendToMessageBrokerSequence">
                     <templateParameters parameterName="mb_url" templateParameterType="Expression" parameterValue="">
                       <parameterExpression propertyValue="$func:mb_url" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378" supportsDynamicXPaths="true"/>
                     </templateParameters>
@@ -88,7 +88,7 @@
                     <filterContainer>
                       <passContainer>
                         <mediatorFlow>
-                          <children xsi:type="esb:PropertyMediator" propertyName="HTTP_SC" propertyScope="axis2" valueLiteral="500">
+                          <children xsi:type="esb:PropertyMediator" description="500HTTP" propertyName="HTTP_SC" propertyScope="axis2" valueLiteral="500">
                             <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@passOutputConnector/@outgoingLink"/>
                             <outputConnector>
                               <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.1/@cloneContainer/@cloneTargetContainer.1/@mediatorFlow/@children.0/@filterContainer/@passContainer/@mediatorFlow/@children.1/@inputConnector"/>

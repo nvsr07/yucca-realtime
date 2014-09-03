@@ -119,7 +119,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -191,7 +191,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -278,7 +278,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -296,7 +296,7 @@
                 </elementProp>
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Basic dXNlcjpteXBhc3M=</stringProp>
+                  <stringProp name="Header.value">Basic ${__P(ten1_base64)}</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -322,7 +322,7 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Basic dXNlcjpteXBhc3M=</stringProp>
+                <stringProp name="Header.value">Basic ${__P(ten1_base64)}</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
@@ -354,7 +354,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/unknownTen/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/unknownTen/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -427,7 +427,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva22</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva22</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -500,7 +500,7 @@
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -523,6 +523,79 @@
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="455105708">Json validation failed</stringProp>
                 <stringProp name="2103276">E012</stringProp>
+                <stringProp name="-1538261275">ten1.errors</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">if (prev.getResponseCode().equals(&quot;500&quot;) == true) { 
+   prev.setSuccessful(true);  
+
+    /* the same is 
+    prev.setSuccessful(true);
+    prev.setResponseCodeOK();
+    prev.setResponseMessageOK();
+    */
+}</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP json general failed" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;Valasasues&quot;: [ &#xd;
+{ &#xd;
+&quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
+&quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
+}&#xd;
+]&#xd;
+}&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
+            <stringProp name="HTTPSampler.port">80</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="52469">500</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1770564660">Json components are not coherent with stream definition</stringProp>
+                <stringProp name="2103277">E013</stringProp>
                 <stringProp name="-1538261275">ten1.errors</stringProp>
               </collectionProp>
               <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -573,7 +646,7 @@
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -650,7 +723,7 @@
             <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -671,7 +744,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http end to end test on websocket" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http end to end test on websocket" enabled="false"/>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header working" enabled="true">
             <collectionProp name="HeaderManager.headers">
@@ -681,12 +754,12 @@
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">Basic dXNlcjpteXBhc3M=</stringProp>
+                <stringProp name="Header.value">Basic ${__P(ten1_base64)}</stringProp>
               </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One simple message lower case" enabled="true"/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One simple message lower case" enabled="false"/>
           <hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Connection - 1" enabled="true">
               <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
@@ -733,7 +806,7 @@
                   </elementProp>
                   <elementProp name="passcode" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">guest</stringProp>
+                    <stringProp name="Argument.value">${__P(guest_password)}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">passcode</stringProp>
@@ -773,7 +846,7 @@
                   </elementProp>
                   <elementProp name="destination" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">/topic/output.ten1.flussoProva</stringProp>
+                    <stringProp name="Argument.value">/topic/output.ten1.550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">destination</stringProp>
@@ -809,7 +882,7 @@
               <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+              <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -829,7 +902,7 @@
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Verify 1" enabled="true">
+            <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Verify 1 (lower case)" enabled="true">
               <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
               <stringProp name="serverPort">80</stringProp>
               <stringProp name="implementation">RFC6455 (v13)</stringProp>
@@ -927,7 +1000,7 @@
                   </elementProp>
                   <elementProp name="passcode" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">guest</stringProp>
+                    <stringProp name="Argument.value">${__P(guest_password)}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">passcode</stringProp>
@@ -967,7 +1040,7 @@
                   </elementProp>
                   <elementProp name="destination" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">/topic/output.ten1.flussoProva</stringProp>
+                    <stringProp name="Argument.value">/topic/output.ten1.550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">destination</stringProp>
@@ -1003,7 +1076,7 @@
               <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+              <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1074,7 +1147,7 @@
             </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
             <hashTree/>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One multiple (two) complex message" enabled="false"/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One multiple (two) complex message" enabled="true"/>
           <hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Connection - mywe2" enabled="true">
               <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
@@ -1121,7 +1194,7 @@
                   </elementProp>
                   <elementProp name="passcode" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">guest</stringProp>
+                    <stringProp name="Argument.value">${__P(guest_password)}</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">passcode</stringProp>
@@ -1161,7 +1234,7 @@
                   </elementProp>
                   <elementProp name="destination" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                    <stringProp name="Argument.value">/topic/output.ten1.flussoProva</stringProp>
+                    <stringProp name="Argument.value">/topic/output.ten1.550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     <stringProp name="Argument.name">destination</stringProp>
@@ -1201,7 +1274,7 @@
               <stringProp name="HTTPSampler.response_timeout">1000</stringProp>
               <stringProp name="HTTPSampler.protocol"></stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-              <stringProp name="HTTPSampler.path">/api/input/ten1/flussoProva</stringProp>
+              <stringProp name="HTTPSampler.path">/api/input/ten1/550e8400-e29b-41d4-a716-446655440002_flussoProva</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1273,11 +1346,11 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="true"/>
         <hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/ten1/flussoProva</stringProp>
+            <stringProp name="mqtt.topic">input/ten1/</stringProp>
             <stringProp name="mqtt.security_principle">system</stringProp>
             <stringProp name="mqtt.security_credentials">manager</stringProp>
             <stringProp name="mqtt.text_message">{ 
@@ -1305,7 +1378,7 @@
             <stringProp name="mqtt.seed"></stringProp>
             <boolProp name="mqtt.use_timestamp">false</boolProp>
             <boolProp name="mqtt.use_number_sequence">false</boolProp>
-            <stringProp name="mqtt.clientid">10</stringProp>
+            <stringProp name="mqtt.clientid">wdd</stringProp>
             <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
             <stringProp name="mqtt.charset">UTF-8</stringProp>
             <stringProp name="mqtt.size_array"></stringProp>
@@ -1319,65 +1392,7 @@
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
-              <stringProp name="script">if (prev.isSuccessful()== false) { 
-   prev.setSuccessful(true);  
-    /* the same is 
-    prev.setSuccessful(true);
-    prev.setResponseCodeOK();
-    prev.setResponseMessageOK();
-    */
-}
-else 
-   prev.setSuccessful(false);  
-</stringProp>
-            </BeanShellPostProcessor>
-            <hashTree/>
-          </hashTree>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User pwd errors)" enabled="false">
-            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/ten1/flussoProva</stringProp>
-            <stringProp name="mqtt.security_principle">ten1</stringProp>
-            <stringProp name="mqtt.security_credentials">dddddd</stringProp>
-            <stringProp name="mqtt.text_message">{ 
-&quot;Stream&quot;: &quot;flussoProva&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;Values&quot;: [ 
-{ 
-&quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
-&quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
-}
-]
-}
-</stringProp>
-            <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>
-            <stringProp name="mqtt.iterations">1</stringProp>
-            <boolProp name="mqtt.authenticate">true</boolProp>
-            <stringProp name="mqtt.quality">mqtt_at_most_once</stringProp>
-            <boolProp name="mqtt.retain">false</boolProp>
-            <stringProp name="mqtt.type_fixed_value">mqtt_int_value</stringProp>
-            <stringProp name="mqtt.fixed_value"></stringProp>
-            <stringProp name="mqtt.type_random_value">mqtt_pseudo_random</stringProp>
-            <stringProp name="mqtt.max_random_value"></stringProp>
-            <stringProp name="mqtt.min_random_value"></stringProp>
-            <stringProp name="mqtt.type_generated_value">mqtt_int_value</stringProp>
-            <stringProp name="mqtt.seed"></stringProp>
-            <boolProp name="mqtt.use_timestamp">false</boolProp>
-            <boolProp name="mqtt.use_number_sequence">false</boolProp>
-            <stringProp name="mqtt.clientid">13</stringProp>
-            <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
-            <stringProp name="mqtt.charset">UTF-8</stringProp>
-            <stringProp name="mqtt.size_array"></stringProp>
-            <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
-            <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
-            <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
-            <stringProp name="mqtt.suffix.length"></stringProp>
-          </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
-          <hashTree>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">if (prev.isSuccessful()== false) { 
+              <stringProp name="script">if (prev.getErrorsCount()&gt;0) { 
    prev.setSuccessful(true);  
     /* the same is 
     prev.setSuccessful(true);
@@ -1393,9 +1408,9 @@ else
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (User not allowed)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">output/ten12/flussoProva/raw</stringProp>
-            <stringProp name="mqtt.security_principle">guest</stringProp>
-            <stringProp name="mqtt.security_credentials">guest</stringProp>
+            <stringProp name="mqtt.topic">output/ten2/</stringProp>
+            <stringProp name="mqtt.security_principle">ten1</stringProp>
+            <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{ 
 &quot;Stream&quot;: &quot;flussoProva&quot;,
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
@@ -1435,7 +1450,7 @@ else
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
-              <stringProp name="script">if (prev.isSuccessful()== false) { 
+              <stringProp name="script">if (prev.getErrorsCount()&gt;0) { 
    prev.setSuccessful(true);  
     /* the same is 
     prev.setSuccessful(true);
@@ -1449,11 +1464,11 @@ else
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="false">
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="true">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
             <stringProp name="mqtt.topic">input/ten1</stringProp>
             <stringProp name="mqtt.security_principle">ten1</stringProp>
-            <stringProp name="mqtt.security_credentials">guest</stringProp>
+            <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{ 
 &quot;Stream&quot;: &quot;flussoProva&quot;,
 &quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
@@ -1466,7 +1481,7 @@ else
 }
 </stringProp>
             <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>
-            <stringProp name="mqtt.iterations">1</stringProp>
+            <stringProp name="mqtt.iterations">1t</stringProp>
             <boolProp name="mqtt.authenticate">true</boolProp>
             <stringProp name="mqtt.quality">mqtt_at_most_once</stringProp>
             <boolProp name="mqtt.retain">false</boolProp>
@@ -1479,39 +1494,56 @@ else
             <stringProp name="mqtt.seed"></stringProp>
             <boolProp name="mqtt.use_timestamp">false</boolProp>
             <boolProp name="mqtt.use_number_sequence">false</boolProp>
-            <stringProp name="mqtt.clientid">11</stringProp>
+            <stringProp name="mqtt.clientid">114</stringProp>
             <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
             <stringProp name="mqtt.charset">UTF-8</stringProp>
             <stringProp name="mqtt.size_array"></stringProp>
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
             <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
-            <stringProp name="mqtt.suffix.length"></stringProp>
+            <stringProp name="mqtt.suffix.length">2</stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
-          <hashTree/>
-          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good Smartlab" enabled="false">
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">if (prev.getErrorsCount()==0) { 
+   prev.setSuccessful(true);  
+    /* the same is 
+    prev.setSuccessful(true);
+    prev.setResponseCodeOK();
+    prev.setResponseMessageOK();
+    */
+}
+else 
+   prev.setSuccessful(false);  
+</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="MQTT Validation" enabled="false"/>
+        <hashTree>
+          <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT json general faild" enabled="true">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/smartlab</stringProp>
+            <stringProp name="mqtt.topic">input/ten1</stringProp>
             <stringProp name="mqtt.security_principle">ten1</stringProp>
-            <stringProp name="mqtt.security_credentials">guest</stringProp>
+            <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{
-&quot;Stream&quot;: &quot;temperature&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+&quot;Stream&quot;: &quot;flussoProva&quot;,
+&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
 &quot;Values&quot;: [ 
 { 
-&quot;time&quot;: &quot;2014-05-13T17:08:58Z&quot;, 
-&quot;components&quot;: { &quot;c0&quot;: &quot;17.4&quot; }
-},
-{ 
-&quot;time&quot;: &quot;2014-05-13T17:09:58Z&quot;, 
-&quot;components&quot;: { &quot;c0&quot;: &quot;122&quot; }
+&quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
+&quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
 }
 ]
 }
 </stringProp>
             <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>
-            <stringProp name="mqtt.iterations">1</stringProp>
-            <boolProp name="mqtt.authenticate">false</boolProp>
+            <stringProp name="mqtt.iterations">1t</stringProp>
+            <boolProp name="mqtt.authenticate">true</boolProp>
             <stringProp name="mqtt.quality">mqtt_at_most_once</stringProp>
             <boolProp name="mqtt.retain">false</boolProp>
             <stringProp name="mqtt.type_fixed_value">mqtt_int_value</stringProp>
@@ -1523,7 +1555,7 @@ else
             <stringProp name="mqtt.seed"></stringProp>
             <boolProp name="mqtt.use_timestamp">false</boolProp>
             <boolProp name="mqtt.use_number_sequence">false</boolProp>
-            <stringProp name="mqtt.clientid">33</stringProp>
+            <stringProp name="mqtt.clientid">1</stringProp>
             <stringProp name="mqtt.format">mqtt_no_encoding</stringProp>
             <stringProp name="mqtt.charset">UTF-8</stringProp>
             <stringProp name="mqtt.size_array"></stringProp>
@@ -1532,7 +1564,25 @@ else
             <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
             <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
-          <hashTree/>
+          <hashTree>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">if (prev.getErrorsCount()&gt;0) { 
+   prev.setSuccessful(true);  
+    /* the same is 
+    prev.setSuccessful(true);
+    prev.setResponseCodeOK();
+    prev.setResponseMessageOK();
+    */
+}
+else 
+   prev.setSuccessful(false);  
+</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
         </hashTree>
       </hashTree>
     </hashTree>
