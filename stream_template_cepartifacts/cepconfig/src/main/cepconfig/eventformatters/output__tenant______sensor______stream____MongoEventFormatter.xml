@@ -13,8 +13,7 @@
 		<#else>
  "id_sensore": "{{meta_source}}",
 		</#if>
- "id_sensore": "{{meta_source}}",
- "id_flusso": "${stream.code}",
+  "id_flusso": "${stream.code}",
   "domain": "temperatura",
 "Values": [
   {
