@@ -1,0 +1,48 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventFormatter.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org"
+	xmlns:xsd="http://internal.admin.formatter.event.carbon.wso2.org/xsd">
+	<soapenv:Header />
+	<soapenv:Body>
+		<int:deployJsonEventFormatterConfiguration>
+			<!--Optional: -->
+			<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__EventFormatter
+			</int:eventFormatterName>
+			<!--Optional: -->
+			<int:streamNameWithVersion>output__${tenant.code}__${source.code_}__${stream.code}:1.0.0
+			</int:streamNameWithVersion>
+			<!--Optional: -->
+			<int:eventAdaptorName>JMSMBExternalOutputEventAdaptor.xml</int:eventAdaptorName>
+			<!--Optional: -->
+			<int:eventAdaptorType>jms</int:eventAdaptorType>
+			<!--Optional: -->
+			<int:jsonData>{
+				"Stream": "${stream.code}",
+				<#if source.type = "Application">
+				"Application": "{{meta_source}}",
+				<#elseif source.type = "Device">
+				"Sensor": "{{meta_source}}",
+				</#if>
+				"Values": [
+				{
+				"time": "{{time}}",
+				"components": { <#list components as component> "${component.code}":
+				"{{${component.code}}}" <#if component_has_next>,</#if> </#list> }
+				}
+				]
+				}</int:jsonData>
+			<!--Zero or more repetitions: -->
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>transport.jms.Destination</xsd:key>
+				<!--Optional: -->
+				<xsd:value>output.${tenant.code}.${source.code}_${stream.code}</xsd:value>
+			</int:outputPropertyConfiguration>
+			<!--Optional: -->
+			<int:dataFrom>inline</int:dataFrom>
+			<!--Optional: -->
+			<int:mappingEnabled>true</int:mappingEnabled>
+		</int:deployJsonEventFormatterConfiguration>
+	</soapenv:Body>
+</soapenv:Envelope>

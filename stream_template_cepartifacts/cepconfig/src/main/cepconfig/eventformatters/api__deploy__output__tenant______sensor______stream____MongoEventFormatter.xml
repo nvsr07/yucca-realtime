@@ -1,0 +1,79 @@
+<@pp.dropOutputFile />
+<#if stream.persisted?? && stream.persisted ="true">
+<@pp.changeOutputFile name="api__deploy__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__MongoEventFormatter.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org"
+	xmlns:xsd="http://internal.admin.formatter.event.carbon.wso2.org/xsd">
+	<soapenv:Header />
+	<soapenv:Body>
+		<int:deployJsonEventFormatterConfiguration>
+			<!--Optional: -->
+			<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__MongoEventFormatter
+			</int:eventFormatterName>
+			<!--Optional: -->
+			<int:streamNameWithVersion>output__${tenant.code}__${source.code_}__${stream.code}:1.0.0
+			</int:streamNameWithVersion>
+			<!--Optional: -->
+			<int:eventAdaptorName>MongoDB
+			</int:eventAdaptorName>
+			<!--Optional: -->
+			<int:eventAdaptorType>mongoDB</int:eventAdaptorType>
+			<!--Optional: -->
+			<int:jsonData>{
+			<#if source.type = "Application">
+				"id_application": "{{meta_source}}",
+			<#elseif source.type = "Device">
+				"id_sensore": "{{meta_source}}",
+			</#if>
+				"id_flusso": "${stream.code}",
+				"domain": "temperatura",
+				"Values": [
+				{
+				"time": "{{time}}",
+				"components": [<#list components as component>
+				{
+				"id": "c0",
+				"unit": "gradi centigradi",
+				"event":"temperatura",
+				"type": "numero",
+				"valore": "{{c0}}"
+				}
+		   <#if component_has_next>,</#if>
+			</#list>
+				]
+				}
+				]
+				}</int:jsonData>
+			<!--Zero or more repetitions: -->
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>username</xsd:key>
+				<!--Optional: -->
+				<xsd:value>a</xsd:value>
+			</int:outputPropertyConfiguration>
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>collection</xsd:key>
+				<!--Optional: -->
+				<xsd:value>${stream.code}Collection</xsd:value>
+			</int:outputPropertyConfiguration>
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>password</xsd:key>
+				<!--Optional: -->
+				<xsd:value>a</xsd:value>
+			</int:outputPropertyConfiguration>
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>database</xsd:key>
+				<!--Optional: -->
+				<xsd:value>${tenant.code}</xsd:value>
+			</int:outputPropertyConfiguration>
+			<!--Optional: -->
+			<int:dataFrom>inline</int:dataFrom>
+			<!--Optional: -->
+			<int:mappingEnabled>true</int:mappingEnabled>
+		</int:deployJsonEventFormatterConfiguration>
+	</soapenv:Body>
+</soapenv:Envelope>
+</#if>

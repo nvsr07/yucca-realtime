@@ -1,0 +1,102 @@
+<#assign x = 1> 
+{
+"steps": [
+<#list mbs as mb>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__deploy__input__${tenant.code}__${source.code}_${stream.code}.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/wso003/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__deploy__output__${tenant.code}__${source.code}_${stream.code}__stat.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/wso003/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__deploy__output__${tenant.code}__${source.code}_${stream.code}.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/wso003/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+<#break>
+</#list>
+<#list mbs as mb>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventbuilders/api__deploy__${mb.num}__${tenant.code}__${source.code}_${stream.code}__EventBuilder.xml",
+"action":"deployJsonEventBuilderConfiguration",
+"destination":"${mb.host}/wso003/services/EventBuilderAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code}_${stream.code}__EventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__deploy__output__${tenant.code}__${source.code}_${stream.code}__EventFormatter.xml",
+"action":"deployJsonEventFormatterConfiguration",
+"destination":"${mb.host}/wso003/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code}_${stream.code}__stat__EventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__deploy__output__${tenant.code}__${source.code}_${stream.code}__stat__EventFormatter.xml",
+"action":"deployJsonEventFormatterConfiguration",
+"destination":"${mb.host}/wso003/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Execution Plans per ogni nodo CEP : api__deploy__process__${tenant.code}__${source.code}_${stream.code}__ExecutionPlan", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/executionplans/api__deploy__process__${tenant.code}__${source.code}_${stream.code}__ExecutionPlan.xml",
+"action":"deployExecutionPlanConfiguration",
+"destination":"${mb.host}/wso003/services/EventProcessorAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+}
+<#if mb_has_next>,</#if>
+</#list>
+]
+}

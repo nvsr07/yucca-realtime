@@ -1,4 +1,3 @@
-
 <@pp.dropOutputFile />
 <#list mbs as mb>
 <@pp.changeOutputFile
@@ -14,12 +13,12 @@ name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.x
 		</property>
 	</from>
 	<mapping customMapping="enable" type="json">
-		<#if source.type = "App">
+		<#if source.type = "Application">
 		<property>
 			<from jsonPath="Application" />
 			<to name="meta_source" type="string" />
 		</property>
-		<#else>
+		<#elseif source.type = "Device">
 		<property>
 			<from jsonPath="Sensor" />
 			<to name="meta_source" type="string" />

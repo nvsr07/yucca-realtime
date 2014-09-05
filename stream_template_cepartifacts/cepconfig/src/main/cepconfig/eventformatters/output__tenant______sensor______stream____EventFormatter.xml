@@ -7,9 +7,9 @@
 <mapping customMapping="enable" type="json">
     <inline>{ 
  "Stream": "${stream.code}", 
- <#if source.type = "App">
+ <#if source.type = "Application">
  "Application": "{{meta_source}}",
-		<#else>
+		<#elseif source.type = "Device">
  "Sensor": "{{meta_source}}",
 		</#if>
  "Values": [ 
