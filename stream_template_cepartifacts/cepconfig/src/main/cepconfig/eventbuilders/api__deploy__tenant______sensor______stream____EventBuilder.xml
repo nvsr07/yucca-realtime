@@ -22,7 +22,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
             <xsd:type>string</xsd:type>
             <!--Optional:-->
-            <xsd:valueOf>Application</xsd:valueOf>
+            <xsd:valueOf>application</xsd:valueOf>
          </int:jsonPathExpressions>
          <#elseif source.type = "Device">
          <int:jsonPathExpressions>
@@ -30,7 +30,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
             <xsd:type>string</xsd:type>
             <!--Optional:-->
-            <xsd:valueOf>Sensor</xsd:valueOf>
+            <xsd:valueOf>sensor</xsd:valueOf>
          </int:jsonPathExpressions>
 		</#if>
          <int:jsonPathExpressions>
@@ -38,7 +38,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
             <xsd:type>string</xsd:type>
             <!--Optional:-->
-            <xsd:valueOf>Values.time</xsd:valueOf>
+            <xsd:valueOf>values.time</xsd:valueOf>
          </int:jsonPathExpressions>
          <#list components as component>
          <int:jsonPathExpressions>
@@ -46,7 +46,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
             <xsd:type>${component.type}</xsd:type>
             <!--Optional:-->
-            <xsd:valueOf>Values.components.${component.code}</xsd:valueOf>
+            <xsd:valueOf>values.components.${component.code}</xsd:valueOf>
          </int:jsonPathExpressions>
          </#list>
          <!--Zero or more repetitions:-->

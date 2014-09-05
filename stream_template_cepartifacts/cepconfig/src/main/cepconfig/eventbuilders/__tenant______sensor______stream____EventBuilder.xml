@@ -15,22 +15,22 @@ name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.x
 	<mapping customMapping="enable" type="json">
 		<#if source.type = "Application">
 		<property>
-			<from jsonPath="Application" />
+			<from jsonPath="application" />
 			<to name="meta_source" type="string" />
 		</property>
 		<#elseif source.type = "Device">
 		<property>
-			<from jsonPath="Sensor" />
+			<from jsonPath="sensor" />
 			<to name="meta_source" type="string" />
 		</property>
 		</#if>
 		<property>
-			<from jsonPath="Values.time" />
+			<from jsonPath="values.time" />
 			<to name="time" type="string" />
 		</property>
 		<#list components as component>
 		<property>
-			<from jsonPath="Values.components.${component.code}" />
+			<from jsonPath="values.components.${component.code}" />
 			<to name="${component.code}" type="${component.type}" />
 		</property>
 		</#list>

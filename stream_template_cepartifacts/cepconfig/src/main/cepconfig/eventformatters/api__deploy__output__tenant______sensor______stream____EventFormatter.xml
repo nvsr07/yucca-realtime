@@ -18,13 +18,13 @@
 			<int:eventAdaptorType>jms</int:eventAdaptorType>
 			<!--Optional: -->
 			<int:jsonData>{
-				"Stream": "${stream.code}",
+				"stream": "${stream.code}",
 				<#if source.type = "Application">
-				"Application": "{{meta_source}}",
+				"application": "{{meta_source}}",
 				<#elseif source.type = "Device">
-				"Sensor": "{{meta_source}}",
+				"sensor": "{{meta_source}}",
 				</#if>
-				"Values": [
+				"values": [
 				{
 				"time": "{{time}}",
 				"components": { <#list components as component> "${component.code}":

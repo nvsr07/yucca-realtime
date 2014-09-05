@@ -15,7 +15,7 @@
 		</#if>
   "id_flusso": "${stream.code}",
   "domain": "temperatura",
-"Values": [
+"values": [
   {
    "time": "{{time}}",
    "components": [<#list components as component>

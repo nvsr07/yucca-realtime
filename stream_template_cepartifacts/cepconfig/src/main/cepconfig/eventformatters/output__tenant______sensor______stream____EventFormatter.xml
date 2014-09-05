@@ -6,13 +6,13 @@
   <from streamName="output__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
 <mapping customMapping="enable" type="json">
     <inline>{ 
- "Stream": "${stream.code}", 
+ "stream": "${stream.code}", 
  <#if source.type = "Application">
- "Application": "{{meta_source}}",
+ "application": "{{meta_source}}",
 		<#elseif source.type = "Device">
- "Sensor": "{{meta_source}}",
+ "sensor": "{{meta_source}}",
 		</#if>
- "Values": [ 
+ "values": [ 
  { 
  "time": "{{time}}", 
  "components": { <#list components as component>  "${component.code}": "{{${component.code}}}" <#if component_has_next>,</#if> </#list>   } 
