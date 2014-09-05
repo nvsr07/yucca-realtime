@@ -44,8 +44,7 @@
 			<arguments>${tenant.name}</arguments>
 			<cfgFile>config_${tenant.name}.fmpp</cfgFile>
             <outputDirectory>app_${tenant.name}/cepconfig/generated_src/</outputDirectory>
-            <templateDirectory>app_${tenant.name}/cepconfig/src</templateDirectory>
-			
+            <templateDirectory>app_${tenant.name}/cepconfig/src</templateDirectory>			
         </configuration>
         <groupId>com.googlecode.fmpp-maven-plugin</groupId>
         <artifactId>fmpp-maven-plugin</artifactId>

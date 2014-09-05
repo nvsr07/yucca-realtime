@@ -1,0 +1,47 @@
+data: {
+
+   mbs: [
+   {
+   num: "mb1"
+   host: "https://tst-sdnet-cep1.sdp.csi.it:9446"
+   secuser: "admin"
+   secpassword: "myadmin"
+   }
+   {
+   num: "mb2"
+   host: "https://tst-sdnet-cep2.sdp.csi.it:9446"
+   secuser: "admin"
+   secpassword: "myadmin"
+   }
+   ]
+   esbinfo:
+   {
+   host: "http://esb:8080"
+   secuser: "admin"
+   secpassword: "myadmin"
+   }
+   tenant: {
+   code: "ten1"
+   }
+   source: {
+   type: "Device"
+   code: "550e8400-e29b-41d4-a716-446655440000"
+   code_: "550e8400_e29b_41d4_a716_446655440000"
+   }
+   stream: {
+   code: "temperature"
+   published: "true"
+   }
+   components: [  
+		{
+			code: "temp"
+			type: "string"
+		}
+		{
+			code: "wind"
+			type: "string"
+		}
+	]
+  }
+
+ 

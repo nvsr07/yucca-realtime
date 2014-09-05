@@ -1,0 +1,70 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__process__"+tenant.code+"__"+source.code_+"_"+stream.code+"__ExecutionPlan.xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org" xmlns:xsd="http://admin.processor.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <adm:deployExecutionPlanConfiguration>
+         <!--Optional:-->
+         <adm:configurationDto>
+            <!--Optional:-->
+            <xsd:description>Execution plan for ${tenant.code}__${source.code}__${stream.code}</xsd:description>
+            <!--Zero or more repetitions:-->
+            <xsd:exportedStreams>
+               <!--Optional:-->
+               <xsd:siddhiStreamName>output__${tenant.code}__${source.code_}__${stream.code}</xsd:siddhiStreamName>
+               <!--Optional:-->
+               <xsd:streamId>output__${tenant.code}__${source.code_}__${stream.code}:1.0.0</xsd:streamId>
+            </xsd:exportedStreams>
+              <xsd:exportedStreams>
+               <!--Optional:-->
+               <xsd:siddhiStreamName>output__${tenant.code}__${source.code_}__${stream.code}__stat</xsd:siddhiStreamName>
+               <!--Optional:-->
+               <xsd:streamId>output__${tenant.code}__${source.code_}__${stream.code}__stat:1.0.0</xsd:streamId>
+            </xsd:exportedStreams>
+            <!--Zero or more repetitions:-->
+            <xsd:importedStreams>
+               <!--Optional:-->
+               <xsd:siddhiStreamName>input__${tenant.code}__${source.code_}__${stream.code}</xsd:siddhiStreamName>
+               <!--Optional:-->
+               <xsd:streamId>input__${tenant.code}__${source.code_}__${stream.code}:1.0.0</xsd:streamId>
+            </xsd:importedStreams>
+            <!--Optional:-->
+            <xsd:name>process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan</xsd:name>
+            <!--Optional:-->
+            <xsd:queryExpressions><![CDATA[<#if stream.published?? && stream.published = "true">
+from input
+insert into outputStream;
+</#if>
+
+from input#window.time(30 sec) 
+select count(time) as numEventsLast30Sec 
+output last every 2 sec 
+insert into tempOutputStat for all-events; 
+
+from tempOutputStat#window.length(1) 
+select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
+output snapshot every 2 sec 
+insert into outputStat for all-events 
+]]>
+            </xsd:queryExpressions>
+            <!--Zero or more repetitions:-->
+            <xsd:siddhiConfigurations>
+               <!--Optional:-->
+               <xsd:key>siddhi.enable.distributed.processing</xsd:key>
+               <!--Optional:-->
+               <xsd:value>RedundantNode</xsd:value>
+            </xsd:siddhiConfigurations>
+             <xsd:siddhiConfigurations>
+               <!--Optional:-->
+               <xsd:key>siddhi.persistence.snapshot.time.interval.minutes</xsd:key>
+               <!--Optional:-->
+               <xsd:value>0</xsd:value>
+            </xsd:siddhiConfigurations>
+            <!--Optional:-->
+            <xsd:statisticsEnabled>false</xsd:statisticsEnabled>
+            <!--Optional:-->
+            <xsd:tracingEnabled>false</xsd:tracingEnabled>
+         </adm:configurationDto>
+      </adm:deployExecutionPlanConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,34 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__stat__EventFormatter.xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org"
+	xmlns:xsd="http://internal.admin.formatter.event.carbon.wso2.org/xsd">
+	<soapenv:Header />
+	<soapenv:Body>
+		<int:deployJsonEventFormatterConfiguration>
+			<!--Optional: -->
+			<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__stat__EventFormatter
+			</int:eventFormatterName>
+			<!--Optional: -->
+			<int:streamNameWithVersion>output__${tenant.code}__${source.code_}__${stream.code}__stat:1.0.0
+			</int:streamNameWithVersion>
+			<!--Optional: -->
+			<int:eventAdaptorName>JMSMBExternalOutputEventAdaptor.xml</int:eventAdaptorName>
+			<!--Optional: -->
+			<int:eventAdaptorType>jms</int:eventAdaptorType>
+			<!--Optional: -->
+			<!--int:jsonData></int:jsonData-->
+			<!--Zero or more repetitions: -->
+			<int:outputPropertyConfiguration>
+				<!--Optional: -->
+				<xsd:key>transport.jms.Destination</xsd:key>
+				<!--Optional: -->
+				<xsd:value>output.${tenant.code}.${source.code}_${stream.code}.stat</xsd:value>
+			</int:outputPropertyConfiguration>
+			<!--Optional: -->
+			<int:dataFrom>inline</int:dataFrom>
+			<!--Optional: -->
+			<int:mappingEnabled>false</int:mappingEnabled>
+		</int:deployJsonEventFormatterConfiguration>
+	</soapenv:Body>
+</soapenv:Envelope>
