@@ -7,9 +7,9 @@
             </class>
             <filter source="get-property('isFormatValid')" regex="true">
                 <then>
-                    <property name="streamId" expression="json-eval($.Stream)" scope="default" type="STRING"/>
-                    <property name="sensorId" expression="json-eval($.Sensor)" scope="default" type="STRING"/>
-                    <property name="applicationId" expression="json-eval($.Application)" scope="default" type="STRING"/>
+                    <property name="streamId" expression="json-eval($.stream)" scope="default" type="STRING"/>
+                    <property name="sensorId" expression="json-eval($.sensor)" scope="default" type="STRING"/>
+                    <property name="applicationId" expression="json-eval($.application)" scope="default" type="STRING"/>
                     <property name="sourceId" expression="fn:concat(get-property('sensorId'),get-property('applicationId'))" scope="default" type="STRING"/>
                     <call-template target="ValidateMessage" description="validate">
                         <with-param name="schemaToValidate" value="{fn:concat('gov:xsd/__tenant__/',fn:get-property('sourceId'),'_',fn:get-property('streamId'),'Types.xsd')}"/>

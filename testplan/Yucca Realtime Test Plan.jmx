@@ -99,9 +99,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ &#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -171,9 +171,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ &#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -258,9 +258,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ &#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -334,9 +334,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ &#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -407,9 +407,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ &#xd;
-&quot;Stream&quot;: &quot;flussoProvaUnknown&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProvaUnknown&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -480,9 +480,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{ [&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } &#xd;
@@ -553,8 +553,8 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
 &quot;Valasasues&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
@@ -626,9 +626,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;pressure&quot;:&quot;100&quot; } &#xd;
@@ -699,9 +699,9 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; }&#xd;
@@ -1056,9 +1056,9 @@
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">{&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; }&#xd;
@@ -1250,9 +1250,9 @@
                   <elementProp name="" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">false</boolProp>
                     <stringProp name="Argument.value">{&#xd;
-&quot;Stream&quot;: &quot;flussoProva&quot;,&#xd;
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
-&quot;Values&quot;: [ &#xd;
+&quot;stream&quot;: &quot;flussoProva&quot;,&#xd;
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
 { &#xd;
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, &#xd;
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; }&#xd;
@@ -1346,7 +1346,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="false"/>
         <hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
@@ -1354,9 +1354,9 @@
             <stringProp name="mqtt.security_principle">system</stringProp>
             <stringProp name="mqtt.security_credentials">manager</stringProp>
             <stringProp name="mqtt.text_message">{ 
-&quot;Stream&quot;: &quot;flussoProva&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;Values&quot;: [ 
+&quot;stream&quot;: &quot;flussoProva&quot;,
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
+&quot;values&quot;: [ 
 { 
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
@@ -1412,9 +1412,9 @@ else
             <stringProp name="mqtt.security_principle">ten1</stringProp>
             <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{ 
-&quot;Stream&quot;: &quot;flussoProva&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;Values&quot;: [ 
+&quot;stream&quot;: &quot;flussoProva&quot;,
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
+&quot;values&quot;: [ 
 { 
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
@@ -1470,9 +1470,9 @@ else
             <stringProp name="mqtt.security_principle">ten1</stringProp>
             <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{ 
-&quot;Stream&quot;: &quot;flussoProva&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;Values&quot;: [ 
+&quot;stream&quot;: &quot;flussoProva&quot;,
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
+&quot;values&quot;: [ 
 { 
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
@@ -1501,7 +1501,7 @@ else
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
             <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
-            <stringProp name="mqtt.suffix.length">2</stringProp>
+            <stringProp name="mqtt.suffix.length"></stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
@@ -1531,9 +1531,9 @@ else
             <stringProp name="mqtt.security_principle">ten1</stringProp>
             <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
             <stringProp name="mqtt.text_message">{
-&quot;Stream&quot;: &quot;flussoProva&quot;,
-&quot;Sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;Values&quot;: [ 
+&quot;stream&quot;: &quot;flussoProva&quot;,
+&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
+&quot;values&quot;: [ 
 { 
 &quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
 &quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
