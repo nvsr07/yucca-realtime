@@ -28,7 +28,7 @@
                         </then>
                         <else>
                             <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" type="STRING"/>
-                            <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/Values" sequential="true">
+                            <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/values" sequential="true">
                                 <target>
                                     <sequence>
                                         <call-template target="SendToMessageBrokerSequence" description="">

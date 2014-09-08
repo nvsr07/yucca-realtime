@@ -27,7 +27,7 @@
                             </call-template>
                         </then>
                         <else>
-                            <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/Values" sequential="true">
+                            <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/jsonObject" expression="$body/jsonObject/values" sequential="true">
                                 <target>
                                     <sequence>
                                         <call-template target="SendToMessageBrokerSequence" description="">

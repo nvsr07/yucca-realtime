@@ -11178,3 +11178,296 @@ java.lang.Thread.run(Unknown Source)
 [Problems]
 ",Thread Group HTTP Events 1-1,,true,1007,0
 1409672470676,1,null,OK,Sent 0 messages total,Thread Group HTTP Events 1-1,,true,0,0
+1409742850439,353,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,707,352
+1409742850867,99,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,710,99
+1409742850973,65,HTTP json validation failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,561,65
+1409742851045,134,HTTP json general failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,749,134
+1409742851280,97,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,241,97
+1409742851416,75,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,240,75
+1410180098486,338,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,698,338
+1410180098883,52,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,584,52
+1410180098942,148,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,148
+1410180111817,71,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,728,70
+1410180111894,92,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,731,91
+1410180111992,59,HTTP json validation failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,582,59
+1410180112078,70,HTTP json general failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,770,69
+1410180112156,40,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,40
+1410180112202,49,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,49
+1410180172260,20740,WebSocket Connection - 1,," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error:  - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - Cannot connect to the remote server
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1410180193032,8,WebSocket SUBSCRIBE raw  1,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1410180193069,50,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,50
+1410180193129,20004,WebSocket Verify 1 (lower case),Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,0,0
+1410180213133,2,WebSocket Disconnect 1,,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+
+
+[Variables]
+ - Message count: 0
+
+
+[Problems]
+ - Unexpected error: 
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+
+
+[Variables]
+ - Message count: 0
+null
+JMeter.plugins.functional.samplers.websocket.ServiceSocket.sendMessage(ServiceSocket.java:189)
+JMeter.plugins.functional.samplers.websocket.WebSocketSampler.sample(WebSocketSampler.java:145)
+org.apache.jmeter.threads.JMeterThread.process_sampler(JMeterThread.java:429)
+org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:257)
+java.lang.Thread.run(Unknown Source)
+",Thread Group HTTP Events 1-1,,false,0,0
+1410180213139,178,WebSocket Connection - mywe,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (114 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1410180213319,3,WebSocket SUBSCRIBE raw  mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1410180213325,61,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,61
+1410180213388,20003,WebSocket Verify mywe,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,3350,0
+1410180233393,7,WebSocket Disconnect mywe,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,3350,0
+1410180233403,96,WebSocket Connection - mywe2,200," - Using response message pattern ""CONNECTED""
+ - Using disconnect pattern """"
+
+
+[Execution Flow]
+ - Opening new connection
+ - Waiting for the server connection for 20000 MILLISECONDS
+ - WebSocket conection has been opened
+ - Connection established
+ - Received message #1 (114 bytes); matched response pattern
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1410180233502,3,WebSocket SUBSCRIBE raw  mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern ""MESSAGE""
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 1
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,128,0
+1410180233508,54,HTTP json simple  event,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,54
+1410180233564,20002,WebSocket VErify mywe2,Timeout happens. Not all messages are arrived,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,false,3350,0
+1410180253567,2,WebSocket Disconnect mywe2,200,"
+
+[Execution Flow]
+ - Reusing exising connection
+ - Using response message pattern """"
+ - Using disconnect pattern """"
+ - Leaving streaming connection open
+
+
+[Variables]
+ - Message count: 2
+
+
+[Problems]
+",Thread Group HTTP Events 1-1,,true,3350,0
+1410180364236,78,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,728,78
+1410180364318,128,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,731,128
+1410180364452,103,HTTP json validation failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,582,103
+1410180364561,79,HTTP json general failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,770,79
+1410180364649,39,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,39
+1410180364693,53,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,53
+1410180749476,58,HTTP Auth Fail (No auth),401,Unauthorized,Thread Group HTTP Events 1-1,text,true,698,58
+1410180749540,19,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,584,19
+1410180749566,74,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,74
+1410180764121,42,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,42
+1410180981799,53,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,53
+1410181008448,99,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,99
+1410181009812,41,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,41
+1410181012518,45,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,45
+1410181126505,49,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,49
+1410181157435,490,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,490
+1410181995444,79,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,79
+1410181999932,38,HTTP Auth Fail (User pwd errors),403,Forbidden,Thread Group HTTP Events 1-1,text,true,585,38
+1410181999977,53,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,53
+1410182006219,43,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,43
+1410182006265,64,HTTP unknown tenant,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,728,64
+1410182006337,96,HTTP unknown stream,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,731,96
+1410182006439,60,HTTP json validation failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,582,60
+1410182006504,91,HTTP json general failed,500,Internal Server Error,Thread Group HTTP Events 1-1,text,true,770,91
+1410182006599,43,HTTP json coherence failed,202,Accepted,Thread Group HTTP Events 1-1,text,false,232,43
+1410182006648,27,HTTP json multiple events,202,Accepted,Thread Group HTTP Events 1-1,text,true,231,27
+1410182030574,75,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,75
+1410182054878,56,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,56
+1410182057087,44,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,44
+1410182058116,40,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,40
+1410182542975,111,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,111
+1410182771582,120,HTTP Auth Good ,202,Accepted,Thread Group HTTP Events 1-1,text,true,232,120

@@ -24,12 +24,12 @@
 			</includes>
 		</fileSet>
 		<fileSet>
-			<directory>generated_src</directory>
 			<outputDirectory>esbconfig/</outputDirectory>
+			<directory>generated_src/main/esbconfig</directory>
 			<includes>
-				<include>deploymentInstructions.json</include>
 				<include>*.xsd</include>
+				<include>*.xml</include>
 			</includes>
-		</fileSet>
+		</fileSet>		
 	</fileSets>
 </assembly>

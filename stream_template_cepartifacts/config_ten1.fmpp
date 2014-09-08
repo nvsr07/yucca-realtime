@@ -12,7 +12,7 @@ data: {
     ]
     esbinfo:
     {
-        host: "https://tst-sdnet-esbin1.sdp.csi.it:9444/"
+        host: "https://tst-sdnet-esbin1.sdp.csi.it:9444"
         secuser: "admin"
         secpassword: "myadmin"
     }
@@ -21,7 +21,7 @@ data: {
 	}
 	source: {
          type: "Device"
-         code: "550e8400_e29b_41d4_a716_446655440002"
+         code: "550e8400-e29b-41d4-a716-446655440002"
          code_: "550e8400_e29b_41d4_a716_446655440002"
     }
 	stream: {
