@@ -12,7 +12,7 @@ data: {
     ]
     esbinfo:
     {
-        host: "https://tst-sdnet-esbin1.sdp.csi.it:9444/"
+        host: "https://tst-sdnet-esbin1.sdp.csi.it:9444"
         secuser: "admin"
         secpassword: "myadmin"
     }

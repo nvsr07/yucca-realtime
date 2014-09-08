@@ -98,5 +98,32 @@
 }
 <#if mb_has_next>,</#if>
 </#list>
+
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione della Validazione sul Governance Registry, aggiungendo la collection con : api__deploy__${tenant.code}__${source.code}_${stream.code}__addCollection.xml", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"esbconfig/api__deploy__${tenant.code}__${source.code}_${stream.code}__addCollection.xml",
+"action":"addCollection",
+"destination":"${esbinfo.host}/wso001/services/ResourceAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__deploy__${tenant.code}__${source.code}_${stream.code}__addResource.xml", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"esbconfig/api__deploy__${tenant.code}__${source.code}_${stream.code}__addResource.xml",
+"action":"addResource",
+"destination":"${esbinfo.host}/wso001/services/ResourceAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+}
 ]
 }
