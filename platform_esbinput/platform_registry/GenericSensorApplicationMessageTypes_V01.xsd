@@ -1,22 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cn="http://stream.smartdatanet.it/CommonTypes" targetNamespace="http://stream.smartdatanet.it/CommonTypes">
 
-    <xs:complexType name="SensorOrApplication">
-      <xs:sequence>
-        <xs:element name="stream"/>
-        <xs:choice>
-           <xs:element name="sensor"/>
-           <xs:element name="application"/>
-        </xs:choice>
-        <xs:element name="values" type="cn:Value"  minOccurs="1" maxOccurs="unbounded"/>
-      </xs:sequence>
+<xs:complexType name="SensorOrApplication">
+		<xs:choice>
+			<xs:sequence>
+					<xs:element name="values" type="tns:value" minOccurs="1"
+						maxOccurs="unbounded" />
+					<xs:choice>
+						<xs:sequence>
+				            <xs:element name="stream" minOccurs="1" maxOccurs="1"/>
+				            <xs:choice >
+				              <xs:element name="sensor" />
+				              <xs:element name="application" />
+				            </xs:choice>
+						</xs:sequence>
+						<xs:sequence>
+				            <xs:choice >
+				              <xs:element name="sensor" />
+				              <xs:element name="application" />
+				            </xs:choice>
+				            <xs:element name="stream" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+	    	        </xs:choice>
+    		</xs:sequence>
+			<xs:sequence>
+		            <xs:element name="stream" minOccurs="1" maxOccurs="1"/>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="values" type="tns:value" minOccurs="1"
+								maxOccurs="unbounded" />
+				            <xs:choice >
+				              <xs:element name="sensor" />
+				              <xs:element name="application" />
+				            </xs:choice>
+						</xs:sequence>
+						<xs:sequence>
+				            <xs:choice >
+				              <xs:element name="sensor" />
+				              <xs:element name="application" />
+				            </xs:choice>
+							<xs:element name="values" type="tns:value" minOccurs="1"
+								maxOccurs="unbounded" />
+						</xs:sequence>
+	    	        </xs:choice>
+    		</xs:sequence>
+			<xs:sequence>
+		            <xs:choice >
+		              <xs:element name="sensor" />
+		              <xs:element name="application" />
+		            </xs:choice>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="values" type="tns:value" minOccurs="1"
+								maxOccurs="unbounded" />
+				            <xs:element name="stream" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+						<xs:sequence>
+				            <xs:element name="stream" minOccurs="1" maxOccurs="1"/>
+							<xs:element name="values" type="tns:value" minOccurs="1"
+								maxOccurs="unbounded" />
+						</xs:sequence>
+	    	        </xs:choice>
+    		</xs:sequence>
+    	</xs:choice>
+
     </xs:complexType>
-     <xs:complexType name="Value">
+
+    <xs:complexType name="value">
        <xs:all>
              <xs:element name="time" />
              <xs:element name="components" />
              <xs:element name="validity"  minOccurs="0"  />
        </xs:all>
     </xs:complexType>
+	<xs:element name="jsonObject" type="tns:SensorOrApplication"/>
 </xs:schema>
 				 
