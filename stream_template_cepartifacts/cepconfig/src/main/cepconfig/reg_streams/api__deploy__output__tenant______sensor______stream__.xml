@@ -27,7 +27,7 @@
             <!--Optional:-->
             <xsd:attributeName>${component.code}</xsd:attributeName>
             <!--Optional:-->
-            <xsd:attributeType>${component.type}</xsd:attributeType>
+            <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
          </int:payloadEventStreamAttributeDtos>
          </#list>
         <!--Optional:-->

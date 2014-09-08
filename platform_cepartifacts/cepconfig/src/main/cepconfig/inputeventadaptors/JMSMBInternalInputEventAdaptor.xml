@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<inputEventAdaptor name="JMSMBInternalInputEventAdaptor"
+<inputEventAdaptor name="JMSMBInternalInputEventAdaptor.xml"
   statistics="disable" trace="disable" type="jms" xmlns="http://wso2.org/carbon/eventadaptormanager">
   <property name="java.naming.provider.url">inter.mb.jms.url</property>
   <property name="transport.jms.UserName">inter.mb.user</property>
