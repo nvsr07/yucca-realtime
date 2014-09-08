@@ -11,20 +11,20 @@
             <!--Zero or more repetitions:-->
             <xsd:exportedStreams>
                <!--Optional:-->
-               <xsd:siddhiStreamName>output__${tenant.code}__${source.code_}__${stream.code}</xsd:siddhiStreamName>
+               <xsd:siddhiStreamName>outputStream</xsd:siddhiStreamName>
                <!--Optional:-->
                <xsd:streamId>output__${tenant.code}__${source.code_}__${stream.code}:1.0.0</xsd:streamId>
             </xsd:exportedStreams>
               <xsd:exportedStreams>
                <!--Optional:-->
-               <xsd:siddhiStreamName>output__${tenant.code}__${source.code_}__${stream.code}__stat</xsd:siddhiStreamName>
+               <xsd:siddhiStreamName>outputStat</xsd:siddhiStreamName>
                <!--Optional:-->
                <xsd:streamId>output__${tenant.code}__${source.code_}__${stream.code}__stat:1.0.0</xsd:streamId>
             </xsd:exportedStreams>
             <!--Zero or more repetitions:-->
             <xsd:importedStreams>
                <!--Optional:-->
-               <xsd:siddhiStreamName>input__${tenant.code}__${source.code_}__${stream.code}</xsd:siddhiStreamName>
+               <xsd:siddhiStreamName>input</xsd:siddhiStreamName>
                <!--Optional:-->
                <xsd:streamId>input__${tenant.code}__${source.code_}__${stream.code}:1.0.0</xsd:streamId>
             </xsd:importedStreams>
@@ -52,7 +52,11 @@ insert into outputStat for all-events
                <!--Optional:-->
                <xsd:key>siddhi.enable.distributed.processing</xsd:key>
                <!--Optional:-->
+<#if (mbs?size > 1)>
                <xsd:value>RedundantNode</xsd:value>
+<#else>
+               <xsd:value>false</xsd:value>
+</#if>
             </xsd:siddhiConfigurations>
              <xsd:siddhiConfigurations>
                <!--Optional:-->

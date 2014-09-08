@@ -11,7 +11,7 @@
   <importedStreams>
     <stream as="input" name="input__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
   </importedStreams>
-  <queryExpressions><![CDATA[<#if stream.published?? && stream.published = "true">
+  <queryExpressions><![CDATA[<#if stream.published?? && stream.published == "true">
 from input
 insert into outputStream;
 </#if>

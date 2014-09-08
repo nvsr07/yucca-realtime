@@ -7,11 +7,9 @@
 	<soapenv:Body>
 		<int:deployJsonEventFormatterConfiguration>
 			<!--Optional: -->
-			<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__stat__EventFormatter
-			</int:eventFormatterName>
+			<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__stat__EventFormatter</int:eventFormatterName>
 			<!--Optional: -->
-			<int:streamNameWithVersion>output__${tenant.code}__${source.code_}__${stream.code}__stat:1.0.0
-			</int:streamNameWithVersion>
+			<int:streamNameWithVersion>output__${tenant.code}__${source.code_}__${stream.code}__stat:1.0.0</int:streamNameWithVersion>
 			<!--Optional: -->
 			<int:eventAdaptorName>JMSMBExternalOutputEventAdaptor.xml</int:eventAdaptorName>
 			<!--Optional: -->
