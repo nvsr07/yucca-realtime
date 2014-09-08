@@ -20,14 +20,14 @@
 			<directory>generated_src</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-				<include>deploy.json</include>
+			<include>deploymentInstructions.json</include>
 			</includes>
 		</fileSet>
 		<fileSet>
 			<directory>generated_src</directory>
 			<outputDirectory>esbconfig/</outputDirectory>
 			<includes>
-				<include>deploy.json</include>
+				<include>deploymentInstructions.json</include>
 				<include>*.xsd</include>
 			</includes>
 		</fileSet>
