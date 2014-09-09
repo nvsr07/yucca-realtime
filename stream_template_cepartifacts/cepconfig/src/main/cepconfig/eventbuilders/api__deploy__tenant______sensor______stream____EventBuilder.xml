@@ -44,7 +44,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
          <int:jsonPathExpressions>
             <xsd:name>${component.code}</xsd:name>
             <!--Optional:-->
-            <xsd:type>${component.type}</xsd:type>
+            <xsd:type>${component.type?lower_case}</xsd:type>
             <!--Optional:-->
             <xsd:valueOf>values.components.${component.code}</xsd:valueOf>
          </int:jsonPathExpressions>
