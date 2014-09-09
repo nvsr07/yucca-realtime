@@ -118,7 +118,7 @@
 "actionType":"WebServiceCall",
 "sourceType":"file",
 "source":"esbconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addResource.xml",
-"action":"addResource",
+"action":"addTextResource",
 "destination":"${esbinfo.host}/wso001/services/ResourceAdminService",
 "returnExpected":"200", 
 "validityControl":"<fault>",
