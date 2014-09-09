@@ -2,7 +2,7 @@
 <esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
   <server type="API">
     <children xsi:type="esb:SynapseAPI" apiName="__tenant___http" context="/services/__tenant__">
-      <resources urlStyle="URI_TEMPLATE" uriTemplate="/{streamId}" allowPost="true">
+      <resources urlStyle="URI_TEMPLATE" uriTemplate="*" allowPost="true">
         <inputConnector incomingLinks="//@server/@children.0/@resources.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
         <outputConnector>
           <outgoingLink target="//@server/@children.0/@resources.0/@container/@sequenceAndEndpointContainer/@mediatorFlow/@children.0/@inputConnector"/>
@@ -212,9 +212,6 @@
                 <outputConnector>
                   <outgoingLink target="//@server/@children.0/@resources.0/@inputConnector"/>
                 </outputConnector>
-                <properties propertyName="streamId" propertyValueType="EXPRESSION">
-                  <propertyExpression propertyValue="get-property('uri.var.streamId')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
-                </properties>
                 <properties propertyName="sequence" propertyValue="OUT">
                   <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
                 </properties>

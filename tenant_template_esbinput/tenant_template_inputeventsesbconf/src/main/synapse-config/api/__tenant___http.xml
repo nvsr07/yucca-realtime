@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api xmlns="http://ws.apache.org/ns/synapse" name="__tenant___http" context="/services/__tenant__">
-    <resource methods="POST" uri-template="/{streamId}">
+    <resource methods="POST" uri-template="*">
         <inSequence>
             <class name="org.csi.yucca.realtime.mediator.FormatValidMediator">
                 <property name="variabileResult" value="isFormatValid"/>
@@ -60,7 +60,6 @@
         </inSequence>
         <outSequence>
             <log>
-                <property name="streamId" expression="get-property('uri.var.streamId')"/>
                 <property name="sequence" value="OUT"/>
             </log>
         </outSequence>
