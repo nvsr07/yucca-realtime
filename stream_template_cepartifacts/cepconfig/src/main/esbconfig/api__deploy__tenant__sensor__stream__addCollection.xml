@@ -9,7 +9,7 @@
          <!--Optional:-->
          <ser:collectionName>${tenant.code}</ser:collectionName>
          <!--Optional:-->
-         <!-- ser:mediaType></ser:mediaType-->
+         <ser:mediaType></ser:mediaType>
          <!--Optional:-->
          <ser:description>Xsd for ${tenant.code}</ser:description>
       </ser:addCollection>
