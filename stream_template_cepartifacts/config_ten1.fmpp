@@ -25,7 +25,7 @@ data: {
          code_: "550e8400_e29b_41d4_a716_446655440002"
     }
 	stream: {
-		code: "flussoProva"
+		code: "flussoProva2"
 		published: "true"
 	}
 	components: [

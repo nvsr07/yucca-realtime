@@ -5,13 +5,13 @@
    <soapenv:Body>
       <ser:addCollection>
          <!--Optional:-->
-         <ser:parentPath>?</ser:parentPath>
+         <ser:parentPath>/_system/governance/xsd</ser:parentPath>
          <!--Optional:-->
-         <ser:collectionName>?</ser:collectionName>
+         <ser:collectionName>${tenant.code}</ser:collectionName>
          <!--Optional:-->
-         <ser:mediaType>?</ser:mediaType>
+         <!-- ser:mediaType></ser:mediaType-->
          <!--Optional:-->
-         <ser:description>?</ser:description>
+         <ser:description>Xsd for ${tenant.code}</ser:description>
       </ser:addCollection>
    </soapenv:Body>
 </soapenv:Envelope>

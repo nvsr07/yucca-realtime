@@ -1,0 +1,25 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextResource.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.resource.registry.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:addTextResource>
+         <!--Optional:-->
+         <ser:parentPath>/_system/governance/xsd/${tenant.code}</ser:parentPath>
+         <!--Optional:-->
+         <ser:fileName>${source.code}_${stream.code}Types.xsd</ser:fileName>
+         <!--Optional:-->
+         <ser:mediaType></ser:mediaType>
+         <!--Optional:-->
+         <ser:description>Xsd Validator for ${tenant.code}__${source.code}_${stream.code}</ser:description>
+         <!--Optional:-->
+         <ser:content><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cn="http://stream.smartdatanet.it/CommonTypes">
+<xs:import schemaLocation="GenericSensorApplicationMessageTypes_V01.xsd" 
+               namespace="http://stream.smartdatanet.it/CommonTypes"/>
+  <xs:element name="jsonObject" type="cn:SensorOrApplication">
+  </xs:element>
+</xs:schema>]]></ser:content>
+      </ser:addTextResource>
+   </soapenv:Body>
+</soapenv:Envelope>
