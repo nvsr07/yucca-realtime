@@ -1,31 +1,61 @@
+expert: true
 data: {
     mbs: [
-	    {
-	    	num: "mb1"
-	    }
-	    {
-	    	num: "mb2"
-	    }
+        
+    	{
+    	    num: "mb1"
+            host: "https://sdnet-mb1.sdp.csi.it:9446/wso003"
+			secuser: "admin"
+			secpassword: "aekaiCh8"
+    	}
+    	
+    	{
+    	    num: "mb2"
+            host: "https://sdnet-mb2.sdp.csi.it:9446/wso003"
+			secuser: "admin"
+			secpassword: "aekaiCh8"
+    	}
+    	
     ]
-    tenant: {
-    	code: "smartlab"
-   	}
-    source: {
-   		type: "Application"
-   		code: "550e8400-e29b-41d4-a716-446655440000"
-   		code_:"550e8400_e29b_41d4_a716_446655440000"
-   	} 
+    esbinfo:
+    {
+        host: "https://sdnet-esbin1.sdp.csi.it:9445/wso002"
+        secuser: "admin"
+        secpassword: "fiiThoo6"
+    }
+	tenant: {
+		code: "smartlab"
+	}
+	source: {
+         type: "Device"
+         code: "cc1bfe50-491c-560d-a235-0e4134bbdc23"
+         code_: "cc1bfe50_491c_560d_a235_0e4134bbdc23"
+    }
 	stream: {
-		code: "temperature"
-	}    
+		code: "position"
+		published: "true"
+	}
 	components: [
+		
 		{
-			code: "temp"
-			type: "string"
+			code:"longitude"
+			type:"float"
 		}
+		
 		{
-			code: "wind"
-			type: "string"
+			code:"latitude"
+			type:"float"
 		}
+		
+		{
+			code:"altitude"
+			type:"float"
+		}
+		
+		{
+			code:"speed"
+			type:"float"
+		}
+		
 	]
 }
