@@ -1,4 +1,5 @@
 <@pp.dropOutputFile />
+<#if source.type!="Internal">
 <#list mbs as mb>
 <@pp.changeOutputFile
 name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
@@ -38,4 +39,5 @@ name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.x
 	<to streamName="input__${tenant.code}__${source.code_}__${stream.code}"
 		version="1.0.0" />
 </eventBuilder>
-</#list>  
+</#list>
+</#if>  

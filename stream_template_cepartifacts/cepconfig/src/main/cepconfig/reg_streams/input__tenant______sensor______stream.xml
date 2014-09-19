@@ -1,4 +1,5 @@
 <@pp.dropOutputFile />
+<#if source.type!="Internal">
 <@pp.changeOutputFile name="input__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
 {
   "name": "input__${tenant.code}__${source.code_}__${stream.code}",
@@ -24,3 +25,4 @@
      </#list>
   ]
 }
+</#if>

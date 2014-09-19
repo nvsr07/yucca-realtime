@@ -2,6 +2,7 @@
 {
 "steps": [
 <#list mbs as mb>
+<#if source.type!="Internal">
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Registrare gli Stream in un nodo CEP", 
@@ -14,7 +15,7 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},
+},</#if>
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Registrare gli Stream in un nodo CEP", 
@@ -44,6 +45,7 @@
 <#break>
 </#list>
 <#list mbs as mb>
+<#if source.type!="Internal">
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Installazione event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
@@ -57,6 +59,7 @@
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
 },
+</#if>
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Installazione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
@@ -98,7 +101,7 @@
 }
 <#if mb_has_next>,</#if>
 </#list>
-
+<#if source.type!="Internal">
 ,{
 "number": "${x}",<#assign x = x+1> 
 "description":"Installazione della Validazione sul Governance Registry, aggiungendo la collection con : api__deploy__${tenant.code}__${source.code}_${stream.code}__addCollection.xml", 
@@ -125,5 +128,6 @@
 "username":"${esbinfo.secuser}", 
 "password":"${esbinfo.secpassword}"
 }
+</#if>
 ]
 }

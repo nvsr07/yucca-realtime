@@ -1,4 +1,5 @@
 <@pp.dropOutputFile />
+<#if source.type!="Internal">
 <#list mbs as mb>
 <@pp.changeOutputFile
 name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
@@ -62,3 +63,4 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
    </soapenv:Body>
 </soapenv:Envelope>
  </#list>
+</#if>

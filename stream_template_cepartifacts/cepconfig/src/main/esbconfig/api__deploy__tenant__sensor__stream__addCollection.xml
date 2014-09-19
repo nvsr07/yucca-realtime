@@ -1,4 +1,5 @@
 <@pp.dropOutputFile />
+<#if source.type!="Internal">
 <@pp.changeOutputFile name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addCollection.xml"/>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.resource.registry.carbon.wso2.org">
    <soapenv:Header/>
@@ -15,3 +16,4 @@
       </ser:addCollection>
    </soapenv:Body>
 </soapenv:Envelope>
+</#if>
