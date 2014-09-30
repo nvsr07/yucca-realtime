@@ -30,12 +30,14 @@
             </goals>
             <configuration>
               <tasks>
+				<echo>Removing old directory</echo>
+				<delete dir="app_${tenant.name}" verbose="true"/>
                 <echo>Copying template files to project folder</echo>
-                <copy todir="../app_${tenant.name}" verbose="true" overwrite="true">
+                <copy todir="app_${tenant.name}" verbose="true" overwrite="true">
                   <fileset dir="${basedir}" />
                 </copy>
-                <move todir="../app_${tenant.name}">
-                  <fileset dir="../app_${tenant.name}">                    
+                <move todir="app_${tenant.name}">
+                  <fileset dir="app_${tenant.name}">                    
                   </fileset>
                   <mapper>
                     <mapper to="\1${tenant.name}\2" from="(.*)__tenant__(.*)" type="regexp" />
@@ -59,7 +61,7 @@
           </execution>
         </executions>
         <configuration>
-        <basedir>../</basedir>
+        <basedir>.</basedir>
           <includes>
             <include>app_${tenant.name}/**/*.*</include>             
           </includes>
@@ -97,7 +99,7 @@
             <configuration>
               <target.env>${target.env}</target.env>
               <executable>mvn</executable>
-              <workingDirectory>../app_${tenant.name}</workingDirectory>
+              <workingDirectory>app_${tenant.name}</workingDirectory>
               <arguments>
                 <argument>clean</argument>
                 <argument>install</argument>
