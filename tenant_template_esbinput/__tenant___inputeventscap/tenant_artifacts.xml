@@ -8,6 +8,7 @@
   "
 >
   <id>__tenant__</id>
+  <includeBaseDirectory>false</includeBaseDirectory>
   <formats>
     <format>zip</format>
   </formats>
