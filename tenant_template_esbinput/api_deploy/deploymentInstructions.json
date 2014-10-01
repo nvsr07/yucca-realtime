@@ -12,6 +12,7 @@
 "returnExpected":"200", 
 "validityControl":"<fault>",
 "username":"${esbinfo.secuser}", 
-"password":"${esbinfo.secpassword}"
+"password":"${esbinfo.secpassword}",
+"attachmentPath":"target/${tenant.code}_inputeventscap_1.0.0.car"
 }]
 }
