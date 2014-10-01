@@ -1,0 +1,18 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__uploadApp.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:upl="http://upload.application.carbon.wso2.org" xmlns:xsd="http://upload.application.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <upl:uploadApp>
+         <!--Zero or more repetitions:-->
+         <upl:fileItems>
+            <!--Optional:-->
+            <xsd:dataHandler>cid:67699466636</xsd:dataHandler>
+            <!--Optional:-->
+            <xsd:fileName>${tenant.code}_inputeventscap_1.0.0.car</xsd:fileName>
+            <!--Optional:-->
+            <xsd:fileType>jar</xsd:fileType>
+         </upl:fileItems>
+      </upl:uploadApp>
+   </soapenv:Body>
+</soapenv:Envelope>

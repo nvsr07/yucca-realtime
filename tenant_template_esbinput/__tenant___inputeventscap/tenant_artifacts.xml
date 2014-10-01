@@ -13,12 +13,23 @@
   </formats>
   <fileSets>
     <fileSet>
-      <!--outputDirectory>${basedir}/../</outputDirectory-->
+      <outputDirectory>/target/</outputDirectory>
       <directory>${basedir}/target/</directory>
 	  <includes>
 				<include>*.car</include>
+			</includes>
+    </fileSet>
+    <fileSet>
+      <outputDirectory>/target/</outputDirectory>
+      <directory>${basedir}/</directory>
+	  <includes>
+				<include>*.xml</include>
 				<include>*.json</include>
 			</includes>
+			<excludes>
+			<exclude>pom.xml</exclude>
+			<exclude>tenant_artifacts.xml</exclude>
+			</excludes>
     </fileSet>
   </fileSets>
 </assembly>
