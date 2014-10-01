@@ -6,7 +6,7 @@
 "description":"Installazione della applicazione .car facendo l'upload via webservice sul ESB.", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"api__deploy__${tenant.code}__uploadApp.xml",
+"source":"target/api__deploy__${tenant.code}__uploadApp.xml",
 "action":"uploadApp",
 "destination":"${esbinfo.host}/services/CarbonAppUploader",
 "returnExpected":"200", 
