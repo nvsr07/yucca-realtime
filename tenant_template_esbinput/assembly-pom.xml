@@ -31,12 +31,17 @@
             <configuration>
               <tasks>
 				<echo>Removing old directory</echo>
+				<echo>Removing old directory</echo>
 				<delete dir="app_${tenant.name}" verbose="true"/>
+				<!--delete>
+					<dirset dir="${basedir}" includes="test*" />
+				</delete-->
                 <echo>Copying template files to project folder</echo>
                 <copy todir="app_${tenant.name}" verbose="true" overwrite="true">
                   <fileset dir="${basedir}">
                     <exclude name="api_deploy/*.*"/> 
-                    <exclude name="api_deploy/"/>    
+                    <exclude name="api_deploy/"/> 
+					<exclude name="app_*/"/>
                   </fileset>
                   </copy>
                 <move todir="app_${tenant.name}">
