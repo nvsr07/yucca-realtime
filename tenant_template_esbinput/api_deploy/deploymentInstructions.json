@@ -16,14 +16,14 @@
 "attachmentPath":"target/${tenant.code}_inputeventscap_1.0.0.car"
 },{
 "number": "${x}",<#assign x = x+1> 
-"description":"Verifica Installazione avenuta  del applicazione .car", 
+"description":"Verifica Installazione avvenuta  dell'applicazione .car", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
 "source":"target/api__deploy__${tenant.code}__listAllApplications.xml",
 "action":"listAllApplications",
 "destination":"${esbinfo.host}/ApplicationAdmin",
 "returnExpected":"200", 
-"validityControl":"${tenant.code}_inputeventscap_1.0.0",
+"successControl":"${tenant.code}_inputeventscap_1.0.0",
 "username":"${esbinfo.secuser}", 
 "password":"${esbinfo.secpassword}"
 }]
