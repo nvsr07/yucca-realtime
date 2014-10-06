@@ -31,14 +31,21 @@
             <configuration>
               <tasks>
 				<echo>Removing old directory</echo>
+				<echo>Removing old directory</echo>
 				<delete dir="app_${tenant.name}" verbose="true"/>
+				<!--delete>
+					<dirset dir="${basedir}" includes="test*" />
+				</delete-->
                 <echo>Copying template files to project folder</echo>
                 <copy todir="app_${tenant.name}" verbose="true" overwrite="true">
-                  <fileset dir="${basedir}" />
-                </copy>
-                <move todir="app_${tenant.name}">
-                  <fileset dir="app_${tenant.name}">                    
+                  <fileset dir="${basedir}">
+                    <exclude name="api_deploy/*.*"/> 
+                    <exclude name="api_deploy/"/> 
+					<exclude name="app_*/"/>
                   </fileset>
+                  </copy>
+                <move todir="app_${tenant.name}">
+                  <fileset dir="app_${tenant.name}"/>			          
                   <mapper>
                     <mapper to="\1${tenant.name}\2" from="(.*)__tenant__(.*)" type="regexp" />
                   </mapper>
@@ -66,6 +73,8 @@
             <include>app_${tenant.name}/**/*.*</include>             
           </includes>
           <excludes>
+           <exclude>app_${tenant.name}/api_deploy**/*.*</exclude>          
+           <exclude>api_deploy/*.*</exclude>
           </excludes>
            <regex>false</regex>
 		  <replacements>
@@ -84,6 +93,29 @@
           </replacements>           
         </configuration>
       </plugin>
+      
+      <plugin>
+        <configuration>
+			<arguments>${tenant.name}</arguments>
+			<cfgFile>config_tenant_${tenant.name}.fmpp</cfgFile>
+            <outputDirectory>app_${tenant.name}/${tenant.name}_inputeventscap/</outputDirectory>
+            <templateDirectory>api_deploy/</templateDirectory>			
+        </configuration>
+        <groupId>com.googlecode.fmpp-maven-plugin</groupId>
+        <artifactId>fmpp-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+            <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>     
+      
+      
+      
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>

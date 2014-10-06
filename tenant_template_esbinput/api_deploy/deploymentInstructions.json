@@ -1,0 +1,30 @@
+<#assign x = 1> 
+{
+"steps": [
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione della applicazione .car facendo l'upload via webservice sul ESB.", 
+"actionType":"CarInstallation",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__uploadApp.xml",
+"action":"uploadApp",
+"destination":"${esbinfo.host}/services/CarbonAppUploader",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}",
+"attachmentPath":"target/${tenant.code}_inputeventscap_1.0.0.car"
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Verifica Installazione avvenuta  dell'applicazione .car", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__listAllApplications.xml",
+"action":"listAllApplications",
+"destination":"${esbinfo.host}/services/ApplicationAdmin",
+"returnExpected":"200", 
+"successControl":"${tenant.code}_inputeventscap_1.0.0",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+}]
+}
