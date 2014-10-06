@@ -17,6 +17,7 @@ package org.yucca.realtime;
  */
 
 import java.io.FileReader;
+import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.wso2.siddhi.core.config.SiddhiContext;
@@ -89,16 +90,23 @@ public class PointInKMLGeometryExtension extends FunctionExecutor {
 		Coordinate coord = new Coordinate(paramX,paramY);
 		Point point = gf.createPoint(coord);
 		boolean isBound = false;
+		FileReader fr = null;
 		try {
 			XMLReader xr = XMLReaderFactory.createXMLReader();
 			String fileName = String.valueOf(params[2]);			
-			FileReader fr = new FileReader(fileName);			
+			fr = new FileReader(fileName);			
 			GMLReader gr = new GMLReader();			
 			Geometry g = gr.read(fr, null);
 			isBound = point.within(g);
 			System.out.println("Process PointInKMLGeometryExtension finished ["+isBound+"]");
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return isBound;
 		
