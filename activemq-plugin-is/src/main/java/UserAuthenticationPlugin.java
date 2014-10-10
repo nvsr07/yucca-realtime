@@ -24,14 +24,14 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
     String username;
     String password;
     String jksFileLocation;
-    String globalPublisherRole;
-    String globalSubscriberRole;
-    String globalPublisherSubscriberRole;
+//    String globalPublisherRole;
+//    String globalSubscriberRole;
+//    String globalPublisherSubscriberRole;
     int cacheValidationInterval;
 
 
     public Broker installPlugin(Broker broker) throws Exception {
-        return new UserAuthenticationBroker(broker, serverUrl, username, password, jksFileLocation, globalPublisherRole, globalSubscriberRole, globalPublisherSubscriberRole,cacheValidationInterval);
+        return new UserAuthenticationBroker(broker, serverUrl, username, password, jksFileLocation,cacheValidationInterval);
     }
 
     public String getServerUrl() {
@@ -66,29 +66,29 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
         this.jksFileLocation = jksFileLocation;
     }
 
-    public String getGlobalPublisherRole() {
-        return globalPublisherRole;
-    }
-
-    public void setGlobalPublisherRole(String globalPublisherRole) {
-        this.globalPublisherRole = globalPublisherRole;
-    }
-
-    public String getGlobalSubscriberRole() {
-        return globalSubscriberRole;
-    }
-
-    public void setGlobalSubscriberRole(String globalSubscriberRole) {
-        this.globalSubscriberRole = globalSubscriberRole;
-    }
-
-    public String getGlobalPublisherSubscriberRole() {
-        return globalPublisherSubscriberRole;
-    }
-
-    public void setGlobalPublisherSubscriberRole(String globalPublisherSubscriberRole) {
-        this.globalPublisherSubscriberRole = globalPublisherSubscriberRole;
-    }
+//    public String getGlobalPublisherRole() {
+//        return globalPublisherRole;
+//    }
+//
+//    public void setGlobalPublisherRole(String globalPublisherRole) {
+//        this.globalPublisherRole = globalPublisherRole;
+//    }
+//
+//    public String getGlobalSubscriberRole() {
+//        return globalSubscriberRole;
+//    }
+//
+//    public void setGlobalSubscriberRole(String globalSubscriberRole) {
+//        this.globalSubscriberRole = globalSubscriberRole;
+//    }
+//
+//    public String getGlobalPublisherSubscriberRole() {
+//        return globalPublisherSubscriberRole;
+//    }
+//
+//    public void setGlobalPublisherSubscriberRole(String globalPublisherSubscriberRole) {
+//        this.globalPublisherSubscriberRole = globalPublisherSubscriberRole;
+//    }
 
     public int getCacheValidationInterval() {
         return cacheValidationInterval;

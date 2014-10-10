@@ -54,16 +54,18 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     private static final Logger LOG = LoggerFactory.getLogger(UserAuthenticationBroker.class);
 
 	
-    private static final String SEPARATOR = "|";
+    private static final String SEPARATOR = "-";
     private static final String PREFIX_MB_ROLES = "mb"+SEPARATOR;
+    private static final String WILDCARD_MB_ROLES = "_";
+    
 	//Necessary default properties required
     final String serverUrl;
     final String username;
     final String password;
     final String jksFileLocation;
-    final String globalPublisherRole;
-    final String globalSubscriberRole;
-    final String globalPublisherSubscriberRole;
+//    final String globalPublisherRole; // Deprecated
+//    final String globalSubscriberRole; // Deprecated
+//    final String globalPublisherSubscriberRole; // Deprecated
     final int cacheValidationInterval;
 
     //RemoteStoreManager Clients
@@ -76,18 +78,15 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 
     public UserAuthenticationBroker(Broker next, String serverUrl, String username,
                                     String password, String jksFileLocation,
-                                    String globalPublisherRole,
-                                    String globalSubscriberRole,
-                                    String globalPublisherSubscriberRole,
                                     int cacheValidationInterval) {
         super(next);
         this.serverUrl = serverUrl;
         this.username = username;
         this.password = password;
         this.jksFileLocation = jksFileLocation;
-        this.globalPublisherRole = globalPublisherRole;
-        this.globalSubscriberRole = globalSubscriberRole;
-        this.globalPublisherSubscriberRole = globalPublisherSubscriberRole;
+//        this.globalPublisherRole = globalPublisherRole;
+//        this.globalSubscriberRole = globalSubscriberRole;
+//        this.globalPublisherSubscriberRole = globalPublisherSubscriberRole;
         this.cacheValidationInterval = cacheValidationInterval;
 
         createAdminClients();
@@ -370,7 +369,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 			String[] destTokenToAuth) {
 		for (int i = 0; i < destTokenAuth.length; i++) {
 			String partAuth = destTokenAuth[i];
-			if (partAuth.equals("_"))
+			if (partAuth.equals(WILDCARD_MB_ROLES))
 			{
 				if (destTokenToAuth.length>i)
 					return true;

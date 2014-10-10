@@ -11,9 +11,14 @@
                     <property name="sensorId" expression="json-eval($.sensor)" scope="default" type="STRING"/>
                     <property name="applicationId" expression="json-eval($.application)" scope="default" type="STRING"/>
                     <property name="sourceId" expression="fn:concat(get-property('sensorId'),get-property('applicationId'))" scope="default" type="STRING"/>
-                    <call-template target="ValidateMessage" description="validate">
-                        <with-param name="schemaToValidate" value="{fn:concat('gov:xsd/__tenant__/',fn:get-property('sourceId'),'_',fn:get-property('streamId'),'Types.xsd')}"/>
-                    </call-template>
+                    <property name="errorOnValidate" value="false" scope="default" type="BOOLEAN"/>
+                    <validate>
+                        <schema xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" key="{fn:concat('gov:xsd/__tenant__/',fn:get-property('sourceId'),'_',fn:get-property('streamId'),'Types.xsd')}"/>
+                        <resource location="GenericSensorApplicationMessageTypes_V01.xsd" key="gov:xsd/GenericSensorApplicationMessageTypes_V01.xsd"/>
+                        <on-fail>
+                            <property name="errorOnValidate" value="true" scope="default" type="BOOLEAN"/>
+                        </on-fail>
+                    </validate>
                     <filter source="get-property('errorOnValidate')" regex="true">
                         <then>
                             <call-template target="SendToMessageBrokerAndRespondErrorSequence" description="">
