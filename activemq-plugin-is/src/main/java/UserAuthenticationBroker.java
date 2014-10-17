@@ -140,7 +140,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 
     public Subscription addConsumer(ConnectionContext context, ConsumerInfo info) throws Exception {
 
-    	LOG.info(">>>>>>AddConsumer:"+info.getDestination());
+    	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
     	
         if (isBrokerAccess(context, info.getDestination()))
         {
@@ -168,7 +168,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	@Override
 	public void addProducer(ConnectionContext context, ProducerInfo info)
 			throws Exception {
-    	LOG.info(">>>>>>AddProducer:"+info.getDestination());
+    	LOG.debug(">>>>>>AddProducer:"+info.getDestination());
         if (isBrokerAccess(context, info.getDestination()))
         {
             super.addProducer(context, info);
@@ -194,7 +194,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	
     public void send(ProducerBrokerExchange producerExchange, Message messageSend)
             throws Exception {
-    	LOG.info(">>>>>>send:"+messageSend.getDestination());
+    	LOG.debug(">>>>>>send:"+messageSend.getDestination());
 
         if (isBrokerAccess(producerExchange.getConnectionContext(), messageSend.getDestination()))
         {
@@ -225,7 +225,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		ActiveMQDestination destination, boolean createIfTemporary)
     		throws Exception {
     	
-    	LOG.info(">>>>>>AddDestination:"+destination);
+    	LOG.debug(">>>>>>AddDestination:"+destination);
 
         if (isBrokerAccess(context, destination))
         {
@@ -254,7 +254,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     public void addDestinationInfo(ConnectionContext context,
     		DestinationInfo info) throws Exception {
 
-    	LOG.info(">>>>>>AddDestinationInfpo:"+info.getDestination());
+    	LOG.debug(">>>>>>AddDestinationInfpo:"+info.getDestination());
 
         if (isBrokerAccess(context, info.getDestination()))
         {
@@ -283,7 +283,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     @Override
     public void removeDestination(ConnectionContext context,
     		ActiveMQDestination destination, long timeout) throws Exception {
-    	LOG.info(">>>>>>RemoveDestinatrion:"+destination);
+    	LOG.debug(">>>>>>RemoveDestinatrion:"+destination);
 
         if (isBrokerAccess(context, destination))
         {
@@ -311,7 +311,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     @Override
     public void removeDestinationInfo(ConnectionContext context,
     		DestinationInfo info) throws Exception {
-    	LOG.info(">>>>>>RemoveDestinaiotnINfo:"+info.getDestination());
+    	LOG.debug(">>>>>>RemoveDestinaiotnINfo:"+info.getDestination());
 
         if (isBrokerAccess(context, info.getDestination()))
         {
