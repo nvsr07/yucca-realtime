@@ -15,10 +15,10 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">500</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
         <longProp name="ThreadGroup.start_time">1405616502000</longProp>
         <longProp name="ThreadGroup.end_time">1405616502000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -90,9 +90,9 @@
           <stringProp name="filename">D:\Users\1759\Documents\GitHub\yucca-realtime\testplan\log.csv</stringProp>
         </ResultCollector>
         <hashTree/>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (No auth)" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (No auth)" enabled="false">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -164,7 +164,7 @@
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (User pwd errors)" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (User pwd errors)" enabled="false">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -251,7 +251,7 @@
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Good " enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Good " enabled="false">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
               <collectionProp name="Arguments.arguments">
@@ -297,6 +297,78 @@
                 <elementProp name="" elementType="Header">
                   <stringProp name="Header.name">Authorization</stringProp>
                   <stringProp name="Header.value">Basic ${__P(ten1_base64)}</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="49588">202</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">8</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Good Smartlab" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{ &#xd;
+&quot;stream&quot;: &quot;debsStream&quot;,&#xd;
+&quot;sensor&quot;: &quot;855abc98-b1ac-4e98-a4dc-f4c242a1bae3&quot;,&#xd;
+&quot;values&quot;: [ &#xd;
+{ &#xd;
+&quot;time&quot;: &quot;2014-05-13T17:08:58Z&quot;, &#xd;
+&quot;components&quot;: { &quot;sensorId&quot;: &quot;100&quot;,&#xd;
+      &quot;x&quot;: &quot;24992&quot;,&#xd;
+      &quot;y&quot;: &quot;1474&quot;,&#xd;
+      &quot;z&quot;: &quot;890&quot;,&#xd;
+      &quot;vel&quot;: &quot;125043&quot;,&#xd;
+      &quot;acc&quot;: &quot;2321394&quot;,&#xd;
+      &quot;vx&quot;: &quot;9676&quot;,&#xd;
+      &quot;vy&quot;: &quot;-875&quot;,&#xd;
+      &quot;vz&quot;: &quot;2366&quot;,&#xd;
+      &quot;ax&quot;: &quot;8932&quot;,&#xd;
+      &quot;ay&quot;: &quot;-567&quot;,&#xd;
+      &quot;az&quot;: &quot;-4459&quot;&#xd;
+              } &#xd;
+}&#xd;
+]&#xd;
+}&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${__P(esbin_server)}</stringProp>
+            <stringProp name="HTTPSampler.port">80</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/api/input/smartlabfast</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header working" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Basic c21hcnRsYWI6VXgwbXU1aXQ=</stringProp>
                 </elementProp>
               </collectionProp>
             </HeaderManager>
@@ -759,7 +831,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One simple message lower case" enabled="false"/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="One simple message lower case" enabled="true"/>
           <hashTree>
             <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="WebSocket Connection - 1" enabled="true">
               <stringProp name="serverAddress">${__P(esbin_server)}</stringProp>
@@ -1466,18 +1538,20 @@ else
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="true">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/ten1</stringProp>
-            <stringProp name="mqtt.security_principle">ten1</stringProp>
-            <stringProp name="mqtt.security_credentials">${__P(ten1_password)}</stringProp>
-            <stringProp name="mqtt.text_message">{ 
-&quot;stream&quot;: &quot;flussoProva&quot;,
-&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440002&quot;,
-&quot;values&quot;: [ 
-{ 
-&quot;time&quot;: &quot;2014-05-13T17:08:58+0200&quot;, 
-&quot;components&quot;: { &quot;temp&quot;: &quot;17.4&quot;, &quot;wind&quot;:&quot;50&quot; } 
-}
-]
+            <stringProp name="mqtt.topic">input/smartlab</stringProp>
+            <stringProp name="mqtt.security_principle">smartlab</stringProp>
+            <stringProp name="mqtt.security_credentials">Ux0mu5it</stringProp>
+            <stringProp name="mqtt.text_message">{
+	&quot;stream&quot;: &quot;temperature&quot;,
+	&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
+	&quot;values&quot;: [
+		{
+			&quot;time&quot;: &quot;2014-10-22T07:13:34Z&quot;,
+			&quot;components&quot;: {
+				&quot;c0&quot;: &quot;31&quot;
+			}
+		}
+	]
 }
 </stringProp>
             <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>

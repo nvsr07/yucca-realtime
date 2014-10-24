@@ -64,7 +64,7 @@
             </outputConnector>
             <valueExpression propertyValue="fn:concat('jms:/',fn:get-property('mbDestinationNameValue'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400036E733274001D687474703A2F2F6F72672E6170616368652E73796E617073652F7873647400026E7371007E000378"/>
           </children>
-          <children xsi:type="esb:PropertyMediator" propertyName="MIDendpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;transport.jms.SessionAcknowledgement=CLIENT_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=true&amp;">
+          <children xsi:type="esb:PropertyMediator" propertyName="MIDendpointToSend" valueLiteral="?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;transport.jms.SessionAcknowledgement=AUTO_ACKNOWLEDGE&amp;transport.jms.SessionTransacted=false&amp;">
             <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.7/@outputConnector/@outgoingLink"/>
             <outputConnector>
               <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.9/@inputConnector"/>
