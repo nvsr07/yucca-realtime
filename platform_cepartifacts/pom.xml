@@ -25,5 +25,6 @@
   <modules>
     <module>mongodb_outputadapter</module>
     <module>cepconfig</module>
-      </modules>
+    <module>jts-siddhiextension</module>
+  </modules>
 </project>

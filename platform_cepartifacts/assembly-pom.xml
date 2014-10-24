@@ -72,7 +72,7 @@
                <includes>
                     <include>app_platform/cepconfig/src/main/**/*.xml</include>
                 </includes>
-				<tokenValueMap>app_platform/cepconfig/src/resources/prod-sdnet.properties</tokenValueMap>
+				<tokenValueMap>app_platform/cepconfig/src/resources/${target.env}.properties</tokenValueMap>
 				<regex>false</regex>
            </configuration>
        </plugin>      
