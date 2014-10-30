@@ -85,7 +85,7 @@
             <configuration>
                 <tasks>
                     <echo>Using env.test.properties</echo>
-                    <move file="${basedir}/target/__tenant___inputeventscap-1.0.0-__tenant__.zip" tofile="${basedir}/../__tenant___inputeventscap-1.0.0-__tenant__.zip"/>
+                    <move file="${basedir}/target/__tenant___inputeventscap-1.0.0-__tenant__.zip" tofile="${basedir}/../__tenant___inputeventscap-1.0.0-${target.env}.zip"/>
                     </tasks>
                 </configuration>
             </execution>
