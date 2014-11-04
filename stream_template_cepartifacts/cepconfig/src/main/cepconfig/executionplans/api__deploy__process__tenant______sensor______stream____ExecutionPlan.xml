@@ -29,6 +29,16 @@
                <!--Optional:-->
                <xsd:streamId>input__${tenant.code}__${source.code_}__${stream.code}:1.0.0</xsd:streamId>
             </xsd:importedStreams>
+            <#else>
+            <#list internalStreamInfo as internal>
+             <!--Zero or more repetitions:-->
+            <xsd:importedStreams>
+               <!--Optional:-->
+               <xsd:siddhiStreamName>${internal.aliasName}</xsd:siddhiStreamName>
+               <!--Optional:-->
+               <xsd:streamId>${internal.streamId}</xsd:streamId>
+            </xsd:importedStreams>
+       		</#list>
             </#if>
             <!--Optional:-->
             <xsd:name>process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan</xsd:name>
@@ -36,6 +46,11 @@
             <xsd:queryExpressions><![CDATA[<#if stream.published?? && stream.published = "true" && source.type!="Internal">
 from input
 insert into outputStream;
+
+<#else>
+
+${internalQuery.query}
+
 </#if>
 
 <#if source.type!="Internal">
@@ -48,9 +63,19 @@ from tempOutputStat#window.length(1)
 select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
 output snapshot every 2 sec 
 insert into outputStat for all-events 
+
+<#elseif source.type=="Internal">
+from outputStream#window.time(30 sec) 
+select count(time) as numEventsLast30Sec 
+output last every 2 sec 
+insert into tempOutputStat for all-events; 
+
+from tempOutputStat#window.length(1) 
+select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
+output snapshot every 2 sec 
+insert into outputStat for all-events 
 </#if>
-]]>
-            </xsd:queryExpressions>
+]]></xsd:queryExpressions>
             <!--Zero or more repetitions:-->
             <xsd:siddhiConfigurations>
                <!--Optional:-->
