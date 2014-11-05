@@ -24,7 +24,28 @@ data: {
 	stream: {
 		code: "temperature"
 		published: "true"
-	}    
+		persisted:"true"
+	}
+	mongoconnection:
+    {
+     url: "@properties:server_configuration.properties mongodb.url@"
+    }
+		
+	internalStreamInfo:[
+						{
+						aliasName : "input0"
+						streamId : "output__csp__b42e342f-d87b-56bf-96ef-c52b313ba61e__T:1.0.0"		
+						}
+		
+						{
+						aliasName : "input1"
+						streamId : "output__csp__b42e342f-d87b-56bf-96ef-c52b313ba61e__H:1.0.0"		
+						}		
+						]
+	
+	internalQuery:{
+				   query: "from input0 to outputStream; from input1 to outputStream;"
+				  }
 	components: [
 		{
 			code: "temp"

@@ -1,0 +1,66 @@
+expert: true
+data: {
+    mbs: [
+
+        {
+            num: "mb1"
+            host: "https://sdnet-mb1.sdp.csi.it:9446/wso003"
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
+        {
+            num: "mb2"
+            host: "https://sdnet-mb2.sdp.csi.it:9446/wso003"
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
+    ]
+    esbinfo:
+    {
+        host: "https://sdnet-esbin1.sdp.csi.it:9445/wso002"
+        secuser: "admin"
+        secpassword: "fiiThoo6"
+    }
+        tenant: {
+                code: "csp"
+        }
+        source: {
+         type: "Internal"
+         code: "internal"
+         code_: "internal"
+    }
+        stream: {
+                code: "T"
+                published: "true"
+				persisted:"true"
+        }
+		
+		internalStreamInfo:[
+		
+							{
+							aliasName : "input0"
+							streamId : "output__csp__b42e342f-d87b-56bf-96ef-c52b313ba61e__T:1.0.0"		
+							}
+		
+							{
+							aliasName : "input1"
+							streamId : "output__csp__b42e342f-d87b-56bf-96ef-c52b313ba61e__H:1.0.0"		
+							}
+		
+							]
+	
+		internalQuery:{
+		               query: "from input0 to outputStream; from input1 to outputStream;"
+					  }
+        
+		components: [
+
+                {
+                        code:"value"
+                        type:"float"
+                }
+
+        ]
+}

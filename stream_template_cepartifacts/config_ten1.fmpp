@@ -27,7 +27,12 @@ data: {
 	stream: {
 		code: "flussoProva2"
 		published: "true"
+		persisted:"true"
 	}
+	mongoconnection:
+    {
+     url: "@properties:server_configuration.properties mongodb.url@"
+    }
 	components: [
 		
 		{
