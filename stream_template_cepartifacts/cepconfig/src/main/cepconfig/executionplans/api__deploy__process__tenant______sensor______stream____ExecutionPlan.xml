@@ -47,7 +47,7 @@
 from input
 insert into outputStream;
 
-<#else>
+<#elseif source.type=="Internal">
 
 ${internalQuery.query}
 
