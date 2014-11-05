@@ -15,7 +15,6 @@
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
 },</#list>
-</#if>
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Installare schema Mongo",
@@ -31,4 +30,4 @@
 }
 ]
 }
-
+</#if>
