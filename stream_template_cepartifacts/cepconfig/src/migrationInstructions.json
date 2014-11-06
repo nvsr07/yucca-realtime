@@ -17,14 +17,14 @@
 },</#list>
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Installare schema Mongo",
+"description":"Inserire i metadati dello stream",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
-"action":"dataapisvil:supportdataset",
+"action":"",
 "destination":"${mongoconnection.url}",
 "returnExpected":"",
-"validityControl":"",
+"validityControl":"{OK:1}",
 "username":"",
 "password":""
 }
