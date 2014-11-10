@@ -30,17 +30,9 @@
 				"Values": [
 				{
 				"time": "{{time}}",
-				"components": [<#list components as component>
-				{
-				"id": "c0",
-				"unit": "gradi centigradi",
-				"event":"temperatura",
-				"type": "numero",
-				"valore": "{{c0}}"
+				"components":{<#list components as component>
+				"${component.code}":"{{${component.code}}}"<#if component_has_next>,</#if></#list>
 				}
-		   <#if component_has_next>,</#if>
-			</#list>
-				]
 				}
 				]
 				}</int:jsonData>

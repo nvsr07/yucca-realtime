@@ -35,7 +35,7 @@ data: {
                 code: "position"
                 published: "true"
 				persisted:"true"
-        }
+		}
 		mongoconnection:{
 				url: "@properties:server_configuration.properties mongodb.url@"
 			}
