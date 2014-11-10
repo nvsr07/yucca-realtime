@@ -1,21 +1,21 @@
 expert: true
 data: {
     mbs: [
-        
-    	{
-    	    num: "mb1"
+
+        {
+            num: "mb1"
             host: "https://sdnet-mb1.sdp.csi.it:9446/wso003"
-			secuser: "admin"
-			secpassword: "aekaiCh8"
-    	}
-    	
-    	{
-    	    num: "mb2"
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
+        {
+            num: "mb2"
             host: "https://sdnet-mb2.sdp.csi.it:9446/wso003"
-			secuser: "admin"
-			secpassword: "aekaiCh8"
-    	}
-    	
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
     ]
     esbinfo:
     {
@@ -23,39 +23,43 @@ data: {
         secuser: "admin"
         secpassword: "fiiThoo6"
     }
-	tenant: {
-		code: "smartlab"
-	}
-	source: {
+        tenant: {
+                code: "smartlab"
+        }
+        source: {
          type: "Device"
-         code: "cc1bfe50-491c-560d-a235-0e4134bbdc23"
-         code_: "cc1bfe50_491c_560d_a235_0e4134bbdc23"
+         code: "06bbb064-e808-50b6-9fcc-bcf43550d09e"
+         code_: "06bbb064_e808_50b6_9fcc_bcf43550d09e"
     }
-	stream: {
-		code: "position"
-		published: "true"
-	}
-	components: [
-		
-		{
-			code:"longitude"
-			type:"float"
-		}
-		
-		{
-			code:"latitude"
-			type:"float"
-		}
-		
-		{
-			code:"altitude"
-			type:"float"
-		}
-		
-		{
-			code:"speed"
-			type:"float"
-		}
-		
-	]
+        stream: {
+                code: "position"
+                published: "true"
+				persisted:"true"
+        }
+		mongoconnection:{
+				url: "@properties:server_configuration.properties mongodb.url@"
+			}
+          components: [
+
+                {
+                        code:"longitude"
+                        type:"double"
+                }
+
+                {
+                        code:"latitude"
+                        type:"double"
+                }
+
+                {
+                        code:"altitude"
+                        type:"double"
+                }
+
+                {
+                        code:"speed"
+                        type:"double"
+                }
+
+        ]
 }
