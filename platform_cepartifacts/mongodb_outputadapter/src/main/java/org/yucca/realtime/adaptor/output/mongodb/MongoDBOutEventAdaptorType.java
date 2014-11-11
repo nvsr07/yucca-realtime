@@ -16,21 +16,6 @@
 
 package org.yucca.realtime.adaptor.output.mongodb;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.wso2.carbon.event.output.adaptor.core.AbstractOutputEventAdaptor;
-import org.wso2.carbon.event.output.adaptor.core.Property;
-import org.wso2.carbon.event.output.adaptor.core.config.OutputEventAdaptorConfiguration;
-import org.wso2.carbon.event.output.adaptor.core.message.config.OutputEventAdaptorMessageConfiguration;
-import org.yucca.realtime.adaptor.output.mongodb.internal.util.MongoDBOutEventAdaptorConstants;
-
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
-import com.mongodb.util.JSON;
-
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +24,34 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
+import javax.cache.Cache;
+import javax.cache.CacheBuilder;
+import javax.cache.CacheConfiguration;
+import javax.cache.CacheManager;
+import javax.cache.Caching;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.wso2.carbon.context.CarbonContext;
+import org.wso2.carbon.context.PrivilegedCarbonContext;
+import org.wso2.carbon.event.output.adaptor.core.AbstractOutputEventAdaptor;
+import org.wso2.carbon.event.output.adaptor.core.Property;
+import org.wso2.carbon.event.output.adaptor.core.config.OutputEventAdaptorConfiguration;
+import org.wso2.carbon.event.output.adaptor.core.message.config.OutputEventAdaptorMessageConfiguration;
+import org.wso2.carbon.utils.multitenancy.MultitenantConstants;
+import org.yucca.realtime.adaptor.output.mongodb.internal.util.MongoDBOutEventAdaptorConstants;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.util.JSON;
 
 
 public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor {
@@ -48,6 +61,8 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 
     private Map<ServerAddress, MongoClient> mongoClients = new HashMap<ServerAddress, MongoClient>();
     
+    private Cache<String, DBObject> datasetCache = null;
+    
     @Override
     protected String getName() {
         return MongoDBOutEventAdaptorConstants.EVENT_ADAPTOR_TYPE_MONGODB;
@@ -55,13 +70,19 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 
     @Override
     protected List<String> getSupportedOutputMessageTypes() {
-        return new ArrayList<String>(Arrays.asList(new String[]{"json"}));  
+        return new ArrayList<String>(Arrays.asList(new String[]{"json","text"}));  
     }
 
     @Override
     protected void init() {
         this.resourceBundle = ResourceBundle.getBundle("org.yucca.realtime.adaptor.output.mongodb.i18n.Resources", Locale.getDefault());
         mongoClients = new HashMap<ServerAddress, MongoClient>();
+        PrivilegedCarbonContext.getCurrentContext().setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
+        PrivilegedCarbonContext.getCurrentContext().setTenantId(MultitenantConstants.SUPER_TENANT_ID);
+    	CacheManager cacheManager = Caching.getCacheManagerFactory().getCacheManager("CEPManager");       
+        CacheBuilder<String, DBObject> cacheBuilder  = cacheManager.<String, DBObject>createCacheBuilder("Dataset") ;
+        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.SECONDS, 60)).setStoreByValue(false);
+    	datasetCache =  cacheBuilder.build();
     }
 
     @Override
@@ -143,14 +164,13 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
         String mongodbPassword=outputEventAdaptorMessageConfiguration.getOutputMessageProperties().get(MongoDBOutEventAdaptorConstants.EVENT_MESSAGE_CONF_FIELD_PASSWORD);
         String mongodbCollection=outputEventAdaptorMessageConfiguration.getOutputMessageProperties().get(MongoDBOutEventAdaptorConstants.EVENT_MESSAGE_CONF_FIELD_COLLECTION);
 
-        log.info("Configurations -"+mongodbIPAddress+":"+mongodbPort+":"+mongodbDatabase+":"+mongodbCollection);
-        log.info("Output -"+o.toString());
-        log.info("Output Type-"+o.getClass().getName());    	
-    	
+        log.debug("Configurations -"+mongodbIPAddress+":"+mongodbPort+":"+mongodbDatabase+":"+mongodbCollection);
+        log.debug("Output -"+o.toString());
+        log.debug("Output Type-"+o.getClass().getName());    	
     	
     	
     	try {
-    	reqMongo = new ServerAddress(mongodbIPAddress,Integer.parseInt(mongodbPort));
+    		reqMongo = new ServerAddress(mongodbIPAddress,Integer.parseInt(mongodbPort));
 		} catch (UnknownHostException e) {
 			log.error("Impossible to connect MongoDB on "+reqMongo.toString());
 			return;
@@ -160,17 +180,85 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     		mongoClient = mongoClients.get(reqMongo);
     	else
     	{
-				mongoClient = new MongoClient(reqMongo);
-				mongoClients.put(reqMongo, mongoClient);
+    		MongoCredential credential = MongoCredential.createMongoCRCredential(mongodbUsername, "admin", mongodbPassword.toCharArray());
+			mongoClient = new MongoClient(reqMongo,Arrays.asList(credential));
+			mongoClients.put(reqMongo, mongoClient);
     	}
     	
-    	DB database  = createDB(mongoClient, mongodbDatabase, mongodbUsername, mongodbPassword);
-    	DBCollection coll = createCollection(database, mongodbCollection);
-    	coll.insert(((DBObject)JSON.parse(o.toString())));
+    	// Get info from event (already formatted from CEP)
+    	DBObject dbo = ((DBObject)JSON.parse(o.toString()));
+    	
+    	String tenantCode = (String)dbo.get("tenantCode");
+    	String streamCode = (String)dbo.get("streamCode");
+    	String virtualEntityCode = (String)dbo.get("virtualEntityCode");
+    	
+    	log.debug("stream:"+tenantCode+":"+virtualEntityCode+":"+streamCode);   
+
+    	Integer idDataset = -1;
+    	Integer datasetVersion = -1;
+		String db = mongodbDatabase;
+    	
+    	
+    	DBObject datasetInfo = getDatasetInfo(mongoClient,tenantCode,streamCode,virtualEntityCode);
+    	
+    	if (datasetInfo!=null)
+    	{
+    		DBObject configData = ((DBObject)datasetInfo.get("configData"));
+    		idDataset = (Integer) configData.get("idDataset");
+    		datasetVersion = (Integer) configData.get("datasetVersion");
+    		db = "DB_"+( (String) configData.get("tenantCode"));
+    	}
+    	else {
+    		log.error("Dataset non trovato per idStream:"+tenantCode+":"+virtualEntityCode+":"+streamCode+" and object "+ o.toString());
+    	}
+    	
+    	DB database  = mongoClient.getDB(db);
+    	DBCollection coll = database.getCollection(mongodbCollection);
+    	dbo.put("idDataset", idDataset);
+    	dbo.put("datasetVersion", datasetVersion);
+    	coll.insert(dbo);
+    	// 
+    	
     	
     }
 
-    @Override
+
+	private DBObject getDatasetInfo(MongoClient mongoClient, String tenantCode,
+			String streamCode, String virtualEntityCode) {
+
+		DBObject cached=null; 
+		if (datasetCache!=null)
+			cached = datasetCache.get(tenantCode+":"+virtualEntityCode+":"+streamCode);
+		
+		if (cached!=null)
+		{
+			log.info("Elemento trovato in cache." + datasetCache.getConfiguration().getExpiry(CacheConfiguration.ExpiryType.ACCESSED));
+			log.info("Elemento trovato in cache." + datasetCache.getConfiguration().getExpiry(CacheConfiguration.ExpiryType.MODIFIED));
+			return cached;
+		}
+		else {
+			log.info("Elemento NON trovato in cache.");
+	    	DB dbSupport = mongoClient.getDB("DB_SUPPORT");
+	    	BasicDBObject query = new BasicDBObject("streamCode", streamCode).append("configData.tenantCode", tenantCode).append("streams.stream.virtualEntityCode", virtualEntityCode);
+	    	DBCollection metaStreamCollection = dbSupport.getCollection("stream");
+	    	
+	    	DBCursor cursor = metaStreamCollection.find(query);
+	    	DBObject ret = null;
+	    	try {
+	    	   while(cursor.hasNext()) {
+	    		   ret = cursor.next();
+	    	   }
+	    	} finally {
+	    	   cursor.close();
+	    	}
+	    	
+			return ret;
+		}
+		
+		
+	}
+
+	@Override
     public void testConnection(
             OutputEventAdaptorConfiguration outputEventAdaptorConfiguration, int tenantId) {
     	ServerAddress reqMongo = null;
@@ -183,34 +271,6 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 		}
     }
     
-    
-	public DB createDB(MongoClient mongo, String DBname, String username, String password){
-		/**** Get database ****/
-		// if database doesn't exists, MongoDB will create it for you
-		DB db = mongo.getDB(DBname);		
-//		if(username!=null && password!=null){
-//			if(db.authenticate(username, password.toCharArray()))
-//				return db;	
-//			else{
-//				System.out.println("Cant create DB, authorization needed!");
-//				return null;
-//			}
-//		}else{
-			return db;
-//		}
 
-	}
-
-	public DBCollection createCollection(DB db,String collectionName){
-		if(db!=null){
-			/**** Get collection / table from 'db' ****/
-			// if collection doesn't exists, MongoDB will create it for you
-			//db.command("db."+collectionName+".insert({"+"nome:pippo})");
-			return db.getCollection(collectionName);
-		}
-		System.out.println("Select Database!!");
-		return null;
-	}
-    
     
 }
