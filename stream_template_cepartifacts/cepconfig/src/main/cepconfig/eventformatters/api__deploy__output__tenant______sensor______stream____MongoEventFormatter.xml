@@ -21,45 +21,43 @@
 			<!--Optional: -->
 			<int:jsonData>{
 			<#if source.type = "Application">
-				"id_application": "{{meta_source}}",
+				"application": "{{meta_source}}",
 			<#elseif source.type = "Device">
-				"id_sensore": "{{meta_source}}",
+				"sensor": "{{meta_source}}",
 			</#if>
-				"id_flusso": "${stream.code}",
-				"domain": "temperatura",
-				"Values": [
-				{
-				"time": "{{time}}",
-				"components":{<#list components as component>
+				"time": {$date: "{{time}}" },
+				"idDataset" : -1, 
+				"datasetVersion" : -1,
+        		"tenantCode" : "${tenant.code}",
+				"streamCode" : "${stream.code}",
+				"virtualEntityCode" : "${source.code}",
+				<#list components as component>
 				"${component.code}":"{{${component.code}}}"<#if component_has_next>,</#if></#list>
-				}
-				}
-				]
 				}</int:jsonData>
 			<!--Zero or more repetitions: -->
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
 				<xsd:key>username</xsd:key>
 				<!--Optional: -->
-				<xsd:value>a</xsd:value>
+				<xsd:value>cep</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
 				<xsd:key>collection</xsd:key>
 				<!--Optional: -->
-				<xsd:value>${stream.code}Collection</xsd:value>
+				<xsd:value>measures</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
 				<xsd:key>password</xsd:key>
 				<!--Optional: -->
-				<xsd:value>a</xsd:value>
+				<xsd:value>mypass</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
 				<xsd:key>database</xsd:key>
 				<!--Optional: -->
-				<xsd:value>${tenant.code}</xsd:value>
+				<xsd:value>DB_${tenant.code}</xsd:value>
 			</int:outputPropertyConfiguration>
 			<!--Optional: -->
 			<int:dataFrom>inline</int:dataFrom>
