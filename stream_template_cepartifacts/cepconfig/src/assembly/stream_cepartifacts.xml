@@ -21,6 +21,7 @@
 			<outputDirectory>/</outputDirectory>
 			<includes>
 			<include>deploymentInstructions.json</include>
+			<include>migrationInstructions.json</include>
 			</includes>
 		</fileSet>
 		<fileSet>
