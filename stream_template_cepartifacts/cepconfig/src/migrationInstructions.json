@@ -4,30 +4,17 @@
 "steps": [<#list mbs as mb>
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"description":"Installazione event Execution Plans per ogni nodo CEP : api__deploy__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/eventformatters/api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
-"action":"deployJsonEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
+"source":"cepconfig/executionplans/api__deploy__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan.xml",
+"action":"deployExecutionPlanConfiguration",
+"destination":"${mb.host}/services/EventProcessorAdminService",
 "returnExpected":"200", 
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},</#list>
-{
-"number": "${x}",<#assign x = x+1> 
-"description":"Inserire i metadati dello stream",
-"actionType":"MongoInstallation",
-"sourceType":"api",
-"source":"",
-"action":"",
-"destination":"${mongoconnection.url}",
-"returnExpected":"",
-"validityControl":"{OK:1}",
-"username":"",
-"password":""
-}
+}</#list>
 ]
 }
 </#if>
