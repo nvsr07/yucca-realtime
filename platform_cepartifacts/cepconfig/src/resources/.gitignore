@@ -1,2 +1,6 @@
 /tst-sdnet.properties
 /prod-sdnet.properties
+/int-sdnet-mb1.properties
+/int-sdnet-mb2.properties
+/prod-sdnet-mb1.properties
+/prod-sdnet-mb2.properties

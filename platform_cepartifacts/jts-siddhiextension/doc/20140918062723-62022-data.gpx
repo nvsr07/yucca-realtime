@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<gpx creator="GPS Visualizer http://www.gpsvisualizer.com/" version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<wpt lat="45.06287" lon="7.67365">
+  <name>Via Assietta, Torino, TO</name>
+</wpt>
+<wpt lat="45.07758" lon="7.68763">
+  <name>Corso XI Febbraio</name>
+</wpt>
+<wpt lat="45.07997" lon="7.6857">
+  <name>Corso Giulio Cesare</name>
+</wpt>
+<wpt lat="45.07783" lon="7.67354">
+  <name>Via Santa Chiara</name>
+</wpt>
+<wpt lat="45.06287" lon="7.67365">
+  <name>Via Assietta, Torino</name>
+</wpt>
+<trk>
+  <name>Via Assietta, Torino, TO - Corso XI Febbraio (3,9 km / 13 min)</name>
+  <trkseg>
+    <trkpt lat="45.06287" lon="7.67365"></trkpt>
+    <trkpt lat="45.06177" lon="7.67671"></trkpt>
+    <trkpt lat="45.06177" lon="7.67671"></trkpt>
+    <trkpt lat="45.06315" lon="7.67769"></trkpt>
+    <trkpt lat="45.06315" lon="7.67769"></trkpt>
+    <trkpt lat="45.06253" lon="7.6794"></trkpt>
+    <trkpt lat="45.06253" lon="7.6794"></trkpt>
+    <trkpt lat="45.06382" lon="7.68031"></trkpt>
+    <trkpt lat="45.06401" lon="7.6803"></trkpt>
+    <trkpt lat="45.06413" lon="7.68022"></trkpt>
+    <trkpt lat="45.06424" lon="7.68006"></trkpt>
+    <trkpt lat="45.06424" lon="7.68006"></trkpt>
+    <trkpt lat="45.0665" lon="7.68167"></trkpt>
+    <trkpt lat="45.0665" lon="7.68167"></trkpt>
+    <trkpt lat="45.06665" lon="7.68128"></trkpt>
+    <trkpt lat="45.06665" lon="7.68128"></trkpt>
+    <trkpt lat="45.06691" lon="7.68041"></trkpt>
+    <trkpt lat="45.06691" lon="7.68041"></trkpt>
+    <trkpt lat="45.06754" lon="7.68085"></trkpt>
+    <trkpt lat="45.06754" lon="7.68085"></trkpt>
+    <trkpt lat="45.06877" lon="7.67743"></trkpt>
+    <trkpt lat="45.06877" lon="7.67743"></trkpt>
+    <trkpt lat="45.06926" lon="7.6778"></trkpt>
+    <trkpt lat="45.07008" lon="7.6782"></trkpt>
+    <trkpt lat="45.07008" lon="7.6782"></trkpt>
+    <trkpt lat="45.06835" lon="7.68304"></trkpt>
+    <trkpt lat="45.06835" lon="7.68304"></trkpt>
+    <trkpt lat="45.0706" lon="7.68463"></trkpt>
+    <trkpt lat="45.0706" lon="7.68463"></trkpt>
+    <trkpt lat="45.07018" lon="7.68584"></trkpt>
+    <trkpt lat="45.07012" lon="7.68614"></trkpt>
+    <trkpt lat="45.07012" lon="7.68644"></trkpt>
+    <trkpt lat="45.0702" lon="7.68671"></trkpt>
+    <trkpt lat="45.0703" lon="7.68687"></trkpt>
+    <trkpt lat="45.07048" lon="7.68695"></trkpt>
+    <trkpt lat="45.07059" lon="7.68693"></trkpt>
+    <trkpt lat="45.07083" lon="7.6871"></trkpt>
+    <trkpt lat="45.07092" lon="7.68729"></trkpt>
+    <trkpt lat="45.0711" lon="7.68746"></trkpt>
+    <trkpt lat="45.0711" lon="7.68746"></trkpt>
+    <trkpt lat="45.07131" lon="7.68764"></trkpt>
+    <trkpt lat="45.07142" lon="7.68787"></trkpt>
+    <trkpt lat="45.07146" lon="7.68871"></trkpt>
+    <trkpt lat="45.07152" lon="7.68906"></trkpt>
+    <trkpt lat="45.07165" lon="7.6894"></trkpt>
+    <trkpt lat="45.07185" lon="7.68977"></trkpt>
+    <trkpt lat="45.07204" lon="7.69003"></trkpt>
+    <trkpt lat="45.07207" lon="7.69036"></trkpt>
+    <trkpt lat="45.07223" lon="7.69083"></trkpt>
+    <trkpt lat="45.07265" lon="7.69175"></trkpt>
+    <trkpt lat="45.07265" lon="7.69175"></trkpt>
+    <trkpt lat="45.07448" lon="7.68993"></trkpt>
+    <trkpt lat="45.07448" lon="7.68993"></trkpt>
+    <trkpt lat="45.07464" lon="7.69006"></trkpt>
+    <trkpt lat="45.07481" lon="7.69003"></trkpt>
+    <trkpt lat="45.07491" lon="7.68991"></trkpt>
+    <trkpt lat="45.07496" lon="7.68973"></trkpt>
+    <trkpt lat="45.07602" lon="7.6887"></trkpt>
+    <trkpt lat="45.07654" lon="7.6871"></trkpt>
+    <trkpt lat="45.07654" lon="7.6871"></trkpt>
+    <trkpt lat="45.07711" lon="7.68734"></trkpt>
+    <trkpt lat="45.07758" lon="7.68763"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>Corso XI Febbraio - Corso Giulio Cesare (550 m / 2 min)</name>
+  <trkseg>
+    <trkpt lat="45.07758" lon="7.68763"></trkpt>
+    <trkpt lat="45.07907" lon="7.68848"></trkpt>
+    <trkpt lat="45.07907" lon="7.68848"></trkpt>
+    <trkpt lat="45.07991" lon="7.68783"></trkpt>
+    <trkpt lat="45.0806" lon="7.68675"></trkpt>
+    <trkpt lat="45.08083" lon="7.68626"></trkpt>
+    <trkpt lat="45.08083" lon="7.68626"></trkpt>
+    <trkpt lat="45.07997" lon="7.6857"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>Corso Giulio Cesare - Via Santa Chiara (1,4 km / 4 min)</name>
+  <trkseg>
+    <trkpt lat="45.07997" lon="7.6857"></trkpt>
+    <trkpt lat="45.07761" lon="7.68416"></trkpt>
+    <trkpt lat="45.07761" lon="7.68416"></trkpt>
+    <trkpt lat="45.07786" lon="7.68344"></trkpt>
+    <trkpt lat="45.0777" lon="7.68276"></trkpt>
+    <trkpt lat="45.0777" lon="7.68276"></trkpt>
+    <trkpt lat="45.07722" lon="7.68243"></trkpt>
+    <trkpt lat="45.07722" lon="7.68243"></trkpt>
+    <trkpt lat="45.07781" lon="7.6809"></trkpt>
+    <trkpt lat="45.07895" lon="7.67747"></trkpt>
+    <trkpt lat="45.07942" lon="7.67588"></trkpt>
+    <trkpt lat="45.07942" lon="7.67588"></trkpt>
+    <trkpt lat="45.07932" lon="7.67578"></trkpt>
+    <trkpt lat="45.07915" lon="7.67574"></trkpt>
+    <trkpt lat="45.07902" lon="7.6758"></trkpt>
+    <trkpt lat="45.0789" lon="7.67593"></trkpt>
+    <trkpt lat="45.07737" lon="7.67486"></trkpt>
+    <trkpt lat="45.07737" lon="7.67486"></trkpt>
+    <trkpt lat="45.07783" lon="7.67354"></trkpt>
+  </trkseg>
+</trk>
+<trk>
+  <name>Via Santa Chiara - Via Assietta, Torino (2,6 km / 7 min)</name>
+  <trkseg>
+    <trkpt lat="45.07783" lon="7.67354"></trkpt>
+    <trkpt lat="45.07817" lon="7.67267"></trkpt>
+    <trkpt lat="45.07829" lon="7.67257"></trkpt>
+    <trkpt lat="45.07829" lon="7.67257"></trkpt>
+    <trkpt lat="45.0779" lon="7.67079"></trkpt>
+    <trkpt lat="45.0779" lon="7.67079"></trkpt>
+    <trkpt lat="45.07775" lon="7.67075"></trkpt>
+    <trkpt lat="45.07684" lon="7.67004"></trkpt>
+    <trkpt lat="45.07684" lon="7.67004"></trkpt>
+    <trkpt lat="45.07568" lon="7.66918"></trkpt>
+    <trkpt lat="45.07453" lon="7.6684"></trkpt>
+    <trkpt lat="45.07453" lon="7.6684"></trkpt>
+    <trkpt lat="45.07391" lon="7.66799"></trkpt>
+    <trkpt lat="45.07391" lon="7.66799"></trkpt>
+    <trkpt lat="45.07381" lon="7.66776"></trkpt>
+    <trkpt lat="45.07369" lon="7.66773"></trkpt>
+    <trkpt lat="45.07357" lon="7.66782"></trkpt>
+    <trkpt lat="45.07322" lon="7.66758"></trkpt>
+    <trkpt lat="45.07321" lon="7.66747"></trkpt>
+    <trkpt lat="45.07316" lon="7.66738"></trkpt>
+    <trkpt lat="45.07304" lon="7.66737"></trkpt>
+    <trkpt lat="45.06963" lon="7.665"></trkpt>
+    <trkpt lat="45.06963" lon="7.665"></trkpt>
+    <trkpt lat="45.06819" lon="7.66893"></trkpt>
+    <trkpt lat="45.06659" lon="7.67353"></trkpt>
+    <trkpt lat="45.06609" lon="7.67512"></trkpt>
+    <trkpt lat="45.06609" lon="7.67512"></trkpt>
+    <trkpt lat="45.06309" lon="7.67299"></trkpt>
+    <trkpt lat="45.06309" lon="7.67299"></trkpt>
+    <trkpt lat="45.06287" lon="7.67365"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

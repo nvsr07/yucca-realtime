@@ -41,6 +41,7 @@ import org.wso2.carbon.event.output.adaptor.core.Property;
 import org.wso2.carbon.event.output.adaptor.core.config.OutputEventAdaptorConfiguration;
 import org.wso2.carbon.event.output.adaptor.core.message.config.OutputEventAdaptorMessageConfiguration;
 import org.wso2.carbon.utils.multitenancy.MultitenantConstants;
+import org.yucca.realtime.adaptor.output.mongodb.internal.util.JSONCallbackTimeZone;
 import org.yucca.realtime.adaptor.output.mongodb.internal.util.MongoDBOutEventAdaptorConstants;
 
 import com.mongodb.BasicDBObject;
@@ -186,7 +187,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     	}
     	
     	// Get info from event (already formatted from CEP)
-    	DBObject dbo = ((DBObject)JSON.parse(o.toString()));
+    	DBObject dbo = ((DBObject)JSON.parse(o.toString(),new JSONCallbackTimeZone()));
     	
     	String tenantCode = (String)dbo.get("tenantCode");
     	String streamCode = (String)dbo.get("streamCode");
@@ -216,6 +217,8 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     	DBCollection coll = database.getCollection(mongodbCollection);
     	dbo.put("idDataset", idDataset);
     	dbo.put("datasetVersion", datasetVersion);
+    	dbo.removeField("tenantCode");
+    	dbo.removeField("virtualEntityCode");
     	coll.insert(dbo);
     	// 
     	
