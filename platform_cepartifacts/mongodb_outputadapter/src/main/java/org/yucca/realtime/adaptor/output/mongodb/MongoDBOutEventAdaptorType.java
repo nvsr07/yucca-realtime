@@ -64,6 +64,17 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     
     private Cache<String, DBObject> datasetCache = null;
     
+    public MongoDBOutEventAdaptorType() {
+        PrivilegedCarbonContext privilegedCarbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
+        privilegedCarbonContext.setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
+        privilegedCarbonContext.setTenantId(MultitenantConstants.SUPER_TENANT_ID);
+    	CacheManager cacheManager = Caching.getCacheManagerFactory().getCacheManager("CEPManager");       
+        CacheBuilder<String, DBObject> cacheBuilder  = cacheManager.<String, DBObject>createCacheBuilder("Dataset") ;
+        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.SECONDS, 600)).setStoreByValue(false);
+    	this.datasetCache =  cacheBuilder.build();
+    	log.info("Cache initialized: "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
+	}
+    
     @Override
     protected String getName() {
         return MongoDBOutEventAdaptorConstants.EVENT_ADAPTOR_TYPE_MONGODB;
@@ -77,15 +88,10 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     @Override
     protected void init() {
         this.resourceBundle = ResourceBundle.getBundle("org.yucca.realtime.adaptor.output.mongodb.i18n.Resources", Locale.getDefault());
-        mongoClients = new HashMap<ServerAddress, MongoClient>();
-        PrivilegedCarbonContext.getCurrentContext().setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
-        PrivilegedCarbonContext.getCurrentContext().setTenantId(MultitenantConstants.SUPER_TENANT_ID);
-    	CacheManager cacheManager = Caching.getCacheManagerFactory().getCacheManager("CEPManager");       
-        CacheBuilder<String, DBObject> cacheBuilder  = cacheManager.<String, DBObject>createCacheBuilder("Dataset") ;
-        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.SECONDS, 60)).setStoreByValue(false);
-    	datasetCache =  cacheBuilder.build();
     }
 
+    
+    
     @Override
     protected List<Property> getOutputAdaptorProperties() {
     	List<Property> propertyList = new ArrayList<Property>();
@@ -153,6 +159,9 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
             OutputEventAdaptorMessageConfiguration outputEventAdaptorMessageConfiguration,
             Object o, OutputEventAdaptorConfiguration outputEventAdaptorConfiguration,
             int tenantId) {
+        PrivilegedCarbonContext privilegedCarbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
+        privilegedCarbonContext.setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
+        privilegedCarbonContext.setTenantId(MultitenantConstants.SUPER_TENANT_ID);
     	
     	MongoClient mongoClient =null;
     	ServerAddress reqMongo = null;
@@ -230,13 +239,13 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 			String streamCode, String virtualEntityCode) {
 
 		DBObject cached=null; 
-		if (datasetCache!=null)
+		if (datasetCache!=null) {
 			cached = datasetCache.get(tenantCode+":"+virtualEntityCode+":"+streamCode);
+		}
 		
 		if (cached!=null)
 		{
-			log.info("Elemento trovato in cache." + datasetCache.getConfiguration().getExpiry(CacheConfiguration.ExpiryType.ACCESSED));
-			log.info("Elemento trovato in cache." + datasetCache.getConfiguration().getExpiry(CacheConfiguration.ExpiryType.MODIFIED));
+			log.info("Elemento trovato in cache.");
 			return cached;
 		}
 		else {
@@ -254,7 +263,13 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 	    	} finally {
 	    	   cursor.close();
 	    	}
-	    	
+	    	if (ret!=null) {
+	        	log.info("Is cache initialized? : "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
+	        	if (datasetCache!=null)
+	        		datasetCache.put(tenantCode+":"+virtualEntityCode+":"+streamCode,ret);
+	        	else 
+		        	log.info("Cache null!");	        		
+	    	}
 			return ret;
 		}
 		
