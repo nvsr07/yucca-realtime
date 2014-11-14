@@ -142,5 +142,19 @@
 "password":"${esbinfo.secpassword}"
 }
 </#if>
+<#if stream.persisted?? && stream.persisted ="true">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Inserimento dei metadati dello stream su MongoDB",
+"actionType":"MongoInstallation",
+"sourceType":"api",
+"source":"",
+"action":"",
+"destination":"${mongoconnection.url}",
+"returnExpected":"",
+"validityControl":"{OK:1}",
+"username":"",
+"password":""
+}</#if>
 ]
 }
