@@ -27,7 +27,20 @@
 "successControl":"${tenant.code}_inputeventscap_1.0.0",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
+},
+</#list>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Inserimento del tenant su MongoDB",
+"actionType":"MongoInstallation",
+"sourceType":"api",
+"source":"",
+"action":"",
+"destination":"${mongoconnection.url}",
+"returnExpected":"",
+"validityControl":"{OK:1}",
+"username":"",
+"password":""
 }
-<#if mb_has_next>,</#if>
-</#list>]
+]
 }
