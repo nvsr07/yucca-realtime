@@ -43,7 +43,7 @@
             <!--Optional:-->
             <xsd:name>process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan</xsd:name>
             <!--Optional:-->
-            <xsd:queryExpressions><![CDATA[<#if stream.published?? && stream.published = "true" && source.type!="Internal">
+            <xsd:queryExpressions><![CDATA[<#if source.type!="Internal">
 from input
 insert into outputStream;
 
