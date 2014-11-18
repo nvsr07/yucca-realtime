@@ -152,7 +152,7 @@
 "action":"",
 "destination":"${mongoconnection.url}",
 "returnExpected":"",
-"validityControl":"KO",
+"validityControl":"KO:1",
 "username":"",
 "password":""
 }</#if>
