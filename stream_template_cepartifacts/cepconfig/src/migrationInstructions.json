@@ -24,7 +24,7 @@
 "action":"",
 "destination":"${mongoconnection.url}",
 "returnExpected":"",
-"validityControl":"OK:1",
+"validityControl":"KO",
 "username":"",
 "password":""
 }
