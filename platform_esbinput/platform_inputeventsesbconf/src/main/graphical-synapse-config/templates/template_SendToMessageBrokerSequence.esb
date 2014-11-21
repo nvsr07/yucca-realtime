@@ -6,7 +6,7 @@
         <outputConnector>
           <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.0/@inputConnector"/>
         </outputConnector>
-        <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.12/@outputConnector/@outgoingLink"/>
+        <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.11/@outputConnector/@outgoingLink"/>
         <mediatorFlow>
           <children xsi:type="esb:PropertyMediator" propertyName="mbUrlValue" valueType="EXPRESSION">
             <inputConnector incomingLinks="//@server/@children.0/@child/@outputConnector/@outgoingLink"/>
@@ -86,14 +86,8 @@
               <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.11/@inputConnector"/>
             </outputConnector>
           </children>
-          <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
-            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.10/@outputConnector/@outgoingLink"/>
-            <outputConnector>
-              <outgoingLink target="//@server/@children.0/@child/@mediatorFlow/@children.12/@inputConnector"/>
-            </outputConnector>
-          </children>
           <children xsi:type="esb:PropertyMediator" propertyName="ClientApiNonBlocking" propertyAction="remove" propertyScope="axis2">
-            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.11/@outputConnector/@outgoingLink"/>
+            <inputConnector incomingLinks="//@server/@children.0/@child/@mediatorFlow/@children.10/@outputConnector/@outgoingLink"/>
             <outputConnector>
               <outgoingLink target="//@server/@children.0/@child/@inputConnector"/>
             </outputConnector>

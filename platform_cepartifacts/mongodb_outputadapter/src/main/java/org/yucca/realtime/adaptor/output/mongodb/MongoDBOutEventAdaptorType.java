@@ -70,7 +70,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
         privilegedCarbonContext.setTenantId(MultitenantConstants.SUPER_TENANT_ID);
     	CacheManager cacheManager = Caching.getCacheManagerFactory().getCacheManager("CEPManager");       
         CacheBuilder<String, DBObject> cacheBuilder  = cacheManager.<String, DBObject>createCacheBuilder("Dataset") ;
-        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.SECONDS, 600)).setStoreByValue(false);
+        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.MINUTES, 60)).setStoreByValue(false);
     	this.datasetCache =  cacheBuilder.build();
     	log.info("Cache initialized: "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
 	}
@@ -193,6 +193,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     		MongoCredential credential = MongoCredential.createMongoCRCredential(mongodbUsername, "admin", mongodbPassword.toCharArray());
 			mongoClient = new MongoClient(reqMongo,Arrays.asList(credential));
 			mongoClients.put(reqMongo, mongoClient);
+			log.info("MongoClient not cached. Created new istance.");   
     	}
     	
     	// Get info from event (already formatted from CEP)
@@ -245,7 +246,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 		
 		if (cached!=null)
 		{
-			log.info("Elemento trovato in cache.");
+			log.debug("Elemento trovato in cache.");
 			return cached;
 		}
 		else {
