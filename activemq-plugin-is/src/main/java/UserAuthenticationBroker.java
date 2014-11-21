@@ -63,12 +63,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     final String username;
     final String password;
     final String jksFileLocation;
-//    final String globalPublisherRole; // Deprecated
-//    final String globalSubscriberRole; // Deprecated
-//    final String globalPublisherSubscriberRole; // Deprecated
     final int cacheValidationInterval;
 
-    //RemoteStoreManager Clients
     String remoteUserStoreManagerAuthCookie = "";
     ServiceClient remoteUserStoreManagerServiceClient;
     RemoteUserStoreManagerServiceStub remoteUserStoreManagerServiceStub;
@@ -84,16 +80,11 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         this.username = username;
         this.password = password;
         this.jksFileLocation = jksFileLocation;
-//        this.globalPublisherRole = globalPublisherRole;
-//        this.globalSubscriberRole = globalSubscriberRole;
-//        this.globalPublisherSubscriberRole = globalPublisherSubscriberRole;
         this.cacheValidationInterval = cacheValidationInterval;
 
         createAdminClients();
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Task task = new Task();
-//        scheduler.scheduleAtFixedRate(task, 0, cacheValidationInterval, TimeUnit.MINUTES);
-//        scheduler.scheduleAtFixedRate(task, 0, 5, TimeUnit.SECONDS);
         
         registerMBean();
         
@@ -350,7 +341,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     
 	private boolean isAuthorized(AuthorizationRole authorizationRole,
 			Operation operation, ActiveMQDestination destination) {
-		if (authorizationRole.getOperation() == operation)
+		if (authorizationRole.getOperation() == operation || authorizationRole.getOperation() == Operation.ALL)
 		{
 			if (authorizationRole.getType().name().equalsIgnoreCase(destination.getDestinationTypeAsString()))
 			{
@@ -631,7 +622,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 
         READ("read"),
         WRITE("write"),
-        ADMIN("admin");
+        ADMIN("admin"),
+        ALL("all");
         
         private String name;
         
