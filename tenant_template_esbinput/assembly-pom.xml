@@ -71,6 +71,7 @@
         <basedir>.</basedir>
           <includes>
             <include>app_${tenant.name}/**/*.*</include>             
+            <include>app_${tenant.name}/api_deploy**/api__deploy__tenant__addUser.xml</include>          
           </includes>
           <excludes>
            <exclude>app_${tenant.name}/api_deploy**/*.*</exclude>          

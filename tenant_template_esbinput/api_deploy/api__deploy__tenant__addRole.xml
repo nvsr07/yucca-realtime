@@ -1,14 +1,11 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRole.xml"/>
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addUser.xml"/>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mgt="http://mgt.application.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
-      <xsd:addUser>
-         <xsd:userName>${tenant.code}</xsd:userName>
-         <xsd:password>changeit</xsd:password>
-         <xsd:roles>mb-topic-all-input.${tenant.code}</xsd:roles>
-         <xsd:roles>mb-topic-read-output._</xsd:roles>
-         <xsd:roles>mb-topic-admin-output._</xsd:roles>
-      </xsd:addUser>
+      <xsd:addRole>
+         <xsd:roleName>mb-topic-all-input.${tenant.code}</xsd:roleName>
+         <xsd:isSharedRole>false</xsd:isSharedRole>
+      </xsd:addRole>
    </soapenv:Body>
 </soapenv:Envelope>
