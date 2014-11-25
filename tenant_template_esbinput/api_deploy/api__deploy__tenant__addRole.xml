@@ -1,6 +1,6 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addUser.xml"/>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mgt="http://mgt.application.carbon.wso2.org">
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRole.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
    <soapenv:Header/>
    <soapenv:Body>
       <xsd:addRole>
