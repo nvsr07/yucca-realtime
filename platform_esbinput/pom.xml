@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.csi.yucca.realtime</groupId>
   <artifactId>platform_esbinput</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <packaging>pom</packaging>
   <name>platform_esbinput</name>
   <description>platform_esbinput</description>
