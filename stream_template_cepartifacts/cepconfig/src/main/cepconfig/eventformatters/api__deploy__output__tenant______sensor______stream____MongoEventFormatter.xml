@@ -36,7 +36,7 @@
 				<!--Optional: -->
 				<xsd:key>username</xsd:key>
 				<!--Optional: -->
-				<xsd:value>cep</xsd:value>
+				<xsd:value>${mongoconnection.user}</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
@@ -48,7 +48,7 @@
 				<!--Optional: -->
 				<xsd:key>password</xsd:key>
 				<!--Optional: -->
-				<xsd:value>mypass</xsd:value>
+				<xsd:value>${mongoconnection.password}</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->
