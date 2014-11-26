@@ -63,6 +63,9 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     final String username;
     final String password;
     final String jksFileLocation;
+    final String proxyHostname;
+    final int proxyPort;
+
     final int cacheValidationInterval;
 
     String remoteUserStoreManagerAuthCookie = "";
@@ -72,16 +75,20 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     //To handle caching
     Map<String, AuthorizationRole[]> userSpecificRoles = new ConcurrentHashMap<String, AuthorizationRole[]>();
 
+
+	
     public UserAuthenticationBroker(Broker next, String serverUrl, String username,
                                     String password, String jksFileLocation,
-                                    int cacheValidationInterval) {
+                                    int cacheValidationInterval, String proxyHostname, int proxyPort) {
         super(next);
         this.serverUrl = serverUrl;
         this.username = username;
         this.password = password;
         this.jksFileLocation = jksFileLocation;
         this.cacheValidationInterval = cacheValidationInterval;
-
+        this.proxyHostname = proxyHostname;
+        this.proxyPort = proxyPort;
+        
         createAdminClients();
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Task task = new Task();
@@ -418,6 +425,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         if (!forceUpdate && userSpecificRoles.containsKey(userName)) {
             roleNames = userSpecificRoles.get(userName);
         } else {
+			LOG.info("Roles not cached or force update, call to wso2 identity server!");
+
             Options option = remoteUserStoreManagerServiceClient.getOptions();
             option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
             HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
@@ -500,6 +509,20 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
              * it has not been expired
              */
             option.setProperty(HTTPConstants.COOKIE_STRING, null);
+            
+            
+            /**
+             *  Setting proxy property if exists
+             */
+
+            if (proxyHostname!=null && !proxyHostname.trim().isEmpty())
+            {
+	            HttpTransportProperties.ProxyProperties proxyProperties = new HttpTransportProperties.ProxyProperties();
+	            proxyProperties.setProxyName(proxyHostname);
+	            proxyProperties.setProxyPort(proxyPort);
+	            
+	            option.setProperty(HTTPConstants.PROXY,proxyProperties);
+            }
 
             /**
              * Setting basic auth headers for authentication for carbon server

@@ -24,6 +24,8 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
     String username;
     String password;
     String jksFileLocation;
+    String proxyHostname= null;
+    int proxyPort=0;
 //    String globalPublisherRole;
 //    String globalSubscriberRole;
 //    String globalPublisherSubscriberRole;
@@ -31,7 +33,7 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
 
 
     public Broker installPlugin(Broker broker) throws Exception {
-        return new UserAuthenticationBroker(broker, serverUrl, username, password, jksFileLocation,cacheValidationInterval);
+        return new UserAuthenticationBroker(broker, serverUrl, username, password, jksFileLocation,cacheValidationInterval, proxyHostname,proxyPort);
     }
 
     public String getServerUrl() {
@@ -97,4 +99,20 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
     public void setCacheValidationInterval(int cacheValidationInterval) {
         this.cacheValidationInterval = cacheValidationInterval;
     }
+
+	public String getProxyHostname() {
+		return proxyHostname;
+	}
+
+	public void setProxyHostname(String proxyHostname) {
+		this.proxyHostname = proxyHostname;
+	}
+
+	public int getProxyPort() {
+		return proxyPort;
+	}
+
+	public void setProxyPort(int proxyPort) {
+		this.proxyPort = proxyPort;
+	}
 }
