@@ -88,17 +88,23 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextRes
 
 	<xs:complexType name="ComponentType">
 		<xs:all>
-			<#list components as component><xs:element name="${component.code}" type="xs:${component.type}"/>
+			<#list components as component><xs:element name="${component.code}" type=<#if component.type = "dateTime">"MultiFormatDate"<#else/>"xs:${component.type}"</#if> />
 		  </#list></xs:all>
 	</xs:complexType>
 
 	<xs:complexType name="value">
 		<xs:all>
-			<xs:element name="time" />
+			<xs:element name="time" type="MultiFormatDate"/>
 			<xs:element name="components" type="ComponentType"/>				
 			<xs:element name="validity" minOccurs="0" />
 		</xs:all>
 	</xs:complexType>
+	
+	<xs:simpleType name="MultiFormatDate">
+  		<xs:restriction base="xs:string" >
+ 		<xs:pattern value="((000[1-9])|(00[1-9][0-9])|(0[1-9][0-9]{2})|([1-9][0-9]{3}))-((0[1-9])|(1[012]))-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))(:[0-5][0-9]){2}(\.[0-9]+)?(([\+|\-]((0[0-9])|(1[0-2]))(:[0-5][0-9]))|(\+13(:[0-5][0-9])(:[0-5][0-9]))|\+14:00|Z|([\+|\-]((0[0-9])|(1[0-2]))([0-5][0-9]))|(\+13([0-5][0-9])([0-5][0-9]))|\+1400)" />   </xs:restriction>
+	</xs:simpleType>
+	
 </xs:schema>]]></ser:content>
 		</ser:addTextResource>
 	</soapenv:Body>

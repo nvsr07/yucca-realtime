@@ -29,7 +29,7 @@
 				"streamCode" : "${stream.code}",
 				"virtualEntityCode" : "${source.code}",
 				<#list components as component>
-				"${component.code}":<#if component.type = "string">"</#if>{{${component.code}}}<#if component.type = "string">"</#if><#if component_has_next>,</#if></#list>
+				"${component.code}":<#if component.type = "string">"</#if><#if component.type = "dateTime"> {$date: "{{${component.code}}}" }<#else/>{{${component.code}}}</#if><#if component.type = "string">"</#if><#if component_has_next>,</#if></#list>
 				}</int:jsonData>
 			<!--Zero or more repetitions: -->
 			<int:outputPropertyConfiguration>

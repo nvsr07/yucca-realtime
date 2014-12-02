@@ -45,7 +45,11 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
          <int:jsonPathExpressions>
             <xsd:name>${component.code}</xsd:name>
             <!--Optional:-->
+<#if component.type = "dateTime">			
+            <xsd:type>string</xsd:type>
+<#else/>
             <xsd:type>${component.type?lower_case}</xsd:type>
+</#if>			
             <!--Optional:-->
             <xsd:valueOf>values.components.${component.code}</xsd:valueOf>
          </int:jsonPathExpressions>

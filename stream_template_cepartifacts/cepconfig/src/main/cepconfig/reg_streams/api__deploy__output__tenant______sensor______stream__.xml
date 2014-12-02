@@ -27,7 +27,11 @@
             <!--Optional:-->
             <xsd:attributeName>${component.code}</xsd:attributeName>
             <!--Optional:-->
+            <#if (component.type?lower_case)!="datetime">
             <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
+            <#else/>
+            <xsd:attributeType>string</xsd:attributeType>
+            </#if>
          </int:payloadEventStreamAttributeDtos>
          </#list>
         <!--Optional:-->

@@ -2,11 +2,14 @@ package org.yucca.realtime.adaptor.output.mongodb.internal.util;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.SimpleTimeZone;
 import java.util.UUID;
 import java.util.regex.Pattern;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.bson.BSON;
 import org.bson.BSONObject;
@@ -80,7 +83,11 @@ public class JSONCallbackTimeZone extends BasicBSONCallback {
 			                    format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
 			                    o = format.parse(b.get("$date").toString(), new ParsePosition(0));
 			                }
-		                    
+			                if (o == null) {
+			                	// try isoDate with JAXB
+			                	Calendar cal = DatatypeConverter.parseDateTime(b.get("$date").toString());
+			                	o = cal.getTime();
+			                }
 		                    
 		                }
 	                    
@@ -134,4 +141,60 @@ public class JSONCallbackTimeZone extends BasicBSONCallback {
 	    public static final String _secDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 	    public static final String _msDateFormat_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 	    public static final String _secDateFormat_TZ = "yyyy-MM-dd'T'HH:mm:ssZ";
+	    
+	    
+	    public static void main(String[] args) {
+	    	String dataStr = "2014-05-13T17:08:58+0200";
+	    	String dataStr1 = "2014-05-13T15:08:58Z";
+	    	String dataStr2 = "2014-05-13T15:08:58.000Z";
+	    	String dataStr3 = "2014-05-13T17:08:58.000+0200";
+	    	String dataStr4 = "2014-05-13T15:08:58+00:00";
+	    	String dataStr5 = "2014-05-13T17:08:58+02:00";
+	    	String dataStr6 = "2014-05-13T15:08:58.000+00:00";
+	    	String dataStr7 = "2014-05-13T17:08:58.000+02:00";
+	    	SimpleDateFormat format = new SimpleDateFormat(_secDateFormat_TZ);
+            format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
+
+	    	System.out.println(format.format(parseDate(dataStr)));
+	    	System.out.println(format.format(parseDate(dataStr1)));
+	    	System.out.println(format.format(parseDate(dataStr2)));
+	    	System.out.println(format.format(parseDate(dataStr3)));
+	    	System.out.println(format.format(parseDate(dataStr4)));
+	    	System.out.println(format.format(parseDate(dataStr5)));
+	    	System.out.println(format.format(parseDate(dataStr6)));
+	    	System.out.println(format.format(parseDate(dataStr7)));
+	    	 
+		}
+	    
+	    private static Date parseDate(String dataStr)
+	    {
+	    	SimpleDateFormat format = new SimpleDateFormat(_msDateFormat);
+            format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
+            Date o = format.parse(dataStr.toString(), new ParsePosition(0));
+            if (o == null) {
+                // try older format with no ms
+                format = new SimpleDateFormat(_secDateFormat);
+                format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
+                o = format.parse(dataStr.toString(), new ParsePosition(0));
+	                if (o == null) {
+	                    // try timezone
+	                    format = new SimpleDateFormat(_msDateFormat_TZ);
+	                    format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
+	                    o = format.parse(dataStr.toString(), new ParsePosition(0));
+		                if (o == null) {
+		                    // try older format timezone
+		                    format = new SimpleDateFormat(_secDateFormat_TZ);
+		                    format.setCalendar(new GregorianCalendar(new SimpleTimeZone(0, "GMT")));
+		                    o = format.parse(dataStr.toString(), new ParsePosition(0));
+		                }
+		                if (o == null) {
+		                	// try isoDate with JAXB
+		                	Calendar cal = DatatypeConverter.parseDateTime(dataStr.toString());
+		                	o = cal.getTime();
+		                }
+	                    
+	                }
+            }
+            return o;
+	    }
 }

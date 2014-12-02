@@ -32,7 +32,11 @@ name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.x
 		<#list components as component>
 		<property>
 			<from jsonPath="values.components.${component.code}" />
+<#if component.type = "dateTime">			
+			<to name="${component.code}" type="string" />
+<#else/>
 			<to name="${component.code}" type="${component.type}" />
+</#if>			
 		</property>
 		</#list>
 	</mapping>
