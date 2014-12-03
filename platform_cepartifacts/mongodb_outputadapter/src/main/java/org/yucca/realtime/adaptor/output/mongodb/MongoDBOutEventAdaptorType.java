@@ -27,14 +27,12 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 import javax.cache.Cache;
-import javax.cache.CacheBuilder;
 import javax.cache.CacheConfiguration;
 import javax.cache.CacheManager;
 import javax.cache.Caching;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.wso2.carbon.context.CarbonContext;
 import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.event.output.adaptor.core.AbstractOutputEventAdaptor;
 import org.wso2.carbon.event.output.adaptor.core.Property;
@@ -57,21 +55,19 @@ import com.mongodb.util.JSON;
 
 public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor {
 
+	private static final String CACHE_NAME_DATASET = "Dataset";
 	private static final Log log = LogFactory.getLog(MongoDBOutEventAdaptorType.class);
     private ResourceBundle resourceBundle;
 
     private Map<ServerAddress, MongoClient> mongoClients = new HashMap<ServerAddress, MongoClient>();
     
-    private Cache<String, DBObject> datasetCache = null;
+    private BaseCache<String, DBObject> datasetCache = null;
     
     public MongoDBOutEventAdaptorType() {
         PrivilegedCarbonContext privilegedCarbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
         privilegedCarbonContext.setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
         privilegedCarbonContext.setTenantId(MultitenantConstants.SUPER_TENANT_ID);
-    	CacheManager cacheManager = Caching.getCacheManagerFactory().getCacheManager("CEPManager");       
-        CacheBuilder<String, DBObject> cacheBuilder  = cacheManager.<String, DBObject>createCacheBuilder("Dataset") ;
-        cacheBuilder.setExpiry(CacheConfiguration.ExpiryType.MODIFIED, new CacheConfiguration.Duration(TimeUnit.MINUTES, 60)).setStoreByValue(false);
-    	this.datasetCache =  cacheBuilder.build();
+    	this.datasetCache = new BaseCache<String, DBObject>(CACHE_NAME_DATASET,60*100);
     	log.info("Cache initialized: "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
 	}
     
@@ -241,7 +237,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 
 		DBObject cached=null; 
 		if (datasetCache!=null) {
-			cached = datasetCache.get(tenantCode+":"+virtualEntityCode+":"+streamCode);
+			cached = datasetCache.getValueFromCache(tenantCode+":"+virtualEntityCode+":"+streamCode);
 		}
 		
 		if (cached!=null)
@@ -250,7 +246,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 			return cached;
 		}
 		else {
-			log.info("Elemento NON trovato in cache.");
+			log.debug("Elemento NON trovato in cache.");
 	    	DB dbSupport = mongoClient.getDB("DB_SUPPORT");
 	    	BasicDBObject query = new BasicDBObject("streamCode", streamCode).append("configData.tenantCode", tenantCode).append("streams.stream.virtualEntityCode", virtualEntityCode);
 	    	DBCollection metaStreamCollection = dbSupport.getCollection("stream");
@@ -267,7 +263,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 	    	if (ret!=null) {
 	        	log.info("Is cache initialized? : "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
 	        	if (datasetCache!=null)
-	        		datasetCache.put(tenantCode+":"+virtualEntityCode+":"+streamCode,ret);
+	        		datasetCache.addToCache(tenantCode+":"+virtualEntityCode+":"+streamCode,ret);
 	        	else 
 		        	log.info("Cache null!");	        		
 	    	}
@@ -289,7 +285,5 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 			throw new RuntimeException(e.getMessage());
 		}
     }
-    
-
     
 }
