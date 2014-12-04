@@ -36,7 +36,7 @@
                <!--Optional:-->
                <xsd:siddhiStreamName>${internal.aliasName}</xsd:siddhiStreamName>
                <!--Optional:-->
-               <xsd:streamId>${internal.streamId}</xsd:streamId>
+               <xsd:streamId>output__${internal.tenantCode}__${internal.veCode_}__${internal.streamCode}:1.0.0</xsd:streamId>
             </xsd:importedStreams>
        		</#list>
             </#if>
