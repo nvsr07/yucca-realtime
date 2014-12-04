@@ -104,10 +104,10 @@
 <#if source.type!="Internal">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml", 
+"description":"Update della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__update__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"esbconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml",
+"source":"esbconfig/api__update__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml",
 "action":"addTextResource",
 "destination":"${esbinfo.host}/services/ResourceAdminService",
 "returnExpected":"200", 
