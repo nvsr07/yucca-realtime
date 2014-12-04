@@ -18,7 +18,7 @@
     <stream as="input" name="input__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
 <#else>
 <#list internalStreamInfo as internal>
-    <stream as="${internal.aliasName}" name=">output__${internal.tenantCode}__${internal.veCode_}__${internal.streamCode}" version="1.0.0"/>
+    <stream as="${internal.aliasName}" name="output__${internal.tenantCode}__${internal.veCode_}__${internal.streamCode}" version="1.0.0"/>
 </#list>
 </#if>
   </importedStreams>
