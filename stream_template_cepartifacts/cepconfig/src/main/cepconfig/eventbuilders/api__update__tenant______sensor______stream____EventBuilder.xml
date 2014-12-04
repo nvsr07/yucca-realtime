@@ -2,9 +2,16 @@
 <#if source.type!="Internal">
 <#list mbs as mb>
 <@pp.changeOutputFile
-name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
+name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
 />
-<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:editActiveEventBuilderConfiguration>
+         <!--Optional:-->
+         <int:originalEventBuilderName>${tenant.code}__${source.code_}__${stream.code}__EventBuilder</int:originalEventBuilderName>
+         <!--Optional:-->
+         <int:eventBuilderConfigXml><![CDATA[
 <eventBuilder
 	name="${tenant.code}__${source.code_}__${stream.code}__EventBuilder"
 	statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
@@ -41,6 +48,10 @@ name=mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.x
 	</mapping>
 	<to streamName="input__${tenant.code}__${source.code_}__${stream.code}"
 		version="1.0.0" />
-</eventBuilder>
-</#list>
-</#if>  
+</eventBuilder>]]>
+</int:eventBuilderConfigXml>
+      </int:editActiveEventBuilderConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
+ </#list>
+</#if>

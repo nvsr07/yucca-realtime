@@ -1,0 +1,46 @@
+<@pp.dropOutputFile />
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__update__input__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:editEventStreamInfo>
+      	 <int:oldStreamId>input__${tenant.code}__${source.code_}__${stream.code}:1.0.0</int:oldStreamId>
+         <!--Optional:-->
+         <int:eventStreamName>input__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamName>
+         <!--Optional:-->
+         <int:eventStreamVersion>1.0.0</int:eventStreamVersion>
+         <!--Zero or more repetitions:-->
+         <int:metaEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>source</xsd:attributeName>
+            <!--Optional:-->
+            <xsd:attributeType>string</xsd:attributeType>
+         </int:metaEventStreamAttributeDtos>
+         <!--Zero or more repetitions:-->
+         <int:payloadEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>time</xsd:attributeName>
+            <!--Optional:-->
+            <xsd:attributeType>string</xsd:attributeType>
+         </int:payloadEventStreamAttributeDtos>
+         <#list components as component>
+         <int:payloadEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>${component.code}</xsd:attributeName>
+            <!--Optional:-->
+            <#if (component.type?lower_case)!="datetime">
+            <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
+            <#else/>
+            <xsd:attributeType>string</xsd:attributeType>
+            </#if>
+         </int:payloadEventStreamAttributeDtos>
+         </#list>
+        <!--Optional:-->
+         <int:eventStreamDescription>input__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamDescription>
+         <!--Optional:-->
+         <int:eventStreamNickName>input__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamNickName>
+      </int:editEventStreamInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

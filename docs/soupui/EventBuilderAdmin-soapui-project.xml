@@ -2386,7 +2386,7 @@
       <http:address location="https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsEndpoint/"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:deployDefaultEventReceiver" name="deployDefaultEventReceiver" bindingOperationName="deployDefaultEventReceiver" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:deployDefaultEventReceiver" name="deployDefaultEventReceiver" bindingOperationName="deployDefaultEventReceiver" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:deployDefaultEventReceiver>
@@ -2402,7 +2402,7 @@
          <int:eventBuilderConfigXml>?</int:eventBuilderConfigXml>
       </int:deployEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployJsonEventBuilderConfiguration" name="deployJsonEventBuilderConfiguration" bindingOperationName="deployJsonEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployJsonEventBuilderConfiguration" name="deployJsonEventBuilderConfiguration" bindingOperationName="deployJsonEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
       <int:deployJsonEventBuilderConfiguration>
@@ -2454,7 +2454,7 @@
          <int:mappingEnabled>enable</int:mappingEnabled>
       </int:deployJsonEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployJsonEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployMapEventBuilderConfiguration" name="deployMapEventBuilderConfiguration" bindingOperationName="deployMapEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployJsonEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployMapEventBuilderConfiguration" name="deployMapEventBuilderConfiguration" bindingOperationName="deployMapEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
       <int:deployMapEventBuilderConfiguration>
@@ -2621,17 +2621,35 @@
          <int:mappingEnabled>?</int:mappingEnabled>
       </int:deployXmlEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployXmlEventBuilderConfiguration"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveEventBuilderConfiguration" name="editActiveEventBuilderConfiguration" bindingOperationName="editActiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployXmlEventBuilderConfiguration"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveEventBuilderConfiguration" name="editActiveEventBuilderConfiguration" bindingOperationName="editActiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:editActiveEventBuilderConfiguration>
          <!--Optional:-->
-         <int:originalEventBuilderName>?</int:originalEventBuilderName>
+         <int:originalEventBuilderName>smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2__EventBuilder</int:originalEventBuilderName>
          <!--Optional:-->
-         <int:eventBuilderConfigXml>?</int:eventBuilderConfigXml>
+         <int:eventBuilderConfigXml><![CDATA[<eventBuilder
+    name="smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2__EventBuilder"
+    statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
+    <from eventAdaptorName="JMSMBInternalInputEventAdaptor.xml" eventAdaptorType="jms">
+        <property name="transport.jms.Destination">VirtualQueueConsumer.mb1.input.smartlab.550e8400-e29b-41d4-a716-446655440000_temperatura2</property>
+    </from>
+    <mapping customMapping="enable" type="json">
+        <property>
+            <from jsonPath="sensor"/>
+            <to name="meta_source" type="string"/>
+        </property>
+        <property>
+            <from jsonPath="values.time"/>
+            <to name="time" type="string"/>
+        </property>
+    </mapping>
+    <to
+        streamName="input__smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2" version="1.0.0"/>
+</eventBuilder>]]]]>><![CDATA[</int:eventBuilderConfigXml>
       </int:editActiveEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editActiveEventBuilderConfiguration"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editInactiveEventBuilderConfiguration" name="editInactiveEventBuilderConfiguration" bindingOperationName="editInactiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>aekaiCh8</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editActiveEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editInactiveEventBuilderConfiguration" name="editInactiveEventBuilderConfiguration" bindingOperationName="editInactiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:editInactiveEventBuilderConfiguration>
@@ -2727,4 +2745,4 @@
          <int:filename>?</int:filename>
       </int:undeployInactiveEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:undeployInactiveEventBuilderConfiguration"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:undeployInactiveEventBuilderConfiguration"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

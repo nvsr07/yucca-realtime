@@ -918,7 +918,7 @@
       <http:address location="https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsEndpoint/"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:deployExecutionPlanConfiguration" name="deployExecutionPlanConfiguration" bindingOperationName="deployExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org" xmlns:xsd="http://admin.processor.event.carbon.wso2.org/xsd">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:deployExecutionPlanConfiguration" name="deployExecutionPlanConfiguration" bindingOperationName="deployExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org" xmlns:xsd="http://admin.processor.event.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
       <adm:deployExecutionPlanConfiguration>
@@ -958,7 +958,7 @@
          </adm:configurationDto>
       </adm:deployExecutionPlanConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployExecutionPlanConfiguration"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployExecutionPlanConfigurationFromConfigXml" name="deployExecutionPlanConfigurationFromConfigXml" bindingOperationName="deployExecutionPlanConfigurationFromConfigXml" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployExecutionPlanConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:deployExecutionPlanConfigurationFromConfigXml" name="deployExecutionPlanConfigurationFromConfigXml" bindingOperationName="deployExecutionPlanConfigurationFromConfigXml" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <adm:deployExecutionPlanConfigurationFromConfigXml>
@@ -966,17 +966,54 @@
          <adm:executionPlanConfigurationXml>?</adm:executionPlanConfigurationXml>
       </adm:deployExecutionPlanConfigurationFromConfigXml>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployExecutionPlanConfigurationFromConfigXml"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveExecutionPlanConfiguration" name="editActiveExecutionPlanConfiguration" bindingOperationName="editActiveExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployExecutionPlanConfigurationFromConfigXml"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveExecutionPlanConfiguration" name="editActiveExecutionPlanConfiguration" bindingOperationName="editActiveExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <adm:editActiveExecutionPlanConfiguration>
          <!--Optional:-->
-         <adm:configuration>?</adm:configuration>
+         <adm:configuration><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<executionPlan
+  name="process__sandbox__aa83b06f_aac1_4e06_a5ad_637e7055cbc1__primoFLusso__ExecutionPlan"
+  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventprocessor">
+  <description>Execution plan for sandbox__aa83b06f-aac1-4e06-a5ad-637e7055cbc1__primoFLusso</description>
+  <siddhiConfiguration>
+    <property name="siddhi.enable.distributed.processing">RedundantNode</property>
+    <property name="siddhi.persistence.snapshot.time.interval.minutes">0</property>
+  </siddhiConfiguration>
+  <importedStreams>
+    <stream as="input"
+      name="input__sandbox__aa83b06f_aac1_4e06_a5ad_637e7055cbc1__primoFLusso" version="1.0.0"/>
+  </importedStreams>
+  <queryExpressions><![CDATA[
+from input
+insert into outputStream;
+
+
+from input#window.time(30 sec) 
+select count(time) as numEventsLast30Sec 
+output last every 2 sec 
+insert into tempOutputStat for all-events; 
+
+from tempOutputStat#window.length(1) 
+select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
+output snapshot every 2 sec 
+insert into outputStat for all-events 
+
+]]]]]]>><![CDATA[<![CDATA[></queryExpressions>
+  <exportedStreams>
+    <stream
+      name="output__sandbox__aa83b06f_aac1_4e06_a5ad_637e7055cbc1__primoFLusso"
+      valueOf="outputStream" version="1.0.0"/>
+    <stream
+      name="output__sandbox__aa83b06f_aac1_4e06_a5ad_637e7055cbc1__primoFLusso__stat"
+      valueOf="outputStat" version="1.0.0"/>
+  </exportedStreams>
+</executionPlan>]]]]>><![CDATA[</adm:configuration>
          <!--Optional:-->
-         <adm:name>?</adm:name>
+         <adm:name>process__sandbox__aa83b06f_aac1_4e06_a5ad_637e7055cbc1__primoFLusso__ExecutionPlan</adm:name>
       </adm:editActiveExecutionPlanConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editActiveExecutionPlanConfiguration"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editInactiveExecutionPlanConfiguration" name="editInactiveExecutionPlanConfiguration" bindingOperationName="editInactiveExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>aekaiCh8</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editActiveExecutionPlanConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editInactiveExecutionPlanConfiguration" name="editInactiveExecutionPlanConfiguration" bindingOperationName="editInactiveExecutionPlanConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://10.118.8.51:9443/services/EventProcessorAdminService.EventProcessorAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <adm:editInactiveExecutionPlanConfiguration>

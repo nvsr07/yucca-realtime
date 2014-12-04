@@ -1,0 +1,64 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__update__process__"+tenant.code+"__"+source.code_+"_"+stream.code+"__ExecutionPlan.xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org" xmlns:xsd="http://admin.processor.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+ 	  <adm:editActiveExecutionPlanConfiguration>
+         <!--Optional:-->
+         <adm:configuration><![CDATA[
+         <executionPlan  name="process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan" statistics="disable"
+  trace="disable" xmlns="http://wso2.org/carbon/eventprocessor">
+  <description>Execution plan for ${tenant.code}__${source.code}__${stream.code}</description>
+  <siddhiConfiguration>
+    <property name="siddhi.enable.distributed.processing"><#if (mbs?size > 1)>RedundantNode<#else>false</#if></property>
+    <property name="siddhi.persistence.snapshot.time.interval.minutes">0</property>
+  </siddhiConfiguration>
+  <importedStreams>
+<#if source.type!="Internal">
+    <stream as="input" name="input__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
+<#else>
+<#list internalStreamInfo as internal>
+    <stream as="${internal.aliasName}" name="${internal.streamId}" version="1.0.0"/>
+</#list>
+</#if>
+  </importedStreams>
+  <queryExpressions><![CDATA[<#if source.type!="Internal">
+from input
+insert into outputStream;
+<#elseif source.type=="Internal">
+${internalQuery.query}
+</#if>
+
+<#if source.type!="Internal">
+from input#window.time(30 sec) 
+select count(time) as numEventsLast30Sec 
+output last every 2 sec 
+insert into tempOutputStat for all-events; 
+
+from tempOutputStat#window.length(1) 
+select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
+output snapshot every 2 sec 
+insert into outputStat for all-events 
+
+<#elseif source.type=="Internal">
+from outputStream#window.time(30 sec) 
+select count(time) as numEventsLast30Sec 
+output last every 2 sec 
+insert into tempOutputStat for all-events; 
+
+from tempOutputStat#window.length(1) 
+select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
+output snapshot every 2 sec 
+insert into outputStat for all-events 
+</#if>
+]]]]><![CDATA[></queryExpressions>
+  <exportedStreams>
+    <stream name="output__${tenant.code}__${source.code_}__${stream.code}" valueOf="outputStream" version="1.0.0"/>
+	<stream name="output__${tenant.code}__${source.code_}__${stream.code}__stat" valueOf="outputStat" version="1.0.0"/>
+  </exportedStreams>
+</executionPlan>]]></adm:configuration>
+         <!--Optional:-->
+         <adm:name>process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan</adm:name>
+      </adm:editActiveExecutionPlanConfiguration>   
+   </soapenv:Body>
+</soapenv:Envelope>

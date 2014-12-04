@@ -1,0 +1,46 @@
+<@pp.dropOutputFile />
+<#if stream.persisted?? && stream.persisted ="true">
+<@pp.changeOutputFile name="api__update__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__MongoEventFormatter.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org"
+	xmlns:xsd="http://internal.admin.formatter.event.carbon.wso2.org/xsd">
+	<soapenv:Header />
+	<soapenv:Body>
+      <int:editActiveEventFormatterConfiguration>
+         <int:eventFormatterConfiguration><![CDATA[
+         <eventFormatter name="output__${tenant.code}__${source.code_}__${stream.code}__MongoEventFormatter"
+  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
+  <from streamName="output__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
+<mapping customMapping="enable" type="json">
+    <inline>
+{
+ <#if source.type = "Application">
+ "id_application": "{{meta_source}}",
+		<#elseif source.type = "Device">
+ "id_sensore": "{{meta_source}}",
+		</#if>
+  "time": {$date: "{{time}}" },
+				"idDataset" : -1, 
+				"datasetVersion" : -1,
+        		"tenantCode" : "${tenant.code}",
+				"streamCode" : "${stream.code}",
+				"virtualEntityCode" : "${source.code}",
+				<#list components as component>
+				"${component.code}":<#if component.type = "string">"</#if><#if component.type = "dateTime"> {$date: "{{${component.code}}}" }<#else/>{{${component.code}}}</#if><#if component.type = "string">"</#if><#if component_has_next>,</#if></#list>
+				}   
+  </inline>
+  </mapping>
+	<to eventAdaptorName="MongoDBOutputEventAdaptor" eventAdaptorType="mongoDB">
+    <property name="username">${mongoconnection.user}</property>
+    <property name="collection">measures</property>
+    <property name="password">${mongoconnection.password}</property>
+    <property name="database">DB_${tenant.code}</property>
+  </to>
+  </eventFormatter>
+         ]]>
+         </int:eventFormatterConfiguration>
+         <int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__MongoEventFormatter</int:eventFormatterName>
+      </int:editActiveEventFormatterConfiguration>
+	</soapenv:Body>
+</soapenv:Envelope>
+</#if>

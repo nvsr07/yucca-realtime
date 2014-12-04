@@ -1,0 +1,134 @@
+<#assign x = 1> 
+{
+"steps": [
+<#list mbs as mb>
+<#if source.type!="Internal">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"update Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__update__input__${tenant.code}__${source.code_}_${stream.code}.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},</#if>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}.xml",
+"action":"addEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+<#break>
+</#list>
+<#list mbs as mb>
+<#if source.type!="Internal">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventbuilders/api__update__${mb.num}__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
+"action":"deployJsonEventBuilderConfiguration",
+"destination":"${mb.host}/services/EventBuilderAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+</#if>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
+"action":"deployJsonEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},<#if stream.persisted?? && stream.persisted ="true">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
+"action":"deployJsonEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},</#if>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Execution Plans per ogni nodo CEP : api__update__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/executionplans/api__update__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan.xml",
+"action":"deployExecutionPlanConfiguration",
+"destination":"${mb.host}/services/EventProcessorAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+}
+<#if mb_has_next>,</#if>
+</#list>
+<#if source.type!="Internal">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"esbconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml",
+"action":"addTextResource",
+"destination":"${esbinfo.host}/services/ResourceAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+}
+</#if>
+<#if stream.persisted?? && stream.persisted ="true">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Inserimento dei metadati dello stream su MongoDB",
+"actionType":"MongoInstallation",
+"sourceType":"api",
+"source":"",
+"action":"",
+"destination":"${mongoconnection.url}",
+"returnExpected":"",
+"validityControl":"KO",
+"username":"",
+"password":""
+}</#if>
+]
+}
