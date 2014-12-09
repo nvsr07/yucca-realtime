@@ -21,6 +21,8 @@
 				"application": "{{meta_source}}",
 				<#elseif source.type = "Device">
 				"sensor": "{{meta_source}}",
+				<#else>
+				"sensor": "internal",				
 				</#if>
 				"values": [
 				{

@@ -15,11 +15,13 @@
     <inline>
 {
  <#if source.type = "Application">
- "id_application": "{{meta_source}}",
-		<#elseif source.type = "Device">
- "id_sensore": "{{meta_source}}",
-		</#if>
-  "time": {$date: "{{time}}" },
+				"application": "{{meta_source}}",
+			<#elseif source.type = "Device">
+				"sensor": "{{meta_source}}",
+			<#else>
+				"sensor": "internal",								
+			</#if>
+				"time": {$date: "{{time}}" },
 				"idDataset" : -1, 
 				"datasetVersion" : -1,
         		"tenantCode" : "${tenant.code}",

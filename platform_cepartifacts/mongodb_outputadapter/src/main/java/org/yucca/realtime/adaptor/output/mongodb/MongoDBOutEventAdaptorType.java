@@ -150,6 +150,15 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 
     }
 
+	@Override
+	public void removeConnectionInfo(
+			OutputEventAdaptorMessageConfiguration outputEventAdaptorMessageConfiguration,
+			OutputEventAdaptorConfiguration outputEventAdaptorConfiguration, int tenantId) {
+		log.info("Nothing to do in removeConnectionInfo");
+	}
+
+    
+    
     @Override
     public void publish(
             OutputEventAdaptorMessageConfiguration outputEventAdaptorMessageConfiguration,
@@ -285,5 +294,6 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 			throw new RuntimeException(e.getMessage());
 		}
     }
+
     
 }
