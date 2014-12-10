@@ -67,7 +67,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
         PrivilegedCarbonContext privilegedCarbonContext = PrivilegedCarbonContext.getThreadLocalCarbonContext();
         privilegedCarbonContext.setTenantDomain(MultitenantConstants.SUPER_TENANT_DOMAIN_NAME);
         privilegedCarbonContext.setTenantId(MultitenantConstants.SUPER_TENANT_ID);
-    	this.datasetCache = new BaseCache<String, DBObject>(CACHE_NAME_DATASET,60*100);
+    	this.datasetCache = new BaseCache<String, DBObject>(CACHE_NAME_DATASET,60*5);
     	log.info("Cache initialized: "+(datasetCache==null?"false":"true ["+datasetCache+"]"));
 	}
     
@@ -260,7 +260,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 	    	BasicDBObject query = new BasicDBObject("streamCode", streamCode).append("configData.tenantCode", tenantCode).append("streams.stream.virtualEntityCode", virtualEntityCode);
 	    	DBCollection metaStreamCollection = dbSupport.getCollection("stream");
 	    	
-	    	DBCursor cursor = metaStreamCollection.find(query);
+	    	DBCursor cursor = metaStreamCollection.find(query).sort(new BasicDBObject("deploymentVersion",-1)).limit(1);
 	    	DBObject ret = null;
 	    	try {
 	    	   while(cursor.hasNext()) {
