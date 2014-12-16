@@ -28,10 +28,14 @@
             <!--Optional:-->
             <xsd:attributeName>${component.code}</xsd:attributeName>
             <!--Optional:-->
-            <#if (component.type?lower_case)!="datetime">
-            <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
-            <#else/>
+            <#if (component.type?lower_case) ="datetime">
             <xsd:attributeType>string</xsd:attributeType>
+			<#elseif component.type = "latitude">
+            <xsd:attributeType>double</xsd:attributeType>
+			<#elseif component.type = "longitude">
+            <xsd:attributeType>double</xsd:attributeType>
+            <#else/>
+            <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
             </#if>
          </int:payloadEventStreamAttributeDtos>
          </#list>

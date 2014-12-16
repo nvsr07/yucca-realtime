@@ -47,6 +47,10 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
 <#if component.type = "dateTime">			
             <xsd:type>string</xsd:type>
+<#elseif component.type = "latitude">
+            <xsd:type>double</xsd:type>
+<#elseif component.type = "longitude">
+            <xsd:type>double</xsd:type>
 <#else/>
             <xsd:type>${component.type?lower_case}</xsd:type>
 </#if>			

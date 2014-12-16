@@ -40,6 +40,10 @@ name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
 			<from jsonPath="values.components.${component.code}" />
 <#if component.type = "dateTime">			
 			<to name="${component.code}" type="string" />
+<#elseif component.type = "latitude">
+			<to name="${component.code}" type="double" />
+<#elseif component.type = "longitude">
+			<to name="${component.code}" type="double" />
 <#else/>
 			<to name="${component.code}" type="${component.type}" />
 </#if>			
