@@ -615,7 +615,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <int:editEventStreamInfo>
-         <int:oldStreamId>output__sandbox__internal__flussoXhesi:1.0.0</int:oldStreamId>
+      	 <int:oldStreamId>output__sandbox__internal__flussoXhesi:1.0.0</int:oldStreamId>
          <!--Optional:-->
          <int:eventStreamName>output__sandbox__internal__flussoXhesi</int:eventStreamName>
          <!--Optional:-->
@@ -653,7 +653,7 @@
       </int:editEventStreamInfo>
    </soapenv:Body>
 </soapenv:Envelope>
-]]></con:request><con:credentials><con:username>admin</con:username><con:password>aekaiCh8</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editEventStreamInfo"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:generateSampleEvent" name="generateSampleEvent" bindingOperationName="generateSampleEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdnet-mb2.sdp.csi.it:9446/wso003/services/EventStreamAdminService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org">
+]]></con:request><con:credentials><con:username>admin</con:username><con:password>aekaiCh8</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:editEventStreamInfo"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:generateSampleEvent" name="generateSampleEvent" bindingOperationName="generateSampleEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://sdnet-mb2.sdp.csi.it:9446/wso003/services/EventStreamAdminService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:generateSampleEvent>

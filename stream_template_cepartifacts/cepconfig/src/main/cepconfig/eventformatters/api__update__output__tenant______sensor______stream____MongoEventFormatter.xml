@@ -15,7 +15,7 @@
     <inline>
 {
  <#if source.type = "Application">
-				"application": "{{meta_source}}",
+				"sensor": "{{meta_source}}",
 			<#elseif source.type = "Device">
 				"sensor": "{{meta_source}}",
 			<#else>
