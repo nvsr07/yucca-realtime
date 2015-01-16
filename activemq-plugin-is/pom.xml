@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>activemq-plugin</groupId>
   <artifactId>activemq-plugin</artifactId>
-  <version>1.0</version>
+  <version>2.0</version>
   <build>
     <extensions>
       <extension>
@@ -85,6 +85,16 @@
       <version>4.2.1</version>
     </dependency>
     <dependency>
+      <groupId>org.wso2.carbon</groupId>
+      <artifactId>org.wso2.carbon.identity.oauth.stub</artifactId>
+      <version>4.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.wso2.carbon</groupId>
+      <artifactId>org.wso2.carbon.apimgt.keymgt.stub</artifactId>
+      <version>4.2.3</version>
+    </dependency>
+    <dependency>
       <groupId>org.apache.ws.commons.axiom.wso2</groupId>
       <artifactId>axiom</artifactId>
       <version>1.2.11.wso2v1</version>
@@ -95,10 +105,10 @@
       <version>3.1.0.wso2v1</version>
       <scope>provided</scope>
       <exclusions>
-      	<exclusion>
-      		<artifactId>commons-codec</artifactId>
-      		<groupId>commons-codec</groupId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -116,10 +126,10 @@
       <artifactId>org.wso2.securevault</artifactId>
       <version>1.0.0</version>
       <exclusions>
-      	<exclusion>
-      		<artifactId>commons-codec</artifactId>
-      		<groupId>commons-codec</groupId>
-      	</exclusion>
+        <exclusion>
+          <artifactId>commons-codec</artifactId>
+          <groupId>commons-codec</groupId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>

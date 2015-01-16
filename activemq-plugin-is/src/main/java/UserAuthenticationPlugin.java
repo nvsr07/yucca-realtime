@@ -20,20 +20,32 @@ import org.apache.activemq.broker.BrokerPlugin;
 
 public class UserAuthenticationPlugin implements BrokerPlugin {
 
+    String proxyHostname= null;
+    int proxyPort=0;
+	
+    int cacheValidationInterval;
+
+// Configuration for basic authentication and rbac authorization (Wso2 Identity Server)
     String serverUrl;
     String username;
     String password;
     String jksFileLocation;
-    String proxyHostname= null;
-    int proxyPort=0;
-//    String globalPublisherRole;
-//    String globalSubscriberRole;
-//    String globalPublisherSubscriberRole;
-    int cacheValidationInterval;
-
+    
+ // Configuration for oauth2 authentication and authorization (Wso2 Api Mananger)
+    String oauthServerUrl;
+    String oauthUsername;
+    String oauthPassword;
+    
+    
+    
 
     public Broker installPlugin(Broker broker) throws Exception {
-        return new UserAuthenticationBroker(broker, serverUrl, username, password, jksFileLocation,cacheValidationInterval, proxyHostname,proxyPort);
+    	
+    	
+    	return new UserAuthenticationBroker(broker, 
+    			serverUrl, username, password, jksFileLocation,
+        		cacheValidationInterval, proxyHostname,proxyPort,
+        		oauthServerUrl, oauthUsername, oauthPassword);
     }
 
     public String getServerUrl() {
@@ -115,4 +127,29 @@ public class UserAuthenticationPlugin implements BrokerPlugin {
 	public void setProxyPort(int proxyPort) {
 		this.proxyPort = proxyPort;
 	}
+
+	public String getOauthServerUrl() {
+		return oauthServerUrl;
+	}
+
+	public void setOauthServerUrl(String oauthServerUrl) {
+		this.oauthServerUrl = oauthServerUrl;
+	}
+
+	public String getOauthUsername() {
+		return oauthUsername;
+	}
+
+	public void setOauthUsername(String oauthUsername) {
+		this.oauthUsername = oauthUsername;
+	}
+
+	public String getOauthPassword() {
+		return oauthPassword;
+	}
+
+	public void setOauthPassword(String oauthPassword) {
+		this.oauthPassword = oauthPassword;
+	}
+
 }

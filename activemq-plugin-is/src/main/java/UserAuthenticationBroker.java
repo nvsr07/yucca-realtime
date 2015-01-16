@@ -46,6 +46,13 @@ import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.axis2.transport.http.HttpTransportProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceStub;
+import org.wso2.carbon.identity.oauth2.stub.OAuth2TokenValidationServiceStub;
+import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2AccessTokenReqDTO;
+import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO;
+import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO_OAuth2AccessToken;
+import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO_TokenValidationContextParam;
+import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationResponseDTO;
 import org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceStub;
 import org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceUserStoreExceptionException;
 
@@ -65,12 +72,23 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     final String jksFileLocation;
     final String proxyHostname;
     final int proxyPort;
+    final String oauthServerUrl;
+    final String oauthUsername;
+    final String oauthPassword;
 
     final int cacheValidationInterval;
 
     String remoteUserStoreManagerAuthCookie = "";
     ServiceClient remoteUserStoreManagerServiceClient;
     RemoteUserStoreManagerServiceStub remoteUserStoreManagerServiceStub;
+
+    String oauth2TokenValidationAuthCookie = "";
+    ServiceClient oauth2TokenValidationService;
+    OAuth2TokenValidationServiceStub oAuth2TokenValidationServiceStub;
+
+    String aPIKeyValidationAuthCookie = "";
+    ServiceClient aPIKeyValidationService;
+    APIKeyValidationServiceStub aPIKeyValidationServiceStub;
 
     //To handle caching
     Map<String, AuthorizationRole[]> userSpecificRoles = new ConcurrentHashMap<String, AuthorizationRole[]>();
@@ -79,7 +97,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	
     public UserAuthenticationBroker(Broker next, String serverUrl, String username,
                                     String password, String jksFileLocation,
-                                    int cacheValidationInterval, String proxyHostname, int proxyPort) {
+                                    int cacheValidationInterval, String proxyHostname, int proxyPort,
+                                    String oauthServerUrl, String oauthUsername, String oauthPassword) {
         super(next);
         this.serverUrl = serverUrl;
         this.username = username;
@@ -88,6 +107,10 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         this.cacheValidationInterval = cacheValidationInterval;
         this.proxyHostname = proxyHostname;
         this.proxyPort = proxyPort;
+        
+        this.oauthServerUrl= oauthServerUrl;
+        this.oauthUsername = oauthUsername;
+        this.oauthPassword = oauthPassword;
         
         createAdminClients();
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -118,16 +141,34 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	public void addConnection(ConnectionContext context, ConnectionInfo info)
             throws Exception {
 
-        Options option = remoteUserStoreManagerServiceClient.getOptions();
-        option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
-        HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
-        auth.setUsername(username);
-        auth.setPassword(password);
-        auth.setPreemptiveAuthentication(true);
-        option.setProperty(HTTPConstants.AUTHENTICATE, auth);
-        option.setManageSession(true);
-
-        boolean isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
+//        Options option = remoteUserStoreManagerServiceClient.getOptions();
+//        option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
+//        HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
+//        auth.setUsername(username);
+//        auth.setPassword(password);
+//        auth.setPreemptiveAuthentication(true);
+//        option.setProperty(HTTPConstants.AUTHENTICATE, auth);
+//        option.setManageSession(true);
+		boolean isValidUser = false;
+		LOG.info("Starting authentication for username: "+info.getUserName());
+		if (info.getUserName()!=null && info.getUserName().equalsIgnoreCase("bearer"))
+		{
+			LOG.info("Starting oauth2 authentication");
+			OAuth2TokenValidationRequestDTO dto = new OAuth2TokenValidationRequestDTO();
+			OAuth2TokenValidationRequestDTO_OAuth2AccessToken tokenDto = new OAuth2TokenValidationRequestDTO_OAuth2AccessToken();
+			tokenDto.setIdentifier(info.getPassword());
+			tokenDto.setTokenType("bearer");
+			dto.setAccessToken(tokenDto);
+			OAuth2TokenValidationRequestDTO_TokenValidationContextParam[] arrayCt = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam[1];
+			arrayCt[0] = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam();
+			dto.setContext(arrayCt);
+			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
+			isValidUser = response.getValid();
+		}
+		else {
+			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
+		}
+        
         if (isValidUser) {
             super.addConnection(context, info);
         } else {
@@ -382,32 +423,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 		return true;
 	}
 
-//	public static void main(String[] args) {
-//		String[] destTokenAuth = "pippo.pluto".split("\\.");
-//		String[] destTokenToAuth = "pippo.pluto".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//		destTokenAuth = "pippo.>".split("\\.");
-//		destTokenToAuth = "pippo.pluto".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//		
-//		destTokenAuth = ">".split("\\.");
-//		destTokenToAuth = "pippo.pluto".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//
-//		System.out.println("===== FALSE =========");
-//		
-//		destTokenAuth = "pippo.pluto".split("\\.");
-//		destTokenToAuth = "pippo.>".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//
-//		destTokenAuth = "pippo.pluto.>".split("\\.");
-//		destTokenToAuth = "pippo.pluto".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//
-//		destTokenAuth = "pippo.>".split("\\.");
-//		destTokenToAuth = "pippo2.sda".split("\\.");
-//		System.out.println(isEqualWildCards(destTokenAuth, destTokenToAuth));
-//	}
+
 	
 	
 	private AuthorizationRole[] getRoleListOfUser(String userName)
@@ -427,14 +443,14 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         } else {
 			LOG.info("Roles not cached or force update, call to wso2 identity server!");
 
-            Options option = remoteUserStoreManagerServiceClient.getOptions();
-            option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
-            HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
-            auth.setUsername(username);
-            auth.setPassword(password);
-            auth.setPreemptiveAuthentication(true);
-            option.setProperty(HTTPConstants.AUTHENTICATE, auth);
-            option.setManageSession(true);
+//            Options option = remoteUserStoreManagerServiceClient.getOptions();
+//            option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
+//            HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
+//            auth.setUsername(username);
+//            auth.setPassword(password);
+//            auth.setPreemptiveAuthentication(true);
+//            option.setProperty(HTTPConstants.AUTHENTICATE, auth);
+//            option.setManageSession(true);
             String[] allRoleNames = remoteUserStoreManagerServiceStub.getRoleListOfUser(userName);
             
             ArrayList<AuthorizationRole> roles = new ArrayList<AuthorizationRole>();
@@ -464,84 +480,91 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         /**
          * trust store path.  this must contains server's  certificate or Server's CA chain
          */
-
         String trustStore = jksFileLocation + File.separator + "wso2carbon.jks";
-
         /**
          * Call to https://localhost:9443/services/   uses HTTPS protocol.
          * Therefore we to validate the server certificate or CA chain. The server certificate is looked up in the
          * trust store.
          * Following code sets what trust-store to look for and its JKs password.
          */
-
         System.setProperty("javax.net.ssl.trustStore", trustStore);
-
         System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");
-
         /**
          * Axis2 configuration context
          */
         ConfigurationContext configContext;
 
         try {
-
             /**
              * Create a configuration context. A configuration context contains information for
              * axis2 environment. This is needed to create an axis2 service client
              */
             configContext = ConfigurationContextFactory.createConfigurationContextFromFileSystem(null, null);
-
             /**
              * end point url with service name
              */
+            // RemoteUserStoreManager
             String remoteUserStoreManagerServiceEndPoint = serverUrl + "/services/" + "RemoteUserStoreManagerService";
-
-            /**
-             * create stub and service client
-             */
             remoteUserStoreManagerServiceStub = new RemoteUserStoreManagerServiceStub(configContext, remoteUserStoreManagerServiceEndPoint);
             remoteUserStoreManagerServiceClient = remoteUserStoreManagerServiceStub._getServiceClient();
-            Options option = remoteUserStoreManagerServiceClient.getOptions();
-
-            /**
-             * Setting a authenticated cookie that is received from Carbon server.
-             * If you have authenticated with Carbon server earlier, you can use that cookie, if
-             * it has not been expired
-             */
-            option.setProperty(HTTPConstants.COOKIE_STRING, null);
-            
-            
-            /**
-             *  Setting proxy property if exists
-             */
-
-            if (proxyHostname!=null && !proxyHostname.trim().isEmpty())
-            {
-	            HttpTransportProperties.ProxyProperties proxyProperties = new HttpTransportProperties.ProxyProperties();
-	            proxyProperties.setProxyName(proxyHostname);
-	            proxyProperties.setProxyPort(proxyPort);
-	            
-	            option.setProperty(HTTPConstants.PROXY,proxyProperties);
-            }
-
-            /**
-             * Setting basic auth headers for authentication for carbon server
-             */
-            HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
-            auth.setUsername(username);
-            auth.setPassword(password);
-            auth.setPreemptiveAuthentication(true);
-            option.setProperty(HTTPConstants.AUTHENTICATE, auth);
-            option.setManageSession(true);
-
-
+            Options optionRemoteUser = remoteUserStoreManagerServiceClient.getOptions();
+            setProxyToOptions(optionRemoteUser, username, password);
             remoteUserStoreManagerAuthCookie = (String) remoteUserStoreManagerServiceStub._getServiceClient().getServiceContext()
                     .getProperty(HTTPConstants.COOKIE_STRING);
 
+            
+            String oAuth2TokenValidationServiceEndPoint = oauthServerUrl + "/services/" + "OAuth2TokenValidationService";
+            oAuth2TokenValidationServiceStub = new OAuth2TokenValidationServiceStub(configContext, oAuth2TokenValidationServiceEndPoint);
+            oauth2TokenValidationService = oAuth2TokenValidationServiceStub._getServiceClient();
+            Options optionOauth2Validation = oauth2TokenValidationService.getOptions();
+            setProxyToOptions(optionOauth2Validation, oauthUsername, oauthPassword);
+            oauth2TokenValidationAuthCookie = (String) oAuth2TokenValidationServiceStub._getServiceClient().getServiceContext()
+                    .getProperty(HTTPConstants.COOKIE_STRING);
+
+            
+            String aPIKeyValidationServiceEndPoint  = oauthServerUrl + "/services/" + "APIKeyValidationService";
+            aPIKeyValidationServiceStub = new APIKeyValidationServiceStub(configContext, aPIKeyValidationServiceEndPoint);
+            aPIKeyValidationService = aPIKeyValidationServiceStub._getServiceClient();
+            Options optionApiKeyValidation = aPIKeyValidationService.getOptions();
+            setProxyToOptions(optionApiKeyValidation, oauthUsername, oauthPassword);
+            aPIKeyValidationAuthCookie = (String) aPIKeyValidationServiceStub._getServiceClient().getServiceContext()
+                    .getProperty(HTTPConstants.COOKIE_STRING);
+
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+	private void setProxyToOptions(Options option,String username, String password) {
+		/**
+		 * Setting a authenticated cookie that is received from Carbon server.
+		 * If you have authenticated with Carbon server earlier, you can use that cookie, if
+		 * it has not been expired
+		 */
+		option.setProperty(HTTPConstants.COOKIE_STRING, null);        
+		/**
+		 *  Setting proxy property if exists
+		 */
+		if (proxyHostname!=null && !proxyHostname.trim().isEmpty())
+		{
+		    HttpTransportProperties.ProxyProperties proxyProperties = new HttpTransportProperties.ProxyProperties();
+		    proxyProperties.setProxyName(proxyHostname);
+		    proxyProperties.setProxyPort(proxyPort);   
+		    option.setProperty(HTTPConstants.PROXY,proxyProperties);
+		}
+		/**
+		 * Setting basic auth headers for authentication for carbon server
+		 */
+		HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
+		auth.setUsername(username);
+		auth.setPassword(password);
+		auth.setPreemptiveAuthentication(true);
+		option.setProperty(HTTPConstants.AUTHENTICATE, auth);
+		option.setManageSession(true);
+	}
 
 
 
