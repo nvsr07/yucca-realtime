@@ -38,6 +38,7 @@ import org.apache.activemq.command.ConsumerInfo;
 import org.apache.activemq.command.DestinationInfo;
 import org.apache.activemq.command.Message;
 import org.apache.activemq.command.ProducerInfo;
+import org.apache.axis2.addressing.EndpointReference;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.context.ConfigurationContext;
@@ -46,6 +47,10 @@ import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.axis2.transport.http.HttpTransportProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wso2.carbon.apimgt.api.model.xsd.URITemplate;
+import org.wso2.carbon.apimgt.impl.dto.xsd.APIKeyValidationInfoDTO;
+import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceAPIKeyMgtException;
+import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceAPIManagementException;
 import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceStub;
 import org.wso2.carbon.identity.oauth2.stub.OAuth2TokenValidationServiceStub;
 import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2AccessTokenReqDTO;
@@ -58,7 +63,10 @@ import org.wso2.carbon.um.ws.api.stub.RemoteUserStoreManagerServiceUserStoreExce
 
 public class UserAuthenticationBroker extends BrokerFilter implements UserAuthenticationBrokerMBean {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserAuthenticationBroker.class);
+    private static final String PREFIX_CONTEXT_TOPIC = "/api/topic/";
+
+
+	private static final Logger LOG = LoggerFactory.getLogger(UserAuthenticationBroker.class);
 
 	
     private static final String SEPARATOR = "-";
@@ -89,6 +97,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     String aPIKeyValidationAuthCookie = "";
     ServiceClient aPIKeyValidationService;
     APIKeyValidationServiceStub aPIKeyValidationServiceStub;
+    
+    ServiceClient simpleRestClient;
 
     //To handle caching
     Map<String, AuthorizationRole[]> userSpecificRoles = new ConcurrentHashMap<String, AuthorizationRole[]>();
@@ -141,22 +151,14 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	public void addConnection(ConnectionContext context, ConnectionInfo info)
             throws Exception {
 
-//        Options option = remoteUserStoreManagerServiceClient.getOptions();
-//        option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
-//        HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
-//        auth.setUsername(username);
-//        auth.setPassword(password);
-//        auth.setPreemptiveAuthentication(true);
-//        option.setProperty(HTTPConstants.AUTHENTICATE, auth);
-//        option.setManageSession(true);
 		boolean isValidUser = false;
 		LOG.info("Starting authentication for username: "+info.getUserName());
-		if (info.getUserName()!=null && info.getUserName().equalsIgnoreCase("bearer"))
+		if (isBearer(info.getUserName()))
 		{
 			LOG.info("Starting oauth2 authentication");
 			OAuth2TokenValidationRequestDTO dto = new OAuth2TokenValidationRequestDTO();
 			OAuth2TokenValidationRequestDTO_OAuth2AccessToken tokenDto = new OAuth2TokenValidationRequestDTO_OAuth2AccessToken();
-			tokenDto.setIdentifier(info.getPassword());
+			tokenDto.setIdentifier(extractToken(info.getUserName()));
 			tokenDto.setTokenType("bearer");
 			dto.setAccessToken(tokenDto);
 			OAuth2TokenValidationRequestDTO_TokenValidationContextParam[] arrayCt = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam[1];
@@ -177,6 +179,52 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     }
 
 
+	private static boolean isBearer(String username) {
+		return username!=null && username.trim().startsWith("Bearer ");
+	}
+
+
+	private static boolean isGuest(String username) {
+		return username!=null && username.equals("guest");
+	}
+
+	private static String extractToken(String username) {
+		if (isGuest(username))
+			return null;
+		else
+			return username.trim().substring(7).trim();
+	}
+
+	private static String extractContext(String physicalName) {
+		LOG.debug("Search for auxiliary topic (like aux, errors) (4 element after .)");
+		StringBuilder build = new StringBuilder();
+		String[] destTokenAuth = physicalName.split("\\.");
+		int maxSize = destTokenAuth.length>3?3:destTokenAuth.length;
+		for (int i = 0; i < maxSize; i++) {
+			build.append(destTokenAuth[i]);
+			if (i < maxSize-1)
+				build.append(".");
+		}
+
+		return PREFIX_CONTEXT_TOPIC+build.toString();
+	}
+
+//	public static void main(String[] args) {
+//		String destTokenAuth = "output.csp.aa_ss.stats";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//		destTokenAuth = "output.csp.aa_ss.stats.sad.dsa.sda.sad.";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//		destTokenAuth = "output.platform.errors";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//		destTokenAuth = "output.csp.aa_ss";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//		destTokenAuth = "input.csp";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//		destTokenAuth = "input";
+//		System.out.println("-----------"+extractContext(destTokenAuth));
+//	}
+//	
+	
     public Subscription addConsumer(ConnectionContext context, ConsumerInfo info) throws Exception {
 
     	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
@@ -186,22 +234,15 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
             return super.addConsumer(context, info);
         }
     	
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.READ,info.getDestination()))
-				{
-                    return super.addConsumer(context, info);					
-				}
-			}
-        }
+		if (isUserAuthorized(context.getUserName(), info.getDestination(),Operation.READ)){
+			return super.addConsumer(context, info);	
+		}
         throw new SecurityException("Not a valid user "+context.getUserName() +" to subscribe : " + info.toString() + ".");
         
     }
 
+
+	
 
 
 	@Override
@@ -270,20 +311,9 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         {
             return super.addDestination(context, destination, createIfTemporary);
         }
-
-    	
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.ADMIN,destination))
-						{
-					    	return super.addDestination(context, destination, createIfTemporary);
-						}
-			}
-        }
+        if (isUserAuthorized(context.getUserName(), destination,Operation.ADMIN)){
+			return super.addDestination(context, destination, createIfTemporary);
+		}
         throw new SecurityException("Not a valid user "+context.getUserName() +" to admin : " + destination.toString() + ".");
 
     	
@@ -300,20 +330,11 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
             super.addDestinationInfo(context, info);
             return;
         }
+        if (isUserAuthorized(context.getUserName(), info.getDestination(),Operation.ADMIN)){
+        	super.addDestinationInfo(context, info);
+	    	return;
+		}
 
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.ADMIN,info.getDestination()))
-						{
-							super.addDestinationInfo(context, info);
-							return;
-						}
-			}
-        }
         throw new SecurityException("Not a valid user "+context.getUserName() +" to admin : " + info.getDestination().toString() + ".");    	
     	
     	
@@ -385,7 +406,63 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 			return context.getSecurityContext().isBrokerContext();
 		return false;
 	}
-
+	
+	/***
+	 * Logic used:
+	 * 1. Guest is authorized only if authenticationType is None.
+	 * 2. Bearer token is authorized if authenticationType is None or key is subscribed to api
+	 * 3. Username is authorized if authenticationType is None or has role on Identity server 
+	 * 
+	 * @param username
+	 * @param destination
+	 * @param operation
+	 * @return
+	 * @throws RemoteException
+	 * @throws APIKeyValidationServiceAPIKeyMgtException
+	 * @throws APIKeyValidationServiceAPIManagementException
+	 * @throws Exception
+	 * @throws RemoteUserStoreManagerServiceUserStoreExceptionException
+	 */
+	private boolean isUserAuthorized(String username, ActiveMQDestination destination,Operation operation  )
+			throws RemoteException, APIKeyValidationServiceAPIKeyMgtException,
+			APIKeyValidationServiceAPIManagementException, Exception,
+			RemoteUserStoreManagerServiceUserStoreExceptionException {
+		
+		// always true
+		URITemplate[] templates = aPIKeyValidationServiceStub.getAllURITemplates(extractContext(destination.getPhysicalName()), "1.0");
+		if (templates!=null && templates.length>0)
+		{
+			if ("None".equals(templates[0].getAuthType()))
+				return true;
+		}
+		
+		if (isBearer(username))
+		{
+			LOG.info("Starting oauth2 Validation for addConsumer");
+			APIKeyValidationInfoDTO dto = aPIKeyValidationServiceStub.validateKey(extractContext(destination.getPhysicalName()), "1.0", 
+					extractToken(username), "Any", null, null, "GET");
+			if (dto!=null && dto.getAuthorized())
+			{
+				return true;				
+			}
+		}
+		else {
+        
+	        AuthorizationRole[] roleNames = getRoleListOfUser(username);
+	
+	        if (roleNames!=null)
+	        {
+	        	for (int i = 0; i < roleNames.length; i++) {
+					AuthorizationRole authorizationRole = roleNames[i];
+					if (isAuthorized(authorizationRole,operation,destination))
+					{
+						return true;					
+					}
+				}
+	        }
+		}
+		return false;
+	}
     
 	private boolean isAuthorized(AuthorizationRole authorizationRole,
 			Operation operation, ActiveMQDestination destination) {
@@ -443,14 +520,6 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         } else {
 			LOG.info("Roles not cached or force update, call to wso2 identity server!");
 
-//            Options option = remoteUserStoreManagerServiceClient.getOptions();
-//            option.setProperty(HTTPConstants.COOKIE_STRING, remoteUserStoreManagerAuthCookie);
-//            HttpTransportProperties.Authenticator auth = new HttpTransportProperties.Authenticator();
-//            auth.setUsername(username);
-//            auth.setPassword(password);
-//            auth.setPreemptiveAuthentication(true);
-//            option.setProperty(HTTPConstants.AUTHENTICATE, auth);
-//            option.setManageSession(true);
             String[] allRoleNames = remoteUserStoreManagerServiceStub.getRoleListOfUser(userName);
             
             ArrayList<AuthorizationRole> roles = new ArrayList<AuthorizationRole>();
