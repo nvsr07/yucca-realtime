@@ -46,6 +46,7 @@ import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.axis2.transport.http.HttpTransportProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.wso2.carbon.apimgt.impl.dto.xsd.APIKeyValidationInfoDTO;
 import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceStub;
 import org.wso2.carbon.identity.oauth2.stub.OAuth2TokenValidationServiceStub;
 import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2AccessTokenReqDTO;
@@ -151,12 +152,12 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 //        option.setManageSession(true);
 		boolean isValidUser = false;
 		LOG.info("Starting authentication for username: "+info.getUserName());
-		if (info.getUserName()!=null && info.getUserName().equalsIgnoreCase("bearer"))
+		if (isBearer(info.getUserName()))
 		{
 			LOG.info("Starting oauth2 authentication");
 			OAuth2TokenValidationRequestDTO dto = new OAuth2TokenValidationRequestDTO();
 			OAuth2TokenValidationRequestDTO_OAuth2AccessToken tokenDto = new OAuth2TokenValidationRequestDTO_OAuth2AccessToken();
-			tokenDto.setIdentifier(info.getPassword());
+			tokenDto.setIdentifier(extractToken(info.getUserName()));
 			tokenDto.setTokenType("bearer");
 			dto.setAccessToken(tokenDto);
 			OAuth2TokenValidationRequestDTO_TokenValidationContextParam[] arrayCt = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam[1];
@@ -177,6 +178,14 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     }
 
 
+	private boolean isBearer(String username) {
+		return username!=null && username.startsWith("bearer: ");
+	}
+
+	private String extractToken(String username) {
+		return username.substring(8).trim();
+	}
+
     public Subscription addConsumer(ConnectionContext context, ConsumerInfo info) throws Exception {
 
     	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
@@ -186,18 +195,31 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
             return super.addConsumer(context, info);
         }
     	
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.READ,info.getDestination()))
-				{
-                    return super.addConsumer(context, info);					
-				}
+		if (isBearer(context.getUserName()))
+		{
+			LOG.info("Starting oauth2 Validation");
+			APIKeyValidationInfoDTO dto = aPIKeyValidationServiceStub.validateKey("/topic/"+info.getDestination().getPhysicalName(), "1.0", 
+					extractToken(context.getUserName()), "Any", null, null, "GET");
+			if (dto!=null && dto.getAuthorized())
+			{
+                return super.addConsumer(context, info);					
 			}
-        }
+		}
+		else {
+        
+	        AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
+	
+	        if (roleNames!=null)
+	        {
+	        	for (int i = 0; i < roleNames.length; i++) {
+					AuthorizationRole authorizationRole = roleNames[i];
+					if (isAuthorized(authorizationRole,Operation.READ,info.getDestination()))
+					{
+	                    return super.addConsumer(context, info);					
+					}
+				}
+	        }
+		}
         throw new SecurityException("Not a valid user "+context.getUserName() +" to subscribe : " + info.toString() + ".");
         
     }
@@ -270,20 +292,31 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         {
             return super.addDestination(context, destination, createIfTemporary);
         }
-
-    	
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.ADMIN,destination))
-						{
-					    	return super.addDestination(context, destination, createIfTemporary);
-						}
+		if (isBearer(context.getUserName()))
+		{
+			LOG.info("Starting oauth2 Validation");
+			APIKeyValidationInfoDTO dto = aPIKeyValidationServiceStub.validateKey("/topic/"+destination.getPhysicalName(), "1.0", 
+					extractToken(context.getUserName()), "Any", null, null, "GET");
+			if (dto!=null && dto.getAuthorized())
+			{
+		    	return super.addDestination(context, destination, createIfTemporary);
 			}
-        }
+		}
+		else {
+    	
+	    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
+	
+	        if (roleNames!=null)
+	        {
+	        	for (int i = 0; i < roleNames.length; i++) {
+					AuthorizationRole authorizationRole = roleNames[i];
+					if (isAuthorized(authorizationRole,Operation.ADMIN,destination))
+					{
+				    	return super.addDestination(context, destination, createIfTemporary);
+					}
+				}
+	        }
+		}
         throw new SecurityException("Not a valid user "+context.getUserName() +" to admin : " + destination.toString() + ".");
 
     	
@@ -300,20 +333,32 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
             super.addDestinationInfo(context, info);
             return;
         }
-
-    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
-
-        if (roleNames!=null)
-        {
-        	for (int i = 0; i < roleNames.length; i++) {
-				AuthorizationRole authorizationRole = roleNames[i];
-				if (isAuthorized(authorizationRole,Operation.ADMIN,info.getDestination()))
-						{
-							super.addDestinationInfo(context, info);
-							return;
-						}
+		if (isBearer(context.getUserName()))
+		{
+			LOG.info("Starting oauth2 Validation");
+			APIKeyValidationInfoDTO dto = aPIKeyValidationServiceStub.validateKey("/topic/"+info.getDestination().getPhysicalName(), "1.0", 
+					extractToken(context.getUserName()), "Any", null, null, "GET");
+			if (dto!=null && dto.getAuthorized())
+			{
+		    	super.addDestinationInfo(context, info);
+		    	return;
 			}
-        }
+		}
+		else {
+	    	AuthorizationRole[] roleNames = getRoleListOfUser(context.getUserName());
+	
+	        if (roleNames!=null)
+	        {
+	        	for (int i = 0; i < roleNames.length; i++) {
+					AuthorizationRole authorizationRole = roleNames[i];
+					if (isAuthorized(authorizationRole,Operation.ADMIN,info.getDestination()))
+							{
+								super.addDestinationInfo(context, info);
+								return;
+							}
+				}
+	        }
+		}
         throw new SecurityException("Not a valid user "+context.getUserName() +" to admin : " + info.getDestination().toString() + ".");    	
     	
     	
