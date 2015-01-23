@@ -117,5 +117,19 @@
 "username":"",
 "password":""
 }</#if>
+<#if stream.published?? && stream.published ="true">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Publicazione del api sullo store",
+"actionType":"MongoInstallation",
+"sourceType":"api",
+"source":"",
+"action":"",
+"destination":"${mongoconnection.url}store/apiCreateStreamStore",
+"returnExpected":"",
+"validityControl":"KO",
+"username":"",
+"password":""
+}</#if>
 ]
 }
