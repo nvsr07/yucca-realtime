@@ -18,7 +18,6 @@
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
 }
-<#if mb_has_next>,</#if>
 </#if>
 <#if stream.persisted?? && stream.persisted ="true">
 ,{
@@ -34,6 +33,7 @@
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
 }</#if>
+<#if mb_has_next>,</#if>
 </#list>
 <#if stream.persisted?? && stream.persisted ="true">
 ,{
