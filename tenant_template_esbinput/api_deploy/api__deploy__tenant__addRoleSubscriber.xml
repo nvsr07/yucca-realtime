@@ -1,0 +1,11 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRoleSubscriber.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:addRole>
+         <xsd:roleName>${tenant.code}_subscriber</xsd:roleName>
+         <xsd:isSharedRole>false</xsd:isSharedRole>
+      </xsd:addRole>
+   </soapenv:Body>
+</soapenv:Envelope>

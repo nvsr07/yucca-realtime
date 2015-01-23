@@ -1,0 +1,13 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRoleSubscriberToAdmin.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:addRemoveUsersOfRole>
+         <xsd:roleName>${tenant.code}_subscriber</xsd:roleName>
+         <!--Zero or more repetitions:-->
+         <xsd:newUsers>admin</xsd:newUsers>
+         <xsd:deletedUsers></xsd:deletedUsers>
+      </xsd:addRemoveUsersOfRole>
+   </soapenv:Body>
+</soapenv:Envelope>

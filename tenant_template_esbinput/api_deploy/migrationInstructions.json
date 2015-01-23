@@ -1,52 +1,12 @@
 <#assign x = 1> 
 {
 "steps": [
-<#list mbs as mb>
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione della applicazione .car facendo l'upload via webservice sul ESB.", 
-"actionType":"CarInstallation",
-"sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__uploadApp.xml",
-"action":"uploadApp",
-"destination":"${mb.host}/services/CarbonAppUploader",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}",
-"attachmentPath":"target/${tenant.code}_inputeventscap_1.0.0.car"
-},{
-"number": "${x}",<#assign x = x+1> 
-"description":"Verifica Installazione avvenuta  dell'applicazione .car", 
+"description":"Aggiunta Ruolo ${tenant.code}_subscriber", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__listAllApplications.xml",
-"action":"listAllApplications",
-"destination":"${mb.host}/services/ApplicationAdmin",
-"returnExpected":"200", 
-"successControl":"${tenant.code}_inputeventscap_1.0.0",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-},
-</#list>
-{
-"number": "${x}",<#assign x = x+1> 
-"description":"Inserimento del tenant su MongoDB",
-"actionType":"MongoInstallation",
-"sourceType":"api",
-"source":"",
-"action":"",
-"destination":"${mongoconnection.url}",
-"returnExpected":"",
-"validityControl":"KO",
-"username":"",
-"password":""
-},{
-"number": "${x}",<#assign x = x+1> 
-"description":"Aggiunta Ruolo per topic", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__addRole.xml",
+"source":"target/api__deploy__${tenant.code}__addRoleSubscriber.xml",
 "action":"addRole",
 "destination":"${identityserver.url}/services/UserAdmin",
 "returnExpected":"200", 
@@ -55,10 +15,10 @@
 "password":"${identityserver.secpassword}"
 },{
 "number": "${x}",<#assign x = x+1> 
-"description":"Aggiunta User ", 
+"description":"Aggiunta Ruolo ${tenant.code}_subscriber ad admin", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__addUser.xml",
+"source":"target/api__deploy__${tenant.code}__addRoleSubscriberToAdmin.xml",
 "action":"addUser",
 "destination":"${identityserver.url}/services/UserAdmin",
 "returnExpected":"200", 
