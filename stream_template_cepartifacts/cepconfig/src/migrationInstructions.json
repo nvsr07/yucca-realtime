@@ -17,10 +17,11 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},
+}
+<#if mb_has_next>,</#if>
 </#if>
 <#if stream.persisted?? && stream.persisted ="true">
-{
+,{
 "number": "${x}",<#assign x = x+1> 
 "description":"Update event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
 "actionType":"WebServiceCall",
@@ -32,20 +33,35 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},</#if>
+}</#if>
 </#list>
-{
+<#if stream.persisted?? && stream.persisted ="true">
+,{
 "number": "${x}",<#assign x = x+1> 
 "description":"Inserimento dei metadati dello stream su MongoDB",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
 "action":"",
-"destination":"${mongoconnection.url}",
+"destination":"${mongoconnection.url}metadata/insertFromStream",
 "returnExpected":"",
 "validityControl":"KO",
 "username":"",
 "password":""
-}
+}</#if>
+<#if stream.published?? && stream.published ="true">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Publicazione del api sullo store",
+"actionType":"MongoInstallation",
+"sourceType":"api",
+"source":"",
+"action":"",
+"destination":"${mongoconnection.url}store/apiCreateStreamStore",
+"returnExpected":"",
+"validityControl":"KO",
+"username":"",
+"password":""
+}</#if>
 ]
 }
