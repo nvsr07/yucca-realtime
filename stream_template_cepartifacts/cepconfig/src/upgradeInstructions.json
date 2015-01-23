@@ -111,7 +111,7 @@
 "sourceType":"api",
 "source":"",
 "action":"",
-"destination":"${mongoconnection.url}",
+"destination":"${mongoconnection.url}metadata/insertFromStream",
 "returnExpected":"",
 "validityControl":"KO",
 "username":"",
