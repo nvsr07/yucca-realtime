@@ -1,55 +1,70 @@
 expert: true
 data: {
     mbs: [
-        
-    	{
-    	    num: "mb1"
-            host: "https://tst-sdnet-cep1.sdp.csi.it:9446/wso003"
-			secuser: "admin"
-			secpassword: "myadmin"
-    	}
-    	
+
+        {
+            num: "mb1"
+            host: "https://int-sdnet-mb1.sdp.csi.it:9446/wso003"
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
+        {
+            num: "mb2"
+            host: "https://int-sdnet-mb2.sdp.csi.it:9446/wso003"
+                        secuser: "admin"
+                        secpassword: "aekaiCh8"
+        }
+
     ]
     esbinfo:
     {
-        host: "https://tst-sdnet-esbin1.sdp.csi.it:9444/wso001"
+        host: "https://int-sdnet-esbin1.sdp.csi.it:9445/wso002"
         secuser: "admin"
-        secpassword: "myadmin"
+        secpassword: "fiiThoo6"
     }
-	tenant: {
-		code: "sandbox"
-	}
-	source: {
-         type: "Internal"
-         code: "internal"
-         code_: "internal"
-    }
-	stream: {
-		code: "temp"
-		published: "true"
-		persisted:"true"
-	}
-	mongoconnection:
+    mongoconnection:
     {
-     url: "@properties:server_configuration.properties mongodb.url@"
+        url: "http://int-sdnet-up1.sdp.csi.it:10110/datamanagementapi/api/metadata/insertFromStream"
+        user: "cep"
+        password: "mypass"
     }
-	internalStreamInfo:[
-	
-    	{
-    		aliasName : "input0"
-    		streamId : "10"
-    	}
-    
-    	{
-    		aliasName : "input1"
-    		streamId : "11"
-    	}
-    
-	]
-	internalQuery:{
-    	query: "from"
-	}
-	components: [
-		
-	]
+        tenant: {
+                code: "sandbox"
+        }
+        source: {
+         type: "Device"
+         code: "aa83b06f-aac1-4e06-a5ad-637e7055cbc1"
+         code_: "aa83b06f_aac1_4e06_a5ad_637e7055cbc1"
+    }
+        stream: {
+                code: "provaPositionFromso"
+                published: "false"
+ persisted: "true"
+        }
+        internalStreamInfo:[
+
+        ]
+        internalQuery:{
+        query: "null"
+        }
+        components: [
+
+                {
+                        code:"stringa"
+                        type:"string"
+                }
+
+                {
+                        code:"coordX"
+                        type:"longitude"
+                }
+
+                {
+                        code:"coordY"
+                        type:"string"
+                }
+
+        ]
 }
+                

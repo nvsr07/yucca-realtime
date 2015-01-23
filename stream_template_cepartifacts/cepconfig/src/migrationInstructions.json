@@ -1,20 +1,39 @@
-<#if stream.persisted?? && stream.persisted ="true">
+# Migrazione alla 0.8.1 cambia solo i metadati 
+
 <#assign x = 1> 
 {
-"steps": [<#list mbs as mb>
+"steps": [
+<#list mbs as mb>
+<#if source.type!="Internal">
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"description":"Update event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/eventformatters/api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
+"source":"cepconfig/eventbuilders/api__update__${mb.num}__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
+"action":"deployJsonEventBuilderConfiguration",
+"destination":"${mb.host}/services/EventBuilderAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+</#if>
+<#if stream.persisted?? && stream.persisted ="true">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Update event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
 "action":"deployJsonEventFormatterConfiguration",
 "destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},</#list>
+},</#if>
+</#list>
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Inserimento dei metadati dello stream su MongoDB",
@@ -30,4 +49,3 @@
 }
 ]
 }
-</#if>
