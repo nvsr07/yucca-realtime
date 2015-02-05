@@ -145,7 +145,7 @@
 <#if stream.persisted?? && stream.persisted ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Inserimento dei metadati dello stream su MongoDB",
+"description":"Inserimento dei metadati dello stream su MongoDB e creazione odata api",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
@@ -159,7 +159,7 @@
 <#if stream.published?? && stream.published ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Publicazione del api sullo store",
+"description":"Publicazione del api sullo store per lo stream",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",

@@ -1,44 +1,12 @@
-# Migrazione alla 0.8.1 cambia solo i metadati 
+# Migrazione alla 1.0.0 , pubblicazione store  
 
 <#assign x = 1> 
 {
 "steps": [
-<#list mbs as mb>
-<#if source.type!="Internal">
+<#if stream.persisted?? && stream.persisted ="true">
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Update event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventbuilders/api__update__${mb.num}__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
-"action":"deployJsonEventBuilderConfiguration",
-"destination":"${mb.host}/services/EventBuilderAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}
-</#if>
-<#if stream.persisted?? && stream.persisted ="true">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Update event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
-"action":"deployJsonEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}</#if>
-<#if mb_has_next>,</#if>
-</#list>
-<#if stream.persisted?? && stream.persisted ="true">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Inserimento dei metadati dello stream su MongoDB",
+"description":"Inserimento dei metadati dello stream su MongoDB e creazione odata api",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
@@ -48,9 +16,9 @@
 "validityControl":"KO",
 "username":"",
 "password":""
-}</#if>
+},</#if>
 <#if stream.published?? && stream.published ="true">
-,{
+{
 "number": "${x}",<#assign x = x+1> 
 "description":"Publicazione del api sullo store",
 "actionType":"MongoInstallation",
