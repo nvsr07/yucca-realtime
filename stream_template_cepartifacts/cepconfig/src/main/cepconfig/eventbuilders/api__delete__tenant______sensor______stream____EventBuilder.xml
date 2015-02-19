@@ -1,0 +1,17 @@
+<@pp.dropOutputFile />
+<#if source.type!="Internal">
+<#list mbs as mb>
+<@pp.changeOutputFile
+name="api__delete__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
+/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:undeployActiveEventBuilderConfiguration>
+         <!--Optional:-->
+         <int:eventBuilderName>${tenant.code}__${source.code_}__${stream.code}__EventBuilder</int:eventBuilderName>
+      </int:undeployActiveEventBuilderConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
+ </#list>
+</#if>
