@@ -209,21 +209,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 		return PREFIX_CONTEXT_TOPIC+build.toString();
 	}
 
-//	public static void main(String[] args) {
-//		String destTokenAuth = "output.csp.aa_ss.stats";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//		destTokenAuth = "output.csp.aa_ss.stats.sad.dsa.sda.sad.";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//		destTokenAuth = "output.platform.errors";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//		destTokenAuth = "output.csp.aa_ss";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//		destTokenAuth = "input.csp";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//		destTokenAuth = "input";
-//		System.out.println("-----------"+extractContext(destTokenAuth));
-//	}
-//	
+
 	
     public Subscription addConsumer(ConnectionContext context, ConsumerInfo info) throws Exception {
 
@@ -274,7 +260,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	
     public void send(ProducerBrokerExchange producerExchange, Message messageSend)
             throws Exception {
-    	LOG.debug(">>>>>>send:"+messageSend.getDestination());
+    	LOG.trace(">>>>>>send:"+messageSend.getDestination());
 
         if (isBrokerAccess(producerExchange.getConnectionContext(), messageSend.getDestination()))
         {
@@ -306,7 +292,10 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		throws Exception {
     	
     	LOG.debug(">>>>>>AddDestination:"+destination);
-
+        Destination existing = this.getDestinationMap().get(destination);
+        if (existing != null) {
+        	return super.addDestination(context, destination, createIfTemporary);
+        }
         if (isBrokerAccess(context, destination))
         {
             return super.addDestination(context, destination, createIfTemporary);
@@ -324,7 +313,11 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		DestinationInfo info) throws Exception {
 
     	LOG.debug(">>>>>>AddDestinationInfpo:"+info.getDestination());
-
+        Destination existing = this.getDestinationMap().get(info.getDestination());
+        if (existing != null) {
+            super.addDestinationInfo(context, info);
+            return;
+        }
         if (isBrokerAccess(context, info.getDestination()))
         {
             super.addDestinationInfo(context, info);
@@ -345,6 +338,12 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		ActiveMQDestination destination, long timeout) throws Exception {
     	LOG.debug(">>>>>>RemoveDestinatrion:"+destination);
 
+        Destination existing = this.getDestinationMap().get(destination);
+        if (existing != null) {
+            super.removeDestination(context, destination, timeout);
+            return;
+        }
+    	
         if (isBrokerAccess(context, destination))
         {
             super.removeDestination(context, destination, timeout);
@@ -373,6 +372,12 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		DestinationInfo info) throws Exception {
     	LOG.debug(">>>>>>RemoveDestinaiotnINfo:"+info.getDestination());
 
+    	Destination existing = this.getDestinationMap().get(info.getDestination());
+        if (existing != null) {
+            super.removeDestinationInfo(context, info);
+            return;
+        }
+    	
         if (isBrokerAccess(context, info.getDestination()))
         {
             super.removeDestinationInfo(context, info);
@@ -429,6 +434,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 			RemoteUserStoreManagerServiceUserStoreExceptionException {
 		
 		// always true
+		LOG.info("Calling api manager -> username["+username+"],destination["+destination.getPhysicalName()+"],operation["+operation.name+"]");
 		URITemplate[] templates = aPIKeyValidationServiceStub.getAllURITemplates(extractContext(destination.getPhysicalName()), "1.0");
 		if (templates!=null && templates.length>0)
 		{
