@@ -1,0 +1,15 @@
+<@pp.dropOutputFile />
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__delete__input__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:removeEventStreamInfo>
+         <!--Optional:-->
+         <int:eventStreamName>input__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamName>
+         <!--Optional:-->
+         <int:eventStreamVersion>1.0.0</int:eventStreamVersion>
+      </int:removeEventStreamInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

@@ -1,0 +1,13 @@
+<@pp.dropOutputFile />
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__delete__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextResource.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.resource.registry.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:delete>
+         <!--Optional:-->
+         <ser:pathToDelete>/_system/governance/xsd/${tenant.code}/${source.code}_${stream.code}Types.xsd</ser:pathToDelete>
+      </ser:delete>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

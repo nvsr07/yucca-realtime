@@ -1,0 +1,11 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__delete__process__"+tenant.code+"__"+source.code_+"_"+stream.code+"__ExecutionPlan.xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adm="http://admin.processor.event.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <adm:undeployActiveExecutionPlanConfiguration>
+         <!--Optional:-->
+         <adm:name>process__${tenant.code}__${source.code_}__${stream.code}__ExecutionPlan</adm:name>
+      </adm:undeployActiveExecutionPlanConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
