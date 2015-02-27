@@ -182,8 +182,10 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		else {
     			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
     		}
-    		if (!isValidUser)
-    			throw new SecurityException("Not a valid user "+context.getUserName() +" connection");
+    		if (!isValidUser) {
+                context.setSecurityContext(null);
+    			throw new SecurityException("Not a valid user "+info.getUserName() +" connection");
+    		}
     		else
     		{
     			s = new SecurityContext(info.getUserName()) {
@@ -445,8 +447,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     
 	private boolean isBrokerAccess(ConnectionContext context, ActiveMQDestination dest) {
 		
-//		if (dest==null || dest.getPhysicalName().startsWith("ActiveMQ.Advisory"))
-//			return true;
+		if (dest==null || dest.getPhysicalName().startsWith("ActiveMQ.Advisory"))
+			return true;
 		if (context.getSecurityContext()!=null && context.getSecurityContext().isBrokerContext())
 			return true;
 		if (context.getUserName()!=null && context.getUserName().equals("system"))
