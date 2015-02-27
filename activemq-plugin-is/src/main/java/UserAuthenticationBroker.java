@@ -17,8 +17,12 @@
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.rmi.RemoteException;
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -38,7 +42,7 @@ import org.apache.activemq.command.ConsumerInfo;
 import org.apache.activemq.command.DestinationInfo;
 import org.apache.activemq.command.Message;
 import org.apache.activemq.command.ProducerInfo;
-import org.apache.axis2.addressing.EndpointReference;
+import org.apache.activemq.security.SecurityContext;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.client.ServiceClient;
 import org.apache.axis2.context.ConfigurationContext;
@@ -53,7 +57,6 @@ import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceAPIKe
 import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceAPIManagementException;
 import org.wso2.carbon.apimgt.keymgt.stub.validator.APIKeyValidationServiceStub;
 import org.wso2.carbon.identity.oauth2.stub.OAuth2TokenValidationServiceStub;
-import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2AccessTokenReqDTO;
 import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO;
 import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO_OAuth2AccessToken;
 import org.wso2.carbon.identity.oauth2.stub.dto.OAuth2TokenValidationRequestDTO_TokenValidationContextParam;
@@ -147,38 +150,69 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
        }		
 	}
 
-
-	public void addConnection(ConnectionContext context, ConnectionInfo info)
-            throws Exception {
-
-		boolean isValidUser = false;
-		LOG.info("Starting authentication for username: "+info.getUserName());
-		if (isBearer(info.getUserName()))
-		{
-			LOG.info("Starting oauth2 authentication");
-			OAuth2TokenValidationRequestDTO dto = new OAuth2TokenValidationRequestDTO();
-			OAuth2TokenValidationRequestDTO_OAuth2AccessToken tokenDto = new OAuth2TokenValidationRequestDTO_OAuth2AccessToken();
-			tokenDto.setIdentifier(extractToken(info.getUserName()));
-			tokenDto.setTokenType("bearer");
-			dto.setAccessToken(tokenDto);
-			OAuth2TokenValidationRequestDTO_TokenValidationContextParam[] arrayCt = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam[1];
-			arrayCt[0] = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam();
-			dto.setContext(arrayCt);
-			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
-			isValidUser = response.getValid();
-		}
-		else {
-			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
-		}
-        
-        if (isValidUser) {
-            super.addConnection(context, info);
-        } else {
-            throw new SecurityException("Not a valid user "+context.getUserName() +" connection");
+    protected SecurityContext checkSecurityContext(ConnectionContext context) throws SecurityException {
+        final SecurityContext securityContext = context.getSecurityContext();
+        if (securityContext == null) {
+            throw new SecurityException("User is not authenticated.");
         }
+        return securityContext;
     }
 
 
+	public void addConnection(ConnectionContext context, ConnectionInfo info)
+            throws Exception {
+        SecurityContext s = context.getSecurityContext();
+        if (s == null) {
+    		boolean isValidUser = false;
+    		LOG.info("Starting authentication for username: "+info.getUserName());
+    		if (isBearer(info.getUserName()))
+    		{
+    			LOG.info("Starting oauth2 authentication");
+    			OAuth2TokenValidationRequestDTO dto = new OAuth2TokenValidationRequestDTO();
+    			OAuth2TokenValidationRequestDTO_OAuth2AccessToken tokenDto = new OAuth2TokenValidationRequestDTO_OAuth2AccessToken();
+    			tokenDto.setIdentifier(extractToken(info.getUserName()));
+    			tokenDto.setTokenType("bearer");
+    			dto.setAccessToken(tokenDto);
+    			OAuth2TokenValidationRequestDTO_TokenValidationContextParam[] arrayCt = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam[1];
+    			arrayCt[0] = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam();
+    			dto.setContext(arrayCt);
+    			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
+    			isValidUser = response.getValid();
+    		}
+    		else {
+    			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
+    		}
+    		if (!isValidUser)
+    			throw new SecurityException("Not a valid user "+context.getUserName() +" connection");
+    		else
+    		{
+    			s = new SecurityContext(info.getUserName()) {
+                    @Override
+                    public Set<Principal> getPrincipals() {
+                    	return Collections.emptySet();
+                    }
+                };
+                context.setSecurityContext(s);
+    		}
+        }
+        	
+		
+        try {
+            super.addConnection(context, info);
+        } catch (Exception e) {
+            context.setSecurityContext(null);
+            throw e;
+        }
+        
+    }
+
+    public void removeConnection(ConnectionContext context, ConnectionInfo info, Throwable error) throws Exception {
+        super.removeConnection(context, info, error);
+        context.setSecurityContext(null);
+    }
+
+	
+	
 	private static boolean isBearer(String username) {
 		return username!=null && username.trim().startsWith("Bearer ");
 	}
@@ -214,6 +248,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     public Subscription addConsumer(ConnectionContext context, ConsumerInfo info) throws Exception {
 
     	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
+    	final SecurityContext securityContext = checkSecurityContext(context);
     	
         if (isBrokerAccess(context, info.getDestination()))
         {
@@ -235,7 +270,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	public void addProducer(ConnectionContext context, ProducerInfo info)
 			throws Exception {
     	LOG.debug(">>>>>>AddProducer:"+info.getDestination());
-        if (isBrokerAccess(context, info.getDestination()))
+    	final SecurityContext securityContext = checkSecurityContext(context);
+    	if (isBrokerAccess(context, info.getDestination()))
         {
             super.addProducer(context, info);
             return;
@@ -261,6 +297,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     public void send(ProducerBrokerExchange producerExchange, Message messageSend)
             throws Exception {
     	LOG.trace(">>>>>>send:"+messageSend.getDestination());
+        final SecurityContext securityContext = checkSecurityContext(producerExchange.getConnectionContext());
 
         if (isBrokerAccess(producerExchange.getConnectionContext(), messageSend.getDestination()))
         {
@@ -292,7 +329,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		throws Exception {
     	
     	LOG.debug(">>>>>>AddDestination:"+destination);
-        Destination existing = this.getDestinationMap().get(destination);
+    	final SecurityContext securityContext = checkSecurityContext(context);
+    	Destination existing = this.getDestinationMap().get(destination);
         if (existing != null) {
         	return super.addDestination(context, destination, createIfTemporary);
         }
@@ -313,7 +351,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     		DestinationInfo info) throws Exception {
 
     	LOG.debug(">>>>>>AddDestinationInfpo:"+info.getDestination());
-        Destination existing = this.getDestinationMap().get(info.getDestination());
+    	final SecurityContext securityContext = checkSecurityContext(context);
+    	Destination existing = this.getDestinationMap().get(info.getDestination());
         if (existing != null) {
             super.addDestinationInfo(context, info);
             return;
@@ -337,7 +376,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     public void removeDestination(ConnectionContext context,
     		ActiveMQDestination destination, long timeout) throws Exception {
     	LOG.debug(">>>>>>RemoveDestinatrion:"+destination);
-
+    	final SecurityContext securityContext = checkSecurityContext(context);
+    	
         Destination existing = this.getDestinationMap().get(destination);
         if (existing != null) {
             super.removeDestination(context, destination, timeout);
@@ -371,7 +411,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     public void removeDestinationInfo(ConnectionContext context,
     		DestinationInfo info) throws Exception {
     	LOG.debug(">>>>>>RemoveDestinaiotnINfo:"+info.getDestination());
-
+    	final SecurityContext securityContext = checkSecurityContext(context);
     	Destination existing = this.getDestinationMap().get(info.getDestination());
         if (existing != null) {
             super.removeDestinationInfo(context, info);
@@ -405,10 +445,12 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     
 	private boolean isBrokerAccess(ConnectionContext context, ActiveMQDestination dest) {
 		
-		if (dest==null || dest.getPhysicalName().startsWith("ActiveMQ.Advisory"))
+//		if (dest==null || dest.getPhysicalName().startsWith("ActiveMQ.Advisory"))
+//			return true;
+		if (context.getSecurityContext()!=null && context.getSecurityContext().isBrokerContext())
 			return true;
-		if (context.getSecurityContext()!=null)
-			return context.getSecurityContext().isBrokerContext();
+		if (context.getUserName()!=null && context.getUserName().equals("system"))
+			return true;
 		return false;
 	}
 	
