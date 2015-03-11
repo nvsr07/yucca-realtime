@@ -4,7 +4,7 @@
    <soapenv:Header/>
    <soapenv:Body>
       <xsd:addRole>
-         <xsd:roleName>mb-topic-all-input.${tenant.code}</xsd:roleName>
+         <xsd:roleName>mb-topic-write-input.${tenant.code}</xsd:roleName>
          <xsd:isSharedRole>false</xsd:isSharedRole>
       </xsd:addRole>
    </soapenv:Body>
