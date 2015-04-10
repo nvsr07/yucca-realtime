@@ -6,9 +6,7 @@
       <xsd:addUser>
          <xsd:userName>__user__</xsd:userName>
          <xsd:password>__password__</xsd:password>
-         <xsd:roles>mb-topic-all-input.${tenant.code}</xsd:roles>
-         <xsd:roles>mb-topic-read-output._</xsd:roles>
-         <xsd:roles>mb-topic-admin-output._</xsd:roles>
+         <xsd:roles>mb-topic-write-input.${tenant.code}</xsd:roles>         
       </xsd:addUser>
    </soapenv:Body>
 </soapenv:Envelope>
