@@ -89,6 +89,18 @@
 "successControl":"",
 "username":"${identityserver.secuser}", 
 "password":"${identityserver.secpassword}"
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Creazione applicazione userportal_${tenant.code} su store", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__addRoleSubscriberToAdmin.xml",
+"action":"addRemoveUsersOfRole",
+"destination":"${identityserver.url}/services/UserAdmin",
+"returnExpected":"200", 
+"successControl":"",
+"username":"${identityserver.secuser}", 
+"password":"${identityserver.secpassword}"
 }
 ]
 }

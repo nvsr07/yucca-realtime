@@ -234,7 +234,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     	dbo.put("datasetVersion", datasetVersion);
     	dbo.removeField("tenantCode");
     	dbo.removeField("virtualEntityCode");
-    	coll.insert(dbo);
+		coll.insert(dbo, WriteConcern.UNACKNOWLEDGE);
     	// 
     	
     	
@@ -260,7 +260,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
 	    	BasicDBObject query = new BasicDBObject("streamCode", streamCode).append("configData.tenantCode", tenantCode).append("streams.stream.virtualEntityCode", virtualEntityCode);
 	    	DBCollection metaStreamCollection = dbSupport.getCollection("stream");
 	    	
-	    	DBCursor cursor = metaStreamCollection.find(query).sort(new BasicDBObject("deploymentVersion",-1)).limit(1);
+	    	DBCursor cursor = metaStreamCollection.find(query).sort(new BasicDBObject("streams.stream.deploymentVersion",-1)).limit(1);
 	    	DBObject ret = null;
 	    	try {
 	    	   while(cursor.hasNext()) {
