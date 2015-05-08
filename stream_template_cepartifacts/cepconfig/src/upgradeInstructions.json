@@ -21,6 +21,19 @@
 "description":"Registrare gli Stream in un nodo CEP", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
+"source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat.xml",
+"action":"editEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Registrare gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
 "source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}.xml",
 "action":"editEventStreamInfo",
 "destination":"${mb.host}/services/EventStreamAdminService",
@@ -59,6 +72,18 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter.xml",
+"action":"editJsonEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
 },<#if stream.persisted?? && stream.persisted ="true">
 {
 "number": "${x}",<#assign x = x+1> 
@@ -91,6 +116,18 @@
 <#if source.type!="Internal">
 ,{
 "number": "${x}",<#assign x = x+1> 
+"description":"Installazione della Validazione sul Governance Registry, aggiungendo la collection con : api__deploy__${tenant.code}__${source.code}_${stream.code}__addCollection.xml", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"esbconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addCollection.xml",
+"action":"addCollection",
+"destination":"${esbinfo.host}/services/ResourceAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+},{
+"number": "${x}",<#assign x = x+1> 
 "description":"Update della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__update__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
@@ -106,7 +143,7 @@
 <#if stream.persisted?? && stream.persisted ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Inserimento dei metadati dello stream su MongoDB",
+"description":"Inserimento dei metadati dello stream su MongoDB e creazione odata api",
 "actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
@@ -120,8 +157,8 @@
 <#if stream.published?? && stream.published ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Publicazione del api sullo store",
-"actionType":"MongoInstallation",
+"description":"Publica"description":"Publicazione del api sullo store per lo stream",
+tallation",
 "sourceType":"api",
 "source":"",
 "action":"",

@@ -50,6 +50,7 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.WriteConcern;
 import com.mongodb.util.JSON;
 
 
@@ -234,7 +235,7 @@ public final class MongoDBOutEventAdaptorType extends AbstractOutputEventAdaptor
     	dbo.put("datasetVersion", datasetVersion);
     	dbo.removeField("tenantCode");
     	dbo.removeField("virtualEntityCode");
-		coll.insert(dbo, WriteConcern.UNACKNOWLEDGE);
+		coll.insert(dbo, WriteConcern.UNACKNOWLEDGED);
     	// 
     	
     	
