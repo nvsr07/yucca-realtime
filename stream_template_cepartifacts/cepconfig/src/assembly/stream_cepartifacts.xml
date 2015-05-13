@@ -23,6 +23,7 @@
 			<include>deploymentInstructions.json</include>
 			<include>migrationInstructions.json</include>
 			<include>upgradeInstructions.json</include>
+			<include>deleteInstructions.json</include>
 			</includes>
 		</fileSet>
 		<fileSet>
