@@ -15,9 +15,9 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <intProp name="LoopController.loops">-1</intProp>
+          <stringProp name="LoopController.loops">10</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">3</stringProp>
         <stringProp name="ThreadGroup.ramp_time">0</stringProp>
         <longProp name="ThreadGroup.start_time">1405616502000</longProp>
         <longProp name="ThreadGroup.end_time">1405616502000</longProp>
@@ -90,7 +90,7 @@
           <stringProp name="filename">D:\Users\1759\Documents\GitHub\yucca-realtime\testplan\log.csv</stringProp>
         </ResultCollector>
         <hashTree/>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Http Auth tests" enabled="false"/>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Auth Fail (No auth)" enabled="false">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
@@ -1418,7 +1418,7 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="false"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Mqtt Auth tests" enabled="true"/>
         <hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Fail (No auth)" enabled="false">
             <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
@@ -1515,7 +1515,7 @@ else
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
             <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
-            <stringProp name="mqtt.suffix.length"></stringProp>
+            <stringProp name="mqtt.suffix.length">2</stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
@@ -1537,25 +1537,13 @@ else
             <hashTree/>
           </hashTree>
           <org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler guiclass="org.apache.jmeter.protocol.mqtt.control.gui.MQTTPublisherGui" testclass="org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler" testname="MQTT Auth Good" enabled="true">
-            <stringProp name="mqtt.provider_url">tcp://${__P(esbin_server)}:${__P(mqtt_port)}</stringProp>
-            <stringProp name="mqtt.topic">input/smartlab</stringProp>
-            <stringProp name="mqtt.security_principle">smartlab</stringProp>
-            <stringProp name="mqtt.security_credentials">Ux0mu5it</stringProp>
-            <stringProp name="mqtt.text_message">{
-	&quot;stream&quot;: &quot;temperature&quot;,
-	&quot;sensor&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;,
-	&quot;values&quot;: [
-		{
-			&quot;time&quot;: &quot;2014-10-22T07:13:34Z&quot;,
-			&quot;components&quot;: {
-				&quot;c0&quot;: &quot;31&quot;
-			}
-		}
-	]
-}
-</stringProp>
+            <stringProp name="mqtt.provider_url">tcp://sdnet-stream2.sdp.csi.it:1883</stringProp>
+            <stringProp name="mqtt.topic">input/sandbox</stringProp>
+            <stringProp name="mqtt.security_principle">sandbox</stringProp>
+            <stringProp name="mqtt.security_credentials">sandbox$1</stringProp>
+            <stringProp name="mqtt.text_message">{&quot;stream&quot;: &quot;consumi_elettrici&quot;,&quot;application&quot;: &quot;smart-energy&quot;,&quot;values&quot;: [{&quot;time&quot;: &quot;2015-02-20T07:00:00Z&quot;,&quot;components&quot;: {&quot;quantity_description&quot;: &quot;Active Power&quot;,&quot;descrizione_unita_misura&quot;: &quot;kW&quot;,&quot;quantity_id&quot;: 600,&quot;dettaglio&quot;: &quot;Trasformatore 1 TOTALE EDIFICIO&quot;,&quot;id_sensore&quot;: 20,&quot;valore&quot;: 22,&quot;nome_sensore&quot;: &quot;PILLER B_cab_bt_B_ARRIVO_TRAFO1&quot;},&quot;validity&quot;: &quot;valid&quot;}]}</stringProp>
             <stringProp name="mqtt.config_msg_type">mqtt_text_message</stringProp>
-            <stringProp name="mqtt.iterations">1t</stringProp>
+            <stringProp name="mqtt.iterations">1</stringProp>
             <boolProp name="mqtt.authenticate">true</boolProp>
             <stringProp name="mqtt.quality">mqtt_at_most_once</stringProp>
             <boolProp name="mqtt.retain">false</boolProp>
@@ -1575,10 +1563,10 @@ else
             <stringProp name="mqtt.strategy">mqtt_round_robin</stringProp>
             <boolProp name="mqtt.one_connection_per_topic">false</boolProp>
             <boolProp name="mqtt.random_suffix_client_id">true</boolProp>
-            <stringProp name="mqtt.suffix.length"></stringProp>
+            <stringProp name="mqtt.suffix.length">2</stringProp>
           </org.apache.jmeter.protocol.mqtt.sampler.PublisherSampler>
           <hashTree>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1658,6 +1646,10 @@ else
             <hashTree/>
           </hashTree>
         </hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">5</stringProp>
+        </ConstantTimer>
+        <hashTree/>
       </hashTree>
     </hashTree>
   </hashTree>

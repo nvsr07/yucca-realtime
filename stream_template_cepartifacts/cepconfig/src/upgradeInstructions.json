@@ -157,8 +157,8 @@
 <#if stream.published?? && stream.published ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Publica"description":"Publicazione del api sullo store per lo stream",
-tallation",
+"description":"Publicazione del api sullo store per lo stream",
+"actionType":"MongoInstallation",
 "sourceType":"api",
 "source":"",
 "action":"",

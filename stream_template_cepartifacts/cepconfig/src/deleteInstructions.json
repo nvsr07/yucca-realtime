@@ -1,4 +1,6 @@
-<#assign x = 1> 
+<#assign x = 1>
+{
+"steps": [ 
 <#if stream.persisted?? && stream.persisted ="true">
 {
 "number": "${x}",<#assign x = x+1> 
@@ -20,18 +22,6 @@
 "actionType":"WebServiceCall",
 "sourceType":"file",
 "source":"esbconfig/api__delete__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml",
-"action":"delete",
-"destination":"${esbinfo.host}/services/ResourceAdminService",
-"returnExpected":"200", 
-"validityControl":"NO_CHECK",
-"username":"${esbinfo.secuser}", 
-"password":"${esbinfo.secpassword}"
-},{
-"number": "${x}",<#assign x = x+1> 
-"description":"Rimozione della Validazione sul Governance Registry, togliendo la collection con : api__deploy__${tenant.code}__${source.code}_${stream.code}__addCollection.xml", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"esbconfig/api__delete__${tenant.code}__${source.code_}_${stream.code}__addCollection.xml",
 "action":"delete",
 "destination":"${esbinfo.host}/services/ResourceAdminService",
 "returnExpected":"200", 
