@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="APIKeyValidationService?wsdl" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="APIKeyValidationServiceSoap12Binding" type="wsdl" bindingName="{http://service.keymgt.apimgt.carbon.wso2.org}APIKeyValidationServiceSoap12Binding" soapVersion="1_2" anonymous="optional" definition="https://localhost:9443/services/APIKeyValidationService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap12Endpoint</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:getAllURITemplates" name="getAllURITemplates" bindingOperationName="getAllURITemplates" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap12Endpoint</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:getAllURITemplates>
+         <!--Optional:-->
+         <xsd:context>?</xsd:context>
+         <!--Optional:-->
+         <xsd:version>?</xsd:version>
+      </xsd:getAllURITemplates>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getAllURITemplates"/></con:call></con:operation><con:operation isOneWay="false" action="urn:validateKey" name="validateKey" bindingOperationName="validateKey" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap12Endpoint</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soap:Header/>
+   <soap:Body>
+      <xsd:validateKey>
+         <!--Optional:-->
+         <xsd:context>?</xsd:context>
+         <!--Optional:-->
+         <xsd:version>?</xsd:version>
+         <!--Optional:-->
+         <xsd:accessToken>?</xsd:accessToken>
+         <!--Optional:-->
+         <xsd:requiredAuthenticationLevel>?</xsd:requiredAuthenticationLevel>
+         <!--Optional:-->
+         <xsd:clientDomain>?</xsd:clientDomain>
+         <!--Optional:-->
+         <xsd:matchingResource>?</xsd:matchingResource>
+         <!--Optional:-->
+         <xsd:httpVerb>?</xsd:httpVerb>
+      </xsd:validateKey>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:validateKey"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="APIKeyValidationServiceSoap11Binding" type="wsdl" bindingName="{http://service.keymgt.apimgt.carbon.wso2.org}APIKeyValidationServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="https://localhost:9443/services/APIKeyValidationService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:9443/services/APIKeyValidationService?wsdl"><con:part><con:url>https://localhost:9443/services/APIKeyValidationService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://service.keymgt.apimgt.carbon.wso2.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax232="http://api.apimgt.carbon.wso2.org/xsd" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ax230="http://keymgt.apimgt.carbon.wso2.org/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax236="http://model.api.apimgt.carbon.wso2.org/xsd" xmlns:tns="http://service.keymgt.apimgt.carbon.wso2.org" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax234="http://dto.impl.apimgt.carbon.wso2.org/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>APIKeyValidationService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model.api.apimgt.carbon.wso2.org/xsd">
+      <xs:complexType name="URITemplate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HTTPVerb" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="authType" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="authTypeAsString" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="authTypes" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="httpVerbs" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="mediationScript" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="methodsAsString" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="resourceMap" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="resourceSandboxURI" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="resourceSandboxURIExist" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="resourceURI" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="resourceURIExist" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="scope" nillable="true" type="ax236:Scope"/>
+          <xs:element minOccurs="0" name="scopes" nillable="true" type="ax236:Scope"/>
+          <xs:element minOccurs="0" name="throttlingTier" nillable="true" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="throttlingTiers" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="throttlingTiersAsString" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="uriTemplate" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Scope">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="description" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:int"/>
+          <xs:element minOccurs="0" name="key" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="roles" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://org.apache.axis2/xsd" xmlns:ax233="http://api.apimgt.carbon.wso2.org/xsd" xmlns:ns="http://org.apache.axis2/xsd" xmlns:ax231="http://keymgt.apimgt.carbon.wso2.org/xsd" xmlns:ax237="http://model.api.apimgt.carbon.wso2.org/xsd" xmlns:ax235="http://dto.impl.apimgt.carbon.wso2.org/xsd">
+      <xs:import namespace="http://keymgt.apimgt.carbon.wso2.org/xsd"/>
+      <xs:import namespace="http://api.apimgt.carbon.wso2.org/xsd"/>
+      <xs:import namespace="http://dto.impl.apimgt.carbon.wso2.org/xsd"/>
+      <xs:import namespace="http://model.api.apimgt.carbon.wso2.org/xsd"/>
+      <xs:element name="APIKeyValidationServiceAPIKeyMgtException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="APIKeyMgtException" nillable="true" type="ax230:APIKeyMgtException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="APIKeyValidationServiceAPIManagementException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="APIManagementException" nillable="true" type="ax232:APIManagementException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateKey">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="context" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="accessToken" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="requiredAuthenticationLevel" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="clientDomain" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="matchingResource" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="httpVerb" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateKeyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="ax234:APIKeyValidationInfoDTO"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllURITemplates">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="context" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="version" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllURITemplatesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax236:URITemplate"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://keymgt.apimgt.carbon.wso2.org/xsd">
+      <xs:complexType name="APIKeyMgtException">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://dto.impl.apimgt.carbon.wso2.org/xsd">
+      <xs:complexType name="APIKeyValidationInfoDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="apiName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="apiPublisher" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="applicationId" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="applicationName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="applicationTier" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="authorized" type="xs:boolean"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="authorizedDomains" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="consumerKey" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="endUserName" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="endUserToken" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="issuedTime" type="xs:long"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="scopes" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="subscriber" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="tier" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="type" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="userType" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="validationStatus" type="xs:int"/>
+          <xs:element minOccurs="0" name="validityPeriod" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://api.apimgt.carbon.wso2.org/xsd">
+      <xs:complexType name="APIManagementException">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllURITemplatesRequest">
+    <wsdl:part name="parameters" element="ns1:getAllURITemplates"/>
+  </wsdl:message>
+  <wsdl:message name="getAllURITemplatesResponse">
+    <wsdl:part name="parameters" element="ns1:getAllURITemplatesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="APIKeyValidationServiceAPIKeyMgtException">
+    <wsdl:part name="parameters" element="ns1:APIKeyValidationServiceAPIKeyMgtException"/>
+  </wsdl:message>
+  <wsdl:message name="APIKeyValidationServiceAPIManagementException">
+    <wsdl:part name="parameters" element="ns1:APIKeyValidationServiceAPIManagementException"/>
+  </wsdl:message>
+  <wsdl:message name="validateKeyRequest">
+    <wsdl:part name="parameters" element="ns1:validateKey"/>
+  </wsdl:message>
+  <wsdl:message name="validateKeyResponse">
+    <wsdl:part name="parameters" element="ns1:validateKeyResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="APIKeyValidationServicePortType">
+    <wsdl:operation name="getAllURITemplates">
+      <wsdl:input message="tns:getAllURITemplatesRequest" wsaw:Action="urn:getAllURITemplates"/>
+      <wsdl:output message="tns:getAllURITemplatesResponse" wsaw:Action="urn:getAllURITemplatesResponse"/>
+      <wsdl:fault message="tns:APIKeyValidationServiceAPIKeyMgtException" name="APIKeyValidationServiceAPIKeyMgtException" wsaw:Action="urn:getAllURITemplatesAPIKeyValidationServiceAPIKeyMgtException"/>
+      <wsdl:fault message="tns:APIKeyValidationServiceAPIManagementException" name="APIKeyValidationServiceAPIManagementException" wsaw:Action="urn:getAllURITemplatesAPIKeyValidationServiceAPIManagementException"/>
+    </wsdl:operation>
+    <wsdl:operation name="validateKey">
+      <wsdl:input message="tns:validateKeyRequest" wsaw:Action="urn:validateKey"/>
+      <wsdl:output message="tns:validateKeyResponse" wsaw:Action="urn:validateKeyResponse"/>
+      <wsdl:fault message="tns:APIKeyValidationServiceAPIKeyMgtException" name="APIKeyValidationServiceAPIKeyMgtException" wsaw:Action="urn:validateKeyAPIKeyValidationServiceAPIKeyMgtException"/>
+      <wsdl:fault message="tns:APIKeyValidationServiceAPIManagementException" name="APIKeyValidationServiceAPIManagementException" wsaw:Action="urn:validateKeyAPIKeyValidationServiceAPIManagementException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="APIKeyValidationServiceSoap11Binding" type="tns:APIKeyValidationServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getAllURITemplates">
+      <soap:operation soapAction="urn:getAllURITemplates" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="APIKeyValidationServiceAPIKeyMgtException">
+        <soap:fault use="literal" name="APIKeyValidationServiceAPIKeyMgtException"/>
+      </wsdl:fault>
+      <wsdl:fault name="APIKeyValidationServiceAPIManagementException">
+        <soap:fault use="literal" name="APIKeyValidationServiceAPIManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateKey">
+      <soap:operation soapAction="urn:validateKey" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="APIKeyValidationServiceAPIKeyMgtException">
+        <soap:fault use="literal" name="APIKeyValidationServiceAPIKeyMgtException"/>
+      </wsdl:fault>
+      <wsdl:fault name="APIKeyValidationServiceAPIManagementException">
+        <soap:fault use="literal" name="APIKeyValidationServiceAPIManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIKeyValidationServiceSoap12Binding" type="tns:APIKeyValidationServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getAllURITemplates">
+      <soap12:operation soapAction="urn:getAllURITemplates" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="APIKeyValidationServiceAPIKeyMgtException">
+        <soap12:fault use="literal" name="APIKeyValidationServiceAPIKeyMgtException"/>
+      </wsdl:fault>
+      <wsdl:fault name="APIKeyValidationServiceAPIManagementException">
+        <soap12:fault use="literal" name="APIKeyValidationServiceAPIManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateKey">
+      <soap12:operation soapAction="urn:validateKey" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="APIKeyValidationServiceAPIKeyMgtException">
+        <soap12:fault use="literal" name="APIKeyValidationServiceAPIKeyMgtException"/>
+      </wsdl:fault>
+      <wsdl:fault name="APIKeyValidationServiceAPIManagementException">
+        <soap12:fault use="literal" name="APIKeyValidationServiceAPIManagementException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="APIKeyValidationServiceHttpBinding" type="tns:APIKeyValidationServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="getAllURITemplates">
+      <http:operation location="getAllURITemplates"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateKey">
+      <http:operation location="validateKey"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="APIKeyValidationService">
+    <wsdl:port name="APIKeyValidationServiceHttpsSoap11Endpoint" binding="tns:APIKeyValidationServiceSoap11Binding">
+      <soap:address location="https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap11Endpoint"/>
+    </wsdl:port>
+    <wsdl:port name="APIKeyValidationServiceHttpsSoap12Endpoint" binding="tns:APIKeyValidationServiceSoap12Binding">
+      <soap12:address location="https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap12Endpoint"/>
+    </wsdl:port>
+    <wsdl:port name="APIKeyValidationServiceHttpsEndpoint" binding="tns:APIKeyValidationServiceHttpBinding">
+      <http:address location="https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsEndpoint"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://LTR9PKEB3:8243/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap11Endpoint</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:getAllURITemplates" name="getAllURITemplates" bindingOperationName="getAllURITemplates" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://api.smartdatanet.it/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap11Endpoint</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:getAllURITemplates>
+         <!--Optional:-->
+         <xsd:context>
+         /api/topic/output.csp.0082abb6-30a0-42c3-cfec-5c905d27_Light
+         /api/topic/output.csp.0082abb6-30a0-42c3-cfec-5c905d27cbd2_Light
+         
+         </xsd:context>
+         <!--
+         
+         -->
+         <!--Optional:-->
+         <xsd:version>1.0</xsd:version>
+      </xsd:getAllURITemplates>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>***REMOVED***</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getAllURITemplates"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:validateKey" name="validateKey" bindingOperationName="validateKey" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-api.smartdatanet.it/services/APIKeyValidationService.APIKeyValidationServiceHttpsSoap11Endpoint</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:validateKey>
+         <!--Optional:-->
+         <xsd:context>/api/topic/output.smartlab.550e8400-e29b-41d4-a716-446655440000_temperature</xsd:context>
+         <!--Optional:-->
+         <xsd:version>1.0</xsd:version>
+         <!--Optional:-->
+         <xsd:accessToken>czJbVuERZf1Qj43etVpoZ4iGCbUa</xsd:accessToken>
+         <!--Optional:-->
+         <xsd:requiredAuthenticationLevel>Any</xsd:requiredAuthenticationLevel>
+         <!--Optional:-->
+         <xsd:clientDomain></xsd:clientDomain>
+         <!--Optional:-->
+         <xsd:matchingResource>statss</xsd:matchingResource>
+         <!--Optional:-->
+         <xsd:httpVerb>GET</xsd:httpVerb>
+      </xsd:validateKey>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>AhchieW6</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:validateKey"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

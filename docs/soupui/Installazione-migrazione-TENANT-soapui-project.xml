@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Installazione_migrazione_TENANT" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:9763" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:9763</con:endpoint><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint></con:endpoints><con:resource name="login.jag" path="/store/site/blocks/user/login/ajax/login.jag"><con:settings/><con:parameters><con:parameter><con:name>action</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>username</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>password</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:log="http://localhost/store/site/blocks/user/login/ajax/login.jag">log:Response</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9763</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/user/login/ajax/login.jag</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="username" value="admin"/>
+  <con:entry key="action" value="login"/>
+  <con:entry key="password" value="${password}"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="application-add.jag" path="/store/site/blocks/application/application-add/ajax/application-add.jag"><con:settings/><con:parameters><con:parameter><con:name>action</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>application</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>tier</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>description</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>callbackUrl</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Method 1" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:app="http://localhost/store/site/blocks/application/application-add/ajax/application-add.jag">app:Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9763</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="application" value="userportal_csp"/>
+  <con:entry key="action" value="addApplication"/>
+  <con:entry key="tier" value="Unlimited"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>application</con:entry><con:entry>tier</con:entry><con:entry>description</con:entry><con:entry>callbackUrl</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="subscription-add.jag" path="/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag"><con:settings/><con:parameters><con:parameter><con:name>action</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>name</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>version</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>tier</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>applicationName</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>application</con:name><con:style>QUERY</con:style></con:parameter></con:parameters><con:method name="Method 1" method="POST"><con:settings/><con:parameters><con:parameter><con:name>provider</con:name><con:style>QUERY</con:style></con:parameter><con:parameter><con:name>keytype</con:name><con:style>QUERY</con:style></con:parameter><con:parameter><con:name>callbackUrl</con:name><con:style>QUERY</con:style></con:parameter><con:parameter><con:name>authorizedDomains</con:name><con:style>QUERY</con:style></con:parameter><con:parameter><con:name>validityTime</con:name><con:style>QUERY</con:style></con:parameter></con:parameters><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:sub="http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag">sub:Response</con:element></con:representation><con:request name="Subscribe" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9763</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="validityTime" value="999999999"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="keytype" value="PRODUCTION"/>
+  <con:entry key="name" value="admin_api"/>
+  <con:entry key="applicationName" value="userportal_${tenant}"/>
+  <con:entry key="action" value="addAPISubscription"/>
+  <con:entry key="tier" value="Unlimited"/>
+  <con:entry key="provider" value="admin"/>
+  <con:entry key="version" value="1.0"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>name</con:entry><con:entry>version</con:entry><con:entry>tier</con:entry><con:entry>applicationName</con:entry><con:entry>provider</con:entry><con:entry>application</con:entry><con:entry>keytype</con:entry><con:entry>callbackUrl</con:entry><con:entry>authorizedDomains</con:entry><con:entry>validityTime</con:entry></con:parameterOrder></con:request><con:request name="GenerateKey" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://localhost:9763</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="validityTime" value="999999999"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="keytype" value="PRODUCTION"/>
+  <con:entry key="action" value="generateApplicationKey"/>
+  <con:entry key="provider" value="admin"/>
+</con:parameters></con:request></con:method></con:resource></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://int-sdnet-intapi.sdp.csi.it:90" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://int-sdnet-intapi.sdp.csi.it:90</con:endpoint></con:endpoints><con:resource name="Clientcred" path="/wso001/services/secdata/clientcred/${tenant}"><con:settings/><con:parameters/><con:method name="Clientcred" method="PUT"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://int-sdnet-intapi.sdp.csi.it:90</con:endpoint><con:request>{
+  "tenant": {
+    "clientKey": "${#TestSuite#clientKey}",
+    "clientSecret": "${#TestSuite#clientSecret}",
+  }
+}</con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:testSuite name="AdditionalStepTenant"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="true" maxResults="0" name="INT_tenant" searchProperties="true" id="87b07b0b-b90b-4de0-ac97-c0910bae7618" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="properties" name="Properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>tenant</con:name><con:value>csi</con:value></con:property><con:property><con:name>password</con:name><con:value>***REMOVED***</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="REST Login"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/user/login/ajax/login.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Login" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/user/login/ajax/login.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="username" value="admin"/>
+  <con:entry key="action" value="login"/>
+  <con:entry key="password" value="***REMOVED***"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Add Application userportal_tenant"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/application/application-add/ajax/application-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Add Application userportal_tenant" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/application/application-add/ajax/application-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="callbackUrl" value="&quot;&quot;"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="description" value="&quot;&quot;"/>
+  <con:entry key="action" value="addApplication"/>
+  <con:entry key="tier" value="Unlimited"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>application</con:entry><con:entry>tier</con:entry><con:entry>description</con:entry><con:entry>callbackUrl</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Subscribe admin_api"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Subscribe admin_api" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="name" value="admin_api"/>
+  <con:entry key="applicationName" value="userportal_${tenant}"/>
+  <con:entry key="action" value="addAPISubscription"/>
+  <con:entry key="tier" value="Unlimited"/>
+  <con:entry key="provider" value="admin"/>
+  <con:entry key="version" value="1.0"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>name</con:entry><con:entry>version</con:entry><con:entry>tier</con:entry><con:entry>applicationName</con:entry><con:entry>provider</con:entry><con:entry>application</con:entry><con:entry>keytype</con:entry><con:entry>callbackUrl</con:entry><con:entry>authorizedDomains</con:entry><con:entry>validityTime</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST GenerateKey"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST GenerateKey" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+def testCase = messageExchange.modelItem.testCase
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*[local-name()='error']");
+log.info result
+assert result == "false"
+
+def key = holder.getNodeValue("/*/*/*/*[local-name()='consumerKey']");
+log.info key 
+
+testCase.testSuite.setPropertyValue( "clientKey", key);
+
+def secret = holder.getNodeValue("/*/*/*/*[local-name()='consumerSecret']");
+log.info secret 
+testCase.testSuite.setPropertyValue( "clientSecret",secret);
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="callbackUrl" value=" ''"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="validityTime" value="999999999"/>
+  <con:entry key="authorizedDomains" value="ALL"/>
+  <con:entry key="keytype" value="PRODUCTION"/>
+  <con:entry key="action" value="generateApplicationKey"/>
+  <con:entry key="provider" value="admin"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Insert KEYS"><con:settings/><con:config service="http://int-sdnet-intapi.sdp.csi.it:90" methodName="Clientcred" resourcePath="/wso001/services/secdata/clientcred/${tenant}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Insert KEYS" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://int-sdnet-intapi.sdp.csi.it:90</con:endpoint><con:request>{
+  "tenant": {
+    "clientKey": "${#TestSuite#clientKey}",
+    "clientSecret": "${#TestSuite#clientSecret}"
+  }
+}</con:request><con:originalUri>http://int-sdnet-intapi.sdp.csi.it/wso001/services/secdata/clientcred/circe</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*/*/*");
+log.info result
+assert result != null</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Logout"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/user/login/ajax/login.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Logout" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://int-userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/user/login/ajax/login.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="action" value="logout"/>
+  <con:entry key="password" value="***REMOVED***"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="true" maxResults="0" name="PROD_tenant" searchProperties="true" timeout="0" wsrmEnabled="false" wsrmVersion="1.0" wsrmAckTo="" amfAuthorisation="false" amfEndpoint="" amfLogin="" amfPassword=""><con:settings/><con:testStep type="properties" name="Properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:properties><con:property><con:name>tenant</con:name><con:value>circe</con:value></con:property><con:property><con:name>password</con:name><con:value>***REMOVED***</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="restrequest" name="REST Login"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/user/login/ajax/login.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Login" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/user/login/ajax/login.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="username" value="admin"/>
+  <con:entry key="action" value="login"/>
+  <con:entry key="password" value="***REMOVED***"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Add Application userportal_tenant"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/application/application-add/ajax/application-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Add Application userportal_tenant" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/application/application-add/ajax/application-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="callbackUrl" value="&quot;&quot;"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="description" value="&quot;&quot;"/>
+  <con:entry key="action" value="addApplication"/>
+  <con:entry key="tier" value="Unlimited"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>application</con:entry><con:entry>tier</con:entry><con:entry>description</con:entry><con:entry>callbackUrl</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Subscribe admin_api"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Subscribe admin_api" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="name" value="admin_api"/>
+  <con:entry key="applicationName" value="userportal_${tenant}"/>
+  <con:entry key="action" value="addAPISubscription"/>
+  <con:entry key="tier" value="Unlimited"/>
+  <con:entry key="provider" value="admin"/>
+  <con:entry key="version" value="1.0"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>name</con:entry><con:entry>version</con:entry><con:entry>tier</con:entry><con:entry>applicationName</con:entry><con:entry>provider</con:entry><con:entry>application</con:entry><con:entry>keytype</con:entry><con:entry>callbackUrl</con:entry><con:entry>authorizedDomains</con:entry><con:entry>validityTime</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST GenerateKey"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST GenerateKey" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/subscription/subscription-add/ajax/subscription-add.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+def testCase = messageExchange.modelItem.testCase
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*[local-name()='error']");
+log.info result
+assert result == "false"
+
+def key = holder.getNodeValue("/*/*/*/*[local-name()='consumerKey']");
+log.info key 
+
+testCase.testSuite.setPropertyValue( "clientKey", key);
+
+def secret = holder.getNodeValue("/*/*/*/*[local-name()='consumerSecret']");
+log.info secret 
+testCase.testSuite.setPropertyValue( "clientSecret",secret);
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="callbackUrl" value=" ''"/>
+  <con:entry key="application" value="userportal_${tenant}"/>
+  <con:entry key="validityTime" value="999999999"/>
+  <con:entry key="authorizedDomains" value="ALL"/>
+  <con:entry key="keytype" value="PRODUCTION"/>
+  <con:entry key="action" value="generateApplicationKey"/>
+  <con:entry key="provider" value="admin"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Insert KEYS"><con:settings/><con:config service="http://int-sdnet-intapi.sdp.csi.it:90" methodName="Clientcred" resourcePath="/wso001/services/secdata/clientcred/${tenant}" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Insert KEYS" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://sdnet-intapi.sdp.csi.it:90</con:endpoint><con:request>{
+  "tenant": {
+    "clientKey": "${#TestSuite#clientKey}",
+    "clientSecret": "${#TestSuite#clientSecret}"
+  }
+}</con:request><con:originalUri>http://int-sdnet-intapi.sdp.csi.it/wso001/services/secdata/clientcred/circe</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*/*/*");
+log.info result
+assert result != null</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:restRequest></con:config></con:testStep><con:testStep type="restrequest" name="REST Logout"><con:settings/><con:config service="http://localhost:9763" resourcePath="/store/site/blocks/user/login/ajax/login.jag" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Logout" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>https://userportal.smartdatanet.it/</con:endpoint><con:request/><con:originalUri>http://localhost/store/site/blocks/user/login/ajax/login.jag</con:originalUri><con:assertion type="GroovyScriptAssertion" name="Script Assertion"><con:configuration><scriptText>testStepName = messageExchange.modelItem.testStep.name //to get the Test Step Name
+xmlHold = messageExchange.responseContentAsXml.toString() //to store the response as Xml string
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context )
+def holder = groovyUtils.getXmlHolder (xmlHold)
+log.info holder.getXml() // will display /Log the response in Xml
+def result = holder.getNodeValue("/*/*");
+log.info result
+assert result == "false"
+</scriptText></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="username" value="admin"/>
+  <con:entry key="action" value="logout"/>
+  <con:entry key="password" value="***REMOVED***"/>
+</con:parameters><con:parameterOrder><con:entry>action</con:entry><con:entry>username</con:entry><con:entry>password</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>clientKey</con:name><con:value>lL6ecfvoiZeZAJBbKitDIstM5H0a</con:value></con:property><con:property><con:name>clientSecret</con:name><con:value>efIrGCXsKeZPbHNUvZjX6Knk75Ya</con:value></con:property></con:properties></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

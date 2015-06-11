@@ -1,0 +1,1342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="RemoteAuthorizationManagerService?wsdl" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RemoteAuthorizationManagerServiceSoap11Binding" type="wsdl" bindingName="{http://service.ws.um.carbon.wso2.org}RemoteAuthorizationManagerServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="https://localhost:9443/services/RemoteAuthorizationManagerService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://int-sso.smartdatanet.it/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:authorizeRole" name="authorizeRole" bindingOperationName="authorizeRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:authorizeRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:authorizeRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:authorizeRole"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:authorizeUser" name="authorizeUser" bindingOperationName="authorizeUser" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:authorizeUser>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:authorizeUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:authorizeUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearAllRoleAuthorization" name="clearAllRoleAuthorization" bindingOperationName="clearAllRoleAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearAllRoleAuthorization>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+      </ser:clearAllRoleAuthorization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearAllRoleAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearAllUserAuthorization" name="clearAllUserAuthorization" bindingOperationName="clearAllUserAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearAllUserAuthorization>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+      </ser:clearAllUserAuthorization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearAllUserAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearResourceAuthorizations" name="clearResourceAuthorizations" bindingOperationName="clearResourceAuthorizations" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearResourceAuthorizations>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+      </ser:clearResourceAuthorizations>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearResourceAuthorizations"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearRoleActionOnAllResources" name="clearRoleActionOnAllResources" bindingOperationName="clearRoleActionOnAllResources" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearRoleActionOnAllResources>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearRoleActionOnAllResources>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearRoleActionOnAllResources"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearRoleAuthorization" name="clearRoleAuthorization" bindingOperationName="clearRoleAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearRoleAuthorization>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearRoleAuthorization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearRoleAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearUserAuthorization" name="clearUserAuthorization" bindingOperationName="clearUserAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:clearUserAuthorization>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearUserAuthorization>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearUserAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:denyRole" name="denyRole" bindingOperationName="denyRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:denyRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:denyRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:denyRole"/></con:call></con:operation><con:operation isOneWay="false" action="urn:denyUser" name="denyUser" bindingOperationName="denyUser" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:denyUser>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:denyUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:denyUser"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getAllowedRolesForResource" name="getAllowedRolesForResource" bindingOperationName="getAllowedRolesForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getAllowedRolesForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getAllowedRolesForResource>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getAllowedRolesForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getAllowedUIResourcesForUser" name="getAllowedUIResourcesForUser" bindingOperationName="getAllowedUIResourcesForUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;entry key="SOAPAction" value="fses:registraEpisodio2" xmlns="http://eviware.com/soapui/config"/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://tst-feapi-dma.isan.csi.it/dmaclmed/services/CLFSEService</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:fses="http://FSEService.WS.DMACL.csi.it">
+     <soap:Header/>
+     <soap:Body>
+        <fses:registraEpisodio2>
+           <!--Optional:-->
+           <fses:request>
+              <!--Optional:-->
+              <fses:richiesta>
+                <codiceApplicativo>DNLAB</codiceApplicativo>
+                <dataOra>2014-11-23T14:00:00</dataOra>
+                <idRichiesta>1</idRichiesta>
+                <codiceAzienda>908</codiceAzienda>
+              </fses:richiesta>
+              <!--Optional:-->
+              <fses:paziente>
+                <idLocale>2_9999603091</idLocale>
+                <dma:codiceFiscale>ZNRMSM71B08L219Z</dma:codiceFiscale>
+                <idAura>174357</idAura>
+                <cognome>ZANIRATO</cognome>
+                <comuneDiNascita>001272</comuneDiNascita>
+                <dataDiNascita>1971-02-08T00:00:00</dataDiNascita>
+                <nome>MASSIMILIANO</nome>
+                <sesso>M</sesso>
+                <statoDiNascita>100</statoDiNascita>
+              </fses:paziente>
+              <!--Optional:-->
+              <fses:episodio>
+                   <annullamentoEpisodio>false</annullamentoEpisodio>
+                    <uoLuogoAccettazione>
+                       <codice>010908</codice>
+                    </uoLuogoAccettazione>
+                    <codiceLuogoAccettazione>16708</codiceLuogoAccettazione>
+                    <strutturaLuogoAccettazione>
+                       <codice>010908</codice>
+                    </strutturaLuogoAccettazione>
+                    <dataFine>2014-12-15T14:02:21</dataFine>
+                    <codiceLuogoDimissione>16708</codiceLuogoDimissione>
+                    <uoLuogoDimissione>
+                       <codice>010908</codice>
+                    </uoLuogoDimissione>
+                    <dataInizio>2014-12-15T00:00:00</dataInizio>
+                    <idEpisodio>999716398981</idEpisodio>
+                    <idEpisodioOriginanteRichiesta></idEpisodioOriginanteRichiesta>
+                    <numeroNosologico></numeroNosologico>
+                    <numeroPassaggioPS></numeroPassaggioPS>
+                    <tipoAzione>REGISTRA_INFO_SCARICO_REFERTO</tipoAzione>
+                    <tipoEpisodio>O</tipoEpisodio>
+                    <tipoEpisodioOriginanteRichiesta></tipoEpisodioOriginanteRichiesta>
+              </fses:episodio>
+              <!--Optional:-->
+              <fses:documento>
+                    <dataOraFirmaDocumento>2014-12-15T15:43:18</dataOraFirmaDocumento>
+                    <firmatoDigitalmente>true</firmatoDigitalmente>
+                    <idDocumento>20149997452545</idDocumento>
+                    <idDocumentoPrecedente></idDocumentoPrecedente>
+                    <mimeType>application_pdf</mimeType>
+                    <pagatoTicket>false</pagatoTicket>
+                    <pagatoTicket2>S</pagatoTicket2>
+                    <codicePIN>1234</codicePIN>
+                    <oscuraScaricoCittadino></oscuraScaricoCittadino>
+                    <scaricabileDalCittadino>true</scaricabileDalCittadino>
+                    <tipoAzione>REGISTRA_INFO_SCARICO_REFERTO</tipoAzione>
+                    <tipoDocumentoFSE>REFERTO_LIS</tipoDocumentoFSE>
+                    <codiceDocumentoScaricabile>15368011</codiceDocumentoScaricabile>
+                    <privacyDocumento></privacyDocumento>
+              </fses:documento>
+           </fses:request>
+        </fses:registraEpisodio2>
+     </soap:Body>
+  </soap:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>AhchieW6</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="fses:registraEpisodio2" addDefaultAction="false" addDefaultTo="false"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getDeniedRolesForResource" name="getDeniedRolesForResource" bindingOperationName="getDeniedRolesForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getDeniedRolesForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getDeniedRolesForResource>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getDeniedRolesForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getExplicitlyAllowedUsersForResource" name="getExplicitlyAllowedUsersForResource" bindingOperationName="getExplicitlyAllowedUsersForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getExplicitlyAllowedUsersForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getExplicitlyAllowedUsersForResource>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getExplicitlyAllowedUsersForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getExplicitlyDeniedUsersForResource" name="getExplicitlyDeniedUsersForResource" bindingOperationName="getExplicitlyDeniedUsersForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getExplicitlyDeniedUsersForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getExplicitlyDeniedUsersForResource>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getExplicitlyDeniedUsersForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isRoleAuthorized" name="isRoleAuthorized" bindingOperationName="isRoleAuthorized" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:isRoleAuthorized>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:isRoleAuthorized>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isRoleAuthorized"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isUserAuthorized" name="isUserAuthorized" bindingOperationName="isUserAuthorized" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:isUserAuthorized>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:isUserAuthorized>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isUserAuthorized"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:resetPermissionOnUpdateRole" name="resetPermissionOnUpdateRole" bindingOperationName="resetPermissionOnUpdateRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:resetPermissionOnUpdateRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:newRoleName>?</ser:newRoleName>
+      </ser:resetPermissionOnUpdateRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:resetPermissionOnUpdateRole"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RemoteAuthorizationManagerServiceSoap12Binding" type="wsdl" bindingName="{http://service.ws.um.carbon.wso2.org}RemoteAuthorizationManagerServiceSoap12Binding" soapVersion="1_2" anonymous="optional" definition="https://localhost:9443/services/RemoteAuthorizationManagerService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:9443/services/RemoteAuthorizationManagerService?wsdl"><con:part><con:url>https://localhost:9443/services/RemoteAuthorizationManagerService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://service.ws.um.carbon.wso2.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://service.ws.um.carbon.wso2.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ax2592="http://core.user.carbon.wso2.org/xsd" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ax2593="http://api.user.carbon.wso2.org/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>RemoteAuthorizationManagerService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://api.user.carbon.wso2.org/xsd">
+      <xs:complexType name="UserStoreException">
+        <xs:sequence/>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.ws.um.carbon.wso2.org" xmlns:ax2595="http://core.user.carbon.wso2.org/xsd">
+      <xs:import namespace="http://core.user.carbon.wso2.org/xsd"/>
+      <xs:element name="RemoteAuthorizationManagerServiceUserStoreException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="UserStoreException" nillable="true" type="ax2592:UserStoreException"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="resetPermissionOnUpdateRole">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="newRoleName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isUserAuthorized">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isUserAuthorizedResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isRoleAuthorized">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isRoleAuthorizedResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExplicitlyDeniedUsersForResource">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExplicitlyDeniedUsersForResourceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExplicitlyAllowedUsersForResource">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getExplicitlyAllowedUsersForResourceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDeniedRolesForResource">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getDeniedRolesForResourceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllowedUIResourcesForUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="permissionRootPath" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllowedUIResourcesForUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllowedRolesForResource">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getAllowedRolesForResourceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="denyUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="denyRole">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearUserAuthorization">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearRoleAuthorization">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearRoleActionOnAllResources">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearResourceAuthorizations">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearAllUserAuthorization">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="clearAllRoleAuthorization">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="authorizeUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="authorizeRole">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="resourceId" nillable="true" type="xs:string"/>
+            <xs:element minOccurs="0" name="action" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://core.user.carbon.wso2.org/xsd" xmlns:ax2594="http://api.user.carbon.wso2.org/xsd">
+      <xs:import namespace="http://api.user.carbon.wso2.org/xsd"/>
+      <xs:complexType name="UserStoreException">
+        <xs:complexContent>
+          <xs:extension base="ax2593:UserStoreException">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="denyUserRequest">
+    <wsdl:part name="parameters" element="ns:denyUser"/>
+  </wsdl:message>
+  <wsdl:message name="RemoteAuthorizationManagerServiceUserStoreException">
+    <wsdl:part name="parameters" element="ns:RemoteAuthorizationManagerServiceUserStoreException"/>
+  </wsdl:message>
+  <wsdl:message name="getAllowedUIResourcesForUserRequest">
+    <wsdl:part name="parameters" element="ns:getAllowedUIResourcesForUser"/>
+  </wsdl:message>
+  <wsdl:message name="getAllowedUIResourcesForUserResponse">
+    <wsdl:part name="parameters" element="ns:getAllowedUIResourcesForUserResponse"/>
+  </wsdl:message>
+  <wsdl:message name="resetPermissionOnUpdateRoleRequest">
+    <wsdl:part name="parameters" element="ns:resetPermissionOnUpdateRole"/>
+  </wsdl:message>
+  <wsdl:message name="authorizeRoleRequest">
+    <wsdl:part name="parameters" element="ns:authorizeRole"/>
+  </wsdl:message>
+  <wsdl:message name="denyRoleRequest">
+    <wsdl:part name="parameters" element="ns:denyRole"/>
+  </wsdl:message>
+  <wsdl:message name="clearRoleActionOnAllResourcesRequest">
+    <wsdl:part name="parameters" element="ns:clearRoleActionOnAllResources"/>
+  </wsdl:message>
+  <wsdl:message name="isUserAuthorizedRequest">
+    <wsdl:part name="parameters" element="ns:isUserAuthorized"/>
+  </wsdl:message>
+  <wsdl:message name="isUserAuthorizedResponse">
+    <wsdl:part name="parameters" element="ns:isUserAuthorizedResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getExplicitlyDeniedUsersForResourceRequest">
+    <wsdl:part name="parameters" element="ns:getExplicitlyDeniedUsersForResource"/>
+  </wsdl:message>
+  <wsdl:message name="getExplicitlyDeniedUsersForResourceResponse">
+    <wsdl:part name="parameters" element="ns:getExplicitlyDeniedUsersForResourceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="authorizeUserRequest">
+    <wsdl:part name="parameters" element="ns:authorizeUser"/>
+  </wsdl:message>
+  <wsdl:message name="clearRoleAuthorizationRequest">
+    <wsdl:part name="parameters" element="ns:clearRoleAuthorization"/>
+  </wsdl:message>
+  <wsdl:message name="clearAllUserAuthorizationRequest">
+    <wsdl:part name="parameters" element="ns:clearAllUserAuthorization"/>
+  </wsdl:message>
+  <wsdl:message name="clearUserAuthorizationRequest">
+    <wsdl:part name="parameters" element="ns:clearUserAuthorization"/>
+  </wsdl:message>
+  <wsdl:message name="getAllowedRolesForResourceRequest">
+    <wsdl:part name="parameters" element="ns:getAllowedRolesForResource"/>
+  </wsdl:message>
+  <wsdl:message name="getAllowedRolesForResourceResponse">
+    <wsdl:part name="parameters" element="ns:getAllowedRolesForResourceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="clearResourceAuthorizationsRequest">
+    <wsdl:part name="parameters" element="ns:clearResourceAuthorizations"/>
+  </wsdl:message>
+  <wsdl:message name="getDeniedRolesForResourceRequest">
+    <wsdl:part name="parameters" element="ns:getDeniedRolesForResource"/>
+  </wsdl:message>
+  <wsdl:message name="getDeniedRolesForResourceResponse">
+    <wsdl:part name="parameters" element="ns:getDeniedRolesForResourceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="isRoleAuthorizedRequest">
+    <wsdl:part name="parameters" element="ns:isRoleAuthorized"/>
+  </wsdl:message>
+  <wsdl:message name="isRoleAuthorizedResponse">
+    <wsdl:part name="parameters" element="ns:isRoleAuthorizedResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getExplicitlyAllowedUsersForResourceRequest">
+    <wsdl:part name="parameters" element="ns:getExplicitlyAllowedUsersForResource"/>
+  </wsdl:message>
+  <wsdl:message name="getExplicitlyAllowedUsersForResourceResponse">
+    <wsdl:part name="parameters" element="ns:getExplicitlyAllowedUsersForResourceResponse"/>
+  </wsdl:message>
+  <wsdl:message name="clearAllRoleAuthorizationRequest">
+    <wsdl:part name="parameters" element="ns:clearAllRoleAuthorization"/>
+  </wsdl:message>
+  <wsdl:portType name="RemoteAuthorizationManagerServicePortType">
+    <wsdl:operation name="denyUser">
+      <wsdl:input message="ns:denyUserRequest" wsaw:Action="urn:denyUser"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:denyUserRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedUIResourcesForUser">
+      <wsdl:input message="ns:getAllowedUIResourcesForUserRequest" wsaw:Action="urn:getAllowedUIResourcesForUser"/>
+      <wsdl:output message="ns:getAllowedUIResourcesForUserResponse" wsaw:Action="urn:getAllowedUIResourcesForUserResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:getAllowedUIResourcesForUserRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="resetPermissionOnUpdateRole">
+      <wsdl:input message="ns:resetPermissionOnUpdateRoleRequest" wsaw:Action="urn:resetPermissionOnUpdateRole"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:resetPermissionOnUpdateRoleRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeRole">
+      <wsdl:input message="ns:authorizeRoleRequest" wsaw:Action="urn:authorizeRole"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:authorizeRoleRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="denyRole">
+      <wsdl:input message="ns:denyRoleRequest" wsaw:Action="urn:denyRole"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:denyRoleRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleActionOnAllResources">
+      <wsdl:input message="ns:clearRoleActionOnAllResourcesRequest" wsaw:Action="urn:clearRoleActionOnAllResources"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearRoleActionOnAllResourcesRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <wsdl:input message="ns:isUserAuthorizedRequest" wsaw:Action="urn:isUserAuthorized"/>
+      <wsdl:output message="ns:isUserAuthorizedResponse" wsaw:Action="urn:isUserAuthorizedResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:isUserAuthorizedRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyDeniedUsersForResource">
+      <wsdl:input message="ns:getExplicitlyDeniedUsersForResourceRequest" wsaw:Action="urn:getExplicitlyDeniedUsersForResource"/>
+      <wsdl:output message="ns:getExplicitlyDeniedUsersForResourceResponse" wsaw:Action="urn:getExplicitlyDeniedUsersForResourceResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:getExplicitlyDeniedUsersForResourceRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeUser">
+      <wsdl:input message="ns:authorizeUserRequest" wsaw:Action="urn:authorizeUser"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:authorizeUserRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleAuthorization">
+      <wsdl:input message="ns:clearRoleAuthorizationRequest" wsaw:Action="urn:clearRoleAuthorization"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearRoleAuthorizationRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllUserAuthorization">
+      <wsdl:input message="ns:clearAllUserAuthorizationRequest" wsaw:Action="urn:clearAllUserAuthorization"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearAllUserAuthorizationRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearUserAuthorization">
+      <wsdl:input message="ns:clearUserAuthorizationRequest" wsaw:Action="urn:clearUserAuthorization"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearUserAuthorizationRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedRolesForResource">
+      <wsdl:input message="ns:getAllowedRolesForResourceRequest" wsaw:Action="urn:getAllowedRolesForResource"/>
+      <wsdl:output message="ns:getAllowedRolesForResourceResponse" wsaw:Action="urn:getAllowedRolesForResourceResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:getAllowedRolesForResourceRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearResourceAuthorizations">
+      <wsdl:input message="ns:clearResourceAuthorizationsRequest" wsaw:Action="urn:clearResourceAuthorizations"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearResourceAuthorizationsRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getDeniedRolesForResource">
+      <wsdl:input message="ns:getDeniedRolesForResourceRequest" wsaw:Action="urn:getDeniedRolesForResource"/>
+      <wsdl:output message="ns:getDeniedRolesForResourceResponse" wsaw:Action="urn:getDeniedRolesForResourceResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:getDeniedRolesForResourceRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <wsdl:input message="ns:isRoleAuthorizedRequest" wsaw:Action="urn:isRoleAuthorized"/>
+      <wsdl:output message="ns:isRoleAuthorizedResponse" wsaw:Action="urn:isRoleAuthorizedResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:isRoleAuthorizedRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyAllowedUsersForResource">
+      <wsdl:input message="ns:getExplicitlyAllowedUsersForResourceRequest" wsaw:Action="urn:getExplicitlyAllowedUsersForResource"/>
+      <wsdl:output message="ns:getExplicitlyAllowedUsersForResourceResponse" wsaw:Action="urn:getExplicitlyAllowedUsersForResourceResponse"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:getExplicitlyAllowedUsersForResourceRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllRoleAuthorization">
+      <wsdl:input message="ns:clearAllRoleAuthorizationRequest" wsaw:Action="urn:clearAllRoleAuthorization"/>
+      <wsdl:fault message="ns:RemoteAuthorizationManagerServiceUserStoreException" name="RemoteAuthorizationManagerServiceUserStoreException" wsaw:Action="urn:clearAllRoleAuthorizationRemoteAuthorizationManagerServiceUserStoreException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RemoteAuthorizationManagerServiceSoap11Binding" type="ns:RemoteAuthorizationManagerServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="denyUser">
+      <soap:operation soapAction="urn:denyUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedUIResourcesForUser">
+      <soap:operation soapAction="urn:getAllowedUIResourcesForUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetPermissionOnUpdateRole">
+      <soap:operation soapAction="urn:resetPermissionOnUpdateRole" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeRole">
+      <soap:operation soapAction="urn:authorizeRole" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="denyRole">
+      <soap:operation soapAction="urn:denyRole" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleActionOnAllResources">
+      <soap:operation soapAction="urn:clearRoleActionOnAllResources" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <soap:operation soapAction="urn:isUserAuthorized" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyDeniedUsersForResource">
+      <soap:operation soapAction="urn:getExplicitlyDeniedUsersForResource" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeUser">
+      <soap:operation soapAction="urn:authorizeUser" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleAuthorization">
+      <soap:operation soapAction="urn:clearRoleAuthorization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllUserAuthorization">
+      <soap:operation soapAction="urn:clearAllUserAuthorization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedRolesForResource">
+      <soap:operation soapAction="urn:getAllowedRolesForResource" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearUserAuthorization">
+      <soap:operation soapAction="urn:clearUserAuthorization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeniedRolesForResource">
+      <soap:operation soapAction="urn:getDeniedRolesForResource" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearResourceAuthorizations">
+      <soap:operation soapAction="urn:clearResourceAuthorizations" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <soap:operation soapAction="urn:isRoleAuthorized" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllRoleAuthorization">
+      <soap:operation soapAction="urn:clearAllRoleAuthorization" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyAllowedUsersForResource">
+      <soap:operation soapAction="urn:getExplicitlyAllowedUsersForResource" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RemoteAuthorizationManagerServiceSoap12Binding" type="ns:RemoteAuthorizationManagerServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="denyUser">
+      <soap12:operation soapAction="urn:denyUser" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedUIResourcesForUser">
+      <soap12:operation soapAction="urn:getAllowedUIResourcesForUser" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="resetPermissionOnUpdateRole">
+      <soap12:operation soapAction="urn:resetPermissionOnUpdateRole" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeRole">
+      <soap12:operation soapAction="urn:authorizeRole" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="denyRole">
+      <soap12:operation soapAction="urn:denyRole" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleActionOnAllResources">
+      <soap12:operation soapAction="urn:clearRoleActionOnAllResources" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <soap12:operation soapAction="urn:isUserAuthorized" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyDeniedUsersForResource">
+      <soap12:operation soapAction="urn:getExplicitlyDeniedUsersForResource" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeUser">
+      <soap12:operation soapAction="urn:authorizeUser" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleAuthorization">
+      <soap12:operation soapAction="urn:clearRoleAuthorization" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllUserAuthorization">
+      <soap12:operation soapAction="urn:clearAllUserAuthorization" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedRolesForResource">
+      <soap12:operation soapAction="urn:getAllowedRolesForResource" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearUserAuthorization">
+      <soap12:operation soapAction="urn:clearUserAuthorization" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDeniedRolesForResource">
+      <soap12:operation soapAction="urn:getDeniedRolesForResource" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearResourceAuthorizations">
+      <soap12:operation soapAction="urn:clearResourceAuthorizations" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <soap12:operation soapAction="urn:isRoleAuthorized" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllRoleAuthorization">
+      <soap12:operation soapAction="urn:clearAllRoleAuthorization" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyAllowedUsersForResource">
+      <soap12:operation soapAction="urn:getExplicitlyAllowedUsersForResource" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="RemoteAuthorizationManagerServiceUserStoreException">
+        <soap12:fault use="literal" name="RemoteAuthorizationManagerServiceUserStoreException"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RemoteAuthorizationManagerServiceHttpBinding" type="ns:RemoteAuthorizationManagerServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="denyUser">
+      <http:operation location="denyUser"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedUIResourcesForUser">
+      <http:operation location="getAllowedUIResourcesForUser"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPermissionOnUpdateRole">
+      <http:operation location="resetPermissionOnUpdateRole"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeRole">
+      <http:operation location="authorizeRole"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="denyRole">
+      <http:operation location="denyRole"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleActionOnAllResources">
+      <http:operation location="clearRoleActionOnAllResources"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="isUserAuthorized">
+      <http:operation location="isUserAuthorized"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyDeniedUsersForResource">
+      <http:operation location="getExplicitlyDeniedUsersForResource"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="authorizeUser">
+      <http:operation location="authorizeUser"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="clearRoleAuthorization">
+      <http:operation location="clearRoleAuthorization"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllUserAuthorization">
+      <http:operation location="clearAllUserAuthorization"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getAllowedRolesForResource">
+      <http:operation location="getAllowedRolesForResource"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearUserAuthorization">
+      <http:operation location="clearUserAuthorization"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getDeniedRolesForResource">
+      <http:operation location="getDeniedRolesForResource"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearResourceAuthorizations">
+      <http:operation location="clearResourceAuthorizations"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="isRoleAuthorized">
+      <http:operation location="isRoleAuthorized"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="clearAllRoleAuthorization">
+      <http:operation location="clearAllRoleAuthorization"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="getExplicitlyAllowedUsersForResource">
+      <http:operation location="getExplicitlyAllowedUsersForResource"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RemoteAuthorizationManagerService">
+    <wsdl:port name="RemoteAuthorizationManagerServiceHttpsSoap11Endpoint" binding="ns:RemoteAuthorizationManagerServiceSoap11Binding">
+      <soap:address location="https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RemoteAuthorizationManagerServiceHttpsSoap12Endpoint" binding="ns:RemoteAuthorizationManagerServiceSoap12Binding">
+      <soap12:address location="https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RemoteAuthorizationManagerServiceHttpsEndpoint" binding="ns:RemoteAuthorizationManagerServiceHttpBinding">
+      <http:address location="https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://int-sso.smartdatanet.it/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:endpoint>https://tst-sdnet-sec1.sdp.csi.it:9444/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:authorizeRole" name="authorizeRole" bindingOperationName="authorizeRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:authorizeRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:authorizeRole>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:authorizeRole"/></con:call></con:operation><con:operation isOneWay="false" action="urn:authorizeUser" name="authorizeUser" bindingOperationName="authorizeUser" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:authorizeUser>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:authorizeUser>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:authorizeUser"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearAllRoleAuthorization" name="clearAllRoleAuthorization" bindingOperationName="clearAllRoleAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearAllRoleAuthorization>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+      </ser:clearAllRoleAuthorization>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearAllRoleAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearAllUserAuthorization" name="clearAllUserAuthorization" bindingOperationName="clearAllUserAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearAllUserAuthorization>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+      </ser:clearAllUserAuthorization>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearAllUserAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearResourceAuthorizations" name="clearResourceAuthorizations" bindingOperationName="clearResourceAuthorizations" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearResourceAuthorizations>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+      </ser:clearResourceAuthorizations>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearResourceAuthorizations"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearRoleActionOnAllResources" name="clearRoleActionOnAllResources" bindingOperationName="clearRoleActionOnAllResources" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearRoleActionOnAllResources>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearRoleActionOnAllResources>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearRoleActionOnAllResources"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearRoleAuthorization" name="clearRoleAuthorization" bindingOperationName="clearRoleAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearRoleAuthorization>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearRoleAuthorization>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearRoleAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:clearUserAuthorization" name="clearUserAuthorization" bindingOperationName="clearUserAuthorization" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:clearUserAuthorization>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:clearUserAuthorization>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:clearUserAuthorization"/></con:call></con:operation><con:operation isOneWay="false" action="urn:denyRole" name="denyRole" bindingOperationName="denyRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:denyRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:denyRole>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:denyRole"/></con:call></con:operation><con:operation isOneWay="false" action="urn:denyUser" name="denyUser" bindingOperationName="denyUser" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:denyUser>
+         <!--Optional:-->
+         <ser:userName>?</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:denyUser>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:denyUser"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getAllowedRolesForResource" name="getAllowedRolesForResource" bindingOperationName="getAllowedRolesForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getAllowedRolesForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getAllowedRolesForResource>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getAllowedRolesForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getAllowedUIResourcesForUser" name="getAllowedUIResourcesForUser" bindingOperationName="getAllowedUIResourcesForUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-sso.smartdatanet.it/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getAllowedUIResourcesForUser>
+         <!--Optional:-->
+         <ser:userName>userONDE</ser:userName>
+         <!--Optional:-->
+         <ser:permissionRootPath>/permission/Applications/userportal/</ser:permissionRootPath>
+      </ser:getAllowedUIResourcesForUser>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>***REMOVED***</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getAllowedUIResourcesForUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getDeniedRolesForResource" name="getDeniedRolesForResource" bindingOperationName="getDeniedRolesForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getDeniedRolesForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getDeniedRolesForResource>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getDeniedRolesForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getExplicitlyAllowedUsersForResource" name="getExplicitlyAllowedUsersForResource" bindingOperationName="getExplicitlyAllowedUsersForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getExplicitlyAllowedUsersForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getExplicitlyAllowedUsersForResource>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getExplicitlyAllowedUsersForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getExplicitlyDeniedUsersForResource" name="getExplicitlyDeniedUsersForResource" bindingOperationName="getExplicitlyDeniedUsersForResource" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getExplicitlyDeniedUsersForResource>
+         <!--Optional:-->
+         <ser:resourceId>?</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>?</ser:action>
+      </ser:getExplicitlyDeniedUsersForResource>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getExplicitlyDeniedUsersForResource"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isRoleAuthorized" name="isRoleAuthorized" bindingOperationName="isRoleAuthorized" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://tst-sdnet-sec1.sdp.csi.it:9444/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:isRoleAuthorized>
+         <!--Optional:-->
+         <ser:roleName>userportal-manager</ser:roleName>
+         <!--Optional:-->
+         <ser:resourceId>permission/Applications/userportal/management</ser:resourceId>
+         <!--Optional:-->
+         <ser:action>ui.execute</ser:action>
+      </ser:isRoleAuthorized>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>***REMOVED***</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isRoleAuthorized"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isUserAuthorized" name="isUserAuthorized" bindingOperationName="isUserAuthorized" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://tst-sdnet-sec1.sdp.csi.it:9444/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:isUserAuthorized>
+         <!--Optional:-->
+         <ser:userName>smartlab_developer</ser:userName>
+         <!--Optional:-->
+         <ser:resourceId>permission/Applications/userportal/management</ser:resourceId>
+         <!--Optional:-->
+         <ser:action></ser:action>
+      </ser:isUserAuthorized>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:username>admin</con:username><con:password>***REMOVED***</con:password><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isUserAuthorized"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:resetPermissionOnUpdateRole" name="resetPermissionOnUpdateRole" bindingOperationName="resetPermissionOnUpdateRole" type="One-Way" inputName="" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RemoteAuthorizationManagerService.RemoteAuthorizationManagerServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.ws.um.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:resetPermissionOnUpdateRole>
+         <!--Optional:-->
+         <ser:roleName>?</ser:roleName>
+         <!--Optional:-->
+         <ser:newRoleName>?</ser:newRoleName>
+      </ser:resetPermissionOnUpdateRole>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:resetPermissionOnUpdateRole"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

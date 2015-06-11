@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="RegistryAdminService" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RegistryAdminServiceSoap11Binding" type="wsdl" bindingName="{http://service.server.registry.carbon.wso2.org}RegistryAdminServiceSoap11Binding" soapVersion="1_1" anonymous="optional" definition="https://localhost:9443/services/RegistryAdminService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap11Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:getHTTPPermalink" name="getHTTPPermalink" bindingOperationName="getHTTPPermalink" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getHTTPPermalink>
+         <!--Optional:-->
+         <ser:path>?</ser:path>
+      </ser:getHTTPPermalink>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getHTTPPermalink"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getHTTPSPermalink" name="getHTTPSPermalink" bindingOperationName="getHTTPSPermalink" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getHTTPSPermalink>
+         <!--Optional:-->
+         <ser:path>?</ser:path>
+      </ser:getHTTPSPermalink>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getHTTPSPermalink"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isRegistryReadOnly" name="isRegistryReadOnly" bindingOperationName="isRegistryReadOnly" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:isRegistryReadOnly/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isRegistryReadOnly"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="RegistryAdminServiceSoap12Binding" type="wsdl" bindingName="{http://service.server.registry.carbon.wso2.org}RegistryAdminServiceSoap12Binding" soapVersion="1_2" anonymous="optional" definition="https://localhost:9443/services/RegistryAdminService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://localhost:9443/services/RegistryAdminService?wsdl"><con:part><con:url>https://localhost:9443/services/RegistryAdminService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://service.server.registry.carbon.wso2.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://service.server.registry.carbon.wso2.org" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <wsdl:documentation>RegistryAdminService</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://service.server.registry.carbon.wso2.org">
+      <xs:element name="isRegistryReadOnly">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="isRegistryReadOnlyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHTTPSPermalink">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHTTPSPermalinkResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHTTPPermalink">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="path" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getHTTPPermalinkResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getHTTPPermalinkRequest">
+    <wsdl:part name="parameters" element="ns:getHTTPPermalink"/>
+  </wsdl:message>
+  <wsdl:message name="getHTTPPermalinkResponse">
+    <wsdl:part name="parameters" element="ns:getHTTPPermalinkResponse"/>
+  </wsdl:message>
+  <wsdl:message name="isRegistryReadOnlyRequest">
+    <wsdl:part name="parameters" element="ns:isRegistryReadOnly"/>
+  </wsdl:message>
+  <wsdl:message name="isRegistryReadOnlyResponse">
+    <wsdl:part name="parameters" element="ns:isRegistryReadOnlyResponse"/>
+  </wsdl:message>
+  <wsdl:message name="getHTTPSPermalinkRequest">
+    <wsdl:part name="parameters" element="ns:getHTTPSPermalink"/>
+  </wsdl:message>
+  <wsdl:message name="getHTTPSPermalinkResponse">
+    <wsdl:part name="parameters" element="ns:getHTTPSPermalinkResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="RegistryAdminServicePortType">
+    <wsdl:operation name="getHTTPPermalink">
+      <wsdl:input message="ns:getHTTPPermalinkRequest" wsaw:Action="urn:getHTTPPermalink"/>
+      <wsdl:output message="ns:getHTTPPermalinkResponse" wsaw:Action="urn:getHTTPPermalinkResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistryReadOnly">
+      <wsdl:input message="ns:isRegistryReadOnlyRequest" wsaw:Action="urn:isRegistryReadOnly"/>
+      <wsdl:output message="ns:isRegistryReadOnlyResponse" wsaw:Action="urn:isRegistryReadOnlyResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getHTTPSPermalink">
+      <wsdl:input message="ns:getHTTPSPermalinkRequest" wsaw:Action="urn:getHTTPSPermalink"/>
+      <wsdl:output message="ns:getHTTPSPermalinkResponse" wsaw:Action="urn:getHTTPSPermalinkResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RegistryAdminServiceSoap11Binding" type="ns:RegistryAdminServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getHTTPPermalink">
+      <soap:operation soapAction="urn:getHTTPPermalink" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistryReadOnly">
+      <soap:operation soapAction="urn:isRegistryReadOnly" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHTTPSPermalink">
+      <soap:operation soapAction="urn:getHTTPSPermalink" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RegistryAdminServiceSoap12Binding" type="ns:RegistryAdminServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <wsdl:operation name="getHTTPPermalink">
+      <soap12:operation soapAction="urn:getHTTPPermalink" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistryReadOnly">
+      <soap12:operation soapAction="urn:isRegistryReadOnly" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHTTPSPermalink">
+      <soap12:operation soapAction="urn:getHTTPSPermalink" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RegistryAdminServiceHttpBinding" type="ns:RegistryAdminServicePortType">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="getHTTPPermalink">
+      <http:operation location="getHTTPPermalink"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isRegistryReadOnly">
+      <http:operation location="isRegistryReadOnly"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHTTPSPermalink">
+      <http:operation location="getHTTPSPermalink"/>
+      <wsdl:input>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" part="parameters"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RegistryAdminService">
+    <wsdl:port name="RegistryAdminServiceHttpsSoap11Endpoint" binding="ns:RegistryAdminServiceSoap11Binding">
+      <soap:address location="https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap11Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RegistryAdminServiceHttpsSoap12Endpoint" binding="ns:RegistryAdminServiceSoap12Binding">
+      <soap12:address location="https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap12Endpoint/"/>
+    </wsdl:port>
+    <wsdl:port name="RegistryAdminServiceHttpsEndpoint" binding="ns:RegistryAdminServiceHttpBinding">
+      <http:address location="https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsEndpoint/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap12Endpoint/</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:getHTTPPermalink" name="getHTTPPermalink" bindingOperationName="getHTTPPermalink" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getHTTPPermalink>
+         <!--Optional:-->
+         <ser:path>?</ser:path>
+      </ser:getHTTPPermalink>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getHTTPPermalink"/></con:call></con:operation><con:operation isOneWay="false" action="urn:getHTTPSPermalink" name="getHTTPSPermalink" bindingOperationName="getHTTPSPermalink" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:getHTTPSPermalink>
+         <!--Optional:-->
+         <ser:path>?</ser:path>
+      </ser:getHTTPSPermalink>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:getHTTPSPermalink"/></con:call></con:operation><con:operation isOneWay="false" action="urn:isRegistryReadOnly" name="isRegistryReadOnly" bindingOperationName="isRegistryReadOnly" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://localhost:9443/services/RegistryAdminService.RegistryAdminServiceHttpsSoap12Endpoint/</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ser="http://service.server.registry.carbon.wso2.org">
+   <soap:Header/>
+   <soap:Body>
+      <ser:isRegistryReadOnly/>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:isRegistryReadOnly"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

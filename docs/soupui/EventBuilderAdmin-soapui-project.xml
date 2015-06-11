@@ -2621,15 +2621,15 @@
          <int:mappingEnabled>?</int:mappingEnabled>
       </int:deployXmlEventBuilderConfiguration>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployXmlEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveEventBuilderConfiguration" name="editActiveEventBuilderConfiguration" bindingOperationName="editActiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventBuilderAdminService.EventBuilderAdminServiceHttpsSoap11Endpoint/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:deployXmlEventBuilderConfiguration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:editActiveEventBuilderConfiguration" name="editActiveEventBuilderConfiguration" bindingOperationName="editActiveEventBuilderConfiguration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://int-sdnet-mb1.sdp.csi.it:9446/wso003/services/EventFormatterAdminService/</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:editActiveEventBuilderConfiguration>
          <!--Optional:-->
-         <int:originalEventBuilderName>smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2__EventBuilder</int:originalEventBuilderName>
+         <int:originalEventBuilderName>todel__EventBuilder</int:originalEventBuilderName>
          <!--Optional:-->
          <int:eventBuilderConfigXml><![CDATA[<eventBuilder
-    name="smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2__EventBuilder"
+    name="todel__EventBuilder"
     statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
     <from eventAdaptorName="JMSMBInternalInputEventAdaptor.xml" eventAdaptorType="jms">
         <property name="transport.jms.Destination">VirtualQueueConsumer.mb1.input.smartlab.550e8400-e29b-41d4-a716-446655440000_temperatura2</property>
@@ -2637,15 +2637,11 @@
     <mapping customMapping="enable" type="json">
         <property>
             <from jsonPath="sensor"/>
-            <to name="meta_source" type="string"/>
-        </property>
-        <property>
-            <from jsonPath="values.time"/>
-            <to name="time" type="string"/>
+            <to name="value" type="string"/>
         </property>
     </mapping>
     <to
-        streamName="input__smartlab__550e8400_e29b_41d4_a716_446655440000__temperatura2" version="1.0.0"/>
+        streamName="todel" version="1.0.0"/>
 </eventBuilder>]]]]>><![CDATA[</int:eventBuilderConfigXml>
       </int:editActiveEventBuilderConfiguration>
    </soapenv:Body>
