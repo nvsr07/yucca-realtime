@@ -1,0 +1,1 @@
+./apache-jmeter-2.11/bin/jmeter.sh -t "../Yucca Test Plan.jmx" -q /Users/Tophans/git/yucca-realtime/testplan/resources/int-sdnet.properties
