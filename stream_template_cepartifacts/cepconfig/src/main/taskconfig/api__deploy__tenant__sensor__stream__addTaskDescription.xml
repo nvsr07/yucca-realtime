@@ -13,23 +13,25 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTaskDes
                <task:property name="message" xmlns="http://ws.apache.org/ns/synapse">
                 <twit:invokeTwitter xmlns:twit="http://twitterpoller.yucca.csi.org" xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd"> 
 		         <twit:twitterQuery> 
-		            <xsd:twtCount>?</xsd:twtCount> 
-		            <xsd:twtGeolocLat>?</xsd:twtGeolocLat> 
-		            <xsd:twtGeolocLon>?</xsd:twtGeolocLon> 
-		            <xsd:twtGeolocRadius>?</xsd:twtGeolocRadius> 
-		            <xsd:twtGeolocUnit>?</xsd:twtGeolocUnit> 
-		            <xsd:twtLang>?</xsd:twtLang> 
-		            <xsd:twtLastSearchId>?</xsd:twtLastSearchId> 
-		            <xsd:twtQuery>?</xsd:twtQuery> 
-		            <xsd:twtResultType>?</xsd:twtResultType> 
-		            <xsd:twtTokenSecret>?</xsd:twtTokenSecret> 
-		            <xsd:twtUntil>?</xsd:twtUntil> 
-		            <xsd:twtUserToken>?</xsd:twtUserToken> 
+		            <xsd:twtCount>${twitterInfo.twtCount}</xsd:twtCount> 
+		            <xsd:twtGeolocLat>${twitterInfo.twtGeolocLat}</xsd:twtGeolocLat> 
+		            <xsd:twtGeolocLon>${twitterInfo.twtGeolocLon}</xsd:twtGeolocLon> 
+		            <xsd:twtGeolocRadius>${twitterInfo.twtGeolocRadius}</xsd:twtGeolocRadius> 
+		            <xsd:twtGeolocUnit>${twitterInfo.twtGeolocUnit}</xsd:twtGeolocUnit> 
+		            <xsd:twtLang>${twitterInfo.twtLang}</xsd:twtLang> 
+		            <xsd:twtLastSearchId>${twitterInfo.twtLastSearchId}</xsd:twtLastSearchId> 
+		            <xsd:twtQuery>${twitterInfo.twtQuery}</xsd:twtQuery> 
+		            <xsd:twtResultType>${twitterInfo.twtResultType}</xsd:twtResultType> 
+		            <xsd:twtTokenSecret>${twitterInfo.twtTokenSecret}</xsd:twtTokenSecret> 
+		            <xsd:twtUntil>${twitterInfo.twtUntil}</xsd:twtUntil> 
+		            <xsd:twtUserToken>${twitterInfo.twtUserToken}</xsd:twtUserToken> 
 		         </twit:twitterQuery> 
 		         <twit:streamInfo> 
 		            <xsd:streamCode>${stream.code}</xsd:streamCode> 
 		            <xsd:tenatcode>${tenant.code}</xsd:tenatcode> 
-		            <xsd:virtualEntityCode>${source.code}</xsd:virtualEntityCode> 
+		            <xsd:virtualEntityCode>${source.code}</xsd:virtualEntityCode>
+		            <xsd:streamVersion>${stream.version}</xsd:streamVersion> 
+		            <xsd:resetLastId>true</xsd:resetLastId>  
 		         </twit:streamInfo> 
 		        </twit:invokeTwitter> 
                </task:property>

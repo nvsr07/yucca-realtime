@@ -34,6 +34,21 @@ data: {
 		code: "temp"
 		published: "false"
         persisted: "false"
+        version: "1"
+	}
+	twitterInfo: {
+	 	twtCount:  
+		twtGeolocLat: 
+		twtGeolocLon: 
+		twtGeolocRadius: 
+		twtGeolocUnit: 
+		twtLang: 
+		twtLastSearchId: 
+		twtQuery: 
+		twtResultType: 
+		twtTokenSecret: 
+		twtUntil: 
+		twtUserToken: 
 	}
 	internalStreamInfo:[
 	
