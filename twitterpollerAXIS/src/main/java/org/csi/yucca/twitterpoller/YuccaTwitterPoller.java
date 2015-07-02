@@ -17,7 +17,7 @@ public class YuccaTwitterPoller{
 		
 		YuccaTwitterMongoDataAcces mongoDAO=new YuccaTwitterMongoDataAcces();
 		
-		Long lastId=mongoDAO.retrieveLastTweetId(streamInfo.getStreamCode(), streamInfo.getTenatcode(), streamInfo.getVirtualEntityCode());
+		Long lastId=mongoDAO.retrieveLastTweetId(streamInfo.getStreamCode(), streamInfo.getTenatcode(), streamInfo.getVirtualEntityCode(),streamInfo.getStreamVersion(),(1==streamInfo.getResetLastId()));
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] lastId recuperato -->"+lastId);
 		
 		
@@ -26,6 +26,10 @@ public class YuccaTwitterPoller{
 		TwitterInvoker invoke=new TwitterInvoker();
 		lastId = invoke.invokeTwitter(twitterQuery);
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] lastId da twitter -->"+lastId);
+
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] LAT -->"+twitterQuery.getTwtGeolocLat());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] LON -->"+twitterQuery.getTwtGeolocLon());
+
 		
 		if (lastId!=-1)  mongoDAO.updateLastId(streamInfo.getStreamCode(), streamInfo.getTenatcode(), streamInfo.getVirtualEntityCode(),lastId);
 		

@@ -37,18 +37,18 @@ public class TwitterInvoker {
 		cb.setOAuthConsumerKey(consumerKey);
 		cb.setOAuthConsumerSecret(consumerSecret);
 
-		cb.setOAuthAccessToken(twitterQuery.getTwtUsertoken());
+		cb.setOAuthAccessToken(twitterQuery.getTwtUserToken());
 		cb.setOAuthAccessTokenSecret(twitterQuery.getTwtTokenSecret());
 
 		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] consumerKey "+consumerKey);
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] consumerSecret "+consumerSecret);
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUsertoken() "+twitterQuery.getTwtUsertoken());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUsertoken() "+twitterQuery.getTwtUserToken());
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtTokenSecret() "+twitterQuery.getTwtTokenSecret());
 		
 
 		Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 		User user = twitter.verifyCredentials();
-
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter]user.getName()    "+user.getName());
 		Query query = new Query(twitterQuery.getTwtQuery());
 
 		//GEOLOCATION
@@ -70,8 +70,12 @@ public class TwitterInvoker {
 		//COUNT ???? verificare se val la pensa di parametrizzarlo
 		query.count(100);
 
-
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ query.toString() "+query.toString());
+			
 		QueryResult result = twitter.search(query);
+
+		
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getCount() "+result.getCount());
 
 		
 		long maxId=-1;
@@ -79,6 +83,7 @@ public class TwitterInvoker {
 		for (Status status : result.getTweets()) {
 			YuccaTwitterResult cur = new YuccaTwitterResult();
 
+			log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] elaboro: " + status.getId() + " -- "+status.getText());
 			
 			//contributors
 			if (status.getContributors()!= null && status.getContributors().length>0) {
