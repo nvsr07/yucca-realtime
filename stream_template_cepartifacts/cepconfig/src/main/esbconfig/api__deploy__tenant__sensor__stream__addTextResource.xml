@@ -1,5 +1,5 @@
 <@pp.dropOutputFile />
-<#if source.type!="Internal">
+<#if source.type!="Internal" && source.type!="Feed Tweet">
 <@pp.changeOutputFile
 name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextResource.xml"/>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"

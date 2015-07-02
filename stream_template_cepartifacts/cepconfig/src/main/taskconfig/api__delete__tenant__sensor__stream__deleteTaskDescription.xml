@@ -1,0 +1,15 @@
+<@pp.dropOutputFile />
+<#if source.type=="Feed Tweet">
+<@pp.changeOutputFile name="api__delete__"+tenant.code+"__"+source.code_+"_"+stream.code+"__deleteTaskDescription.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:deleteTaskDescription>
+         <!--Optional:-->
+         <xsd:s>TaskTwitter_${tenant.code}_${source.code}_${stream.code}</xsd:s>
+         <!--Optional:-->
+         <xsd:group>synapse.simple.quartz</xsd:group>
+      </xsd:deleteTaskDescription>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

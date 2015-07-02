@@ -15,7 +15,21 @@
 "username":"",
 "password":""
 },</#if>
-<#if source.type!="Internal">
+<#if source.type=="Feed Tweet">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione del Task schedulato Twitter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"taskconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__deleteTaskDescription.xml",
+"action":"deleteTaskDescription",
+"destination":"${esbinfo.host}/services/TaskAdmin",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+},</#if>
+<#if source.type!="Internal" && source.type!="Feed Tweet">
 {
 "number": "${x}",<#assign x = x+1> 
 "description":"Rimozione  della Validazione sul Governance Registry, aggiungendo lo schema XSD con : api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTextResource.xml", 

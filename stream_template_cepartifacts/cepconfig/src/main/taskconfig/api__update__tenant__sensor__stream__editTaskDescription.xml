@@ -1,0 +1,41 @@
+<@pp.dropOutputFile />
+<#if source.type=="Feed Tweet">
+<@pp.changeOutputFile
+name="api__update__"+tenant.code+"__"+source.code_+"_"+stream.code+"__editTaskDescription.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:editTaskDescription>
+         <!--Optional:-->
+              <task:task xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="TaskTwitter_${tenant.code}_${source.code}_${stream.code}" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" >
+               <task:trigger count="3" interval="2"/>
+               <task:property name="sequenceName" value="sheduled" xmlns="http://ws.apache.org/ns/synapse"/>
+               <task:property name="message" xmlns="http://ws.apache.org/ns/synapse">
+                <twit:invokeTwitter xmlns:twit="http://twitterpoller.yucca.csi.org" xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd"> 
+		         <twit:twitterQuery> 
+		            <xsd:twtCount>?</xsd:twtCount> 
+		            <xsd:twtGeolocLat>?</xsd:twtGeolocLat> 
+		            <xsd:twtGeolocLon>?</xsd:twtGeolocLon> 
+		            <xsd:twtGeolocRadius>?</xsd:twtGeolocRadius> 
+		            <xsd:twtGeolocUnit>?</xsd:twtGeolocUnit> 
+		            <xsd:twtLang>?</xsd:twtLang> 
+		            <xsd:twtLastSearchId>?</xsd:twtLastSearchId> 
+		            <xsd:twtQuery>?</xsd:twtQuery> 
+		            <xsd:twtResultType>?</xsd:twtResultType> 
+		            <xsd:twtTokenSecret>?</xsd:twtTokenSecret> 
+		            <xsd:twtUntil>?</xsd:twtUntil> 
+		            <xsd:twtUserToken>?</xsd:twtUserToken> 
+		         </twit:twitterQuery> 
+		         <twit:streamInfo> 
+		            <xsd:streamCode>${stream.code}</xsd:streamCode> 
+		            <xsd:tenatcode>${tenant.code}</xsd:tenatcode> 
+		            <xsd:virtualEntityCode>${source.code}</xsd:virtualEntityCode> 
+		         </twit:streamInfo> 
+		        </twit:invokeTwitter> 
+               </task:property>
+               <task:property name="injectTo" value="sequence" xmlns="http://ws.apache.org/ns/synapse"/>
+            </task:task>
+      </xsd:editTaskDescription>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>
