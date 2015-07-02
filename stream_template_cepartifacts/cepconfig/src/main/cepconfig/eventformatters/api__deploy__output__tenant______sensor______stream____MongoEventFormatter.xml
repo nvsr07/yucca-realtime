@@ -43,10 +43,12 @@
 				<xsd:value>${mongoconnection.user}</xsd:value>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
-				<!--Optional: -->
 				<xsd:key>collection</xsd:key>
-				<!--Optional: -->
+				<#if source.type=="Feed Tweet">
+				<xsd:value>social</xsd:value>
+				<#else>
 				<xsd:value>measures</xsd:value>
+				</#if>
 			</int:outputPropertyConfiguration>
 			<int:outputPropertyConfiguration>
 				<!--Optional: -->

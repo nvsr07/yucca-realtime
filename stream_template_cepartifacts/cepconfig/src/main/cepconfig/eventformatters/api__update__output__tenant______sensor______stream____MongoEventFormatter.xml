@@ -36,7 +36,11 @@
   </mapping>
 	<to eventAdaptorName="MongoDBOutputEventAdaptor" eventAdaptorType="mongoDB">
     <property name="username">${mongoconnection.user}</property>
+	<#if source.type=="Feed Tweet">
+    <property name="collection">social</property>
+	<#else>
     <property name="collection">measures</property>
+	</#if>
     <property name="password">${mongoconnection.password}</property>
     <property name="database">DB_${tenant.code}</property>
   </to>
