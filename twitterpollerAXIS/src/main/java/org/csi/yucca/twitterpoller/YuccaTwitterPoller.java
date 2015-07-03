@@ -16,6 +16,26 @@ public class YuccaTwitterPoller{
 	public YuccaTwitterCepRecord invokeTwitter(YuccaTwitterQuery twitterQuery, YuccaTwitterStreamConfig streamInfo) throws Exception{
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] BEGIN ");
 		
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getStreamCode " +streamInfo.getStreamCode());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getTenatcode " +streamInfo.getTenatcode());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getVirtualEntityCode " +streamInfo.getVirtualEntityCode());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getResetLastId " +streamInfo.getResetLastId());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getStreamVersion " +streamInfo.getStreamVersion());
+
+		
+		
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtGeolocUnit " +twitterQuery.getTwtGeolocUnit());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtLang " +twitterQuery.getTwtLang());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtQuery " +twitterQuery.getTwtQuery());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtResultType " +twitterQuery.getTwtResultType());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtTokenSecret " +twitterQuery.getTwtTokenSecret());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUntil " +twitterQuery.getTwtUntil());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUserToken " +twitterQuery.getTwtUserToken());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtGeolocLat " +twitterQuery.getTwtGeolocLat());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtGeolocLon " +twitterQuery.getTwtGeolocLon());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtGeolocRadius " +twitterQuery.getTwtGeolocRadius());
+		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtLastSearchId " +twitterQuery.getTwtLastSearchId());
+		
 		
 		YuccaTwitterMongoDataAcces mongoDAO=new YuccaTwitterMongoDataAcces();
 		
