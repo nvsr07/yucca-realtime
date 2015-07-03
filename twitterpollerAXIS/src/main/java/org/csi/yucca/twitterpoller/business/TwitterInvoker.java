@@ -8,8 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.csi.yucca.twitterpoller.constants.SDPTwitterConfig;
+import org.csi.yucca.twitterpoller.dto.YuccaInvokeResult;
 import org.csi.yucca.twitterpoller.dto.YuccaTwitterQuery;
 import org.csi.yucca.twitterpoller.dto.YuccaTwitterResult;
+import org.csi.yucca.twitterpoller.dto.YuccaTwitterValue;
 
 import twitter4j.GeoLocation;
 import twitter4j.Query;
@@ -25,7 +27,7 @@ public class TwitterInvoker {
 
 	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
 
-	public long invokeTwitter(YuccaTwitterQuery twitterQuery) throws Exception{
+	public YuccaInvokeResult invokeTwitter(YuccaTwitterQuery twitterQuery) throws Exception{
 
 		String consumerKey=SDPTwitterConfig.getInstance().getTwtConsumerKey();
 		String consumerSecret=SDPTwitterConfig.getInstance().getTwtConsumerSecret();
@@ -159,6 +161,8 @@ public class TwitterInvoker {
 
 		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] RESULT");
 
+		ArrayList<YuccaTwitterValue> valuesRet=new ArrayList<YuccaTwitterValue>();
+		
 		for (YuccaTwitterResult cur:twittTrovati) {
 			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] -----------------------");
 			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getContributors "+cur.getContributors());
@@ -184,13 +188,23 @@ public class TwitterInvoker {
 			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isRetweetedByMe "+cur.isRetweetedByMe());
 			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isTruncated "+cur.isTruncated());
 			
+			
+			YuccaTwitterValue curValue=new YuccaTwitterValue();
+			curValue.setComponents(cur);
+			curValue.setTime(cur.getCreatedAt());
+			valuesRet.add(curValue);
+			
 		}
 
+
+		YuccaInvokeResult resultChiamata=new YuccaInvokeResult();
+		resultChiamata.setMaxId(maxId);
+		resultChiamata.setValuesRet(valuesRet);
 		
 		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] RESULT --- END ");
 		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] maxId="+maxId);
 		
-		return maxId;
+		return resultChiamata;
 	}
 
 
