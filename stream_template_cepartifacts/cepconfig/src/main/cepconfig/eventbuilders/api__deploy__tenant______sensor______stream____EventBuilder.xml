@@ -25,7 +25,7 @@ name="api__deploy__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
             <!--Optional:-->
             <xsd:valueOf>application</xsd:valueOf>
          </int:jsonPathExpressions>
-         <#elseif source.type = "Device">
+         <#elseif source.type = "Device" or source.type = "Feed Tweet">
          <int:jsonPathExpressions>
             <xsd:name>meta_source</xsd:name>
             <!--Optional:-->

@@ -141,6 +141,20 @@
 "password":"${esbinfo.secpassword}"
 }
 </#if>
+<#if source.type=="Feed Tweet">
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione del Task schedulato Twitter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"taskconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTaskDescription.xml",
+"action":"addTaskDescription",
+"destination":"${esbinfo.host}/services/TaskAdmin",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${esbinfo.secuser}", 
+"password":"${esbinfo.secpassword}"
+}</#if>
 <#if stream.persisted?? && stream.persisted ="true">
 ,{
 "number": "${x}",<#assign x = x+1> 
@@ -168,20 +182,6 @@
 "validityControl":"KO",
 "username":"",
 "password":""
-}</#if>
-<#if source.type=="Feed Tweet">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione del Task schedulato Twitter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"taskconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__addTaskDescription.xml",
-"action":"addTaskDescription",
-"destination":"${esbinfo.host}/services/TaskAdmin",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${esbinfo.secuser}", 
-"password":"${esbinfo.secpassword}"
 }</#if>
 ]
 }

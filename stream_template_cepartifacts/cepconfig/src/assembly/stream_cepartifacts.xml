@@ -17,6 +17,13 @@
 			<directory>generated_src/main/cepconfig</directory>
 		</fileSet>
 		<fileSet>
+			<outputDirectory>taskconfig/</outputDirectory>
+			<directory>generated_src/main/taskconfig</directory>
+			<includes>
+				<include>*.xml</include>
+			</includes>
+		</fileSet>
+		<fileSet>
 			<directory>generated_src</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>

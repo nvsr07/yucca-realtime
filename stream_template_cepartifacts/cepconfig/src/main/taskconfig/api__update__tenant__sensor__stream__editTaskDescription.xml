@@ -9,17 +9,15 @@ name="api__update__"+tenant.code+"__"+source.code_+"_"+stream.code+"__editTaskDe
          <!--Optional:-->
               <task:task xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="TaskTwitter_${tenant.code}_${source.code}_${stream.code}" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" >
                <task:trigger count="3" interval="2"/>
-               <task:property name="sequenceName" value="sheduled" xmlns="http://ws.apache.org/ns/synapse"/>
+               <task:property name="sequenceName" value="twitterInvokerSequence" xmlns="http://ws.apache.org/ns/synapse"/>
                <task:property name="message" xmlns="http://ws.apache.org/ns/synapse">
                 <twit:invokeTwitter xmlns:twit="http://twitterpoller.yucca.csi.org" xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd"> 
 		         <twit:twitterQuery> 
-		            <xsd:twtCount>${twitterInfo.twtCount}</xsd:twtCount> 
 		            <xsd:twtGeolocLat>${twitterInfo.twtGeolocLat}</xsd:twtGeolocLat> 
 		            <xsd:twtGeolocLon>${twitterInfo.twtGeolocLon}</xsd:twtGeolocLon> 
 		            <xsd:twtGeolocRadius>${twitterInfo.twtGeolocRadius}</xsd:twtGeolocRadius> 
 		            <xsd:twtGeolocUnit>${twitterInfo.twtGeolocUnit}</xsd:twtGeolocUnit> 
 		            <xsd:twtLang>${twitterInfo.twtLang}</xsd:twtLang> 
-		            <xsd:twtLastSearchId>${twitterInfo.twtLastSearchId}</xsd:twtLastSearchId> 
 		            <xsd:twtQuery>${twitterInfo.twtQuery}</xsd:twtQuery> 
 		            <xsd:twtResultType>${twitterInfo.twtResultType}</xsd:twtResultType> 
 		            <xsd:twtTokenSecret>${twitterInfo.twtTokenSecret}</xsd:twtTokenSecret> 
@@ -31,7 +29,7 @@ name="api__update__"+tenant.code+"__"+source.code_+"_"+stream.code+"__editTaskDe
 		            <xsd:tenatcode>${tenant.code}</xsd:tenatcode> 
 		            <xsd:virtualEntityCode>${source.code}</xsd:virtualEntityCode>
 		            <xsd:streamVersion>${stream.version}</xsd:streamVersion> 
-		            <xsd:resetLastId>true</xsd:resetLastId>  
+		            <xsd:resetLastId>1</xsd:resetLastId>  
 		         </twit:streamInfo> 
 		        </twit:invokeTwitter> 
                </task:property>

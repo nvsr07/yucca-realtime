@@ -21,6 +21,8 @@
 				"sensor": "{{meta_source}}",
 			<#elseif source.type = "Device">
 				"sensor": "{{meta_source}}",
+			<#elseif source.type = "Feed Tweet">
+				"sensor": "{{meta_source}}",
 			<#else>
 				"sensor": "internal",								
 			</#if>
