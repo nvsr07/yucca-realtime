@@ -25,7 +25,7 @@ name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
 			<from jsonPath="application" />
 			<to name="meta_source" type="string" />
 		</property>
-		<#elseif source.type = "Device">
+		<#elseif source.type = "Device" || source.type = "Feed Tweet">
 		<property>
 			<from jsonPath="sensor" />
 			<to name="meta_source" type="string" />
