@@ -6,15 +6,21 @@ import java.util.logging.Logger;
 import org.csi.yucca.twitterpoller.business.TwitterInvoker;
 import org.csi.yucca.twitterpoller.dto.YuccaInvokeResult;
 import org.csi.yucca.twitterpoller.dto.YuccaTwitterCepRecord;
+import org.csi.yucca.twitterpoller.dto.YuccaTwitterException;
 import org.csi.yucca.twitterpoller.dto.YuccaTwitterQuery;
 import org.csi.yucca.twitterpoller.dto.YuccaTwitterStreamConfig;
 import org.csi.yucca.twitterpoller.mongo.YuccaTwitterMongoDataAcces;
+
+import twitter4j.TwitterException;
 
 public class YuccaTwitterPoller{
 	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
 
 	public YuccaTwitterCepRecord invokeTwitter(YuccaTwitterQuery twitterQuery, YuccaTwitterStreamConfig streamInfo) throws Exception{
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] BEGIN ");
+		
+		try {
+			
 		
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getStreamCode " +streamInfo.getStreamCode());
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] streamInfo.getTenatcode " +streamInfo.getTenatcode());
@@ -65,9 +71,26 @@ public class YuccaTwitterPoller{
 		
 		if (lastId!=-1)  mongoDAO.updateLastId(streamInfo.getStreamCode(), streamInfo.getTenatcode(), streamInfo.getVirtualEntityCode(),lastId);
 		
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] END ");
+
+
+		
 		
 		return ret;
+		
+		} catch (TwitterException twe) {
+			YuccaTwitterException ecc= new YuccaTwitterException();
+			ecc.setTwtErrorCode("TWT_"+twe.getErrorCode());
+			ecc.setTwtErrorMessage(twe.getErrorMessage());
+			YuccaTwitterCepRecord ret= new YuccaTwitterCepRecord();
+			ret.setErrore(ecc);
+			
+			return ret;
+		} finally {
+			log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] END ");
+
+		}
+	
+
 	}
 
 }

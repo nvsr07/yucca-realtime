@@ -5,7 +5,13 @@ import java.util.ArrayList;
 public class YuccaTwitterCepRecord {
 
 	
-	
+	private YuccaTwitterException errore=null;
+	public YuccaTwitterException getErrore() {
+		return errore;
+	}
+	public void setErrore(YuccaTwitterException errore) {
+		this.errore = errore;
+	}
 	private String stream=null;
 	private String sensor=null;
 	private ArrayList<YuccaTwitterValue> values=null;

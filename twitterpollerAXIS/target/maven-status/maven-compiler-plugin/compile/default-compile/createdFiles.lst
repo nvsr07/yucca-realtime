@@ -1,11 +1,12 @@
 org\csi\yucca\twitterpoller\dto\YuccaTwitterStreamConfig.class
 org\csi\yucca\twitterpoller\dto\YuccaTwitterCepRecord.class
 org\csi\yucca\twitterpoller\constants\SDPTwitterConfig.class
-org\csi\yucca\twitterpoller\business\TwitterInvoker.class
 org\csi\yucca\twitterpoller\dto\YuccaTwitterValue.class
+org\csi\yucca\twitterpoller\business\TwitterInvoker.class
 org\csi\yucca\twitterpoller\dto\YuccaTwitterResult.class
 org\csi\yucca\twitterpoller\YuccaTwitterPoller.class
 org\csi\yucca\twitterpoller\mongo\YuccaTwitterMongoDataAcces.class
-org\csi\yucca\twitterpoller\dto\YuccaTwitterQuery.class
 org\csi\yucca\twitterpoller\mongo\MongoConnectionSingleton.class
+org\csi\yucca\twitterpoller\dto\YuccaTwitterQuery.class
 org\csi\yucca\twitterpoller\dto\YuccaInvokeResult.class
+org\csi\yucca\twitterpoller\dto\YuccaTwitterException.class
