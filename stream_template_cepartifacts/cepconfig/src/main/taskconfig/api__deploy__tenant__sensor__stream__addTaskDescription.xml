@@ -8,7 +8,7 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTaskDes
       <xsd:addTaskDescription>
          <!--Optional:-->
               <task:task xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="TaskTwitter_${tenant.code}_${source.code}_${stream.code}" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" >
-               <task:trigger count="3" interval="2"/>
+               <task:trigger count="-1" interval="${5*twitterInfo.twtMaxStreamsOfVE+1}"/>
                <task:property name="sequenceName" value="twitterInvokerSequence" xmlns="http://ws.apache.org/ns/synapse"/>
                <task:property name="message" xmlns="http://ws.apache.org/ns/synapse">
                 <twit:invokeTwitter xmlns:twit="http://twitterpoller.yucca.csi.org" xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd"> 
@@ -16,12 +16,28 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTaskDes
 		            <xsd:twtGeolocLat>${twitterInfo.twtGeolocLat}</xsd:twtGeolocLat> 
 		            <xsd:twtGeolocLon>${twitterInfo.twtGeolocLon}</xsd:twtGeolocLon> 
 		            <xsd:twtGeolocRadius>${twitterInfo.twtGeolocRadius}</xsd:twtGeolocRadius> 
+		           <#if twitterInfo.twtGeolocUnit=="null">
+		            <xsd:twtGeolocUnit></xsd:twtGeolocUnit> 
+<#else>		             
 		            <xsd:twtGeolocUnit>${twitterInfo.twtGeolocUnit}</xsd:twtGeolocUnit> 
-		            <xsd:twtLang>${twitterInfo.twtLang}</xsd:twtLang> 
+</#if>		            
+<#if twitterInfo.twtLang=="null">
+		            <xsd:twtLang></xsd:twtLang>
+<#else>		             
+					<xsd:twtLang>${twitterInfo.twtLang}</xsd:twtLang>
+</#if>		            
 		            <xsd:twtQuery>${twitterInfo.twtQuery}</xsd:twtQuery> 
+<#if twitterInfo.twtResultType=="null">
+		            <xsd:twtResultType></xsd:twtResultType> 
+<#else>		             
 		            <xsd:twtResultType>${twitterInfo.twtResultType}</xsd:twtResultType> 
+</#if>		            
 		            <xsd:twtTokenSecret>${twitterInfo.twtTokenSecret}</xsd:twtTokenSecret> 
+<#if twitterInfo.twtUntil=="null">
+		            <xsd:twtUntil></xsd:twtUntil> 
+<#else>		             
 		            <xsd:twtUntil>${twitterInfo.twtUntil}</xsd:twtUntil> 
+</#if>		            
 		            <xsd:twtUserToken>${twitterInfo.twtUserToken}</xsd:twtUserToken> 
 		         </twit:twitterQuery> 
 		         <twit:streamInfo> 
