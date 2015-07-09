@@ -6,7 +6,7 @@ public class YuccaTwitterQuery {
 	public static final String TWT_GEOLOCUNIT_KILOMETERS="KM";
 	public static final String TWT_GEOLOCUNIT_MILES="MI";
 	
-	private String twtUsertoken = null;
+	private String twtUserToken = null;
 	private String twtTokenSecret = null;
 	private String twtQuery = null;
 
@@ -29,11 +29,11 @@ public class YuccaTwitterQuery {
 	
 	
 	
-	public String getTwtUsertoken() {
-		return twtUsertoken;
+	public String getTwtUserToken() {
+		return twtUserToken;
 	}
-	public void setTwtUsertoken(String twtUsertoken) {
-		this.twtUsertoken = twtUsertoken;
+	public void setTwtUserToken(String twtUsertoken) {
+		this.twtUserToken = twtUsertoken;
 	}
 	public String getTwtTokenSecret() {
 		return twtTokenSecret;

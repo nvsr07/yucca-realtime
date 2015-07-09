@@ -18,44 +18,77 @@ public class YuccaTwitterMongoDataAcces {
 
 	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
 
-	public Long retrieveLastTweetId(String streamCode,String tenantCode,String virtualEntityCode) throws Exception{
+	public Long retrieveLastTweetId(String streamCode,String tenantCode,String virtualEntityCode,int streamVersion,boolean reset) throws Exception{
 		Long ret = null;
 		DBCursor  cursor=null;
 		try {
-		
-		
-		log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] BEGIN ");
-		
-		MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
-		DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
-		DBCollection coll = db.getCollection(SDPTwitterConfig.getInstance().getCollection());
-		
-		
-		BasicDBList arrQuery = new BasicDBList();
-		
-		arrQuery.add(new BasicDBObject("streamCode",streamCode));
-		arrQuery.add(new BasicDBObject("tenantcode",tenantCode));
-		arrQuery.add(new BasicDBObject("virtualEntityCode",virtualEntityCode));
 
-		
-		BasicDBObject query= new BasicDBObject("$and",arrQuery);
-		cursor = coll.find(query);		
-		if (cursor.hasNext()) {
-			DBObject obj=cursor.next();
-			String id=takeNvlValues(obj.get("tweetLastId"));
-			ret = new Long(id);
-			
-		} else {
-			BasicDBObject doc = new BasicDBObject("streamCode",streamCode);
-			doc.append("tenantcode",tenantCode);
-			doc.append("virtualEntityCode",virtualEntityCode);
-			WriteResult res = coll.insert(doc);
-			
-		}
-		
-		cursor.close();
-		
-		log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] END ");
+
+			log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] BEGIN ");
+
+			MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
+			DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
+			DBCollection coll = db.getCollection(SDPTwitterConfig.getInstance().getCollection());
+
+
+			BasicDBList arrQuery = new BasicDBList();
+
+			arrQuery.add(new BasicDBObject("streamCode",streamCode));
+			arrQuery.add(new BasicDBObject("tenantcode",tenantCode));
+			arrQuery.add(new BasicDBObject("virtualEntityCode",virtualEntityCode));
+
+
+			BasicDBObject query= new BasicDBObject("$and",arrQuery);
+			cursor = coll.find(query);		
+			if (cursor.hasNext()) {
+				DBObject obj=cursor.next();
+				String id=takeNvlValues(obj.get("tweetLastId"));
+				String versioneStream = takeNvlValues(obj.get("streamVersion"));
+				try {
+					ret = new Long(id);
+				} catch (NumberFormatException e) {
+
+				}
+
+
+				log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] streamVersion:"+streamVersion+"----versioneStream:"+versioneStream);
+				if (!((""+streamVersion).equals(versioneStream))) {
+					log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] CAMBIO VERSIONE ");
+
+					BasicDBList arrQueryUpd = new BasicDBList();
+
+					arrQueryUpd.add(new BasicDBObject("streamCode",streamCode));
+					arrQueryUpd.add(new BasicDBObject("tenantcode",tenantCode));
+					arrQueryUpd.add(new BasicDBObject("virtualEntityCode",virtualEntityCode));
+
+
+					BasicDBObject queryUpd= new BasicDBObject("$and",arrQuery);
+					BasicDBObject set = new BasicDBObject();
+					BasicDBObject doc = new BasicDBObject();
+					doc.put("streamVersion",streamVersion);
+					if (reset) {
+						log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] RESET");
+						ret=null;
+						doc.put("tweetLastId", -1);
+					}
+
+					set.append("$set", doc);
+					
+					WriteResult res = coll.update(queryUpd,set);
+				}
+
+			} else {
+				BasicDBObject doc = new BasicDBObject("streamCode",streamCode);
+				doc.append("tenantcode",tenantCode);
+				doc.append("virtualEntityCode",virtualEntityCode);
+				doc.append("streamVersion",streamVersion);
+				WriteResult res = coll.insert(doc);
+
+			}
+
+			cursor.close();
+
+			log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] END ");
 
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "[YuccaTwitterPoller::retrieveLastTweetId]  "+e);
@@ -67,45 +100,45 @@ public class YuccaTwitterMongoDataAcces {
 		}
 		return ret;
 
-		
+
 	}
-	
-	
+
+
 	public boolean updateLastId(String streamCode,String tenantCode,String virtualEntityCode,Long lastId) throws Exception{
 		try {
-		
-		
-		log.log(Level.INFO, "[YuccaTwitterPoller::updateLastId] BEGIN ");
-		
-		MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
-		DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
-		DBCollection coll = db.getCollection(SDPTwitterConfig.getInstance().getCollection());
-		
-		
-		BasicDBList arrQuery = new BasicDBList();
-		
-		arrQuery.add(new BasicDBObject("streamCode",streamCode));
-		arrQuery.add(new BasicDBObject("tenantcode",tenantCode));
-		arrQuery.add(new BasicDBObject("virtualEntityCode",virtualEntityCode));
 
-		
-		BasicDBObject query= new BasicDBObject("$and",arrQuery);
-		
-		
-		
-		BasicDBObject doc = new BasicDBObject();
-		
-		doc.append("$set",new BasicDBObject("tweetLastId", lastId));
-		
-		WriteResult res = coll.update(query,doc);
-		//System.out.println(res.getN());
-		if (res.getN()<1) return false;
-		
-		
-		
-		
-	
-		
+
+			log.log(Level.INFO, "[YuccaTwitterPoller::updateLastId] BEGIN ");
+
+			MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
+			DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
+			DBCollection coll = db.getCollection(SDPTwitterConfig.getInstance().getCollection());
+
+
+			BasicDBList arrQuery = new BasicDBList();
+
+			arrQuery.add(new BasicDBObject("streamCode",streamCode));
+			arrQuery.add(new BasicDBObject("tenantcode",tenantCode));
+			arrQuery.add(new BasicDBObject("virtualEntityCode",virtualEntityCode));
+
+
+			BasicDBObject query= new BasicDBObject("$and",arrQuery);
+
+
+
+			BasicDBObject doc = new BasicDBObject();
+
+			doc.append("$set",new BasicDBObject("tweetLastId", lastId));
+
+			WriteResult res = coll.update(query,doc);
+			//System.out.println(res.getN());
+			if (res.getN()<1) return false;
+
+
+
+
+
+
 
 		} catch (Exception e) {
 			log.log(Level.SEVERE, "[YuccaTwitterPoller::updateLastId]  "+e);
@@ -115,7 +148,7 @@ public class YuccaTwitterMongoDataAcces {
 		}
 		return true;
 
-		
+
 	}
 	private static String takeNvlValues(Object obj) {
 		if (null==obj) return null;
