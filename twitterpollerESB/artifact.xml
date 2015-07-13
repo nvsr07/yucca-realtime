@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="twitterPollerRemoveNullXSLTTMP" groupId="org.csi.yucca.yuccarealtime.twitterpollerESB.local-entry" version="1.0.0" type="synapse/local-entry" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/local-entries/twitterPollerRemoveNullXSLTTMP.xml</file>
+    </artifact>
+    <artifact name="twitterInvokerSequence" groupId="org.csi.yucca.yuccarealtime.twitterpollerESB.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/twitterInvokerSequence.xml</file>
+    </artifact>
+</artifacts>
