@@ -21,7 +21,7 @@
 "description":"Rimozione del Task schedulato Twitter", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"taskconfig/api__deploy__${tenant.code}__${source.code_}_${stream.code}__deleteTaskDescription.xml",
+"source":"taskconfig/api__delete__${tenant.code}__${source.code_}_${stream.code}__deleteTaskDescription.xml",
 "action":"deleteTaskDescription",
 "destination":"${esbinfo.host}/services/TaskAdmin",
 "returnExpected":"200", 
