@@ -2,6 +2,8 @@
 	<description>
 		Please Type your service description here
 	</description>
+	
+	<transports> <transport>https</transport> <transport>http</transport><transport>local</transport> </transports>
 	<messageReceivers>
 		<messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-only" class="org.apache.axis2.rpc.receivers.RPCInOnlyMessageReceiver" />
 		<messageReceiver  mep="http://www.w3.org/2004/08/wsdl/in-out"  class="org.apache.axis2.rpc.receivers.RPCMessageReceiver"/>

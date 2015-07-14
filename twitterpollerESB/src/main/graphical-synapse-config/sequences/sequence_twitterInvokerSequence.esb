@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<esb:EsbDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esb="http:///org/wso2/developerstudio/eclipse/gmf/esb">
+  <server type="SEQUENCE">
+    <children xsi:type="esb:Sequences" name="twitterInvokerSequence">
+      <outputConnector>
+        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.0/@inputConnector"/>
+      </outputConnector>
+      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.9/@outputConnector/@outgoingLink"/>
+      <mediatorFlow>
+        <children xsi:type="esb:LogMediator" logLevel="FULL" logSeparator=", ">
+          <inputConnector incomingLinks="//@server/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.1/@inputConnector"/>
+          </outputConnector>
+          <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER - BEGIN">
+            <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </properties>
+        </children>
+        <children xsi:type="esb:PropertyMediator" propertyName="tenantCod" valueType="EXPRESSION">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.2/@inputConnector"/>
+          </outputConnector>
+          <valueExpression propertyValue="$body/twit:invokeTwitter/twit:streamInfo/xsd:tenatcode" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000004740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F7400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736474000474776974740022687474703A2F2F74776974746572706F6C6C65722E79756363612E6373692E6F726774000378736474002A687474703A2F2F64746F2E74776974746572706F6C6C65722E79756363612E6373692E6F72672F78736478"/>
+        </children>
+        <children xsi:type="esb:PropertyMediator" propertyName="messageType" propertyScope="axis2" valueLiteral="application/json">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.3/@inputConnector"/>
+          </outputConnector>
+          <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:CalloutMediator" serviceURL="local:///wso002/services/YuccaTwitterPoller/" soapAction="invokeTwitter">
+          <payloadMessageXpath propertyValue="$body/child::*" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000004740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F7400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736474000474776974740022687474703A2F2F74776974746572706F6C6C65722E79756363612E6373692E6F726774000378736474002A687474703A2F2F64746F2E74776974746572706F6C6C65722E79756363612E6373692E6F72672F78736478"/>
+          <resultMessageXpath propertyValue="$body/child::*" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000004740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F7400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736474000474776974740022687474703A2F2F74776974746572706F6C6C65722E79756363612E6373692E6F726774000378736474002A687474703A2F2F64746F2E74776974746572706F6C6C65722E79756363612E6373692E6F72672F78736478"/>
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.4/@inputConnector"/>
+          </outputConnector>
+          <AddressEndpoint prettyName="endpoint Key" keyName="key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <outboundPolicyKey prettyName="outboundpolicy Key" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <inboundPolicyKey prettyName="inboundpolicy Key" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <policyKey prettyName="policyKey Key" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.5/@inputConnector"/>
+          </outputConnector>
+          <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER - DOPO INVOKE">
+            <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </properties>
+        </children>
+        <children xsi:type="esb:XSLTMediator">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.6/@inputConnector"/>
+          </outputConnector>
+          <xsltStaticSchemaKey keyValue="twitterPollerRemoveNullXSLTTMP" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <xsltDynamicSchemaKey prettyName="XSLT Dynamic Key" propertyName="key" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <xsltKey prettyName="XSLT Key" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400196F72672E77736F322E636172626F6E2E6D6564696174797065737200136A6176612E7574696C2E41727261794C6973747881D21D99C7619D03000149000473697A657870000000017704000000017400146170706C69636174696F6E2F78736C742B786D6C7878"/>
+          <sourceXPath prettyName="Source XPath" propertyName="source" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:PropertyMediator" propertyName="messageType" propertyScope="axis2" valueLiteral="application/json">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.5/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.7/@inputConnector"/>
+          </outputConnector>
+          <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+        </children>
+        <children xsi:type="esb:PropertyMediator" propertyName="hasError" valueType="EXPRESSION">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.6/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@inputConnector"/>
+          </outputConnector>
+          <valueExpression propertyValue="boolean($body/invokeTwitterResponse/return/errore/twtErrorCode)" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C77080000001000000002740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F7400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+        </children>
+        <children xsi:type="esb:FilterMediator" regex="true">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.7/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.9/@inputConnector"/>
+          </outputConnector>
+          <passOutputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.0/@inputConnector"/>
+          </passOutputConnector>
+          <failOutputConnector>
+            <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.0/@inputConnector"/>
+          </failOutputConnector>
+          <xpath prettyName="Filter Source XPath" propertyName="filterSourceXpath" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          <source propertyValue="get-property('hasError')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+          <filterContainer>
+            <passContainer>
+              <mediatorFlow>
+                <children xsi:type="esb:PropertyMediator" propertyName="twterrocode" valueType="EXPRESSION">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@passOutputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.1/@inputConnector"/>
+                  </outputConnector>
+                  <valueExpression propertyValue="$body/invokeTwitterResponse/return/errore/twtErrorCode" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                </children>
+                <children xsi:type="esb:PropertyMediator" propertyName="twterrormessage" valueType="EXPRESSION">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.2/@inputConnector"/>
+                  </outputConnector>
+                  <valueExpression propertyValue="$body/invokeTwitterResponse/return/errore/twtErrorMessage" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                </children>
+                <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.3/@inputConnector"/>
+                  </outputConnector>
+                  <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER ERRORE TWITTER">
+                    <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                  </properties>
+                  <properties propertyName="codiceerroretwt" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('twterrocode')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                  <properties propertyName="messaggioerroretwt" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('twterrormessage')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                  <properties propertyName="tenantCodCALC" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('tenantCod')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                </children>
+                <children xsi:type="esb:CallTemplateMediator" availableTemplates="Select From Templates" targetTemplate="SendToMessageBrokerAndRespondErrorSequence">
+                  <templateParameters parameterName="mb_url" parameterValue="failover:(tcp://int-sdnet-stream1.sdp.csi.it:61616,tcp://int-sdnet-stream2.sdp.csi.it:61616)">
+                    <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="mb_user" parameterValue="system">
+                    <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="mb_pwd" parameterValue="Ahzotey7">
+                    <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="mb_destination_name" templateParameterType="Expression" parameterValue="">
+                    <parameterExpression propertyValue="fn:concat('output.',fn:get-property('tenantCod'),'.','errors')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="mb_destination_type" parameterValue="topic">
+                    <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="error_name" templateParameterType="Expression" parameterValue="">
+                    <parameterExpression propertyValue="get-property('twterrormessage')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <templateParameters parameterName="error_code" templateParameterType="Expression" parameterValue="">
+                    <parameterExpression propertyValue="get-property('twterrocode')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478" supportsDynamicXPaths="true"/>
+                  </templateParameters>
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@passContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+                  <outputConnector/>
+                </children>
+              </mediatorFlow>
+            </passContainer>
+            <failContainer>
+              <mediatorFlow>
+                <children xsi:type="esb:PropertyMediator" propertyName="streamId" valueType="EXPRESSION">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@failOutputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.1/@inputConnector"/>
+                  </outputConnector>
+                  <valueExpression propertyValue="$body/invokeTwitterResponse/return/stream" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                </children>
+                <children xsi:type="esb:PropertyMediator" propertyName="sourceId" valueType="EXPRESSION">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.2/@inputConnector"/>
+                  </outputConnector>
+                  <valueExpression propertyValue="$body/invokeTwitterResponse/return/sensor" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                </children>
+                <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+                  <outputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@inputConnector"/>
+                  </outputConnector>
+                  <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER - PRIMA MB">
+                    <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                  </properties>
+                  <properties propertyName="streamIdCALC" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('streamId')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                  <properties propertyName="sourceIdCALC" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('sourceId')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                  <properties propertyName="tenantCodCALC" propertyValueType="EXPRESSION">
+                    <propertyExpression propertyValue="get-property('tenantCod')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000017400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F78736478"/>
+                  </properties>
+                </children>
+                <children xsi:type="esb:IterateMediator" sequentialMediation="true" continueParent="true" preservePayload="true">
+                  <iterateExpression propertyValue="$body/invokeTwitterResponse/return/values" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                  <attachPath propertyValue="$body/invokeTwitterResponse/return" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                  <target>
+                    <sequenceKey prettyName="Sequence Key" keyName="sequence" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    <endpointKey prettyName="Endpoint Key" keyName="endpoint" keyValue="/default/endpoint" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                  </target>
+                  <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+                  <outputConnector/>
+                  <targetOutputConnector>
+                    <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.0/@inputConnector"/>
+                  </targetOutputConnector>
+                  <mediatorFlow>
+                    <children xsi:type="esb:PropertyMediator" propertyName="componenti" propertyDataType="OM" valueType="EXPRESSION">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@targetOutputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.1/@inputConnector"/>
+                      </outputConnector>
+                      <valueExpression propertyValue="$body/invokeTwitterResponse/return/values/components" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                    </children>
+                    <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.0/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.2/@inputConnector"/>
+                      </outputConnector>
+                      <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER I[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ ">
+                        <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </properties>
+                    </children>
+                    <children xsi:type="esb:PropertyMediator" propertyName="data" valueType="EXPRESSION">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.1/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.3/@inputConnector"/>
+                      </outputConnector>
+                      <valueExpression propertyValue="$body/invokeTwitterResponse/return/values/time" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                    </children>
+                    <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.2/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.4/@inputConnector"/>
+                      </outputConnector>
+                      <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER INIZIOOOOOOOOOOOOOO ELEMENTOOOOOOOOOOOOOOOO ">
+                        <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </properties>
+                    </children>
+                    <children xsi:type="esb:PayloadFactoryMediator" format="&lt;jsonObject xmlns=&quot;http://ws.apache.org/ns/synapse&quot;>&lt;sensor>$1&lt;/sensor>&lt;stream>$2&lt;/stream>&lt;values>$3                                                                                                                                                                                                       &#xA;                              &lt;time>$4&lt;/time>&lt;/values>&lt;/jsonObject>">
+                      <formatKey prettyName="Sequence Key" keyName="Sequence Key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="get-property('sourceId')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                      </args>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="get-property('streamId')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                      </args>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="get-property('componenti')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                      </args>
+                      <args argumentType="Expression">
+                        <argumentExpression propertyValue="get-property('data')" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78"/>
+                      </args>
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.3/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.5/@inputConnector"/>
+                      </outputConnector>
+                    </children>
+                    <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.4/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.6/@inputConnector"/>
+                      </outputConnector>
+                      <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER ITERATEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE">
+                        <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      </properties>
+                    </children>
+                    <children xsi:type="esb:CallTemplateMediator" availableTemplates="Select From Templates" targetTemplate="SendToMessageBrokerSequence">
+                      <templateParameters parameterName="mb_url" parameterValue="failover:(tcp://int-sdnet-mb1.sdp.csi.it:61626,tcp://int-sdnet-mb2.sdp.csi.it:61626)">
+                        <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      </templateParameters>
+                      <templateParameters parameterName="mb_user" parameterValue="system">
+                        <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      </templateParameters>
+                      <templateParameters parameterName="mb_pwd" parameterValue="buGhuch9">
+                        <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      </templateParameters>
+                      <templateParameters parameterName="mb_destination_name" templateParameterType="Expression" parameterValue="">
+                        <parameterExpression propertyValue="fn:concat('input.',fn:get-property('tenantCod'),'.',fn:get-property('sourceId'),'_',fn:get-property('streamId'))" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F4000000000000C770800000010000000027400026E7374001D687474703A2F2F6F72672E6170616368652E73796E617073652F787364740007736F6170656E76740029687474703A2F2F736368656D61732E786D6C736F61702E6F72672F736F61702F656E76656C6F70652F78" supportsDynamicXPaths="true"/>
+                      </templateParameters>
+                      <templateParameters parameterName="mb_destination_type" parameterValue="topic">
+                        <parameterExpression prettyName="parameter expression" propertyName="expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078" supportsDynamicXPaths="true"/>
+                      </templateParameters>
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.5/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.7/@inputConnector"/>
+                      </outputConnector>
+                    </children>
+                    <children xsi:type="esb:PropertyMediator" propertyName="messageType" propertyScope="axis2" valueLiteral="application/json">
+                      <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.6/@outputConnector/@outgoingLink"/>
+                      <outputConnector>
+                        <outgoingLink target="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.8/@InputConnector"/>
+                      </outputConnector>
+                      <valueExpression prettyName="Property Expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                    </children>
+                    <children xsi:type="esb:SendMediator">
+                      <InputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@filterContainer/@failContainer/@mediatorFlow/@children.3/@mediatorFlow/@children.7/@outputConnector/@outgoingLink"/>
+                      <OutputConnector/>
+                      <StaticReceivingSequence prettyName="Static" keyName="receive" keyValue="/default/sequence" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <DynamicReceivingSequence prettyName="Dynamic" propertyName="receive" propertyValue="/default/xpath" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                      <endpointOutputConnector/>
+                      <mediatorFlow/>
+                    </children>
+                  </mediatorFlow>
+                  <sequenceKey prettyName="Sequence Reference" keyName="key" keyValue="/default/key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+                </children>
+              </mediatorFlow>
+            </failContainer>
+          </filterContainer>
+        </children>
+        <children xsi:type="esb:LogMediator" logLevel="CUSTOM" logSeparator=", ">
+          <inputConnector incomingLinks="//@server/@children.0/@mediatorFlow/@children.8/@outputConnector/@outgoingLink"/>
+          <outputConnector>
+            <outgoingLink target="//@server/@children.0/@inputConnector"/>
+          </outputConnector>
+          <properties propertyName="step" propertyValue="SEQUENCE TWT_INVOKER - DOPO END">
+            <propertyExpression prettyName="property expression" propertyName="expression" propertyValue="/default/expression" namespaces="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+          </properties>
+        </children>
+      </mediatorFlow>
+      <onError prettyName="OnError sequence Key" keyName="OnError sequence Key" filters="ACED0005737200116A6176612E7574696C2E486173684D61700507DAC1C31660D103000246000A6C6F6164466163746F724900097468726573686F6C6478703F400000000000107708000000100000000078"/>
+    </children>
+  </server>
+</esb:EsbDiagram>

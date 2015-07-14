@@ -16,6 +16,13 @@ import twitter4j.TwitterException;
 public class YuccaTwitterPoller{
 	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
 
+	
+	
+	public String twtEcho(String pippo) throws Exception{
+		log.log(Level.INFO, "[YuccaTwitterPoller::twtEcho] BEGIN ");
+		return "echo from "+pippo;
+		
+	}
 	public YuccaTwitterCepRecord invokeTwitter(YuccaTwitterQuery twitterQuery, YuccaTwitterStreamConfig streamInfo) throws Exception{
 		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] BEGIN ");
 		
