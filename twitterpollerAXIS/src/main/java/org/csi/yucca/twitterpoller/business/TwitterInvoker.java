@@ -199,7 +199,7 @@ public class TwitterInvoker {
 			YuccaTwitterValue curValue=new YuccaTwitterValue();
 			curValue.setComponents(cur);
 			curValue.setTime(cur.getCreatedAt());
-			valuesRet.add(curValue);
+			valuesRet.add(0,curValue);
 			
 		}
 
