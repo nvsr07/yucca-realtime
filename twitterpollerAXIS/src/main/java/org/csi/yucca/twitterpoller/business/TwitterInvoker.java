@@ -162,6 +162,13 @@ public class TwitterInvoker {
 				cur.setUrl(escapeJson(status.getURLEntities()[0].getURL()));
 			}
 			
+			
+			if (null!=status.getUser()) {
+				cur.setUserId(status.getUser().getId());
+				cur.setUserName(status.getUser().getName());
+				cur.setUserScreenName(status.getUser().getScreenName());
+			}
+			
 			twittTrovati.add(cur);
 			
 		}
