@@ -69,7 +69,7 @@
 			<build>
 				<resources>
 					<resource>
-						<directory>src/main/resources/integ</directory>
+						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/twitterPoller/twitterPollerAXIS/resources/integ</directory>
 					</resource>
 				</resources>
 			</build>
@@ -79,7 +79,7 @@
 			<build>
 				<resources>
 					<resource>
-						<directory>src/main/resources/prod</directory>
+						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/twitterPoller/twitterPollerAXIS/resources/prod</directory>
 					</resource>
 				</resources>
 			</build>

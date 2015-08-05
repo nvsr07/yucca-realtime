@@ -84,7 +84,7 @@
           <excludes>
             <exclude>${project.build.directory}/**/pom.xml</exclude>
           </excludes>
-          <tokenValueMap>${basedir}/src/main/resources/${target.env}.properties</tokenValueMap>
+          <tokenValueMap>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/twitterPoller/twitterPollerESB/resources/${target.env}.properties</tokenValueMap>
           <regex>false</regex>
           <escape>true</escape>
         </configuration>
