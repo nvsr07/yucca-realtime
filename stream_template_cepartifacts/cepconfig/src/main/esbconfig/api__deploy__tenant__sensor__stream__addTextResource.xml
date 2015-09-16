@@ -89,7 +89,7 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextRes
 	<xs:complexType name="ComponentType">
 		<xs:all>
 			<#list components as component>
-				<xs:element name="${component.code}" type=<#if component.type = "dateTime">"MultiFormatDate"<#elseif component.type = "latitude">"xs:double"<#elseif component.type = "longitude">"xs:double"<#else/>"xs:${component.type}"</#if> />
+				<xs:element name="${component.code}" type=<#if component.type = "dateTime">"MultiFormatDate"<#elseif component.type = "latitude">"xs:double"<#elseif component.type = "longitude">"xs:double"<#else/>"xs:${component.type}"</#if> <#if (component.sinceVersion == stream.version) && (component.sinceVersion>1)> minOccurs="0" </#if>   />
 		  </#list></xs:all>
 	</xs:complexType>
 
