@@ -25,8 +25,24 @@ public class YuccaTwitterResult {
 	private String mediaUrl =null;
 	private Integer mediaCnt = null;
 	
+	//YUCCA-387
+	private Long retweetParentId  = null;
+	private String userMentions  =null;
+	//YUCCA-387
 	
 	
+	public Long getRetweetParentId() {
+		return retweetParentId;
+	}
+	public void setRetweetParentId(Long retweetParentId) {
+		this.retweetParentId = retweetParentId;
+	}
+	public String getUserMentions() {
+		return userMentions;
+	}
+	public void setUserMentions(String userMentions) {
+		this.userMentions = userMentions;
+	}
 	private Long userId =null;
 	private String userName =null;
 	private String userScreenName =null;

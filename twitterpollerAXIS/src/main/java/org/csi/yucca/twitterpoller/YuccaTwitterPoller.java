@@ -85,6 +85,9 @@ public class YuccaTwitterPoller{
 		return ret;
 		
 		} catch (TwitterException twe) {
+			log.log(Level.SEVERE, "[YuccaTwitterPoller::invokeTwitter] ERROR: "+twe);
+
+			
 			YuccaTwitterException ecc= new YuccaTwitterException();
 			ecc.setTwtErrorCode("TWT_"+twe.getErrorCode());
 			ecc.setTwtErrorMessage(twe.getErrorMessage());

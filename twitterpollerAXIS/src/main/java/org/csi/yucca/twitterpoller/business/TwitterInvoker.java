@@ -169,6 +169,21 @@ public class TwitterInvoker {
 				cur.setUserScreenName(status.getUser().getScreenName());
 			}
 			
+			
+			//YUCCA-387
+			if (status.getRetweetedStatus()!=null) {
+				cur.setRetweetParentId(status.getRetweetedStatus().getId());
+			}
+			if (status.getUserMentionEntities()!=null && status.getUserMentionEntities().length>0) {
+				String userMentionsIds=""+status.getUserMentionEntities()[0].getId();
+				for (int j=1; status.getUserMentionEntities()!=null && j<status.getUserMentionEntities().length;j++) {
+					userMentionsIds+="|"+status.getUserMentionEntities()[0].getId();
+				}
+				cur.setUserMentions(userMentionsIds);
+			}
+			//YUCCA-387
+
+			
 			twittTrovati.add(cur);
 			
 		}
