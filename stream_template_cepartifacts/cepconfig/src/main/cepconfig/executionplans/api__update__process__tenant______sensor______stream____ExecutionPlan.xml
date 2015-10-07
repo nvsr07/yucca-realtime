@@ -29,32 +29,9 @@ insert into outputStream;
 ${internalQuery.query}
 </#if>
 
-<#if source.type!="Internal">
-from input#window.time(30 sec) 
-select count(time) as numEventsLast30Sec 
-output last every 2 sec 
-insert into tempOutputStat for all-events; 
-
-from tempOutputStat#window.length(1) 
-select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
-output snapshot every 2 sec 
-insert into outputStat for all-events 
-
-<#elseif source.type=="Internal">
-from outputStream#window.time(30 sec) 
-select count(time) as numEventsLast30Sec 
-output last every 2 sec 
-insert into tempOutputStat for all-events; 
-
-from tempOutputStat#window.length(1) 
-select numEventsLast30Sec,"" as lastMessage,"" as lastUpdate
-output snapshot every 2 sec 
-insert into outputStat for all-events 
-</#if>
 ]]]]><![CDATA[></queryExpressions>
   <exportedStreams>
     <stream name="output__${tenant.code}__${source.code_}__${stream.code}" valueOf="outputStream" version="1.0.0"/>
-	<stream name="output__${tenant.code}__${source.code_}__${stream.code}__stat" valueOf="outputStat" version="1.0.0"/>
   </exportedStreams>
 </executionPlan>]]></adm:configuration>
          <!--Optional:-->

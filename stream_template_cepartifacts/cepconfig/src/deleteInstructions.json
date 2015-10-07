@@ -138,7 +138,7 @@
 "returnExpected":"200", 
 "validityControl":"NO_CHECK",
 "username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
+	"password":"${mb.secpassword}"
 },{
 "number": "${x}",<#assign x = x+1> 
 "description":"Rimozione degli Stream in un nodo CEP", 

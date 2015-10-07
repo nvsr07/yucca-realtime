@@ -21,19 +21,6 @@
 "description":"Registrare gli Stream in un nodo CEP", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat.xml",
-"action":"editEventStreamInfo",
-"destination":"${mb.host}/services/EventStreamAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-},
-{
-"number": "${x}",<#assign x = x+1> 
-"description":"Registrare gli Stream in un nodo CEP", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
 "source":"cepconfig/reg_streams/api__update__output__${tenant.code}__${source.code_}_${stream.code}.xml",
 "action":"editEventStreamInfo",
 "destination":"${mb.host}/services/EventStreamAdminService",
@@ -67,18 +54,6 @@
 "sourceType":"file",
 "source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
 "action":"editActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-},{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter.xml",
-"action":"editJsonEventFormatterConfiguration",
 "destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
 "validityControl":"<fault>",
