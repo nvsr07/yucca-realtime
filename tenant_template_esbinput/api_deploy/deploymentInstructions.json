@@ -88,7 +88,43 @@
 "returnExpected":"200", 
 "successControl":"",
 "username":"${identityserver.secuser}", 
-"password":"${identityserver.secpassword}"
+"password":"${identityserver.secpassword}" 
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Aggiunta Applicazione userportal_${tenant.code}", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__more co_emptyFile.xml",
+"action":"addApplication",
+"destination":"${mongodb.url}/tenant/addAdminApplication?tenantCode=${tenant.code}&username=${tenant.user}&password=${tenant.password}",
+"returnExpected":"200", 
+"successControl":"",
+"username":"", 
+"password":"" 
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Nuova Sottoscrizione per userportal_${tenant.code}", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__emptyFile.xml",
+"action":"subscribeApi",
+"destination":"${mongodb.url}/tenant/subscribeAdminApi?tenantCode=${tenant.code}&username=${tenant.user}&password=${tenant.password}",
+"returnExpected":"200", 
+"successControl":"",
+"username":"", 
+"password":""
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Generazioni chiavi di Admin per userportal_${tenant.code} ed inserimento (2 operazioni)", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__emptyFile.xml",
+"action":"generetateKey",
+"destination":"${mongodb.url}/tenant/generetateAdminKey?tenantCode=${tenant.code}&username=${tenant.user}&password=${tenant.password}",
+"returnExpected":"200", 
+"successControl":"",
+"username":"", 
+"password":""
 }
 ]
 }
