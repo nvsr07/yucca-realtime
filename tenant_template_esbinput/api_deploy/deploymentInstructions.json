@@ -94,7 +94,7 @@
 "description":"Aggiunta Applicazione userportal_${tenant.code}", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"target/api__deploy__more co_emptyFile.xml",
+"source":"target/api__deploy__${tenant.code}__emptyFile.xml",
 "action":"addApplication",
 "destination":"${mongodb.url}/tenant/addAdminApplication?tenantCode=${tenant.code}&username=${tenant.user}&password=${tenant.password}",
 "returnExpected":"200", 
