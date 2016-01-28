@@ -1,1 +1,2 @@
-
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__emptyFile.xml"/>
