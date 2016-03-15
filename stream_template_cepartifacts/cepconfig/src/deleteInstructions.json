@@ -74,18 +74,6 @@
 },</#if>
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Rimozione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter.xml",
-"action":"undeployActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"NO_CHECK",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-},{
-"number": "${x}",<#assign x = x+1> 
 "description":"Rimozione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
@@ -128,18 +116,6 @@
 "password":"${mb.secpassword}"
 },</#if>
 {
-"number": "${x}",<#assign x = x+1> 
-"description":"Rimozione degli Stream in un nodo CEP", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/reg_streams/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__stat.xml",
-"action":"removeEventStreamInfo",
-"destination":"${mb.host}/services/EventStreamAdminService",
-"returnExpected":"200", 
-"validityControl":"NO_CHECK",
-"username":"${mb.secuser}", 
-	"password":"${mb.secpassword}"
-},{
 "number": "${x}",<#assign x = x+1> 
 "description":"Rimozione degli Stream in un nodo CEP", 
 "actionType":"WebServiceCall",
