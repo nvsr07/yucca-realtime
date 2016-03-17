@@ -30,16 +30,18 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextRes
 				<xs:choice>
 					<xs:sequence>
 						<xs:element name="stream" minOccurs="1" maxOccurs="1" />
-						<xs:choice>
-							<xs:element name="sensor" />
-							<xs:element name="application" />
-						</xs:choice>
+						<#if source.type = "Application">
+						<xs:element name="application" />
+						<#else>
+						<xs:element name="sensor" />
+						</#if>
 					</xs:sequence>
 					<xs:sequence>
-						<xs:choice>
-							<xs:element name="sensor" />
-							<xs:element name="application" />
-						</xs:choice>
+						<#if source.type = "Application">
+						<xs:element name="application" />
+						<#else>
+						<xs:element name="sensor" />
+						</#if>
 						<xs:element name="stream" minOccurs="1" maxOccurs="1" />
 					</xs:sequence>
 				</xs:choice>
@@ -50,26 +52,29 @@ name="api__deploy__"+tenant.code+"__"+source.code_+"_"+stream.code+"__addTextRes
 					<xs:sequence>
 						<xs:element name="values" type="value" minOccurs="1"
 							maxOccurs="unbounded" />
-						<xs:choice>
-							<xs:element name="sensor" />
-							<xs:element name="application" />
-						</xs:choice>
+						<#if source.type = "Application">
+						<xs:element name="application" />
+						<#else>
+						<xs:element name="sensor" />
+						</#if>
 					</xs:sequence>
 					<xs:sequence>
-						<xs:choice>
-							<xs:element name="sensor" />
-							<xs:element name="application" />
-						</xs:choice>
+						<#if source.type = "Application">
+						<xs:element name="application" />
+						<#else>
+						<xs:element name="sensor" />
+						</#if>
 						<xs:element name="values" type="value" minOccurs="1"
 							maxOccurs="unbounded" />
 					</xs:sequence>
 				</xs:choice>
 			</xs:sequence>
 			<xs:sequence>
-				<xs:choice>
-					<xs:element name="sensor" />
-					<xs:element name="application" />
-				</xs:choice>
+				<#if source.type = "Application">
+				<xs:element name="application" />
+				<#else>
+				<xs:element name="sensor" />
+				</#if>
 				<xs:choice>
 					<xs:sequence>
 						<xs:element name="values" type="value" minOccurs="1"
