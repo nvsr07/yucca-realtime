@@ -166,6 +166,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 	public void addConnection(ConnectionContext context, ConnectionInfo info)
             throws Exception {
 		long startTime = System.currentTimeMillis();
+		String authorizedUser = null;
         SecurityContext s = context.getSecurityContext();
         if (s == null) {
     		boolean isValidUser = false;
@@ -182,6 +183,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     			arrayCt[0] = new OAuth2TokenValidationRequestDTO_TokenValidationContextParam();
     			dto.setContext(arrayCt);
     			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
+    			authorizedUser = response.getAuthorizedUser();
     			isValidUser = response.getValid();
     		}
     		else {
@@ -217,6 +219,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
                 AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), info.getUserName(), info.getClientIp());
 			 	accountingLog.setQuerString("CONNECTION");
 	            super.addConnection(context, info);
+   			 	if (authorizedUser != null)
+   			 		accountingLog.setJwtData(authorizedUser);
 	            accountingLog.setElapsed(System.currentTimeMillis() - startTime);
 	            if (!context.getUserName().equals("system"))
 	    		 	LOGACCOUNT.info(accountingLog.toString());
