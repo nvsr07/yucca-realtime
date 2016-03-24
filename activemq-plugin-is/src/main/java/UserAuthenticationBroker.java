@@ -168,7 +168,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 		long startTime = System.currentTimeMillis();
 		String authorizedUser = null;
         SecurityContext s = context.getSecurityContext();
-        AccountingLog accountingLog = new AccountingLog(context, info);
+        AccountingLog accountingLog = new AccountingLog(context);
         accountingLog.setOperation("CONNECTION");
         if (s == null) {
     		boolean isValidUser = false;
@@ -231,7 +231,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 
     public void removeConnection(ConnectionContext context, ConnectionInfo info, Throwable error) throws Exception {
     	long startTime = System.currentTimeMillis();
-    	 AccountingLog accountingLog = new AccountingLog(context, info);
+    	 AccountingLog accountingLog = new AccountingLog(context);
          accountingLog.setOperation("DISCONNECTION");
  	 	if (error != null)
 	 		accountingLog.setErrore(""+error.getMessage());
