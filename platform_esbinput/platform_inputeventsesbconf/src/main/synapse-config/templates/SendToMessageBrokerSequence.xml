@@ -18,5 +18,8 @@
         <property xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="POSTendpointToSend" expression="fn:concat(fn:get-property('mbUrlValue'),'&amp;',fn:get-property('mbUserValue'),'&amp;',fn:get-property('mbPwdValue'),'&amp;',fn:get-property('mbDestinationNameType'))" scope="default" type="STRING"/>
         <header xmlns:ns2="http://org.apache.synapse/xsd" xmlns:ns="http://org.apache.synapse/xsd" name="To" scope="default" expression="fn:concat(fn:get-property('PREendpointToSend'),fn:get-property('MIDendpointToSend'),fn:get-property('POSTendpointToSend'))"/>
         <property name="ClientApiNonBlocking" scope="axis2" action="remove"/>
+		<property name="accountingDestination" expression="$func:mb_destination_name"/>
+        <class name="org.csi.yucca.realtime.mediator.AccountingMediator"/>
+        
     </sequence>
 </template>

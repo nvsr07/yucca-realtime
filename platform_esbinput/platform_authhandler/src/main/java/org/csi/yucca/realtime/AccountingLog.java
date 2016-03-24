@@ -101,7 +101,8 @@ public class AccountingLog {
 
 
 	public void setTenantcode(String tenantcode) {
-		this.tenantcode = tenantcode;
+		if (tenantcode!=null)
+			this.tenantcode = tenantcode;
 	}
 
 

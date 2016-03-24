@@ -8,6 +8,7 @@
     <parameter name="error_name"/>
     <parameter name="error_code"/>
     <sequence>
+    	<property name="accountingError" expression="$func:error_code"/>
         <payloadFactory media-type="xml" description="MessageError">
             <format>
                 <jsonObject xmlns="">

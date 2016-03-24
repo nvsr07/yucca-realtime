@@ -5,7 +5,6 @@ package org.csi.yucca.realtime.mediator;
 import java.io.OutputStream;
 import java.io.Writer;
 import java.util.Iterator;
-import java.util.Map;
 
 import javax.swing.text.StyledEditorKit.ItalicAction;
 import javax.xml.stream.XMLStreamException;
@@ -19,27 +18,20 @@ import org.apache.axiom.om.OMNode;
 import org.apache.axiom.om.OMOutputFormat;
 import org.apache.axiom.om.xpath.AXIOMXPath;
 import org.apache.axiom.soap.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.synapse.MessageContext;
 import org.apache.synapse.commons.json.JsonUtil;
 import org.apache.synapse.core.axis2.Axis2MessageContext;
 import org.apache.synapse.mediators.AbstractMediator;
 import org.apache.synapse.transport.passthru.util.RelayUtils;
 import org.codehaus.jettison.json.JSONObject;
-import org.csi.yucca.realtime.AccountingLog;
 
 public class FormatValidMediator extends AbstractMediator {
 
 	private String variabileResult="p_result";
-	protected static final Log accounting = LogFactory.getLog("sdpaccounting");
 	
 	public boolean mediate(MessageContext synCtx) {
 		String isValidFormat= "true";
 
-		AccountingLog logging = new AccountingLog();
-		logging.setTenantcode(axis2MessageContext.getServiceContext().getName());
-		
 		org.apache.axis2.context.MessageContext axis2MessageContext = ((Axis2MessageContext) synCtx)
 				.getAxis2MessageContext();
 		
@@ -50,28 +42,9 @@ public class FormatValidMediator extends AbstractMediator {
 		
 		trace.info("[FormatValidMediator::mediate] BEGIN");
 		try {
-			
-			if (axis2MessageContext.getIncomingTransportName().equals("jms"))
-			{
-				logging.setUniqueid(""+);
-			}
-			else {
-				Object headers = axis2MessageContext.getProperty("TRANSPORT_HEADERS");
-				if (headers!=null)
-				{
-					Map headersMap = (Map) headers;
-					trace.info("[FormatValidMediator::mediate] "+headersMap.get("UNIQUE_ID"));
-					logging.setUniqueid(""+headersMap.get("UNIQUE_ID"));
-				}
-				
-			}
 			String msg = synCtx.getEnvelope().getBody().toString();
-			// capire come contare o estrarre info
-			logging.setApicode(msg);
-			logging.setPath(+"|"+axis2MessageContext.getSoapAction());
 		} catch (Exception e)
 		{
-			logging.setErrore("JSON Invalid");
 			trace.warn("[FormatValidMediator::mediate] Message invalid",e);
 			if ("POST".equals(axis2MessageContext.getProperty("HTTP_METHOD"))) {
 				synCtx.getEnvelope().getBody().getFirstElement().detach();
@@ -80,8 +53,6 @@ public class FormatValidMediator extends AbstractMediator {
 //			prepareMessage(synCtx,"<jsonObject><rawMessage>Impossible to detect!</rawMessage></jsonObject>");
 			isValidFormat = "false";
 		}
-		
-		accounting.info(logging.toString());
 		
 		synCtx.setProperty(variabileResult, isValidFormat);
 		
