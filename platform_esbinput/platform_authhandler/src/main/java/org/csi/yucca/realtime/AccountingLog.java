@@ -1,66 +1,87 @@
 package org.csi.yucca.realtime;
+
 public class AccountingLog {
 
-	private String jwtData="-";
-	private String forwardefor="-";
+	private String protocol="-";
+	private String connectionId="-";
 	private String uniqueid="-";
+	private String tenantcode="-";
+	private String destination="-"; // output......
+	private String operation="-"; // CONNECT, POST, SEND, ADD CONSUMER...
 
-	private String path="-";
-	private String apicode="-";
-	private String querString="-";
-	private int dataIn=-1;
-	private int dataOut=-1;
+	private String ipOrigin="-";
 	private long elapsed=-1;
 	private String errore="-";
-
-	private String datasetcode="-";
-	public String getDatasetcode() {
-		return datasetcode;
-	}
-
-	public void setDatasetcode(String datasetcode) {
-		this.datasetcode = datasetcode;
-	}
-
-	public String getTenantcode() {
-		return tenantcode;
-	}
-
-	public void setTenantcode(String tenantcode) {
-		this.tenantcode = tenantcode;
-	}
-
-
-	private String tenantcode="-";
+	private int numeroEventi=-1; // si recupera da esbin
+	private String sensorStream="-" ;// si recupera da esbin
+	
+	private String username;
 
 	
 	public AccountingLog() {
 		
 	}
 	
-	public AccountingLog(String uniqueid, String jwtData, String forwardefor){
-		setUniqueid(uniqueid);
-		setJwtData(jwtData);
-		setForwardefor(forwardefor);
+
+	public String toString() {
+		String logAccountingMessage="";
+
+		//id
+		logAccountingMessage=logAccountingMessage+"\""+uniqueid.replace("\"", "\"\"")+"\"";
+		//forwardedfor
+		logAccountingMessage=logAccountingMessage+",\""+connectionId.replace("\"", "\"\"")+"\"";
+		//jwt
+		logAccountingMessage=logAccountingMessage+",\""+protocol.replace("\"", "\"\"")+"\"";
+		
+		
+		//path
+		logAccountingMessage=logAccountingMessage+",\""+tenantcode.replace("\"", "\"\"")+"\"";
+		//apicode
+		logAccountingMessage=logAccountingMessage+",\""+destination.replace("\"", "\"\"")+"\"";
+
+		//datasetCode
+		logAccountingMessage=logAccountingMessage+",\""+operation.replace("\"", "\"\"")+"\"";
+
+		//tenantCode
+		logAccountingMessage=logAccountingMessage+",\""+ipOrigin.replace("\"", "\"\"")+"\"";
+		
+		
+		
+		//querString
+		logAccountingMessage=logAccountingMessage+",\""+sensorStream.replace("\"", "\"\"")+"\"";
+		
+
+		//dataIn
+		logAccountingMessage=logAccountingMessage+","+numeroEventi;
+		//elapsed
+		logAccountingMessage=logAccountingMessage+","+elapsed;
+		
+		
+		
+		//error
+		logAccountingMessage=logAccountingMessage+",\""+errore+"\"";
+		
+		return logAccountingMessage;
 	}
-	
-	public String getJwtData() {
-		return jwtData;
+
+
+	public String getProtocol() {
+		return protocol;
 	}
 
 
-	public void setJwtData(String jwtData) {
-		this.jwtData = jwtData;
+	public void setProtocol(String protocol) {
+		this.protocol = protocol;
 	}
 
 
-	public String getForwardefor() {
-		return forwardefor;
+	public String getConnectionId() {
+		return connectionId;
 	}
 
 
-	public void setForwardefor(String forwardefor) {
-		this.forwardefor = forwardefor;
+	public void setConnectionId(String connectionId) {
+		this.connectionId = connectionId;
 	}
 
 
@@ -74,53 +95,43 @@ public class AccountingLog {
 	}
 
 
-	public String getPath() {
-		return path;
+	public String getTenantcode() {
+		return tenantcode;
 	}
 
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setTenantcode(String tenantcode) {
+		this.tenantcode = tenantcode;
 	}
 
 
-	public String getApicode() {
-		return apicode;
+	public String getDestination() {
+		return destination;
 	}
 
 
-	public void setApicode(String apicode) {
-		this.apicode = apicode;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 
 
-	public String getQuerString() {
-		return querString;
+	public String getOperation() {
+		return operation;
 	}
 
 
-	public void setQuerString(String querString) {
-		this.querString = querString;
+	public void setOperation(String operation) {
+		this.operation = operation;
 	}
 
 
-	public int getDataIn() {
-		return dataIn;
+	public String getIpOrigin() {
+		return ipOrigin;
 	}
 
 
-	public void setDataIn(int dataIn) {
-		this.dataIn = dataIn;
-	}
-
-
-	public int getDataOut() {
-		return dataOut;
-	}
-
-
-	public void setDataOut(int dataOut) {
-		this.dataOut = dataOut;
+	public void setIpOrigin(String ipOrigin) {
+		this.ipOrigin = ipOrigin;
 	}
 
 
@@ -144,47 +155,33 @@ public class AccountingLog {
 	}
 
 
-	public String toString() {
-		String logAccountingMessage="";
+	public int getNumeroEventi() {
+		return numeroEventi;
+	}
 
-		//id
-		logAccountingMessage=logAccountingMessage+"\""+uniqueid.replace("\"", "\"\"")+"\"";
-		//forwardedfor
-		logAccountingMessage=logAccountingMessage+",\""+forwardefor.replace("\"", "\"\"")+"\"";
-		//jwt
-		logAccountingMessage=logAccountingMessage+",\""+jwtData.replace("\"", "\"\"")+"\"";
-		
-		
-		//path
-		logAccountingMessage=logAccountingMessage+",\""+path.replace("\"", "\"\"")+"\"";
-		//apicode
-		logAccountingMessage=logAccountingMessage+",\""+apicode.replace("\"", "\"\"")+"\"";
 
-		//datasetCode
-		logAccountingMessage=logAccountingMessage+",\""+datasetcode.replace("\"", "\"\"")+"\"";
+	public void setNumeroEventi(int numeroEventi) {
+		this.numeroEventi = numeroEventi;
+	}
 
-		//tenantCode
-		logAccountingMessage=logAccountingMessage+",\""+tenantcode.replace("\"", "\"\"")+"\"";
-		
-		
-		
-		//querString
-		logAccountingMessage=logAccountingMessage+",\""+querString.replace("\"", "\"\"")+"\"";
-		
 
-		//dataIn
-		logAccountingMessage=logAccountingMessage+","+dataIn;
-		//dataOut
-		logAccountingMessage=logAccountingMessage+","+dataOut;
-		//elapsed
-		logAccountingMessage=logAccountingMessage+","+elapsed;
-		
-		
-		
-		//error
-		logAccountingMessage=logAccountingMessage+",\""+errore+"\"";
-		
-		return logAccountingMessage;
+	public String getSensorStream() {
+		return sensorStream;
+	}
+
+
+	public void setSensorStream(String sensorStream) {
+		this.sensorStream = sensorStream;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

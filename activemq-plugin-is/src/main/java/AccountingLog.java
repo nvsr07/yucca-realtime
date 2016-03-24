@@ -1,3 +1,7 @@
+import org.apache.activemq.broker.ConnectionContext;
+import org.apache.activemq.command.ConnectionInfo;
+import org.apache.activemq.command.ConsumerInfo;
+
 public class AccountingLog {
 
 	private String protocol="-";
@@ -7,19 +11,36 @@ public class AccountingLog {
 	private String destination="-"; // output......
 	private String operation="-"; // CONNECT, POST, SEND, ADD CONSUMER...
 
-	private String ipOrigin;
+	private String ipOrigin="-";
 	private long elapsed=-1;
 	private String errore="-";
-	private int numeroEventi; // si recupera da esbin
+	private int numeroEventi=-1; // si recupera da esbin
 	private String sensorStream="-" ;// si recupera da esbin
 	
-
+	private String username;
 
 	
-	public AccountingLog() {
-		
+	public AccountingLog(ConnectionContext context, ConnectionInfo info) {
+        this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
+        this.setProtocol(context.getConnector().toString());
+        this.setIpOrigin(info.getClientIp()+"|"+context.getConnection().getRemoteAddress());
+
 	}
 	
+	public AccountingLog()
+	{
+		
+	}
+	public AccountingLog(ConnectionContext context, ConsumerInfo info) {
+		this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
+        this.setProtocol(context.getConnector().toString());
+
+	}
+
+	public AccountingLog(ConnectionContext context) {
+		this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
+        this.setProtocol(context.getConnector().toString());
+	}
 
 	public String toString() {
 		String logAccountingMessage="";
@@ -60,6 +81,126 @@ public class AccountingLog {
 		logAccountingMessage=logAccountingMessage+",\""+errore+"\"";
 		
 		return logAccountingMessage;
+	}
+
+
+	public String getProtocol() {
+		return protocol;
+	}
+
+
+	public void setProtocol(String protocol) {
+		this.protocol = protocol;
+	}
+
+
+	public String getConnectionId() {
+		return connectionId;
+	}
+
+
+	public void setConnectionId(String connectionId) {
+		this.connectionId = connectionId;
+	}
+
+
+	public String getUniqueid() {
+		return uniqueid;
+	}
+
+
+	public void setUniqueid(String uniqueid) {
+		this.uniqueid = uniqueid;
+	}
+
+
+	public String getTenantcode() {
+		return tenantcode;
+	}
+
+
+	public void setTenantcode(String tenantcode) {
+		this.tenantcode = tenantcode;
+	}
+
+
+	public String getDestination() {
+		return destination;
+	}
+
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+
+	public String getOperation() {
+		return operation;
+	}
+
+
+	public void setOperation(String operation) {
+		this.operation = operation;
+	}
+
+
+	public String getIpOrigin() {
+		return ipOrigin;
+	}
+
+
+	public void setIpOrigin(String ipOrigin) {
+		this.ipOrigin = ipOrigin;
+	}
+
+
+	public long getElapsed() {
+		return elapsed;
+	}
+
+
+	public void setElapsed(long elapsed) {
+		this.elapsed = elapsed;
+	}
+
+
+	public String getErrore() {
+		return errore;
+	}
+
+
+	public void setErrore(String errore) {
+		this.errore = errore;
+	}
+
+
+	public int getNumeroEventi() {
+		return numeroEventi;
+	}
+
+
+	public void setNumeroEventi(int numeroEventi) {
+		this.numeroEventi = numeroEventi;
+	}
+
+
+	public String getSensorStream() {
+		return sensorStream;
+	}
+
+
+	public void setSensorStream(String sensorStream) {
+		this.sensorStream = sensorStream;
+	}
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

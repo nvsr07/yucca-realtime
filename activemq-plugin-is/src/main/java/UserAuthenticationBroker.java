@@ -168,6 +168,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 		long startTime = System.currentTimeMillis();
 		String authorizedUser = null;
         SecurityContext s = context.getSecurityContext();
+        AccountingLog accountingLog = new AccountingLog(context, info);
+        accountingLog.setOperation("CONNECTION");
         if (s == null) {
     		boolean isValidUser = false;
     		LOG.info("Starting authentication for username: "+info.getUserName());
@@ -184,18 +186,18 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     			dto.setContext(arrayCt);
     			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
     			authorizedUser = response.getAuthorizedUser();
+    			accountingLog.setUsername(authorizedUser);
     			isValidUser = response.getValid();
     		}
     		else {
     			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());
+    			accountingLog.setUsername(info.getUserName());
     		}
     		if (!isValidUser) {
                 context.setSecurityContext(null);
-                AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), info.getUserName(), info.getClientIp());
-   			 	accountingLog.setErrore("Not a valid user "+info.getUserName() +" connection");
-   			 	accountingLog.setQuerString("CONNECTION");
+                accountingLog.setErrore("Not a valid user "+info.getUserName() +" connection");
    			 	accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-	   			 if (!context.getUserName().equals("system"))
+    			 if (!info.getUserName().equals("system"))
 	     		 	LOGACCOUNT.info(accountingLog.toString());
     			throw new SecurityException("Not a valid user "+info.getUserName() +" connection");
 
@@ -216,13 +218,9 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         
 		
         try {
-                AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), info.getUserName(), info.getClientIp());
-			 	accountingLog.setQuerString("CONNECTION");
 	            super.addConnection(context, info);
-   			 	if (authorizedUser != null)
-   			 		accountingLog.setJwtData(authorizedUser);
 	            accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-	            if (!context.getUserName().equals("system"))
+	            if (!info.getUserName().equals("system"))
 	    		 	LOGACCOUNT.info(accountingLog.toString());
         } catch (Exception e) {
             context.setSecurityContext(null);
@@ -233,15 +231,16 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 
     public void removeConnection(ConnectionContext context, ConnectionInfo info, Throwable error) throws Exception {
     	long startTime = System.currentTimeMillis();
+    	 AccountingLog accountingLog = new AccountingLog(context, info);
+         accountingLog.setOperation("DISCONNECTION");
+ 	 	if (error != null)
+	 		accountingLog.setErrore(""+error.getMessage());
+    	
         super.removeConnection(context, info, error);
         context.setSecurityContext(null);
-	 	AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), info.getUserName(), info.getClientIp());
-	 	accountingLog.setQuerString("SWITCH-OFF");
-	 	if (error != null)
-	 		accountingLog.setErrore(error.getMessage() + "| cause by: " + error.getCause());
 
     	accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-    	if (!context.getUserName().equals("system"))
+//    	if (!info.getUserName().equals("system"))
 		 	LOGACCOUNT.info(accountingLog.toString());
     }
 
@@ -284,15 +283,15 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     	long startTime = System.currentTimeMillis();
     	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
     	final SecurityContext securityContext = checkSecurityContext(context);
-    	AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-	 	accountingLog.setQuerString("ADD CONSUMER");
+    	AccountingLog accountingLog = new AccountingLog(context, info);
+	 	accountingLog.setOperation("SUBSCRIPTION");
+    	accountingLog.setDestination(info.getDestination().getPhysicalName());
     	
         if (isBrokerAccess(context, info.getDestination())) {
             return super.addConsumer(context, info);
         }
     	
 		if (isUserAuthorized(context.getUserName(), info.getDestination(),Operation.READ)){
-        	accountingLog.setPath(info.getDestination().getPhysicalName());
 		 	Subscription addC = super.addConsumer(context, info);
         	accountingLog.setElapsed(System.currentTimeMillis() - startTime);
         	if (!context.getUserName().equals("system"))
@@ -316,8 +315,6 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 			throws Exception {
 		long startTime = System.currentTimeMillis();
     	LOG.debug(">>>>>>AddProducer:"+info.getDestination());
-    	AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-	 	accountingLog.setQuerString("ADD PRODUCER");
     	final SecurityContext securityContext = checkSecurityContext(context);
     	if (isBrokerAccess(context, info.getDestination()))
         {
@@ -334,90 +331,26 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
 				AuthorizationRole authorizationRole = roleNames[i];
 				if (isAuthorized(authorizationRole,Operation.WRITE,info.getDestination()))
 						{
-							accountingLog.setPath(info.getDestination().getPhysicalName());
 				 			super.addProducer(context, info);
-							accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-							if (!context.getUserName().equals("system"))
-				    		 	LOGACCOUNT.info(accountingLog.toString());
 		                    return;
 						}
 			}
         }
-	 	accountingLog.setErrore("Not a valid user "+context.getUserName() +" to produce : " + info.toString() + ".");
-	 	accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-	 	if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
         throw new SecurityException("Not a valid user "+context.getUserName() +" to produce : " + info.toString() + ".");
 	}
 	
-	@Override
-	public Response messagePull(ConnectionContext context, MessagePull pull) throws Exception {
-		long startTime = System.currentTimeMillis();
-		AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-        accountingLog.setQuerString("[MESSAGE PULL] - MSG FROM " + pull.getDestination() + " - TO " + pull.getFrom());
-        Response res = super.messagePull(context, pull);
-        accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-        if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
-        return res;
-	}
-	
-	@Override
-	public void messageConsumed(ConnectionContext context, MessageReference messageReference) {
-		long startTime = System.currentTimeMillis();
-		AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-        accountingLog.setQuerString("[MESSAGE CONSUMED] - Message Reference: " + messageReference);
-        accountingLog.setDataOut(messageReference.getSize());
-        super.messageConsumed(context, messageReference);
-        accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-        if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
-	}
-	
-	@Override
-	public void messageDelivered(ConnectionContext context, MessageReference messageReference) {
-		long startTime = System.currentTimeMillis();
-		AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-        accountingLog.setQuerString("[MESSAGE DELIVERED] - Message Reference: " + messageReference);
-        accountingLog.setDataOut(messageReference.getSize());
-        super.messageDelivered(context, messageReference);
-        accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-        if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
-	}
-	
-	@Override
-	public void messageDiscarded(ConnectionContext context, Subscription sub, MessageReference messageReference) {
-		long startTime = System.currentTimeMillis();
-		AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-        accountingLog.setQuerString("[MESSAGE DISCARDED] - SUBSCRIPTION: " + sub + " - MSG(ID): " + messageReference.getMessageId());
-        accountingLog.setDataOut(messageReference.getSize());
-        super.messageDiscarded(context, sub, messageReference);
-        accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-        if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
-	}
-	
-	@Override
-	public void messageExpired(ConnectionContext context, MessageReference message, Subscription subscription) {
-		long startTime = System.currentTimeMillis();
-		AccountingLog accountingLog = new AccountingLog(context.getClientId() + "|" + context.getConnector().toString(), context.getUserName(), context.getConnection().getRemoteAddress());
-        accountingLog.setQuerString("[MESSAGE EXPIRED] - SUBSCRIPTION: " + subscription + " - MSG(ID): " + message.getMessageId());
-        accountingLog.setDataOut(message.getSize());
-        super.messageExpired(context, message, subscription);
-        accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-        if (!context.getUserName().equals("system"))
-		 	LOGACCOUNT.info(accountingLog.toString());
-	}
-	
+
     public void send(ProducerBrokerExchange producerExchange, Message messageSend)
             throws Exception {
     	
     	long startTime = System.currentTimeMillis();
     	LOG.trace(">>>>>>send:"+messageSend.getDestination());
         final SecurityContext securityContext = checkSecurityContext(producerExchange.getConnectionContext());
-        AccountingLog accountingLog = new AccountingLog(producerExchange.getConnectionContext().getClientId() + "|" + producerExchange.getConnectionContext().getConnector().toString(), producerExchange.getConnectionContext().getUserName(), producerExchange.getConnectionContext().getConnection().getRemoteAddress());
-        accountingLog.setQuerString("SEND TO " + messageSend.getDestination() + " MSG: " + messageSend.getMessage());
+    	AccountingLog accountingLog = new AccountingLog(producerExchange.getConnectionContext());
+	 	accountingLog.setOperation("SEND");
+    	accountingLog.setDestination(messageSend.getDestination().getPhysicalName());
+    	accountingLog.setUniqueid(messageSend.getMessageId().toString());
+
         if (isBrokerAccess(producerExchange.getConnectionContext(), messageSend.getDestination()))
         {
         	super.send(producerExchange,messageSend);
@@ -431,7 +364,6 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         	for (int i = 0; i < roleNames.length; i++) {
 				AuthorizationRole authorizationRole = roleNames[i];
 				if (isAuthorized(authorizationRole,Operation.WRITE,messageSend.getDestination())){
-					accountingLog.setDataIn(messageSend.getContent().getLength());
 			        super.send(producerExchange,messageSend);
 					accountingLog.setElapsed(System.currentTimeMillis() - startTime);
 					if (!producerExchange.getConnectionContext().getUserName().equals("system"))

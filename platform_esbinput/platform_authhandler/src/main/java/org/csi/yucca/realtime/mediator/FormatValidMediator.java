@@ -38,6 +38,7 @@ public class FormatValidMediator extends AbstractMediator {
 		String isValidFormat= "true";
 
 		AccountingLog logging = new AccountingLog();
+		logging.setTenantcode(axis2MessageContext.getServiceContext().getName());
 		
 		org.apache.axis2.context.MessageContext axis2MessageContext = ((Axis2MessageContext) synCtx)
 				.getAxis2MessageContext();
@@ -49,21 +50,25 @@ public class FormatValidMediator extends AbstractMediator {
 		
 		trace.info("[FormatValidMediator::mediate] BEGIN");
 		try {
-			Object headers = axis2MessageContext.getProperty("TRANSPORT_HEADERS");
-			if (headers!=null)
+			
+			if (axis2MessageContext.getIncomingTransportName().equals("jms"))
 			{
-				Map headersMap = (Map) headers;
-				trace.info("[FormatValidMediator::mediate] "+headersMap.get("UNIQUE_ID"));
-				logging.setUniqueid(""+headersMap.get("UNIQUE_ID"));
-				logging.setForwardefor(""+headersMap.get("X-Forwarded-For"));
-				logging.setJwtData(""+headersMap.get("Authorization"));
+				logging.setUniqueid(""+);
+			}
+			else {
+				Object headers = axis2MessageContext.getProperty("TRANSPORT_HEADERS");
+				if (headers!=null)
+				{
+					Map headersMap = (Map) headers;
+					trace.info("[FormatValidMediator::mediate] "+headersMap.get("UNIQUE_ID"));
+					logging.setUniqueid(""+headersMap.get("UNIQUE_ID"));
+				}
 				
 			}
-			
 			String msg = synCtx.getEnvelope().getBody().toString();
 			// capire come contare o estrarre info
 			logging.setApicode(msg);
-			logging.setPath(axis2MessageContext.getIncomingTransportName()+"|"+axis2MessageContext.getSoapAction());
+			logging.setPath(+"|"+axis2MessageContext.getSoapAction());
 		} catch (Exception e)
 		{
 			logging.setErrore("JSON Invalid");
