@@ -18,14 +18,6 @@ public class AccountingLog {
 	private String sensorStream="-" ;// si recupera da esbin
 	
 	private String username;
-
-	
-	public AccountingLog(ConnectionContext context, ConnectionInfo info) {
-        this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
-        this.setProtocol(context.getConnector().toString());
-        this.setIpOrigin(info.getClientIp()+"|"+context.getConnection().getRemoteAddress());
-
-	}
 	
 	public AccountingLog()
 	{
@@ -40,6 +32,7 @@ public class AccountingLog {
 	public AccountingLog(ConnectionContext context) {
 		this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
         this.setProtocol(context.getConnector().toString());
+        this.setIpOrigin(context.getConnection().getRemoteAddress());
 	}
 
 	public String toString() {
