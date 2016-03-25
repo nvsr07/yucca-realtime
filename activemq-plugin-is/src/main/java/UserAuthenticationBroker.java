@@ -230,9 +230,13 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     }
 
     public void removeConnection(ConnectionContext context, ConnectionInfo info, Throwable error) throws Exception {
+    	boolean isSystem = false;
     	long startTime = System.currentTimeMillis();
-    	 AccountingLog accountingLog = new AccountingLog(context);
-         accountingLog.setOperation("DISCONNECTION");
+    	AccountingLog accountingLog = new AccountingLog(context);
+        accountingLog.setOperation("DISCONNECTION");
+        if (info.getUserName().equals("system"))
+        	isSystem = true;
+        
  	 	if (error != null)
 	 		accountingLog.setErrore(""+error.getMessage());
     	
@@ -240,7 +244,8 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
         context.setSecurityContext(null);
 
     	accountingLog.setElapsed(System.currentTimeMillis() - startTime);
-//    	if (!info.getUserName().equals("system"))
+//    	
+    	if (!isSystem)
 		 	LOGACCOUNT.info(accountingLog.toString());
     }
 
