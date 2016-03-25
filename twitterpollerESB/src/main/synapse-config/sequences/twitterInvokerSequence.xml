@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="twitterInvokerSequence">
-    <log level="custom">
-        <property name="step" value="SEQUENCE TWT_INVOKER - BEGIN"/>
-    </log>
     <property xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://org.apache.synapse/xsd" xmlns:twit="http://twitterpoller.yucca.csi.org" name="tenantCod" expression="$body/twit:invokeTwitter/twit:streamInfo/xsd:tenatcode" scope="default" type="STRING"/>
     <callout serviceURL="mb.axistwitter.http.balancer.url" action="invokeTwitter">
         <source xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://org.apache.synapse/xsd" xmlns:twit="http://twitterpoller.yucca.csi.org" xpath="$body/child::*"/>
         <target xmlns:xsd="http://dto.twitterpoller.yucca.csi.org/xsd" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://org.apache.synapse/xsd" xmlns:twit="http://twitterpoller.yucca.csi.org" xpath="$body/child::*"/>
     </callout>
-    <log level="custom">
-        <property name="step" value="SEQUENCE TWT_INVOKER - DOPO INVOKE"/>
-    </log>
     <xslt key="twitterPollerRemoveNullXSLTTMP"/>
     <property name="messageType" value="application/json" scope="axis2" type="STRING"/>
     <property xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://org.apache.synapse/xsd" name="hasError" expression="boolean($body/invokeTwitterResponse/return/errore/twtErrorCode)" scope="default" type="STRING"/>
@@ -18,12 +12,6 @@
         <then>
             <property xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" name="twterrocode" expression="$body/invokeTwitterResponse/return/errore/twtErrorCode" scope="default" type="STRING"/>
             <property xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" name="twterrormessage" expression="$body/invokeTwitterResponse/return/errore/twtErrorMessage" scope="default" type="STRING"/>
-            <log level="custom">
-                <property name="step" value="SEQUENCE TWT_INVOKER ERRORE TWITTER"/>
-                <property name="codiceerroretwt" expression="get-property('twterrocode')"/>
-                <property name="messaggioerroretwt" expression="get-property('twterrormessage')"/>
-                <property name="tenantCodCALC" expression="get-property('tenantCod')"/>
-            </log>
             <call-template target="SendToMessageBrokerAndRespondErrorSequence">
             <with-param name="mb_url" value="mb.external.jms.url"/>
             <with-param name="mb_user" value="mb.external.user"/>
@@ -37,19 +25,10 @@
         <else>
             <property xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" name="streamId" expression="$body/invokeTwitterResponse/return/stream" scope="default" type="STRING"/>
             <property xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" name="sourceId" expression="$body/invokeTwitterResponse/return/sensor" scope="default" type="STRING"/>
-            <log level="custom">
-                <property name="step" value="SEQUENCE TWT_INVOKER - PRIMA MB"/>
-                <property name="streamIdCALC" expression="get-property('streamId')"/>
-                <property name="sourceIdCALC" expression="get-property('sourceId')"/>
-                <property name="tenantCodCALC" expression="get-property('tenantCod')"/>
-            </log>
             <iterate xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" continueParent="true" preservePayload="true" attachPath="$body/invokeTwitterResponse/return" expression="$body/invokeTwitterResponse/return/values" sequential="true">
                 <target>
                     <sequence>
                         <property name="componenti" expression="$body/invokeTwitterResponse/return/values/components" scope="default" type="OM"/>
-                        <log level="custom">
-                            <property name="step" value="SEQUENCE TWT_INVOKER I[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[ "/>
-                        </log>
                         <property name="data" expression="$body/invokeTwitterResponse/return/values/time" scope="default" type="STRING"/>
                         <payloadFactory media-type="xml">
                             <format>
@@ -82,7 +61,4 @@
             </iterate>
         </else>
     </filter>
-    <log level="custom">
-        <property name="step" value="SEQUENCE TWT_INVOKER - DOPO END"/>
-    </log>
 </sequence>
