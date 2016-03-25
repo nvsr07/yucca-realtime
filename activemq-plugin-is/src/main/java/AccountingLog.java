@@ -18,21 +18,21 @@ public class AccountingLog {
 	private String sensorStream="-" ;// si recupera da esbin
 	
 	private String username;
+
+	
+	public AccountingLog(ConnectionContext context) {
+		if (!context.getClientId().equals(context.getConnectionId().getValue()))
+			this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
+		else
+			this.setConnectionId(context.getConnectionId().getValue());
+        this.setProtocol(context.getConnector().toString());
+        this.setIpOrigin(context.getConnection().getRemoteAddress());
+
+	}
 	
 	public AccountingLog()
 	{
 		
-	}
-	public AccountingLog(ConnectionContext context, ConsumerInfo info) {
-		this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
-        this.setProtocol(context.getConnector().toString());
-
-	}
-
-	public AccountingLog(ConnectionContext context) {
-		this.setConnectionId(context.getConnectionId().getValue()+"|"+context.getClientId());
-        this.setProtocol(context.getConnector().toString());
-        this.setIpOrigin(context.getConnection().getRemoteAddress());
 	}
 
 	public String toString() {
@@ -45,6 +45,7 @@ public class AccountingLog {
 		//jwt
 		logAccountingMessage=logAccountingMessage+",\""+protocol.replace("\"", "\"\"")+"\"";
 		
+		logAccountingMessage=logAccountingMessage+",\""+username.replace("\"", "\"\"")+"\"";
 		
 		//path
 		logAccountingMessage=logAccountingMessage+",\""+tenantcode.replace("\"", "\"\"")+"\"";

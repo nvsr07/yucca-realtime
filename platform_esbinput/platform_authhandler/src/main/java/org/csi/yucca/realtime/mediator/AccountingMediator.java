@@ -49,7 +49,7 @@ try{
 			Map headersMap = (Map) headers;
 			for (Iterator iterator = headersMap.keySet().iterator(); iterator.hasNext();) {
 				String type = (String) iterator.next();
-				trace.info("*** header"+type);
+				trace.debug("*** header"+type);
 			}
 			if (headersMap.get("UNIQUE_ID")!=null)
 			{

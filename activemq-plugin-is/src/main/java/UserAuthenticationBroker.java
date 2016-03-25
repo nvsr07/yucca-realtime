@@ -283,7 +283,7 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     	long startTime = System.currentTimeMillis();
     	LOG.debug(">>>>>>AddConsumer:"+info.getDestination());
     	final SecurityContext securityContext = checkSecurityContext(context);
-    	AccountingLog accountingLog = new AccountingLog(context, info);
+    	AccountingLog accountingLog = new AccountingLog(context);
 	 	accountingLog.setOperation("SUBSCRIPTION");
     	accountingLog.setDestination(info.getDestination().getPhysicalName());
     	
