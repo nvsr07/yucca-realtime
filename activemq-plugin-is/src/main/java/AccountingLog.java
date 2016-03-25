@@ -17,7 +17,7 @@ public class AccountingLog {
 	private int numeroEventi=-1; // si recupera da esbin
 	private String sensorStream="-" ;// si recupera da esbin
 	
-	private String username;
+	private String username="-";
 
 	
 	public AccountingLog(ConnectionContext context) {
@@ -27,7 +27,7 @@ public class AccountingLog {
 			this.setConnectionId(context.getConnectionId().getValue());
         this.setProtocol(context.getConnector().toString());
         this.setIpOrigin(context.getConnection().getRemoteAddress());
-
+        this.setUsername(context.getUserName());
 	}
 	
 	public AccountingLog()
