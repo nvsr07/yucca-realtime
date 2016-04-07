@@ -1,0 +1,10 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__deleteUser.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <xsd:deleteUser>
+         <xsd:userName>__user__</xsd:userName>
+      </xsd:deleteUser>
+   </soapenv:Body>
+</soapenv:Envelope>

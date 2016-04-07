@@ -1,0 +1,58 @@
+<#assign x = 1> 
+{
+"steps": [
+<#list mbs as mb>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione della applicazione .", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__deleteApp.xml",
+"action":"deleteApp",
+"destination":"${mb.host}/services/ApplicationAdmin",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+</#list>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Delete User tecnico ", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__deleteUser.xml",
+"action":"deleteUser",
+"destination":"${identityserver.url}/services/UserAdmin",
+"returnExpected":"200", 
+"successControl":"",
+"username":"${identityserver.secuser}", 
+"password":"${identityserver.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Delete Ruolo per topic", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__deleteRole.xml",
+"action":"deleteRole",
+"destination":"${identityserver.url}/services/UserAdmin",
+"returnExpected":"200", 
+"successControl":"",
+"username":"${identityserver.secuser}", 
+"password":"${identityserver.secpassword}"
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Delete Ruolo ${tenant.code}_subscriber", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"target/api__deploy__${tenant.code}__deleteRoleSubscriber.xml",
+"action":"deleteRole",
+"destination":"${identityserver.url}/services/UserAdmin",
+"returnExpected":"200", 
+"successControl":"",
+"username":"${identityserver.secuser}", 
+"password":"${identityserver.secpassword}"
+}
+]
+}

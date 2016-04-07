@@ -1,11 +1,10 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRole.xml"/>
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__deleteRole.xml"/>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
    <soapenv:Header/>
    <soapenv:Body>
-      <xsd:addRole>
+      <xsd:deleteRole>
          <xsd:roleName>mb-topic-all-input.${tenant.code}</xsd:roleName>
-         <xsd:isSharedRole>false</xsd:isSharedRole>
-      </xsd:addRole>
+      </xsd:deleteRole>
    </soapenv:Body>
 </soapenv:Envelope>
