@@ -1,7 +1,7 @@
 package org.csi.yucca.twitterpoller.mongo;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.csi.yucca.twitterpoller.constants.SDPTwitterConfig;
 
@@ -16,7 +16,7 @@ import com.mongodb.WriteResult;
 
 public class YuccaTwitterMongoDataAcces {
 
-	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
+	private static final Log log=LogFactory.getLog("org.csi.yucca.twitterpoller");
 
 	public Long retrieveLastTweetId(String streamCode,String tenantCode,String virtualEntityCode,int streamVersion,boolean reset) throws Exception{
 		Long ret = null;
@@ -24,7 +24,7 @@ public class YuccaTwitterMongoDataAcces {
 		try {
 
 
-			log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] BEGIN ");
+			log.info("[YuccaTwitterPoller::retrieveLastTweetId] BEGIN ");
 
 			MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
 			DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
@@ -51,9 +51,9 @@ public class YuccaTwitterMongoDataAcces {
 				}
 
 
-				log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] streamVersion:"+streamVersion+"----versioneStream:"+versioneStream);
+				log.info("[YuccaTwitterPoller::retrieveLastTweetId] streamVersion:"+streamVersion+"----versioneStream:"+versioneStream);
 				if (!((""+streamVersion).equals(versioneStream))) {
-					log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] CAMBIO VERSIONE ");
+					log.info("[YuccaTwitterPoller::retrieveLastTweetId] CAMBIO VERSIONE ");
 
 					BasicDBList arrQueryUpd = new BasicDBList();
 
@@ -67,7 +67,7 @@ public class YuccaTwitterMongoDataAcces {
 					BasicDBObject doc = new BasicDBObject();
 					doc.put("streamVersion",streamVersion);
 					if (reset) {
-						log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] RESET");
+						log.info("[YuccaTwitterPoller::retrieveLastTweetId] RESET");
 						ret=null;
 						doc.put("tweetLastId", -1);
 					}
@@ -88,10 +88,10 @@ public class YuccaTwitterMongoDataAcces {
 
 			cursor.close();
 
-			log.log(Level.INFO, "[YuccaTwitterPoller::retrieveLastTweetId] END ");
+			log.info("[YuccaTwitterPoller::retrieveLastTweetId] END ");
 
 		} catch (Exception e) {
-			log.log(Level.SEVERE, "[YuccaTwitterPoller::retrieveLastTweetId]  "+e);
+			log.error( "[YuccaTwitterPoller::retrieveLastTweetId]  "+e);
 			throw e;
 		} finally {
 			try {
@@ -108,7 +108,7 @@ public class YuccaTwitterMongoDataAcces {
 		try {
 
 
-			log.log(Level.INFO, "[YuccaTwitterPoller::updateLastId] BEGIN ");
+			log.info("[YuccaTwitterPoller::updateLastId] BEGIN ");
 
 			MongoClient mongoClient=MongoConnectionSingleton.getInstance().getMongoConnection();
 			DB db = mongoClient.getDB(SDPTwitterConfig.getInstance().getDb());
@@ -141,10 +141,10 @@ public class YuccaTwitterMongoDataAcces {
 
 
 		} catch (Exception e) {
-			log.log(Level.SEVERE, "[YuccaTwitterPoller::updateLastId]  "+e);
+			log.error( "[YuccaTwitterPoller::updateLastId]  "+e);
 			throw e;
 		} finally {
-			log.log(Level.INFO, "[YuccaTwitterPoller::updateLastId] END ");
+			log.info("[YuccaTwitterPoller::updateLastId] END ");
 		}
 		return true;
 

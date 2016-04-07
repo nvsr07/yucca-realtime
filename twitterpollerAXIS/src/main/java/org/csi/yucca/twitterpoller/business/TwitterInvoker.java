@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.TimeZone;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import org.csi.yucca.twitterpoller.constants.SDPTwitterConfig;
 import org.csi.yucca.twitterpoller.dto.YuccaInvokeResult;
@@ -27,7 +27,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterInvoker {
 
-	private static final Logger log=Logger.getLogger("org.csi.yucca.twitterpoller");
+	private static final Log log=LogFactory.getLog("org.csi.yucca.twitterpoller");
 
 	public YuccaInvokeResult invokeTwitter(YuccaTwitterQuery twitterQuery) throws Exception{
 
@@ -44,15 +44,15 @@ public class TwitterInvoker {
 		cb.setOAuthAccessToken(twitterQuery.getTwtUserToken());
 		cb.setOAuthAccessTokenSecret(twitterQuery.getTwtTokenSecret());
 
-		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] consumerKey "+consumerKey);
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] consumerSecret "+consumerSecret);
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUsertoken() "+twitterQuery.getTwtUserToken());
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtTokenSecret() "+twitterQuery.getTwtTokenSecret());
+		log.info("[TwitterInvoker::invokeTwitter] consumerKey "+consumerKey);
+		log.info("[YuccaTwitterPoller::invokeTwitter] consumerSecret "+consumerSecret);
+		log.info("[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtUsertoken() "+twitterQuery.getTwtUserToken());
+		log.info("[YuccaTwitterPoller::invokeTwitter] twitterQuery.getTwtTokenSecret() "+twitterQuery.getTwtTokenSecret());
 		
 
 		Twitter twitter = new TwitterFactory(cb.build()).getInstance();
 		//User user = twitter.verifyCredentials();
-		//log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter]user.getName()    "+user.getName());
+		//log.info("[YuccaTwitterPoller::invokeTwitter]user.getName()    "+user.getName());
 		Query query = new Query(twitterQuery.getTwtQuery());
 
 		//GEOLOCATION
@@ -75,16 +75,16 @@ public class TwitterInvoker {
 		//COUNT ???? verificare se val la pensa di parametrizzarlo
 		query.count(100);
 
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ query.toString() "+query.toString());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ query.toString() "+query.toString());
 			
 		QueryResult result = twitter.search(query);
 
 		
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getCount() "+result.getCount());
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getRemaining() "+result.getRateLimitStatus().getRemaining());
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getSecondsUntilReset() "+result.getRateLimitStatus().getSecondsUntilReset());
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getResetTimeInSeconds() "+result.getRateLimitStatus().getResetTimeInSeconds());
-		log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getLimit() "+result.getRateLimitStatus().getLimit());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getCount() "+result.getCount());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getRemaining() "+result.getRateLimitStatus().getRemaining());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getSecondsUntilReset() "+result.getRateLimitStatus().getSecondsUntilReset());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getResetTimeInSeconds() "+result.getRateLimitStatus().getResetTimeInSeconds());
+		log.info("[YuccaTwitterPoller::invokeTwitter] ++++++++++++++++++++++ result.getRateLimitStatus().getLimit() "+result.getRateLimitStatus().getLimit());
 
 		
 		long maxId=-1;
@@ -92,7 +92,7 @@ public class TwitterInvoker {
 		for (Status status : result.getTweets()) {
 			YuccaTwitterResult cur = new YuccaTwitterResult();
 
-			log.log(Level.INFO, "[YuccaTwitterPoller::invokeTwitter] elaboro: " + status.getId() + " -- "+status.getText());
+			log.info("[YuccaTwitterPoller::invokeTwitter] elaboro: " + status.getId() + " -- "+status.getText());
 			
 			//contributors
 			if (status.getContributors()!= null && status.getContributors().length>0) {
@@ -188,34 +188,34 @@ public class TwitterInvoker {
 			
 		}
 
-		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] RESULT");
+		log.info("[TwitterInvoker::invokeTwitter] RESULT");
 
 		ArrayList<YuccaTwitterValue> valuesRet=new ArrayList<YuccaTwitterValue>();
 		
 		for (YuccaTwitterResult cur:twittTrovati) {
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] -----------------------");
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getContributors "+cur.getContributors());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getCreatedAt "+cur.getCreatedAt());
-			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getGetText "+cur.getGetText());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getHashTags "+cur.getHashTags());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getLang "+cur.getLang());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getMedia "+cur.getMedia());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getMediaUrl "+cur.getMediaUrl());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getPlaceName "+cur.getPlaceName());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getSource "+cur.getSource());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getUrl "+cur.getUrl());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getCurrentUserRetweetId "+cur.getCurrentUserRetweetId());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getFavoriteCount "+cur.getFavoriteCount());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getLat "+cur.getLat());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getLon "+cur.getLon());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getMediaCnt "+cur.getMediaCnt());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getRetweetCount "+cur.getRetweetCount());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] getTweetid "+cur.getTweetid());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isFavorited "+cur.isFavorited());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isPossiblySensitive "+cur.isPossiblySensitive());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isRetweet "+cur.isRetweet());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isRetweetedByMe "+cur.isRetweetedByMe());
-//			log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] isTruncated "+cur.isTruncated());
+//			log.info("[TwitterInvoker::invokeTwitter] -----------------------");
+//			log.info("[TwitterInvoker::invokeTwitter] getContributors "+cur.getContributors());
+//			log.info("[TwitterInvoker::invokeTwitter] getCreatedAt "+cur.getCreatedAt());
+			log.info("[TwitterInvoker::invokeTwitter] getGetText "+cur.getGetText());
+//			log.info("[TwitterInvoker::invokeTwitter] getHashTags "+cur.getHashTags());
+//			log.info("[TwitterInvoker::invokeTwitter] getLang "+cur.getLang());
+//			log.info("[TwitterInvoker::invokeTwitter] getMedia "+cur.getMedia());
+//			log.info("[TwitterInvoker::invokeTwitter] getMediaUrl "+cur.getMediaUrl());
+//			log.info("[TwitterInvoker::invokeTwitter] getPlaceName "+cur.getPlaceName());
+//			log.info("[TwitterInvoker::invokeTwitter] getSource "+cur.getSource());
+//			log.info("[TwitterInvoker::invokeTwitter] getUrl "+cur.getUrl());
+//			log.info("[TwitterInvoker::invokeTwitter] getCurrentUserRetweetId "+cur.getCurrentUserRetweetId());
+//			log.info("[TwitterInvoker::invokeTwitter] getFavoriteCount "+cur.getFavoriteCount());
+//			log.info("[TwitterInvoker::invokeTwitter] getLat "+cur.getLat());
+//			log.info("[TwitterInvoker::invokeTwitter] getLon "+cur.getLon());
+//			log.info("[TwitterInvoker::invokeTwitter] getMediaCnt "+cur.getMediaCnt());
+//			log.info("[TwitterInvoker::invokeTwitter] getRetweetCount "+cur.getRetweetCount());
+//			log.info("[TwitterInvoker::invokeTwitter] getTweetid "+cur.getTweetid());
+//			log.info("[TwitterInvoker::invokeTwitter] isFavorited "+cur.isFavorited());
+//			log.info("[TwitterInvoker::invokeTwitter] isPossiblySensitive "+cur.isPossiblySensitive());
+//			log.info("[TwitterInvoker::invokeTwitter] isRetweet "+cur.isRetweet());
+//			log.info("[TwitterInvoker::invokeTwitter] isRetweetedByMe "+cur.isRetweetedByMe());
+//			log.info("[TwitterInvoker::invokeTwitter] isTruncated "+cur.isTruncated());
 //			
 			
 			YuccaTwitterValue curValue=new YuccaTwitterValue();
@@ -230,8 +230,8 @@ public class TwitterInvoker {
 		resultChiamata.setMaxId(maxId);
 		resultChiamata.setValuesRet(valuesRet);
 		
-		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] RESULT --- END ");
-		log.log(Level.INFO, "[TwitterInvoker::invokeTwitter] maxId="+maxId);
+		log.info("[TwitterInvoker::invokeTwitter] RESULT --- END ");
+		log.info("[TwitterInvoker::invokeTwitter] maxId="+maxId);
 		
 		return resultChiamata;
 	}
