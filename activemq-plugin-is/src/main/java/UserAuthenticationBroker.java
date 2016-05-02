@@ -186,8 +186,9 @@ public class UserAuthenticationBroker extends BrokerFilter implements UserAuthen
     			dto.setContext(arrayCt);
     			OAuth2TokenValidationResponseDTO response =  oAuth2TokenValidationServiceStub.validate(dto);
     			authorizedUser = response.getAuthorizedUser();
-    			accountingLog.setUsername(authorizedUser);
     			isValidUser = response.getValid();
+    			if (isValidUser)
+    				accountingLog.setUsername(authorizedUser);
     		}
     		else {
     			isValidUser = remoteUserStoreManagerServiceStub.authenticate(info.getUserName(), info.getPassword());

@@ -27,7 +27,7 @@ public class AccountingLog {
 			this.setConnectionId(context.getConnectionId().getValue());
         this.setProtocol(context.getConnector().toString());
         this.setIpOrigin(context.getConnection().getRemoteAddress());
-        this.setUsername(context.getUserName());
+        this.setUsername(""+context.getUserName());
 	}
 	
 	public AccountingLog()
