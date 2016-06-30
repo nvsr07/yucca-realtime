@@ -47,4 +47,56 @@
       </int:editEventStreamInfo>
    </soapenv:Body>
 </soapenv:Envelope>
+<#else>
+<#list internalStreamInfo as internalStream>
+<@pp.changeOutputFile name="api__update__input__"+internalStream.tenantCode+"__"+internalStream.veCode_+"_"+internalStream.streamCode+".xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:editEventStreamInfo>
+      	 <int:oldStreamId>input__${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}:1.0.0</int:oldStreamId>
+         <!--Optional:-->
+         <int:eventStreamName>input__${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}</int:eventStreamName>
+         <!--Optional:-->
+         <int:eventStreamVersion>1.0.0</int:eventStreamVersion>
+         <!--Zero or more repetitions:-->
+         <int:metaEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>source</xsd:attributeName>
+            <!--Optional:-->
+            <xsd:attributeType>string</xsd:attributeType>
+         </int:metaEventStreamAttributeDtos>
+         <!--Zero or more repetitions:-->
+         <int:payloadEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>time</xsd:attributeName>
+            <!--Optional:-->
+            <xsd:attributeType>string</xsd:attributeType>
+         </int:payloadEventStreamAttributeDtos>
+         <#list inputStreamComponents as component>
+         <#if internalStream.streamId==component.streamId>
+         <int:payloadEventStreamAttributeDtos>
+            <!--Optional:-->
+            <xsd:attributeName>${component.code}</xsd:attributeName>
+            <!--Optional:-->
+            <#if (component.type?lower_case) ="datetime">
+            <xsd:attributeType>string</xsd:attributeType>
+			<#elseif component.type = "latitude">
+            <xsd:attributeType>double</xsd:attributeType>
+			<#elseif component.type = "longitude">
+            <xsd:attributeType>double</xsd:attributeType>
+            <#else/>
+            <xsd:attributeType>${component.type?lower_case}</xsd:attributeType>
+            </#if>
+         </int:payloadEventStreamAttributeDtos>
+         </#if>
+         </#list>
+        <!--Optional:-->
+         <int:eventStreamDescription>input__${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}</int:eventStreamDescription>
+         <!--Optional:-->
+         <int:eventStreamNickName>input__${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}</int:eventStreamNickName>
+      </int:editEventStreamInfo>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#list>
 </#if>

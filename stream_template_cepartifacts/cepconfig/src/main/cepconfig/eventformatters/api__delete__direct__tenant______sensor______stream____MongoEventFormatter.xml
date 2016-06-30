@@ -1,0 +1,13 @@
+<@pp.dropOutputFile />
+<#if stream.persisted?? && stream.persisted ="true">
+<@pp.changeOutputFile name="api__delete__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+"__MongoEventFormatter.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:undeployActiveEventFormatterConfiguration>
+         <!--Optional:-->
+         <int:eventFormatterName>direct__${tenant.code}__${source.code_}__${stream.code}__MongoEventFormatter</int:eventFormatterName>
+      </int:undeployActiveEventFormatterConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

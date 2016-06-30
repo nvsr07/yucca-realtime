@@ -1,11 +1,11 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__delete__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__stat__EventFormatter.xml" />
+<@pp.changeOutputFile name="api__delete__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventFormatter.xml"/>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:undeployActiveEventFormatterConfiguration>
          <!--Optional:-->
-         	<int:eventFormatterName>output__${tenant.code}__${source.code_}__${stream.code}__stat__EventFormatter</int:eventFormatterName>
+         <int:eventFormatterName>direct__${tenant.code}__${source.code_}__${stream.code}__EventFormatter</int:eventFormatterName>
       </int:undeployActiveEventFormatterConfiguration>
    </soapenv:Body>
 </soapenv:Envelope>

@@ -1,0 +1,59 @@
+<@pp.dropOutputFile />
+<#if source.type!="Internal">
+<@pp.changeOutputFile
+name="api__update__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
+/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:editActiveEventBuilderConfiguration>
+         <!--Optional:-->
+         <int:originalEventBuilderName>direct__${tenant.code}__${source.code_}__${stream.code}__EventBuilder</int:originalEventBuilderName>
+         <!--Optional:-->
+         <int:eventBuilderConfigXml><![CDATA[
+<eventBuilder
+	name="direct__${tenant.code}__${source.code_}__${stream.code}__EventBuilder"
+	statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
+	<from eventAdaptorName="JMSMBInternalInputEventAdaptor.xml"
+		eventAdaptorType="jms">
+		<property name="transport.jms.Destination">VirtualQueueConsumer.direct.input.${tenant.code}.${source.code}_${stream.code}</property>
+	</from>
+	<mapping customMapping="enable" type="json">
+		<#if source.type = "Application">
+		<property>
+			<from jsonPath="application" />
+			<to name="meta_source" type="string" />
+		</property>
+		<#elseif source.type = "Device" || source.type = "Feed Tweet">
+		<property>
+			<from jsonPath="sensor" />
+			<to name="meta_source" type="string" />
+		</property>
+		</#if>
+		<property>
+			<from jsonPath="values.time" />
+			<to name="time" type="string" />
+		</property>
+		<#list components as component>
+		<property>
+			<from jsonPath="values.components.${component.code}" />
+<#if component.type = "dateTime">			
+			<to name="${component.code}" type="string" />
+<#elseif component.type = "latitude">
+			<to name="${component.code}" type="double" />
+<#elseif component.type = "longitude">
+			<to name="${component.code}" type="double" />
+<#else/>
+			<to name="${component.code}" type="${component.type}" />
+</#if>			
+		</property>
+		</#list>
+	</mapping>
+	<to streamName="direct__${tenant.code}__${source.code_}__${stream.code}"
+		version="1.0.0" />
+</eventBuilder>]]>
+</int:eventBuilderConfigXml>
+      </int:editActiveEventBuilderConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#if>

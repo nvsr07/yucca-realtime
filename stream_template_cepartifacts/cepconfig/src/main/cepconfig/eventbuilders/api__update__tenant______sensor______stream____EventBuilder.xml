@@ -1,9 +1,7 @@
 <@pp.dropOutputFile />
-<#if source.type!="Internal">
 <#list mbs as mb>
-<@pp.changeOutputFile
-name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml"
-/>
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventBuilder.xml" />
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
@@ -57,5 +55,64 @@ name="api__update__"+mb.num+"__"+tenant.code+"__"+source.code_+"_"+stream.code+"
       </int:editActiveEventBuilderConfiguration>
    </soapenv:Body>
 </soapenv:Envelope>
- </#list>
+<#else>
+<#list internalStreamInfo as internalStream>
+<@pp.changeOutputFile name="api__update__"+mb.num+"__"+internalStream.tenantCode+"__"+internalStream.veCode_+"_"+internalStream.streamCode+"__EventBuilder.xml" />
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.builder.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.builder.event.carbon.wso2.org/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <int:editActiveEventBuilderConfiguration>
+         <!--Optional:-->
+         <int:originalEventBuilderName>${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}__EventBuilder</int:originalEventBuilderName>
+         <!--Optional:-->
+         <int:eventBuilderConfigXml><![CDATA[
+<eventBuilder
+	name="${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}__EventBuilder"
+	statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventbuilder">
+	<from eventAdaptorName="JMSMBInternalInputEventAdaptor.xml"
+		eventAdaptorType="jms">
+		<property name="transport.jms.Destination">VirtualQueueConsumer.${mb.num}.input.${internalStream.tenantCode}.${internalStream.veCode}_${internalStream.streamCode}</property>
+	</from>
+	<mapping customMapping="enable" type="json">
+		<#if internalStream.type = "Application">
+		<property>
+			<from jsonPath="application" />
+			<to name="meta_source" type="string" />
+		</property>
+		<#elseif internalStream.type = "Device" || internalStream.type = "Feed Tweet">
+		<property>
+			<from jsonPath="sensor" />
+			<to name="meta_source" type="string" />
+		</property>
+		</#if>
+		<property>
+			<from jsonPath="values.time" />
+			<to name="time" type="string" />
+		</property>
+		<#list inputStreamComponents as component>
+        <#if internalStream.streamId==component.streamId>
+		<property>
+			<from jsonPath="values.components.${component.code}" />
+<#if component.type = "dateTime">			
+			<to name="${component.code}" type="string" />
+<#elseif component.type = "latitude">
+			<to name="${component.code}" type="double" />
+<#elseif component.type = "longitude">
+			<to name="${component.code}" type="double" />
+<#else/>
+			<to name="${component.code}" type="${component.type}" />
+</#if>			
+		</property>
+		</#if>
+        </#list>
+	</mapping>
+	<to streamName="input__${internalStream.tenantCode}__${internalStream.veCode_}__${internalStream.streamCode}"
+		version="1.0.0" />
+</eventBuilder>]]>
+</int:eventBuilderConfigXml>
+      </int:editActiveEventBuilderConfiguration>
+   </soapenv:Body>
+</soapenv:Envelope>
+</#list>
 </#if>
+</#list>

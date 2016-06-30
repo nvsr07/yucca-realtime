@@ -1,47 +1,141 @@
-# Migrazione alla 1.4.0 , rimozione stat queue  
-
+# Migrazione alla 1.4.8 , revision cep strategy 2
 <#assign x = 1> 
 {
 "steps": [
-<#list mbs as mb>
+<#if source.type!="Internal">
+<#list mbs as mb><#-- CREATION OF STREAMS DIRECT ON CEP   -->
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Rimozione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter", 
+"description":"update Registrare gli Stream in un nodo CEP di tipo direct", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/eventformatters/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__stat__EventFormatter.xml",
+"source":"cepconfig/reg_streams/api__update__direct__${tenant.code}__${source.code_}_${stream.code}.xml",
+"action":"editEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+<#break>
+</#list>
+<#list mbs as mb> <#-- CREATION OF DIRECT BUILDERS ON CEP   -->
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Builder per ogni nodo CEP : direct__${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventbuilders/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
+"action":"editActiveEventBuilderConfiguration",
+"destination":"${mb.host}/services/EventBuilderAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+<#-- CREATION OF FORMTTER ON CEP   -->
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
+"action":"editActiveEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},<#if stream.persisted?? && stream.persisted ="true">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Installazione event Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
+"action":"editActiveEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},</#if>
+<#-- delete OF EXECUTIONPLAN ON CEP   -->
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione event Execution Plans per ogni nodo CEP : api__deploy__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/executionplans/api__delete__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan.xml",
+"action":"undeployActiveExecutionPlanConfiguration",
+"destination":"${mb.host}/services/EventProcessorAdminService",
+"returnExpected":"200", 
+"validityControl":"NO_CHECK",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+},
+<#if stream.persisted?? && stream.persisted ="true">
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
 "action":"undeployActiveEventFormatterConfiguration",
 "destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
 "validityControl":"NO_CHECK",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},{
+},</#if>
+{
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Execution Plans per ogni nodo CEP : api__update__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan", 
+"description":"Rimozione event Formatter per ogni nodo CEP : api__deploy__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/executionplans/api__update__process__${tenant.code}__${source.code_}_${stream.code}__ExecutionPlan.xml",
-"action":"editActiveExecutionPlanConfiguration",
-"destination":"${mb.host}/services/EventProcessorAdminService",
+"source":"cepconfig/eventformatters/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
+"action":"undeployActiveEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
-"validityControl":"<fault>",
+"validityControl":"NO_CHECK",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},{
+}
+<#-- delete builder INPUT ON CEP IF NOT USED  -->
+<#if stream.usedInInternalCount==0>
+{
 "number": "${x}",<#assign x = x+1> 
-"description":"Rimozione degli Stream in un nodo CEP", 
+"description":"Rimozione event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/reg_streams/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__stat.xml",
+"source":"cepconfig/eventbuilders/api__delete__${mb.num}__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
+"action":"undeployActiveEventBuilderConfiguration",
+"destination":"${mb.host}/services/EventBuilderAdminService",
+"returnExpected":"200", 
+"validityControl":"NO_CHECK",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+}</#if>
+<#if mb_has_next>,</#if>
+</#list>
+<#list mbs as mb><#-- REMOVE OF STREAMS INPUT ON CEP IF NOT USED   -->
+<#if stream.usedInInternalCount==0>
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione gli Stream in un nodo CEP", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__delete__input__${tenant.code}__${source.code_}_${stream.code}.xml",
 "action":"removeEventStreamInfo",
 "destination":"${mb.host}/services/EventStreamAdminService",
 "returnExpected":"200", 
 "validityControl":"NO_CHECK",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-}
-<#if mb_has_next>,</#if>
+},
+</#if>
+<#break>
 </#list>
+</#if>
 ]
 }

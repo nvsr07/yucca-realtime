@@ -1,13 +1,15 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__delete__output__"+tenant.code+"__"+source.code_+"_"+stream.code+"__stat.xml" />
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__delete__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org">
    <soapenv:Header/>
    <soapenv:Body>
       <int:removeEventStreamInfo>
          <!--Optional:-->
-          <int:eventStreamName>output__${tenant.code}__${source.code_}__${stream.code}__stat</int:eventStreamName>
+         <int:eventStreamName>direct__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamName>
          <!--Optional:-->
          <int:eventStreamVersion>1.0.0</int:eventStreamVersion>
       </int:removeEventStreamInfo>
    </soapenv:Body>
 </soapenv:Envelope>
+</#if>

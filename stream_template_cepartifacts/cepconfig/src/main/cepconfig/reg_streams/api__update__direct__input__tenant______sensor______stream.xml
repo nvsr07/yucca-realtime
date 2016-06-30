@@ -1,11 +1,13 @@
 <@pp.dropOutputFile />
-<@pp.changeOutputFile name="api__deploy__output__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
+<#if source.type!="Internal">
+<@pp.changeOutputFile name="api__update__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+".xml" />
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:int="http://internal.admin.manager.stream.event.carbon.wso2.org" xmlns:xsd="http://internal.admin.manager.stream.event.carbon.wso2.org/xsd">
    <soapenv:Header/>
    <soapenv:Body>
-      <int:addEventStreamInfo>
+      <int:editEventStreamInfo>
+      	 <int:oldStreamId>direct__${tenant.code}__${source.code_}__${stream.code}:1.0.0</int:oldStreamId>
          <!--Optional:-->
-         <int:eventStreamName>output__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamName>
+         <int:eventStreamName>direct__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamName>
          <!--Optional:-->
          <int:eventStreamVersion>1.0.0</int:eventStreamVersion>
          <!--Zero or more repetitions:-->
@@ -39,9 +41,10 @@
          </int:payloadEventStreamAttributeDtos>
          </#list>
         <!--Optional:-->
-         <int:eventStreamDescription>output__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamDescription>
+         <int:eventStreamDescription>direct__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamDescription>
          <!--Optional:-->
-         <int:eventStreamNickName>output__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamNickName>
-      </int:addEventStreamInfo>
+         <int:eventStreamNickName>direct__${tenant.code}__${source.code_}__${stream.code}</int:eventStreamNickName>
+      </int:editEventStreamInfo>
    </soapenv:Body>
 </soapenv:Envelope>
+</#if>

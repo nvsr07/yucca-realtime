@@ -1,0 +1,46 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__update__direct__"+tenant.code+"__"+source.code_+"_"+stream.code+"__EventFormatter.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:int="http://internal.admin.formatter.event.carbon.wso2.org"
+	xmlns:xsd="http://internal.admin.formatter.event.carbon.wso2.org/xsd">
+	<soapenv:Header />
+	<soapenv:Body>
+		<int:editActiveEventFormatterConfiguration>
+	         <int:eventFormatterConfiguration><![CDATA[
+	         <eventFormatter name="direct__${tenant.code}__${source.code_}__${stream.code}__EventFormatter"
+			  statistics="disable" trace="disable" xmlns="http://wso2.org/carbon/eventformatter">
+			  <from streamName="direct__${tenant.code}__${source.code_}__${stream.code}" version="1.0.0"/>
+			<mapping customMapping="enable" type="json">
+			    <inline>
+			{
+				 "stream": "${stream.code}",
+				<#if source.type = "Application">
+				"application": "{{meta_source}}",
+				<#elseif source.type = "Device">
+				"sensor": "{{meta_source}}",
+				<#elseif source.type = "Feed Tweet">
+				"sensor": "{{meta_source}}",
+				<#else>
+				"sensor": "internal",				
+				</#if>
+				"values": [
+				{
+				"time": "{{time}}",
+				"components":{<#list components as component>
+				"${component.code}":"{{${component.code}}}"<#if component_has_next>,</#if></#list>
+				}
+				}
+				]
+			}   
+			  </inline>
+			  </mapping>
+			    <to eventAdaptorName="JMSMBExternalOutputEventAdaptor.xml" eventAdaptorType="jms">
+    				<property name="transport.jms.Destination">output.${tenant.code}.${source.code}_${stream.code}</property>
+  				</to>
+			  </eventFormatter>
+		         ]]>
+	         </int:eventFormatterConfiguration>
+         <int:eventFormatterName>direct__${tenant.code}__${source.code_}__${stream.code}__EventFormatter</int:eventFormatterName>
+      </int:editActiveEventFormatterConfiguration>	
+	</soapenv:Body>
+</soapenv:Envelope>
