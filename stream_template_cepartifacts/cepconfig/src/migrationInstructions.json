@@ -103,7 +103,7 @@
 }
 <#-- delete builder INPUT ON CEP IF NOT USED  -->
 <#if stream.usedInInternalCount==0>
-{
+,{
 "number": "${x}",<#assign x = x+1> 
 "description":"Rimozione event Builder per ogni nodo CEP : ${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
 "actionType":"WebServiceCall",
@@ -120,9 +120,9 @@
 </#list>
 <#list mbs as mb><#-- REMOVE OF STREAMS INPUT ON CEP IF NOT USED   -->
 <#if stream.usedInInternalCount==0>
-{
+,{
 "number": "${x}",<#assign x = x+1> 
-"description":"Rimozione gli Stream in un nodo CEP", 
+"description":"Rimozione gli Stream in un nodo CEP input (not internal)", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
 "source":"cepconfig/reg_streams/api__delete__input__${tenant.code}__${source.code_}_${stream.code}.xml",
@@ -132,8 +132,21 @@
 "validityControl":"NO_CHECK",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-},
+}
 </#if>
+,{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione gli Stream in un nodo CEP output", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/reg_streams/api__delete__output__${tenant.code}__${source.code_}_${stream.code}.xml",
+"action":"removeEventStreamInfo",
+"destination":"${mb.host}/services/EventStreamAdminService",
+"returnExpected":"200", 
+"validityControl":"NO_CHECK",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
+}
 <#break>
 </#list>
 </#if>
