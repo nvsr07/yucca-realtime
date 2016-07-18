@@ -270,29 +270,53 @@ public final class PhoenixOutEventAdaptorType extends AbstractOutputEventAdaptor
     		
     		Class.forName("org.apache.phoenix.queryserver.client.Driver");
     		
-//    	    conn = DriverManager.getConnection(ThinClientUtil.getConnectionUrl("xxxxxxxxxxxxx", 8765)+";serialization=PROTOBUF");
 
-    	    conn = DriverManager.getConnection("jdbc:phoenix:thin:url=http://xxxxxxxxxxxx:8765;serialization=PROTOBUF");
+    	    conn = DriverManager.getConnection("jdbc:phoenix:thin:url=http://XXX:8765;serialization=PROTOBUF");
 
+    	    conn.setAutoCommit(false);
+    	    
 	    	String sql = "UPSERT INTO TRFL VALUES(?, ?,?, ?)";
 			stmt = conn.prepareStatement(sql);
+System.out.println(new Date());
 //	    	conn.createStatement().execute("UPSERT INTO TRFL VALUES(4, 3, TO_DATE('2019-12-12 22:32:01'), 3)");
-			stmt.setInt(1, 12);
-			stmt.setInt(2, 1);
-			stmt.setString(3, "2021-02-21 00:00:22");
-			stmt.setDouble(4, 23.2);
+			for (int i = 1; i < 100000; i++) {
+				stmt.setInt(1, i*3);
+				stmt.setInt(2, 1);
+				stmt.setString(3, "2021-02-21 00:00:00");
+				stmt.setDouble(4, i*10);
+				stmt.addBatch();
+			}
 			
-
-			System.out.println(stmt.executeUpdate());
+			stmt.setInt(1, 11);
+			stmt.setInt(2, 1);
+			stmt.setString(3, "2021-12-11 00:00:00"); // change this to do rallback
+			stmt.setDouble(4, 11*10);
+			stmt.addBatch();
+			
+			
+			
+			stmt.clearParameters();
+			stmt.executeBatch();
+			
+			
 			conn.commit();
 
-    	    ResultSet rs  = conn.createStatement().executeQuery("select * from TRFL");
-    	    while (rs.next())
-    	    	System.out.println(rs.getInt(1));
+			System.out.println(new Date());
+
+//    	    ResultSet rs  = conn.createStatement().executeQuery("select * from TRFL");
+//    	    while (rs.next())
+//    	    	System.out.println(rs.getInt(1));
 
     	}catch(SQLException se){
 		      //Handle errors for JDBC
             	se.printStackTrace();
+            try {
+            	System.out.println("rollback!");
+				conn.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }catch(Exception e){
 	      //Handle errors for Class.forName
             	e.printStackTrace();

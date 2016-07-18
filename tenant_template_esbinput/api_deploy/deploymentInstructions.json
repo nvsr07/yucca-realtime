@@ -125,6 +125,31 @@
 "successControl":"",
 "username":"", 
 "password":""
+},{
+"number": "${x}",<#assign x = x+1> 
+"description":"Richiamo creaTenant.sh", 
+"actionType":"RShellInstallation",
+"sourceType":"file",
+"source":"",
+"action":"/home/sdp/scripts/creaTenant.sh ${tenant.organizationCode} ${tenant.code} ${createnant.env}",
+"destination":"${createnant.url}",
+"returnExpected":"0", 
+"successControl":"",
+"username":"${createnant.user}", 
+"password":"${createnant.pwd}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Richiamo creaTenantMongo.sh", 
+"actionType":"RShellInstallation",
+"sourceType":"file",
+"source":"",
+"action":"/home/sdp/scripts/creaTenantMongo.sh ${tenant.code} ${createnant.env} ${createnant.mongopwd}",
+"destination":"${createnant.url}",
+"returnExpected":"0", 
+"successControl":"",
+"username":"${createnant.user}", 
+"password":"${createnant.pwd}"
 }
 ]
 }
