@@ -21,9 +21,47 @@
      }, {
     	"rt.description": "Authentication correct",
         "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
-        "rt.httpStatusExcepted" : 202,        
-        "rt.errorCode": ""
-     }
+        "rt.httpStatusExcepted" : 202     
+     },{
+    	"rt.description": "Invalid json 1",
+        "rt.message" : "XXXXXXXXXXXX{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E012"
+     },{
+    	"rt.description": "Invalid json 2",
+        "rt.message" : "ime\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E012"
+     },{
+    	"rt.description": "Missing required component",
+        "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E013"
+     },{
+    	"rt.description": "Datetime incorrect",
+        "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:97:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E013"
+     },{
+    	"rt.description": "V2 boolean component",
+        "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:47:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\",\"booleanv2\":false}]}]}",
+        "rt.httpStatusExcepted" : 202
+     },{
+    	"rt.description": "boolean incorrect",
+        "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:47:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\",\"booleanv2\":\"falsse\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E013"
+     },{
+    	"rt.description": "Stream unknown (sensor error)",
+        "rt.message" : "{\"sensor\":\"ceasasa99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:47:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\",\"booleanv2\":\"falsse\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E011"
+     },{
+    	"rt.description": "Stream unknown (application instead of sensor)",
+        "rt.message" : "{\"application\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:47:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\",\"booleanv2\":\"false\"}]}]}",
+        "rt.httpStatusExcepted" : 500,        
+        "rt.errorCode": "E011"
+     }    
     
 ]
 }
