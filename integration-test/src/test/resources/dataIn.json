@@ -1,21 +1,25 @@
 {
 "data" : [
     {
+    	"rt.description": "Authentication missing",
         "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
         "rt.username" : "",
         "rt.password" : "",
         "rt.httpStatusExcepted" : 401
      }, {
+    	"rt.description": "Unknown tenant",
         "rt.tenant": "tst_cspZZZZZ",
         "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
         "rt.httpStatusExcepted" : 500,
         "rt.errorCode": "E001"
     }, {
+    	"rt.description": "Wrong password",
         "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
         "rt.password" : "WRONG_PASSWORD",
         "rt.httpStatusExcepted" : 403,        
         "rt.errorCode": "E002"
      }, {
+    	"rt.description": "Authentication correct",
         "rt.message" : "{\"sensor\":\"cea99c00-c178-50fa-9a24-d32b8910dcd5\",\"stream\":\"alltypes\",\"values\":[{\"time\":\"2016-08-09T10:58:36Z\",\"components\":[{\"stringa\":\"stringa prova\",\"intero\":\"1\",\"lungo\":\"1221\",\"doppio\":\"12.11\",\"flotto\":\"12.1\",\"datatime\":\"2016-08-09T10:57:55.000Z\",\"booleano\":\"true\",\"longitudine\":\"12.12\"}]}]}",
         "rt.httpStatusExcepted" : 202,        
         "rt.errorCode": ""
