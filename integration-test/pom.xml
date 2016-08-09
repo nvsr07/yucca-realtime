@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.csi.yucca</groupId>
+  <artifactId>integration-test</artifactId>
+  <version>1.0.0</version>
+   <build>
+		<plugins>
+			 <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <testSource>1.7</testSource>
+                    <testTarget>1.7</testTarget>  
+                </configuration>
+            </plugin>
+ 			<plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                      <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                      </suiteXmlFiles>
+                    </configuration>
+                  </plugin>
+        </plugins>
+    </build>  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.testng</groupId>
+  		<artifactId>testng</artifactId>
+  		<version>6.8</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>io.rest-assured</groupId>
+  		<artifactId>rest-assured</artifactId>
+  		<version>3.0.0</version>
+  		<scope>test</scope>
+  	</dependency>
+  	 <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.10</version>
+    <scope>test</scope>
+  </dependency>
+<dependency>
+	<groupId>org.json</groupId>
+	<artifactId>json</artifactId>
+	<version>20151123</version>
+</dependency>
+  </dependencies>
+	<profiles>
+		<profile>
+			<id>integ</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/integ</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/prod</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+</project>
