@@ -2,6 +2,7 @@ package org.csi.yucca.realtime.test;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,6 +20,11 @@ import io.restassured.specification.RequestSpecification;
 
 public class HttpCEPInsertTest extends RestTest {
 
+	@BeforeClass
+	public void setUpSecretObject() throws IOException {
+		super.setUpSecretObject("/testSecret.json");
+	}
+	
 	@DataProvider(name = "ValidationCEPInsertTest")
 	public Iterator<Object[]> getFromJson() {
 

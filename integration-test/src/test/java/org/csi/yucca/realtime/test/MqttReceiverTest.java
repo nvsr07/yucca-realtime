@@ -37,6 +37,10 @@ public class MqttReceiverTest extends RestTest{
 
 		return getFromJson("/MqttReceiverTest.json");
 	}
+	@BeforeClass
+	public void setUpSecretObject() throws IOException {
+		super.setUpSecretObject("/testSecret.json");
+	}
 
 	
 	@Test(dataProvider = "mqttData",singleThreaded=true)

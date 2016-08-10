@@ -20,9 +20,9 @@ public class RestTest {
 	}
 
 	
-	@BeforeClass
-	public void setUpSecretObject() throws IOException {
-		String str = readFile("/testSecret.json");
+	
+	public void setUpSecretObject(String file) throws IOException {
+		String str = readFile(file);
 		secretObject = new JSONObject(str);
 	
 	}

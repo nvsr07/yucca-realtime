@@ -38,7 +38,11 @@ public class MqttCEPInsertTest extends RestTest{
 		return getFromJson("/ValidationCEPInsertTest.json");
 	}
 
-	
+	@BeforeClass
+	public void setUpSecretObject() throws IOException {
+		super.setUpSecretObject("/testSecret.json");
+	}
+
 	@Test(dataProvider = "ValidationCEPInsertTest",singleThreaded=true)
 	public void sendMQTTStatusErrorCodeTesting(final JSONObject dato) {
 		if (StringUtils.isNotEmpty(dato.optString("rt.mqttqueue"))) {
