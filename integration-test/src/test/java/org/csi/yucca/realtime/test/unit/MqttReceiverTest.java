@@ -1,4 +1,4 @@
-package org.csi.yucca.realtime.test;
+package org.csi.yucca.realtime.test.unit;
 
 import static io.restassured.RestAssured.given;
 
@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.commons.lang3.StringUtils;
+import org.csi.yucca.realtime.test.MqttCallbackResult;
+import org.csi.yucca.realtime.test.RestTest;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;

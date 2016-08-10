@@ -1,15 +1,17 @@
-package org.csi.yucca.realtime.test;
+package org.csi.yucca.realtime.test.unit;
 
 import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import org.apache.commons.lang3.StringUtils;
+import org.csi.yucca.realtime.test.RestTest;
+
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,6 +37,9 @@ public class HttpCEPInsertTest extends RestTest {
 	
 	@Test(dataProvider = "ValidationCEPInsertTest")
 	public void sendHTTPStatusErrorCodeTesting(JSONObject dato) {
+		if (dato.optBoolean("rt.toskip") || dato.optBoolean("rt.httptoskip"))
+				throw new SkipException("TODO in future version");
+		
 		RequestSpecification rs = given().body(dato.get("rt.message")).contentType(ContentType.JSON);
 
 		if (StringUtils.isNotEmpty(dato.optString("rt.username"))) {

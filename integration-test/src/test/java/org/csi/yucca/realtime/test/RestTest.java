@@ -62,10 +62,13 @@ public class RestTest {
 		try {
 			String line;
 			InputStream inputStream = this.getClass().getResourceAsStream(file);
-			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-			br = new BufferedReader(inputStreamReader);
-			while ((line = br.readLine()) != null) {
-				jsonData += line + "\n";
+			if (inputStream!=null)
+			{
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				br = new BufferedReader(inputStreamReader);
+				while ((line = br.readLine()) != null) {
+					jsonData += line + "\n";
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

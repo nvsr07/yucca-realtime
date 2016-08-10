@@ -12,7 +12,6 @@ public abstract class  MqttCallbackResult implements MqttCallback {
 	private final CountDownLatch loginLatch = new CountDownLatch (1);
 	private boolean result = false;
 	
-	
 	@Override
 	public void messageArrived(String topic, MqttMessage message)  throws Exception
 	{

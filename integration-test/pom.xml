@@ -25,6 +25,19 @@
                       </suiteXmlFiles>
                     </configuration>
                   </plugin>
+		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.19.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>                  
         </plugins>
     </build>  
   <dependencies>
@@ -62,21 +75,27 @@
 		<profile>
 			<id>integ</id>
 			<build>
-				<resources>
-					<resource>
+				<testResources>
+	 				<testResource>
+            			<directory>${project.basedir}/src/test/resources</directory>
+        			</testResource>			
+					<testResource>
 						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/integ</directory>
-					</resource>
-				</resources>
+					</testResource>
+				</testResources>
 			</build>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<build>
-				<resources>
-					<resource>
+				<testResources>
+	 				<testResource>
+            			<directory>${project.basedir}/src/test/resources</directory>
+        			</testResource>			
+					<testResource>
 						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/prod</directory>
-					</resource>
-				</resources>
+					</testResource>
+				</testResources>
 			</build>
 		</profile>
 	</profiles>
