@@ -18,15 +18,15 @@ import io.restassured.specification.RequestSpecification;
 
 public class HttpCEPInsertTest extends RestTest {
 
-	@DataProvider(name = "httpCEPInsertData")
+	@DataProvider(name = "ValidationCEPInsertTest")
 	public Iterator<Object[]> getFromJson() {
 
-		return super.getFromJson("/HttpCEPInsertTest.json");
+		return super.getFromJson("/ValidationCEPInsertTest.json");
 		
 	}
 
 	
-	@Test(dataProvider = "httpCEPInsertData")
+	@Test(dataProvider = "ValidationCEPInsertTest")
 	public void sendHTTPStatusErrorCodeTesting(JSONObject dato) {
 		RequestSpecification rs = given().body(dato.get("rt.message")).contentType(ContentType.JSON);
 
