@@ -16,6 +16,23 @@
 		<directory>target/capp</directory>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.9.5</version>
+				<configuration>
+					<connectionType>connection</connectionType>
+				</configuration>
+				<executions>
+					<execution>
+						<id>1</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>checkout</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2</version>
@@ -93,7 +110,6 @@
 					<escape>true</escape>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.wso2.maven</groupId>
 				<artifactId>wso2-esb-sequence-plugin</artifactId>
