@@ -263,7 +263,114 @@ public final class PhoenixOutEventAdaptorType extends AbstractOutputEventAdaptor
     	
     }
     
-    public static void main(String[] args) {
+    
+
+    
+    
+   public static void main(String[] args) {
+    	Connection conn = null;
+    	Statement stmt = null;
+    	MongoClient mongoClient =null;
+    	ServerAddress reqMongo = null;
+    	try {
+    	    conn = DriverManager.getConnection("jdbc:phoenix:thin:url=http://sdnet-edge1.sdp.csi.it:8765;serialization=PROTOBUF");
+
+			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss").format(new Date()));
+    	    conn.setAutoCommit(true);
+    		
+    		
+        	try {
+        		reqMongo = new ServerAddress("int-sdnet-up1.sdp.csi.it",27017);
+    		} catch (UnknownHostException e) {
+    			log.error("Impossible to connect MongoDB on "+reqMongo.toString());
+    			return;
+    		}
+         	MongoCredential credential = MongoCredential.createMongoCRCredential("discovery", "admin", "mypass".toCharArray());
+			mongoClient = new MongoClient(reqMongo,Arrays.asList(credential));
+      	
+	    	DB dbSupport = mongoClient.getDB("DB_SUPPORT");
+	    	DB dbArpaRumore = mongoClient.getDB("DB_tst_arpa_rumore");
+	    	DBCollection measures = dbSupport.getCollection("measures");
+
+	    	BasicDBObject query = new BasicDBObject("configData.tenantCode", "tst_arpa_rumore");
+	    	DBCollection metadataCollection = dbSupport.getCollection("metadata");
+	    	
+	    	DBCursor cursor = metadataCollection.find(query);
+	    	DBObject ret = null;
+	    	try {
+	    	   while(cursor.hasNext()) {
+	    		   System.out.println("Starting dataset "+ ret.get("datasetCode"));
+
+	    		   
+	    		   
+	    		   
+	    		   ret = cursor.next();
+	    	   }
+	    	} finally {
+	    	   cursor.close();
+	    	}
+
+			
+			
+
+	    	
+	    	DBCursor cursor = metaStreamCollection.find();
+	    	DBObject ret = null;
+
+   	    	try {
+	    	   while(cursor.hasNext()) {
+	    		   ret = cursor.next();
+	    		   ret.toMap()
+	    		   String sql = "UPSERT INTO DB_TST_ARPA_RUMORE.MEASURES ("
+	    				 + "iddataset, datasetversion, tempo, ids, objectid, sensor, streamcode)"; 		   
+	    		   
+	    		   
+	    		   
+	    	   }
+	    	} finally {
+	    	   cursor.close();
+	    	}
+    		
+    		Class.forName("org.apache.phoenix.queryserver.client.Driver");
+    		
+
+    	    
+	    	String sql = "select * from s02_immutable where time_event = TO_DATE('2016-02-16 00:00:00', 'yyyy-MM-dd HH:mm:ss')  limit 1 ";
+			
+	    	stmt =  conn.createStatement();
+
+	    	ResultSet res =  stmt.executeQuery(sql);
+
+	    	while (res.next()) {
+				System.out.println(res.getString(1));
+			}
+	    	
+			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.sss").format(new Date()));
+
+//    	    ResultSet rs  = conn.createStatement().executeQuery("select * from TRFL");
+//    	    while (rs.next())
+//    	    	System.out.println(rs.getInt(1));
+
+    	}catch(SQLException se){
+		      //Handle errors for JDBC
+            	se.printStackTrace();
+            try {
+            	System.out.println("rollback!");
+				conn.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }catch(Exception e){
+	      //Handle errors for Class.forName
+            	e.printStackTrace();
+        }finally{
+	    	  cleanupConnections(stmt, conn);
+        }
+		
+	}
+		
+    public static void main2(String[] args) {
     	Connection conn = null;
     	PreparedStatement stmt = null;
     	try {
