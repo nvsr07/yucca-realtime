@@ -76,9 +76,6 @@
 			<id>integ</id>
 			<build>
 				<testResources>
-	 				<testResource>
-            			<directory>${project.basedir}/src/test/resources</directory>
-        			</testResource>			
 					<testResource>
 						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/integ</directory>
 					</testResource>
@@ -89,9 +86,6 @@
 			<id>prod</id>
 			<build>
 				<testResources>
-	 				<testResource>
-            			<directory>${project.basedir}/src/test/resources</directory>
-        			</testResource>			
 					<testResource>
 						<directory>//csint1/dirtec/2014/Tecnologie e attività/SmartDataPlatform/PropFiles/realtime/test/prod</directory>
 					</testResource>
