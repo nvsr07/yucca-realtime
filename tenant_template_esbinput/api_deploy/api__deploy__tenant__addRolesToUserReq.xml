@@ -1,0 +1,17 @@
+<@pp.dropOutputFile />
+<@pp.changeOutputFile name="api__deploy__"+tenant.code+"__addRolesToUserReq.xml"/>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://org.apache.axis2/xsd">
+   <soapenv:Header/>
+  <soapenv:Body>
+      <xsd:addRemoveRolesOfUser>
+         <!--Optional:-->
+         <xsd:userName>${tenant.userName}</xsd:userName>
+         <!--Zero or more repetitions:-->
+         <xsd:newRoles>${tenant.code}_subscriber</xsd:newRoles>
+         <xsd:newRoles>userportal_superuser</xsd:newRoles>
+         <xsd:newRoles>internal/subscriber</xsd:newRoles>
+         <!--Zero or more repetitions:-->
+         <xsd:deletedRoles></xsd:deletedRoles>
+      </xsd:addRemoveRolesOfUser>
+   </soapenv:Body>
+</soapenv:Envelope>
