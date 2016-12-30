@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.csi.yucca.realtime.test.MqttCallbackResult;
@@ -112,7 +113,7 @@ public class MqttCEPInsertTest extends RestTest{
 	}
 
 	private void publishMqtt(JSONObject dato) throws MqttSecurityException, MqttException {
-		MqttClient client = new MqttClient(dato.getString("rt.mqtturl"), "publisher");
+		MqttClient client = new MqttClient(dato.getString("rt.mqtturl"), "publisher"+UUID.randomUUID());
 
 		MqttConnectOptions connOpts = new MqttConnectOptions();
 		connOpts.setCleanSession(true);

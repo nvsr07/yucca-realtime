@@ -97,6 +97,24 @@
 							</execution>
 						</executions>
 					</plugin>
+					  <plugin>
+                    <groupId>com.lazerycode.jmeter</groupId>
+                    <artifactId>jmeter-maven-plugin</artifactId>
+                    <version>2.0.3</version>
+                    <executions>
+                        <execution>
+                            <id>jmeter-tests</id>
+                            <goals>
+                                <goal>jmeter</goal>
+                            </goals>
+                            <configuration>
+                             <customPropertiesFiles>
+                                    <file>${project.build.directory}/checkout/realtime/test/jmeter/services.properties</file>
+                             </customPropertiesFiles>
+                             </configuration>
+                        </execution>
+                    </executions>
+                  </plugin>		
 				</plugins>
 				<testResources>
 					<testResource>
