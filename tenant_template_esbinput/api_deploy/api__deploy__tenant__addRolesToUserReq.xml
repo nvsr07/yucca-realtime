@@ -8,7 +8,7 @@
          <xsd:userName>${tenant.userName}</xsd:userName>
          <!--Zero or more repetitions:-->
          <xsd:newRoles>${tenant.code}_subscriber</xsd:newRoles>
-         <xsd:newRoles>userportal_superuser</xsd:newRoles>
+         <xsd:newRoles>userportal-superuser</xsd:newRoles>
          <xsd:newRoles>internal/subscriber</xsd:newRoles>
          <!--Zero or more repetitions:-->
          <xsd:deletedRoles></xsd:deletedRoles>
