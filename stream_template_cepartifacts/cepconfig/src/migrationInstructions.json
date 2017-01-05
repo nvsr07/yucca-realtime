@@ -20,10 +20,10 @@
 }<#else>
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Rimozione event Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
+"description":"Rimozione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/eventformatters/api__delete__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
+"source":"cepconfig/eventformatters/api__delete__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
 "action":"undeployActiveEventFormatterConfiguration",
 "destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
@@ -32,10 +32,10 @@
 "password":"${mb.secpassword}"
 },{
 "number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Internal Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter", 
+"description":"Installazione event Internal Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter", 
 "actionType":"WebServiceCall",
 "sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter.xml",
+"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter.xml",
 "action":"editActiveEventFormatterConfiguration",
 "destination":"${mb.host}/services/EventFormatterAdminService",
 "returnExpected":"200", 
