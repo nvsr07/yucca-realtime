@@ -1,6 +1,7 @@
 <#assign x = 1> 
 {
 "steps": [
+<#if (tenant.tenantType!="zero")>
 <#list mbs as mb>
 {
 "number": "${x}",<#assign x = x+1> 
@@ -41,7 +42,9 @@
 "successControl":"",
 "username":"${identityserver.secuser}", 
 "password":"${identityserver.secpassword}"
-},{
+},
+</#if>
+{
 "number": "${x}",<#assign x = x+1> 
 "description":"Delete Ruolo ${tenant.code}_subscriber", 
 "actionType":"WebServiceCall",
