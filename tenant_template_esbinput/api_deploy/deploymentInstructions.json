@@ -158,6 +158,18 @@
 "password":"${createnant.pwd}"
 },{
 "number": "${x}",<#assign x = x+1> 
+"description":"Richiamo creaTenantPhoenixSolr.sh", 
+"actionType":"RShellInstallation",
+"sourceType":"file",
+"source":"",
+"action":"cd scripts && ./creaTenantPhoenixSolr.sh ${tenant.organizationCode} ${createnant.env} ${tenant.dataSolrCollectionName} ${tenant.measuresSolrCollectionName} ${tenant.mediaSolrCollectionName} ${tenant.socialSolrCollectionName}",
+"destination":"${createnant_phoenix.url}",
+"returnExpected":"0", 
+"successControl":"",
+"username":"${createnant.user}", 
+"password":"${createnant.pwd}"
+},{
+"number": "${x}",<#assign x = x+1> 
 "description":"Aggiunta Ruoli ad utente", 
 "actionType":"WebServiceCall",
 "sourceType":"file",

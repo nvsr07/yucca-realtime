@@ -3,28 +3,16 @@
 "steps": [
 {
 "number": "${x}",<#assign x = x+1> 
-"description":"Aggiunta Ruolo ${tenant.code}_subscriber", 
-"actionType":"WebServiceCall",
+"description":"Richiamo creaTenantPhoenixSolr.sh", 
+"actionType":"RShellInstallation",
 "sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__addRoleSubscriber.xml",
-"action":"addRole",
-"destination":"${identityserver.url}/services/UserAdmin",
-"returnExpected":"200", 
+"source":"",
+"action":"cd scripts && ./creaTenantPhoenixSolr.sh ${tenant.organizationCode} ${createnant.env} ${tenant.dataSolrCollectionName} ${tenant.measuresSolrCollectionName} ${tenant.mediaSolrCollectionName} ${tenant.socialSolrCollectionName}",
+"destination":"${createnant_phoenix.url}",
+"returnExpected":"0", 
 "successControl":"",
-"username":"${identityserver.secuser}", 
-"password":"${identityserver.secpassword}"
-},{
-"number": "${x}",<#assign x = x+1> 
-"description":"Aggiunta Ruolo ${tenant.code}_subscriber ad admin", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"target/api__deploy__${tenant.code}__addRoleSubscriberToAdmin.xml",
-"action":"addRemoveUsersOfRole",
-"destination":"${identityserver.url}/services/UserAdmin",
-"returnExpected":"200", 
-"successControl":"",
-"username":"${identityserver.secuser}", 
-"password":"${identityserver.secpassword}"
+"username":"${createnant.user}", 
+"password":"${createnant.pwd}"
 }
 ]
 }
