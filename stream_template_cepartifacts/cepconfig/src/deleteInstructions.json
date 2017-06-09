@@ -72,6 +72,19 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
+},
+{
+"number": "${x}",<#assign x = x+1> 
+"description":"Rimozione event Formatter per ogni nodo CEP : api__delete__direct__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter", 
+"actionType":"WebServiceCall",
+"sourceType":"file",
+"source":"cepconfig/eventformatters/api__delete__direct__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter.xml",
+"action":"undeployActiveEventFormatterConfiguration",
+"destination":"${mb.host}/services/EventFormatterAdminService",
+"returnExpected":"200", 
+"validityControl":"<fault>",
+"username":"${mb.secuser}", 
+"password":"${mb.secpassword}"
 },<#if stream.persisted?? && stream.persisted ="true">
 {
 "number": "${x}",<#assign x = x+1> 
