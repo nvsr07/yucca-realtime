@@ -3,21 +3,8 @@
 "steps": [
 <#list mbs as mb><#-- CREATION OF STREAMS ON CEP   -->
 <#if source.type!="Internal">
-{
-"number": "${x}",<#assign x = x+1> 
-"description":"update Registrare gli Stream in un nodo CEP di tipo direct", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/reg_streams/api__update__direct__${tenant.code}__${source.code_}_${stream.code}.xml",
-"action":"editEventStreamInfo",
-"destination":"${mb.host}/services/EventStreamAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}
  <#if (stream.usedInInternalCount>0)>
-,{
+{
 "number": "${x}",<#assign x = x+1> 
 "description":"update Registrare gli Stream in un nodo CEP di tipo input", 
 "actionType":"WebServiceCall",
@@ -65,19 +52,6 @@
 </#list>
 <#list mbs as mb> <#-- CREATION OF BUILDERS ON CEP   -->
 <#if source.type!="Internal">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Builder per ogni nodo CEP : direct__${tenant.code}__${source.code_}__${stream.code}__EventBuilder", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventbuilders/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventBuilder.xml",
-"action":"editActiveEventBuilderConfiguration",
-"destination":"${mb.host}/services/EventBuilderAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}
 <#if (stream.usedInInternalCount>0)>
 ,{
 "number": "${x}",<#assign x = x+1> 
@@ -111,46 +85,8 @@
  </#list>
 </#if> <#-- CREATION OF FORMTTER ON CEP   -->
 <#if source.type!="Internal">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
-"action":"editActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}<#if stream.persisted?? && stream.persisted ="true">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__update__direct__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__direct__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
-"action":"editActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}</#if>
 <#else>
 ,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__EventFormatter.xml",
-"action":"editActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-},{
 "number": "${x}",<#assign x = x+1> 
 "description":"Installazione event Internal Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__InternalEventFormatter", 
 "actionType":"WebServiceCall",
@@ -162,20 +98,7 @@
 "validityControl":"<fault>",
 "username":"${mb.secuser}", 
 "password":"${mb.secpassword}"
-}<#if stream.persisted?? && stream.persisted ="true">
-,{
-"number": "${x}",<#assign x = x+1> 
-"description":"Installazione event Formatter per ogni nodo CEP : api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter", 
-"actionType":"WebServiceCall",
-"sourceType":"file",
-"source":"cepconfig/eventformatters/api__update__output__${tenant.code}__${source.code_}_${stream.code}__MongoEventFormatter.xml",
-"action":"editActiveEventFormatterConfiguration",
-"destination":"${mb.host}/services/EventFormatterAdminService",
-"returnExpected":"200", 
-"validityControl":"<fault>",
-"username":"${mb.secuser}", 
-"password":"${mb.secpassword}"
-}</#if>
+}
 </#if> <#-- CREATION OF EXECUTIONPLAN ON CEP   -->
 <#if source.type=="Internal">
 ,{
