@@ -58,7 +58,7 @@ public class MongoConnectionSingleton {
 			ServerAddress serverAddr=new ServerAddress(newHost,port);
 			arrServerAddr.add(serverAddr);
 		}
-		MongoCredential credential = MongoCredential.createMongoCRCredential(SDPTwitterConfig.getInstance().getUsr(), 
+		MongoCredential credential = MongoCredential.createCredential(SDPTwitterConfig.getInstance().getUsr(), 
 				"admin", 
 				SDPTwitterConfig.getInstance().getPwd().toCharArray());
 		MongoClient mongoClient = null;
